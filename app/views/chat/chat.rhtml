@@ -1,0 +1,16 @@
+<% @page_name = 'chat' -%>
+<div id="scroll">
+  <br>
+<% #@msg.each do |m|%>
+  <%#=m%>
+<%#end%>
+  <br/>
+</div>
+
+ 
+  <div>
+    <%= form_tag %>
+    <input type="text" id="wchat" name="mensaje" maxlength="1000" value=""><br>
+    <%= submit_tag "enviar", :class => 'botonoculto' %>
+    <%= end_form_tag %>
+  </div>

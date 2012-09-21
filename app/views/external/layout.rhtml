@@ -1,0 +1,78 @@
+<% navegadores = ['Firefox','Chrome','Mobile','MSIE'] -%>
+		<% navegadores.each do |n| -%>
+			<% if @request.env["HTTP_USER_AGENT"].include?(n) -%>
+				<% @@navegador = n -%>
+			<% end -%>
+		<% end -%>
+<% if @@navegador == 'MSIE' -%>
+<html> 
+	<head> 
+		<meta name="http-equiv" content="Content-type: text/html; charset=utf-8"/>
+		<title>No queremos Internet explorer en esta paguina</title> 
+		<META HTTP-EQUIV="REFRESH" CONTENT="30;URL=http://www.mozilla.org/es-ES/firefox/new/"> 
+	</head> 
+	<body> 
+		<center> 
+		Tu navegador no es aceptado en nuestro sistema, por que lo consideramos defectuoso.<br>
+		En breves segundos te redirigiremos por el buen camino.<br>
+		Aun que Firefox es uno hay mas.<br>
+		Descargate cuanquier navedor que no sea Intenet Explorer y l&iacute;brate de los virus.
+		<h1>No Participaremos en la Corrupci&oacute;n de tu sistema operativo...</h1>
+		</center>
+	</body> 
+</html>
+<% else -%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>TOMALARED.NET :: <%= @page_name %></title>
+  <%= stylesheet_link_tag 'admin' %>
+  <%= javascript_include_tag 'prototype' %>
+  <%= javascript_include_tag 'application' %>
+  <%= include_yui_editor_if_used %>
+
+</head>
+<body<% if params[:action] == 'edit' -%> onload="javascript:changeType();"<% end -%>>
+
+  <div id="header">
+		  <div id="titulo"><br/>
+		<% if current_user -%>
+			<h1>&nbsp;<%= link_to '&nbsp;TOMALARED.NET&nbsp;', :controller => 'admin', :action => 'list_post', :id => '' %></h1>
+		<% else -%>
+			<h1>&nbsp;<%= link_to '&nbsp;TOMALARED.NET&nbsp;', :controller => 'admin', :action => 'login' %></h1>			
+		<% end -%>
+		  </div>
+
+	               	<%= render :partial => 'login' %>
+  </div>
+
+<br/>
+<div id="main" align="center">
+<br/>
+<div id="content">
+  <% if flash[:notice] %>
+    <div id="notice">
+      <%= flash[:notice] %>
+    </div>
+
+  <% end %>
+<br/>
+	<% if current_user -%>
+	    <%= yield %>
+	<% else %>
+            <%= render :partial => 'registro' %>
+	<% end %>
+<br/>
+</div>
+  
+  <div>
+    TOMALARED.NET &nbsp;v0.1 (alpha) 
+   </div>
+
+ </div>
+</div>
+</body>
+</html>
+
+<% end -%>

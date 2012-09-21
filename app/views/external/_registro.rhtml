@@ -1,0 +1,21 @@
+<br/><br/>
+<% form_for :user do |f| %>
+  <table class="registro">
+    <tr>
+      <th colspan="4" class="registrotd">Nuevo Usuario</th>
+    </tr>
+
+    <tr>
+      <th>Nombre:</th><td><%= f.text_field 'name', :size => 20 %></td>
+      <th>Clave:</th><td><input type="password" name="password[new]" size="20" /></td>
+    </tr>
+
+    <tr>
+      <th>Email:</th><td><%= f.text_field 'email', :size => 20 %></td>
+      <th>R. Clave:</th><td><input type="password" name="password[confirm]" size="20" /></td>
+    </tr>
+      
+    <tr><td colspan="2" align="right" class="tdvacio"><%= submit_tag 'Crear' %></td></tr>
+  </table>
+        
+<% end %>

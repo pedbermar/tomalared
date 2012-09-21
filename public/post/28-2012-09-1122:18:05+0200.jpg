@@ -1,0 +1,719 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="shortcut icon" href="/images/favicon_vk.ico" />
+
+<meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+<meta name="description" content=" " />
+
+<title>Gargola Audiovisual</title>
+
+<noscript><meta http-equiv="refresh" content="0; URL=/badbrowser.php"></noscript>
+
+<script type="text/javascript">
+var vk = {
+  ad: 1,
+  adupd: 120000, // 2 min
+  al: parseInt('4') || 4,
+  id: 0,
+  intnat: '1' ? true : false,
+  host: 'vk.com',
+  lang: 3,
+  rtl: parseInt('') || 0,
+  version: 10327,
+  stDomains: 3,
+  zero: false,
+  contlen: 48790,
+  loginscheme: 'https',
+  ip_h: '0ec6ed2ab3c14a94f4',
+  vc_h: '8f0540c929f8d48275d0ccb0c866eb83',
+  navPrefix: '/',
+  dt: parseInt('') || 0,
+  fs: parseInt('11') || 11,
+  ts: 1347394680,
+  pd: 0,
+  pads: 1,
+  time: [2012, 9, 12, 0, 18, 0]
+}
+
+window.locDomain = vk.host.match(/[a-zA-Z]+\.[a-zA-Z]+\.?$/)[0];
+var _ua = navigator.userAgent.toLowerCase();
+if (/opera/i.test(_ua) || !/msie 6/i.test(_ua) || document.domain != locDomain) document.domain = locDomain;
+var ___htest = (location.toString().match(/#(.*)/) || {})[1] || '';
+if (vk.al != 1 && ___htest.length && ___htest.substr(0, 1) == vk.navPrefix) {
+  if (vk.al != 3 || vk.navPrefix != '!') {
+    location.replace(location.protocol + '//' + location.host + '/' + ___htest.replace(/^(\/|!)/, ''));
+  }
+}
+
+var StaticFiles = {
+  'common.js' : {v: 922},
+  'common.css': {v: 365},
+  'ie6.css'   : {v: 24},
+  'ie7.css'   : {v: 18}
+  ,'lang3_0.js':{v:3330},'profile.css':{v:174},'page.css':{v:389},'photoview.css':{v:103}
+}
+</script>
+
+<link rel="stylesheet" type="text/css" href="http://st0.userapi.com/css/al/common.css?365" />
+<!--[if lte IE 6]><style type="text/css" media="screen">/* <![CDATA[ */ @import url(http://st0.userapi.com/css/al/ie6.css?24); /* ]]> */</style><![endif]-->
+<!--[if IE 7]><style type="text/css" media="screen">/* <![CDATA[ */ @import url(http://st0.userapi.com/css/al/ie7.css?18); /* ]]> */</style><![endif]-->
+<link type="text/css" rel="stylesheet" href="http://st0.userapi.com/css/al/profile.css?174"></link><link type="text/css" rel="stylesheet" href="http://st0.userapi.com/css/al/page.css?389"></link><link type="text/css" rel="stylesheet" href="http://st0.userapi.com/css/al/photoview.css?103"></link><script type="text/javascript" src="/js/loader_nav10327_3.js"></script><script type="text/javascript" src="http://st3.userapi.com/js/al/common.js?922"></script><script type="text/javascript" src="/js/lang3_0.js?3330"></script><link rel="meta" type="application/rdf+xml" title="FOAF" href="/foaf.php?id=182826479" />
+<link rel="stylesheet" type="text/css" href="http://st0.userapi.com/css/al/retina.css?1" media="only screen and (-webkit-min-device-pixel-ratio:2)"/>
+
+</head>
+
+<body onresize="onBodyResize()" class="is_rtl font_default pads ">
+  <div id="system_msg" class="fixed"></div>
+  <div id="utils"></div>
+
+  <div id="layer_bg" class="fixed"></div><div id="layer_wrap" class="scroll_fix_wrap fixed"><div id="layer"></div></div>
+  <div id="box_layer_bg" class="fixed"></div><div id="box_layer_wrap" class="scroll_fix_wrap fixed"><div id="box_layer"><div id="box_loader"><div class="loader"></div><div class="back"></div></div></div></div>
+
+  <div id="stl_left"></div><div id="stl_side"></div>
+
+  <script type="text/javascript">domStarted();</script>
+
+  <div class="scroll_fix_wrap" id="page_wrap"><div id="reg_bar" class="top_info_wrap fixed">
+  <div class="scroll_fix">
+    <div id="reg_bar_content">
+      Join VK now and always stay in contact with your friends and relatives
+      <div class="button_blue" id="reg_bar_button"><a class="button_link" href="/join" onclick="return !showBox('join.php', {act: 'box', from: nav.strLoc}, {}, event)"><button id="reg_bar_btn"><span id="reg_bar_with_arr">Sign up</span></button></a></div>
+    </div>
+  </div>
+  <div id="chrome_bar_bg"></div>
+</div>
+<div><div class="scroll_fix">
+  <div id="page_layout" style="width: 791px;">
+    <div id="page_header" class="p_head1 p_head_l3">
+      <div class="back"></div>
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="content">
+        <div id="top_nav" class="head_nav">
+  <div id="top_logo_down" class="fl_l"></div>
+  <a id="top_home_link" class="top_home_link fl_l" href="/" onmousedown="addClass('top_logo_down','tld_d');" onclick="return nav.go(this, event);" onmouseup="removeClass('top_logo_down','tld_d');" style=""></a>
+  <div id="top_links">
+    <div class="fl_r" id="top_menu_wrap" style="">
+      <a id="top_reg_link" class="fl_r top_nav_link" href="/join" style="" onclick="return !showBox('join.php', {act: 'box', from: nav.strLoc}, {}, event)">sign up</a>
+    </div>
+    <a class="fl_l top_nav_link" href="" id="top_back_link" onclick="return nav.go(this, event, {back: true})"></a>
+  </div>
+</div>
+      </div>
+    </div>
+
+    <div id="side_bar" class="fl_l" style="">
+      <div id="quick_login">
+  <form method="POST" name="login" id="quick_login_form" action="https://login.vk.com/?act=login" onsubmit="if (vklogin) {return true} else {quick_login();return false;}">
+    <input type="hidden" name="act" value="login" />
+    <input type="hidden" name="q" value="1" />
+    <input type="hidden" name="al_frame" value="1" />
+    <input type="hidden" name="expire" id="quick_expire_input" value="" />
+    <input type="hidden" name="captcha_sid" id="quick_captcha_sid" value="" />
+    <input type="hidden" name="captcha_key" id="quick_captcha_key" value="" />
+    <input type="hidden" name="from_host" value="vk.com" />
+    <input type="hidden" name="from_protocol" value="http" />
+    <input type="hidden" name="ip_h" value="0ec6ed2ab3c14a94f4" />
+    <div class="label">Phone or email:</div>
+    <div class="labeled"><input type="text" name="email" class="text" onfocus="show('quick_expire')" id="quick_email" /></div>
+    <div class="label">Password:</div>
+    <div class="labeled"><input type="password" name="pass" class="text" onfocus="show('quick_expire')" id="quick_pass" /></div>
+    <div class="checkbox" id="quick_expire" onclick="checkbox(this);ge('quick_expire_input').value=isChecked(this)?1:'';"><div></div>Don&#39;t remember me</div>
+    <input type="submit" class="submit" />
+  </form>
+  <div class="button_blue button_wide"><button id="quick_login_button">Log in</button></div>
+  <div class="button_blue button_wide" id="quick_reg_button" style=""><button onclick="top.showBox('join.php', {act: 'box', from: nav.strLoc})">Sign up</button></div>
+  <div class="clear forgot"><a href="/restore" target="_top">Forgot your password?</a></div>
+</div>
+    </div>
+
+    <div id="page_body" class="fl_r" style="width: 631px;">
+      <div id="header_wrap2">
+        <div id="header_wrap1">
+          <div id="header" style="">
+            <h1 id="title"><b id="profile_online_lv" class="fl_r">Online<b class="mob_onl profile_mob_onl unshown" id="profile_mobile_online" onmouseover="mobileOnlineTip(this, {mid: cur.oid, right: 1})" onclick="mobilePromo(); "></b></b>Gargola Audiovisual</h1>
+          </div>
+        </div>
+      </div>
+      <div id="wrap_between"></div>
+      <div id="wrap3"><div id="wrap2">
+  <div id="wrap1">
+    <div id="content"><div id="profile">
+  
+  <div class="narrow_column fl_l" id="profile_narrow">
+    <div id="profile_avatar"><a id="profile_photo_link" href="/photo182826479_288655838" onclick="return showPhoto('182826479_288655838', 'album182826479_0/rev', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2951/6RBoW5y3W8Q&quot;,308,308]}, jumpTo: {z: 'albums182826479'}}, event)"><img height="200" width="200" src="http://cs402928.userapi.com/u182826479/a_fb0d1669.jpg" /></a></div><div class="msg guest_actions">
+Please <a onclick="focusLoginInput()">log in</a> or <a href="/join" onclick="return !showBox('join.php', {act: 'box', from: nav.strLoc}, {}, event)">sign up</a> to send Gargola a message.
+</div><div class="rate_empty_line"></div>
+  </div>
+  <div class="wide_column fl_r" id="profile_wide">
+    <div id="profile_info">
+  <h4 class="simple page_top clear_fix ta_r">
+    <div class="page_name fl_l ta_l">Gargola  Audiovisual</div>
+    <div class="profile_grad fl_r"></div>
+    <div class="fl_l ta_l clear"></div>
+  </h4>
+  <div id="profile_short" >
+    <div class="profile_info"><div class="clear_fix ">
+  <div class="label fl_l">Languages:</div>
+  <div class="labeled fl_l">Espa&#241;ol</div>
+</div></div><a class="profile_info_link noselect" onclick="Profile.showFull(182826479, 'en')">Show full information</a>
+  </div>
+</div><div id="profile_full_info" style="display: none">
+  <h4>
+  
+  <b>Contact information</b>
+</h4>
+<div class="profile_info">
+  <div class="clear_fix ">
+  <div class="label fl_l">Website:</div>
+  <div class="labeled fl_l"><a href="/away.php?to=http%3A%2F%2Fwww.facebook.com%2FLaGargolaAV" target="_blank" target="_blank">http://www.facebook.com/LaGargolaAV</a></div>
+</div>
+</div>
+  <h4>
+  
+  <b>Education</b>
+</h4>
+<div class="profile_info">
+  <div class="profile_no_info clear_fix">
+  <div class="label fl_l">&nbsp;</div>
+  <div class="labeled fl_l">No information.</div>
+</div>
+</div>
+  
+  <h4>
+  
+  <b>Personal information</b>
+</h4>
+<div class="profile_info">
+  <div class="clear_fix ">
+  <div class="label fl_l">Activities:</div>
+  <div class="labeled fl_l">http://www.facebook.com/LaGargolaAV	http://www.flickr.com/photos/gargoile/	http://www.kroenen.tk/	http://www.youtube.com/user/Merk2AudioVisual/videos</div>
+</div>
+</div>
+  
+  
+  
+</div><div class="module clear photos_module" id="profile_photos_module">
+  <a href="/albums182826479?profile=1" onclick="return nav.change({z: 'albums182826479'}, event)" class="module_header">
+    <div class="header_top clear_fix">
+      <span class="right_link fl_r" onmouseover="this.parentNode.parentNode.href='/photos182826479'" onmouseout="this.parentNode.parentNode.href='/albums182826479'">see all</span>
+      22 photos
+    </div>
+  </a>
+  <div id="profile_photos" class="clear_fix profile_photos_other">
+    <div class="page_post_sized_thumbs clear_fix profile_sized_photos" style="width: 397px; height: 77px;"><a  href="/photo182826479_288698007?all=1"  onclick="return showPhoto('182826479_288698007', 'photos182826479', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a12/aTJBg9A6rhY&quot;,401,604],y_:[&quot;http://cs402928.userapi.com/v402928479/2a13/lsLCo5s5juk&quot;,536,807],z_:[&quot;http://cs402928.userapi.com/v402928479/2a14/QGFY5boRrlQ&quot;,680,1024]}}, event)" style="width: 77px; height: 77px;" class="page_post_thumb_wrap  page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/2a11/fj-jIMTVEZU.jpg" width="77" height="116" style="margin-top: -12px;"  class="page_post_thumb_sized_photo" /></a><a  href="/photo182826479_288698003?all=1"  onclick="return showPhoto('182826479_288698003', 'photos182826479', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a09/4CfcxwJHBWA&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/2a0a/BdkFN3toPOw&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/2a0b/m2dt2_nR1fw&quot;,1280,850]}}, event)" style="width: 116px; height: 77px;" class="page_post_thumb_wrap  page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/2a08/OSEBx6bfRsU.jpg" width="117" height="77" style="margin-left: -0px;"  class="page_post_thumb_sized_photo" /></a><a  href="/photo182826479_288697989?all=1"  onclick="return showPhoto('182826479_288697989', 'photos182826479', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a00/_m3WIGTY9Pc&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/2a01/ieeE2v0RsBA&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/2a02/duqm77onxN4&quot;,1280,850]}}, event)" style="width: 116px; height: 77px;" class="page_post_thumb_wrap  page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/29ff/FoFU9NyLzBI.jpg" width="117" height="77" style="margin-left: -0px;"  class="page_post_thumb_sized_photo" /></a><a  href="/photo182826479_288697985?all=1"  onclick="return showPhoto('182826479_288697985', 'photos182826479', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29f7/JiAEcSgrYK8&quot;,401,604],y_:[&quot;http://cs402928.userapi.com/v402928479/29f8/sCa-MCSyR2g&quot;,536,807],z_:[&quot;http://cs402928.userapi.com/v402928479/29f9/1hdTXXwRhlk&quot;,680,1024]}}, event)" style="width: 79px; height: 77px;" class="page_post_thumb_wrap  page_post_thumb_last_column page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/29f6/k1LpsK-qFNw.jpg" width="79" height="119" style="margin-top: -14px;"  class="page_post_thumb_sized_photo" /></a></div>
+<table cellspacing="0" cellpadding="0">
+  <tr class="bottom"></tr>
+</table>
+  </div>
+</div><div class="wall_module" id="profile_wall">
+  <div class="module_header wall_header">
+  <a id="page_wall_header" class="header_top clear_fix">
+    <span class="right_link fl_r" id="page_wall_switch" onclick="if (checkEvent(event)) return true; return wall.switchWall(event);"></span>
+    <b id="page_wall_posts_count">19 posts</b>
+  </a>
+</div>
+  
+  <div class="clear_fix"><div id="page_wall_posts" class="wall_posts all"><input type="hidden" id="page_wall_count_all" value="19" /><input type="hidden" id="page_wall_count_own" value="19" /><div id="post182826479_61" class="post all own post_online" onmouseover="wall.postOver('182826479_61')" onmouseout="wall.postOut('182826479_61')" onclick="wall.postClick('182826479_61', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_61" onclick="wall.markAsSpam('182826479_61', '772017031ee5181128');" onmouseover="wall.activeDeletePost('182826479_61', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_61')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_61"><div class="page_post_queue_wide"><div class="page_post_sized_thumbs clear_fix" style="width: 510px; height: 256px;"><a  onclick="return showPhoto('182826479_288697966', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29ca/uIU3Yy4k-EA&quot;,401,604],y_:[&quot;http://cs402928.userapi.com/v402928479/29cb/DnP3UWs22qc&quot;,536,807],z_:[&quot;http://cs402928.userapi.com/v402928479/29cc/UkqdxMuDsWs&quot;,680,1024]}}, event)" style="width: 49px; height: 49px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29c8/B_xgPZYzePY.jpg" width="49" height="73" style="margin-top: -8px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697969', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29d3/t1Cw2UWoY3o&quot;,604,370],y_:[&quot;http://cs402928.userapi.com/v402928479/29d4/pF6oXNcSzfE&quot;,807,494],z_:[&quot;http://cs402928.userapi.com/v402928479/29d5/4fiTiCOqzAE&quot;,1280,784]}}, event)" style="width: 80px; height: 49px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29d2/ESJAqIl3TjU.jpg" width="80" height="49" style="margin-top: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697973', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29dc/YcHTwYP9kGE&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/29dd/VmMQyhGkZis&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/29de/sXfjqutoadU&quot;,1280,850]}}, event)" style="width: 73px; height: 49px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29da/rERsV7KxF-U.jpg" width="73" height="49" style="margin-top: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697976', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29e5/TjECVFt4fEI&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/29e6/d9ZucdCmy9k&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/29e7/y42gXRA81LA&quot;,1280,850]}}, event)" style="width: 73px; height: 49px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29e3/CAUzOZSfmjE.jpg" width="73" height="49" style="margin-top: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697984', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29ee/LxM2htRoBvw&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/29ef/THjZi_Eotoc&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/29f0/-3i2gI5pt1w&quot;,1280,850]}}, event)" style="width: 73px; height: 49px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29ec/AqZx63M78CE.jpg" width="73" height="49" style="margin-top: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697985', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29f7/JiAEcSgrYK8&quot;,401,604],y_:[&quot;http://cs402928.userapi.com/v402928479/29f8/sCa-MCSyR2g&quot;,536,807],z_:[&quot;http://cs402928.userapi.com/v402928479/29f9/1hdTXXwRhlk&quot;,680,1024]}}, event)" style="width: 49px; height: 49px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29f5/8lDByL5ExBI.jpg" width="49" height="73" style="margin-top: -8px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697989', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a00/_m3WIGTY9Pc&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/2a01/ieeE2v0RsBA&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/2a02/duqm77onxN4&quot;,1280,850]}}, event)" style="width: 73px; height: 49px;" class="page_post_thumb_wrap  page_post_thumb_last_column fl_l"><img src="http://cs402928.userapi.com/v402928479/29fe/K7aU8INdBr8.jpg" width="73" height="49" style="margin-top: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288698003', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a09/4CfcxwJHBWA&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/2a0a/BdkFN3toPOw&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/2a0b/m2dt2_nR1fw&quot;,1280,850]}}, event)" style="width: 302px; height: 201px;" class="page_post_thumb_wrap  page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/2a0e/V0a-LVMB1qE.jpg" width="302" height="201" style="margin-top: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288698007', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a12/aTJBg9A6rhY&quot;,401,604],y_:[&quot;http://cs402928.userapi.com/v402928479/2a13/lsLCo5s5juk&quot;,536,807],z_:[&quot;http://cs402928.userapi.com/v402928479/2a14/QGFY5boRrlQ&quot;,680,1024]}}, event)" style="width: 201px; height: 201px;" class="page_post_thumb_wrap  page_post_thumb_last_column page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/2a17/cBygm79MgjI.jpg" width="201" height="302" style="margin-top: -33px;"  class="page_post_thumb_sized_photo" /></a></div></div>
+<div class="page_post_queue_narrow"><div class="page_post_sized_thumbs clear_fix" style="width: 320px; height: 238px;"><a  onclick="return showPhoto('182826479_288697966', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29ca/uIU3Yy4k-EA&quot;,401,604],y_:[&quot;http://cs402928.userapi.com/v402928479/29cb/DnP3UWs22qc&quot;,536,807],z_:[&quot;http://cs402928.userapi.com/v402928479/29cc/UkqdxMuDsWs&quot;,680,1024]}}, event)" style="width: 75px; height: 75px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29c9/kJXIgz3O1po.jpg" width="75" height="114" style="margin-top: -12px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697969', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29d3/t1Cw2UWoY3o&quot;,604,370],y_:[&quot;http://cs402928.userapi.com/v402928479/29d4/pF6oXNcSzfE&quot;,807,494],z_:[&quot;http://cs402928.userapi.com/v402928479/29d5/4fiTiCOqzAE&quot;,1280,784]}}, event)" style="width: 123px; height: 75px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29d2/ESJAqIl3TjU.jpg" width="123" height="76" style="margin-top: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697973', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29dc/YcHTwYP9kGE&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/29dd/VmMQyhGkZis&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/29de/sXfjqutoadU&quot;,1280,850]}}, event)" style="width: 114px; height: 75px;" class="page_post_thumb_wrap  page_post_thumb_last_column fl_l"><img src="http://cs402928.userapi.com/v402928479/29db/7DZClGiawAg.jpg" width="114" height="75" style="margin-left: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697976', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29e5/TjECVFt4fEI&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/29e6/d9ZucdCmy9k&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/29e7/y42gXRA81LA&quot;,1280,850]}}, event)" style="width: 117px; height: 78px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29e4/glzvJ_2VXJ8.jpg" width="118" height="78" style="margin-left: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697984', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29ee/LxM2htRoBvw&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/29ef/THjZi_Eotoc&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/29f0/-3i2gI5pt1w&quot;,1280,850]}}, event)" style="width: 117px; height: 78px;" class="page_post_thumb_wrap  fl_l"><img src="http://cs402928.userapi.com/v402928479/29ed/l85M3DyIQW0.jpg" width="118" height="78" style="margin-left: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697985', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29f7/JiAEcSgrYK8&quot;,401,604],y_:[&quot;http://cs402928.userapi.com/v402928479/29f8/sCa-MCSyR2g&quot;,536,807],z_:[&quot;http://cs402928.userapi.com/v402928479/29f9/1hdTXXwRhlk&quot;,680,1024]}}, event)" style="width: 78px; height: 78px;" class="page_post_thumb_wrap  page_post_thumb_last_column fl_l"><img src="http://cs402928.userapi.com/v402928479/29f6/k1LpsK-qFNw.jpg" width="78" height="118" style="margin-top: -13px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288697989', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a00/_m3WIGTY9Pc&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/2a01/ieeE2v0RsBA&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/2a02/duqm77onxN4&quot;,1280,850]}}, event)" style="width: 117px; height: 78px;" class="page_post_thumb_wrap  page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/29ff/FoFU9NyLzBI.jpg" width="118" height="78" style="margin-left: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288698003', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a09/4CfcxwJHBWA&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/2a0a/BdkFN3toPOw&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/2a0b/m2dt2_nR1fw&quot;,1280,850]}}, event)" style="width: 117px; height: 78px;" class="page_post_thumb_wrap  page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/2a08/OSEBx6bfRsU.jpg" width="118" height="78" style="margin-left: -0px;"  class="page_post_thumb_sized_photo" /></a><a  onclick="return showPhoto('182826479_288698007', 'wall182826479_61', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/2a12/aTJBg9A6rhY&quot;,401,604],y_:[&quot;http://cs402928.userapi.com/v402928479/2a13/lsLCo5s5juk&quot;,536,807],z_:[&quot;http://cs402928.userapi.com/v402928479/2a14/QGFY5boRrlQ&quot;,680,1024]}}, event)" style="width: 78px; height: 78px;" class="page_post_thumb_wrap  page_post_thumb_last_column page_post_thumb_last_row fl_l"><img src="http://cs402928.userapi.com/v402928479/2a11/fj-jIMTVEZU.jpg" width="78" height="118" style="margin-top: -13px;"  class="page_post_thumb_sized_photo" /></a></div></div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_61')" onmouseout="wall.postLikeOut('182826479_61')" onclick="wall.like('182826479_61', 'ce92cbcab542e67209'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_61"></span>
+    <i class="post_like_icon no_likes fl_l" id="like_icon182826479_61"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_61"></span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_61">
+  <small><a href="/wall182826479_61"><span class="rel_date">9 Sep at 4:18 pm</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_61" style="display: none">
+  <div id="replies182826479_61"><input type="hidden" id="start_reply182826479_61" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_60" class="post all own post_online" onmouseover="wall.postOver('182826479_60')" onmouseout="wall.postOut('182826479_60')" onclick="wall.postClick('182826479_60', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_60" onclick="wall.markAsSpam('182826479_60', 'd28dfa7f9695213ed3');" onmouseover="wall.activeDeletePost('182826479_60', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_60')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_60"><div class="page_post_queue_wide"><div class="page_post_sized_thumbs clear_fix" style="width: 466px; height: 310px;"><a  onclick="return showPhoto('182826479_288697867', 'wall182826479_60', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29c1/JJ_B6NtIL8k&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/29c2/nNkbwmmqXuk&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/29c3/LylK7Kwyf_U&quot;,1280,850]}}, event)" style="width: 466px; height: 310px;" class="page_post_thumb_wrap  page_post_thumb_last_column page_post_thumb_last_row"><img src="http://cs402928.userapi.com/v402928479/29c1/JJ_B6NtIL8k.jpg" width="466" height="310" style=""  class="page_post_thumb_sized_photo" /></a></div></div>
+<div class="page_post_queue_narrow"><div class="page_post_sized_thumbs clear_fix" style="width: 320px; height: 212px;"><a  onclick="return showPhoto('182826479_288697867', 'wall182826479_60', {temp:{base:&quot;&quot;,x_:[&quot;http://cs402928.userapi.com/v402928479/29c1/JJ_B6NtIL8k&quot;,604,401],y_:[&quot;http://cs402928.userapi.com/v402928479/29c2/nNkbwmmqXuk&quot;,807,536],z_:[&quot;http://cs402928.userapi.com/v402928479/29c3/LylK7Kwyf_U&quot;,1280,850]}}, event)" style="width: 320px; height: 212px;" class="page_post_thumb_wrap  page_post_thumb_last_column page_post_thumb_last_row"><img src="http://cs402928.userapi.com/v402928479/29c1/JJ_B6NtIL8k.jpg" width="320" height="212" style=""  class="page_post_thumb_sized_photo" /></a></div></div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_60')" onmouseout="wall.postLikeOut('182826479_60')" onclick="wall.like('182826479_60', '56c9a08e234c08ece9'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_60"></span>
+    <i class="post_like_icon no_likes fl_l" id="like_icon182826479_60"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_60"></span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_60">
+  <small><a href="/wall182826479_60"><span class="rel_date">9 Sep at 4:15 pm</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_60" style="display: none">
+  <div id="replies182826479_60"><input type="hidden" id="start_reply182826479_60" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_51" class="post all own post_copy post_online" onmouseover="wall.postOver('182826479_51')" onmouseout="wall.postOut('182826479_51')" data-copy="182826479_0" onclick="wall.postClick('182826479_51', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_51" onclick="wall.markAsSpam('182826479_51', 'd5ec0ca57c88384576');" onmouseover="wall.activeDeletePost('182826479_51', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_51')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_51"></div><div class="post_media clear_fix post_thumbs_num1 post_empty_text" ><div class="page_media_thumb page_media_video page_media_thumb1 fl_l"><a class="video" href="/video182826479_163325130" onclick="return showInlineVideo('182826479_163325130', 'c3b6c56304911cfb61', {autoplay: 1}, event, this);"><div class="video_play_inline"></div><img src="http://cs12926.userapi.com/u91233553/video/l_12de69f2.jpg" /></a></div><div class="media_desc">
+  <a class="lnk" id="post_media_lnk182826479_51_1"  onclick="return showVideo('182826479_163325130', 'c3b6c56304911cfb61', {autoplay: 1}, event);" href="video182826479_163325130" >
+    <b class="fl_l video"></b><span class="a post_video_title"> Blade [Espa&#241;ol]</span> <span class="post_video_duration">1:55:18</span>
+  </a>
+</div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_51')" onmouseout="wall.postLikeOut('182826479_51')" onclick="wall.like('182826479_51', 'f3b413bf8a9771d7c4'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_51"></span>
+    <i class="post_like_icon  fl_l" id="like_icon182826479_51"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_51">1</span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_51">
+  <small><a href="/wall182826479_51"><span class="rel_date">9 Sep at 3:44 pm</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_51" style="display: none">
+  <div id="replies182826479_51"><input type="hidden" id="start_reply182826479_51" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_49" class="post all own post_copy post_online" onmouseover="wall.postOver('182826479_49')" onmouseout="wall.postOut('182826479_49')" data-copy="182826479_0" onclick="wall.postClick('182826479_49', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_49" onclick="wall.markAsSpam('182826479_49', '21650eff57b408ac74');" onmouseover="wall.activeDeletePost('182826479_49', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_49')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_49"></div><div class="post_media clear_fix post_thumbs_num1 post_empty_text" ><div class="page_media_thumb page_media_video page_media_thumb1 fl_l"><a class="video" href="/video182826479_163322900" onclick="return showInlineVideo('182826479_163322900', '2b9169283e6112c6a7', {autoplay: 1}, event, this);"><div class="video_play_inline"></div><img src="http://cs12362.userapi.com/u13345816/video/l_76febbfe.jpg" /></a></div><div class="media_desc">
+  <a class="lnk" id="post_media_lnk182826479_49_1"  onclick="return showVideo('182826479_163322900', '2b9169283e6112c6a7', {autoplay: 1}, event);" href="video182826479_163322900" >
+    <b class="fl_l video"></b><span class="a post_video_title"> El quinto elemento - Espa&#241;ol</span> <span class="post_video_duration">2:01:13</span>
+  </a>
+</div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_49')" onmouseout="wall.postLikeOut('182826479_49')" onclick="wall.like('182826479_49', '10278eb848ee13d732'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_49"></span>
+    <i class="post_like_icon  fl_l" id="like_icon182826479_49"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_49">1</span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_49">
+  <small><a href="/wall182826479_49"><span class="rel_date">9 Sep at 6:08 am</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_49" style="display: none">
+  <div id="replies182826479_49"><input type="hidden" id="start_reply182826479_49" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_47" class="post all own post_copy post_online" onmouseover="wall.postOver('182826479_47')" onmouseout="wall.postOut('182826479_47')" data-copy="182826479_0" onclick="wall.postClick('182826479_47', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_47" onclick="wall.markAsSpam('182826479_47', 'd00a32f07e71bbf9e8');" onmouseover="wall.activeDeletePost('182826479_47', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_47')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_47"></div><div class="post_media clear_fix post_thumbs_num1 post_empty_text" ><div class="page_media_thumb page_media_video page_media_thumb1 fl_l"><a class="video" href="/video182826479_163322898" onclick="return showInlineVideo('182826479_163322898', 'c4251677cff8d05f00', {autoplay: 1}, event, this);"><div class="video_play_inline"></div><img src="http://cs13245.userapi.com/u70712020/video/l_ae5fa749.jpg" /></a></div><div class="media_desc">
+  <a class="lnk" id="post_media_lnk182826479_47_1"  onclick="return showVideo('182826479_163322898', 'c4251677cff8d05f00', {autoplay: 1}, event);" href="video182826479_163322898" >
+    <b class="fl_l video"></b><span class="a post_video_title">Desde Par&#237;s con amor - Espa&#241;ol</span> <span class="post_video_duration">1:32:59</span>
+  </a>
+</div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_47')" onmouseout="wall.postLikeOut('182826479_47')" onclick="wall.like('182826479_47', 'bc796eaaf1c96a5967'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_47"></span>
+    <i class="post_like_icon  fl_l" id="like_icon182826479_47"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_47">1</span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_47">
+  <small><a href="/wall182826479_47"><span class="rel_date">9 Sep at 6:08 am</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_47" style="display: none">
+  <div id="replies182826479_47"><input type="hidden" id="start_reply182826479_47" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_45" class="post all own post_copy post_online" onmouseover="wall.postOver('182826479_45')" onmouseout="wall.postOut('182826479_45')" data-copy="182826479_0" onclick="wall.postClick('182826479_45', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_45" onclick="wall.markAsSpam('182826479_45', 'ad45678b29ad09fee1');" onmouseover="wall.activeDeletePost('182826479_45', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_45')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_45"></div><div class="post_media clear_fix post_thumbs_num1 post_empty_text" ><div class="page_media_thumb page_media_video page_media_thumb1 fl_l"><a class="video" href="/video182826479_163322897" onclick="return showInlineVideo('182826479_163322897', '242e675180a8afdc24', {autoplay: 1}, event, this);"><div class="video_play_inline"></div><img src="http://cs13109.userapi.com/u70712020/video/l_b822fba4.jpg" /></a></div><div class="media_desc">
+  <a class="lnk" id="post_media_lnk182826479_45_1"  onclick="return showVideo('182826479_163322897', '242e675180a8afdc24', {autoplay: 1}, event);" href="video182826479_163322897" >
+    <b class="fl_l video"></b><span class="a post_video_title">El Se&#241;or de la Guerra - Espa&#241;ol</span> <span class="post_video_duration">2:02:00</span>
+  </a>
+</div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_45')" onmouseout="wall.postLikeOut('182826479_45')" onclick="wall.like('182826479_45', '6c1c995ed005c4d2df'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_45"></span>
+    <i class="post_like_icon  fl_l" id="like_icon182826479_45"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_45">1</span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_45">
+  <small><a href="/wall182826479_45"><span class="rel_date">9 Sep at 6:07 am</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_45" style="display: none">
+  <div id="replies182826479_45"><input type="hidden" id="start_reply182826479_45" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_43" class="post all own post_copy post_online" onmouseover="wall.postOver('182826479_43')" onmouseout="wall.postOut('182826479_43')" data-copy="182826479_0" onclick="wall.postClick('182826479_43', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_43" onclick="wall.markAsSpam('182826479_43', 'f13dfd4e1791f83c62');" onmouseover="wall.activeDeletePost('182826479_43', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_43')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_43"></div><div class="post_media clear_fix post_thumbs_num1 post_empty_text" ><div class="page_media_thumb page_media_video page_media_thumb1 fl_l"><a class="video" href="/video182826479_163322896" onclick="return showInlineVideo('182826479_163322896', 'c8e6d96a5451877235', {autoplay: 1}, event, this);"><div class="video_play_inline"></div><img src="http://cs12658.userapi.com/u70712020/video/l_4f2b6d09.jpg" /></a></div><div class="media_desc">
+  <a class="lnk" id="post_media_lnk182826479_43_1"  onclick="return showVideo('182826479_163322896', 'c8e6d96a5451877235', {autoplay: 1}, event);" href="video182826479_163322896" >
+    <b class="fl_l video"></b><span class="a post_video_title">Death Race: La carrera de la muerte - Espa&#241;ol</span> <span class="post_video_duration">1:50:56</span>
+  </a>
+</div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_43')" onmouseout="wall.postLikeOut('182826479_43')" onclick="wall.like('182826479_43', '21e35f6ea9bcbda46d'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_43"></span>
+    <i class="post_like_icon  fl_l" id="like_icon182826479_43"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_43">1</span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_43">
+  <small><a href="/wall182826479_43"><span class="rel_date">9 Sep at 6:07 am</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_43" style="display: none">
+  <div id="replies182826479_43"><input type="hidden" id="start_reply182826479_43" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_41" class="post all own post_copy post_online" onmouseover="wall.postOver('182826479_41')" onmouseout="wall.postOut('182826479_41')" data-copy="182826479_0" onclick="wall.postClick('182826479_41', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_41" onclick="wall.markAsSpam('182826479_41', '6675efdd7f4ab6ba06');" onmouseover="wall.activeDeletePost('182826479_41', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_41')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_41"></div><div class="post_media clear_fix post_thumbs_num1 post_empty_text" ><div class="page_media_thumb page_media_video page_media_thumb1 fl_l"><a class="video" href="/video182826479_163322894" onclick="return showInlineVideo('182826479_163322894', 'c4e79898ab9e3cd69c', {autoplay: 1}, event, this);"><div class="video_play_inline"></div><img src="http://cs505414.userapi.com/u161413874/video/l_000cacb5.jpg" /></a></div><div class="media_desc">
+  <a class="lnk" id="post_media_lnk182826479_41_1"  onclick="return showVideo('182826479_163322894', 'c4e79898ab9e3cd69c', {autoplay: 1}, event);" href="video182826479_163322894" >
+    <b class="fl_l video"></b><span class="a post_video_title">Taxi Express 3 - Espa&#241;ol</span> <span class="post_video_duration">1:24:50</span>
+  </a>
+</div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_41')" onmouseout="wall.postLikeOut('182826479_41')" onclick="wall.like('182826479_41', '64ca99dd35da2625b1'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_41"></span>
+    <i class="post_like_icon  fl_l" id="like_icon182826479_41"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_41">1</span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_41">
+  <small><a href="/wall182826479_41"><span class="rel_date">9 Sep at 6:07 am</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_41" style="display: none">
+  <div id="replies182826479_41"><input type="hidden" id="start_reply182826479_41" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_39" class="post all own post_copy post_online" onmouseover="wall.postOver('182826479_39')" onmouseout="wall.postOut('182826479_39')" data-copy="182826479_0" onclick="wall.postClick('182826479_39', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_39" onclick="wall.markAsSpam('182826479_39', '672914b8f363e0ca84');" onmouseover="wall.activeDeletePost('182826479_39', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_39')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_39"></div><div class="post_media clear_fix post_thumbs_num1 post_empty_text" ><div class="page_media_thumb page_media_video page_media_thumb1 fl_l"><a class="video" href="/video182826479_163322893" onclick="return showInlineVideo('182826479_163322893', 'fbb36d9391b00b03e2', {autoplay: 1}, event, this);"><div class="video_play_inline"></div><img src="http://cs504320.userapi.com/u161413874/video/l_2619acc3.jpg" /></a></div><div class="media_desc">
+  <a class="lnk" id="post_media_lnk182826479_39_1"  onclick="return showVideo('182826479_163322893', 'fbb36d9391b00b03e2', {autoplay: 1}, event);" href="video182826479_163322893" >
+    <b class="fl_l video"></b><span class="a post_video_title">Taxi Express 2 - Espa&#241;ol</span> <span class="post_video_duration">1:23:39</span>
+  </a>
+</div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_39')" onmouseout="wall.postLikeOut('182826479_39')" onclick="wall.like('182826479_39', 'a64cd0069f38ddbddc'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_39"></span>
+    <i class="post_like_icon  fl_l" id="like_icon182826479_39"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_39">1</span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_39">
+  <small><a href="/wall182826479_39"><span class="rel_date">9 Sep at 6:07 am</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_39" style="display: none">
+  <div id="replies182826479_39"><input type="hidden" id="start_reply182826479_39" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div><div id="post182826479_37" class="post all own post_copy post_online" onmouseover="wall.postOver('182826479_37')" onmouseout="wall.postOut('182826479_37')" data-copy="182826479_0" onclick="wall.postClick('182826479_37', event)">
+  <div class="post_table">
+    <div class="post_image">
+      <a class="post_image" href="/lagargola"><img src="http://cs402928.userapi.com/u182826479/e_d658e85d.jpg" width="50" height="50"/></a>
+      <span class="online">Online</span>
+    </div>
+    <div class="post_info">
+      <div class="fl_r delete_post_wrap">
+  <div class="delete_post">
+    <div id="delete_post182826479_37" onclick="wall.markAsSpam('182826479_37', 'ed06b41d3c9c50cfab');" onmouseover="wall.activeDeletePost('182826479_37', 'Report spam')" onmouseout="wall.deactiveDeletePost('182826479_37')"></div>
+  </div>
+</div>
+      <div class="wall_text"><a class="author" href="/lagargola">Gargola Audiovisual</a> <div id="wpt182826479_37"></div><div class="post_media clear_fix post_thumbs_num1 post_empty_text" ><div class="page_media_thumb page_media_video page_media_thumb1 fl_l"><a class="video" href="/video182826479_163322892" onclick="return showInlineVideo('182826479_163322892', 'cc0690010d6ac96370', {autoplay: 1}, event, this);"><div class="video_play_inline"></div><img src="http://cs12893.userapi.com/u88242817/video/l_2c9e2696.jpg" /></a></div><div class="media_desc">
+  <a class="lnk" id="post_media_lnk182826479_37_1"  onclick="return showVideo('182826479_163322892', 'cc0690010d6ac96370', {autoplay: 1}, event);" href="video182826479_163322892" >
+    <b class="fl_l video"></b><span class="a post_video_title"> Taxi Express - Espa&#241;ol</span> <span class="post_video_duration">1:26:12</span>
+  </a>
+</div></div></div>
+      <div class="post_like_wrap fl_r" onmouseover="wall.postLikeOver('182826479_37')" onmouseout="wall.postLikeOut('182826479_37')" onclick="wall.like('182826479_37', '0ffcbf2a2398f98b60'); event.cancelBubble = true;">
+  <div class="post_like">
+    <span class="post_like_link fl_l" id="like_link182826479_37"></span>
+    <i class="post_like_icon  fl_l" id="like_icon182826479_37"></i>
+    <span class="post_like_count fl_l" id="like_count182826479_37">1</span>
+  </div>
+</div>
+      <div class="replies"><div class="reply_link_wrap" id="wpe_bottom182826479_37">
+  <small><a href="/wall182826479_37"><span class="rel_date">9 Sep at 6:07 am</span></a></small>
+</div>
+<div class="replies_wrap clear" id="replies_wrap182826479_37" style="display: none">
+  <div id="replies182826479_37"><input type="hidden" id="start_reply182826479_37" value=""/></div>
+  
+</div></div>
+    </div>
+  </div>
+  
+</div></div><a class="more_link clear" id="wall_more_link" onclick="wall.showMore(10);"><div class="progress" id="wall_more_progress"></div><div>previous posts</div></a></div>
+</div>
+  </div>
+  <br class="clear" />
+  
+</div></div>
+  </div>
+</div></div>
+    </div>
+
+    <div id="footer_wrap" class="fl_r" style="width: 661px;">
+      <div id="bottom_nav">
+  <a class="bnav_a" href="/help.php?page=about">about</a>
+  <a class="bnav_a" href="/support?act=new" onclick="return nav.go(this, event);" style="display: none;">help</a>
+  <a class="bnav_a" href="/terms">terms</a>
+  <a class="bnav_a" href="/developers.php">developers</a>
+</div>
+<p id="footer">
+  <div class="copy_lang"><a href="/help.php?page=about">VK</a> &copy; 2006-2012 <a class="bnav_lang" onclick="ajax.post('al_index.php', {act: 'change_lang', lang_id: 4, hash: '77616c56705eb1d9a3'})">Espa&#241;ol</a><a class="bnav_lang" onclick="ajax.post('al_index.php', {act: 'change_lang', lang_id: 3, hash: '77616c56705eb1d9a3'})">English</a><a class="bnav_lang" onclick="ajax.post('al_index.php', {act: 'change_lang', lang_id: 0, hash: '77616c56705eb1d9a3'})">Русский</a><a class="bnav_lang" onclick="ajax.post('al_index.php', {act: 'change_lang', lang_id: 1, hash: '77616c56705eb1d9a3'})">Українська</a><a class="bnav_lang" onclick="showBox('lang.php', {act: 'lang_dialog'}, {noreload: true})">all languages »</a></div>
+  
+  <div>
+    
+    
+  </div>
+</p>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div></div></div>
+  <div class="progress" id="global_prg"></div>
+
+  <script type="text/javascript">
+    if (parent && parent != window && (browser.msie || browser.opera || browser.mozilla || browser.chrome || browser.safari || browser.iphone)) {
+      document.getElementsByTagName('body')[0].innerHTML = '';
+    } else {
+      domReady();
+      updateMoney(0);
+gSearch.init();
+if (window.qArr && qArr[5]) qArr[5] = [5, "by item", "", "goods", 0x00000100];
+if (browser.iphone || browser.ipad || browser.ipod) {
+  setStyle(bodyNode, {webkitTextSizeAdjust: 'none'});
+}var qf = ge('quick_login_form'), ql = ge('quick_login'), qe = ge('quick_email'), qp = ge('quick_pass');
+var qlb = ge('quick_login_button'), prgBtn = qlb;
+
+var qinit = function() {
+  setTimeout(function() {
+    ql.insertBefore(ce('div', {innerHTML: '<iframe class="upload_frame" id="quick_login_frame" name="quick_login_frame"></iframe>'}), qf);
+    qf.target = 'quick_login_frame';
+  }, 1);
+}
+
+if (window.top && window.top != window) {
+  window.onload = qinit;
+} else {
+  setTimeout(qinit, 0);
+}
+
+qf.onsubmit = function() {
+  if (!ge('quick_login_frame')) return false;
+  if (!trim(qe.value)) {
+    elfocus(qe);
+    return false;
+  } else if (!trim(qp.value)) {
+    elfocus(qp);
+    return false;
+  }
+  lockButton(window.__qfBtn = prgBtn);
+  prgBtn = qlb;
+  clearTimeout(__qlTimer);
+  __qlTimer = setTimeout(loginSubmitError, 30000);
+  domFC(domPS(qf)).onload = function() {
+    clearTimeout(__qlTimer);
+    __qlTimer = setTimeout(loginSubmitError, 2500);
+  }
+  return true;
+}
+
+window.loginSubmitError = function() {
+  showFastBox('Warning', 'Unable to complete encrypted authorization. This can happen if your the date and time settings are not configured correctly on your system. Please check your date &amp; time settings and restart the browser.');
+}
+window.focusLoginInput = function() {
+  scrollToTop(0);
+  notaBene('quick_email');
+}
+window.changeQuickRegButton = function(noShow) {
+  if (noShow) {
+    hide('top_reg_link', 'quick_reg_button');
+    show('top_search_link');
+  } else {
+    hide('top_search_link');
+    show('top_reg_link', 'quick_reg_button');
+  }
+}
+window.submitQuickLoginForm = function(email, pass, opts) {
+  setQuickLoginData(email, pass, opts);
+  if (opts && opts.prg) prgBtn = opts.prg;
+  if (qf.onsubmit()) qf.submit();
+}
+window.setQuickLoginData = function(email, pass, opts) {
+  if (email !== undefined) ge('quick_email').value = email;
+  if (pass !== undefined) ge('quick_pass').value = pass;
+  var params = opts && opts.params || {};
+  for (var i in params) {
+    var el = ge('quick_login_' + i);
+    if (el) {
+      val(el, params[i]);
+    } else {
+      qf.appendChild(ce('input', {type: 'hidden', name: i, id: 'quick_login_' + i, value: params[i]}));
+    }
+  }
+}
+
+if (qlb) {
+  qlb.onclick = function() { if (qf.onsubmit()) qf.submit(); };
+}
+
+if (browser.opera_mobile) show('quick_expire');
+
+if (1) {
+  hide('support_link_td');
+}
+var ts_input = ge('ts_input'), oldFF = browser.mozilla && parseInt(browser.version) < 8;
+if (browser.mozilla && !oldFF) {
+  setStyle(ts_input, {padding: (vk.rtl ? '3px 22px 4px 40px' : '3px 41px 4px 22px')});
+}
+placeholderSetup(ts_input, {back: false, reload: true});
+if (browser.opera || browser.msie || oldFF) {
+  setStyle(ts_input, {padding: (vk.rtl ? '3px 22px 4px 40px' : '3px 41px 4px 22px')});
+}
+if (browser.chrome) {
+  setStyle(ts_input, {padding: (vk.rtl ? '4px 23px 3px 39px' : '4px 40px 3px 23px')});
+}
+TopSearch.init();
+if (browser.msie8 || browser.msie7) {
+  var st = {border: '1px solid #a6b6c6'};
+  if (hasClass(ge('ts_wrap'), 'vk')) {
+    if (vk.rtl) st.left = '1px';
+    else st.right = '0px';
+  } else {
+    if (vk.rtl) st.right = '146px';
+    else st.left = '146px';
+  }
+  setStyle(ge('ts_cont_wrap'), st);
+}
+window.tsHintsEnabled = 1;
+zNav({"z":"photo182826479_288697985\/photos182826479"}, {temp:{base:"",x_:["http://cs402928.userapi.com/v402928479/29f7/JiAEcSgrYK8",401,604],y_:["http://cs402928.userapi.com/v402928479/29f8/sCa-MCSyR2g",536,807],z_:["http://cs402928.userapi.com/v402928479/29f9/1hdTXXwRhlk",680,1024],o_:["http://cs402928.userapi.com/v402928479/29fa/p9IhGcd8PyI",130,196],p_:["http://cs402928.userapi.com/v402928479/29fb/vedzPr1cslk",200,301],q_:["http://cs402928.userapi.com/v402928479/29fc/AYzC6tTqgFc",320,482],r_:["http://cs402928.userapi.com/v402928479/29fd/of2tkeKfp2s",510,768]}});
+handlePageParams({"id":0,"pads":1,"level":2,"loc":"?id=182826479&z=photo182826479_288697985%2Fphotos182826479","wrap_page":1,"width":791,"width_dec":160,"width_dec_footer":130,"counters":"","pvbig":0,"pvdark":1});addEvent(document, 'click', onDocumentClick);;stManager.add(["profile.js","page.js","photoview.js"], function () {
+cur.needLoginBox = function() {
+  setTimeout(showFastBox('Warning', 'Please log in or sign up to view this page.').hide, 2000);
+  return false;
+};
+cur._regBar = "Please <a class=\"reg_bar_link\" onclick=\"focusLoginInput()\">Log in<\/a> or <a href=\"\/join\" class=\"reg_bar_link\" onclick=\"return !showBox('join.php', {act: 'box', from: nav.strLoc}, {}, event)\">Sign up<\/a> to contact Gargola.";
+cur.lang = extend(cur.lang || {}, {
+  show_full: 'Show full information',
+  hide_full: 'Hide full information',
+  change_current_info: 'set status message',
+  share_current_info: 'Share',
+  create_poll: 'Poll',
+  dont_attach: 'Remove attachment'
+});
+Profile.init({"user_id":182826479,"loc":null,"back":"Gargola Audiovisual","reply_names":[],"max_post_len":280,"post_hash":"8742d674af9ac02505","media_types":false,"wall_type":"all","wall_no":"No posts yet","wall_counts":["","%s post","%s posts"],"all_link":"show Gargola&#39;s posts","own_link":"show all posts","share":{"url":false,"hash":false,"rhash":false},"upload":false,"photos_count":1,"skip_one":0,"photos":[],"info":["<div class=\"profile_info\"><div class=\"clear_fix \">\n  <div class=\"label fl_l\">Languages:<\/div>\n  <div class=\"labeled fl_l\">Espa&#241;ol<\/div>\n<\/div><\/div><a class=\"profile_info_link noselect\" onclick=\"Profile.showFull(182826479, 'en')\">Show full information<\/a>","<div class=\"profile_info\"><div class=\"clear_fix \">\n  <div class=\"label fl_l\">Languages:<\/div>\n  <div class=\"labeled fl_l\">Espa&#241;ol<\/div>\n<\/div><\/div><a class=\"profile_info_link noselect\" onclick=\"Profile.hideFull()\">Hide full information<\/a>"],"mail_cache":"","fr_click":null,"ciAudioTip":"Gargola is listening to this track","ciAudioHash":"99dc3c74ef4b880e1c","ciAppTip":"Gargola is now playing this game"});
+cur.module = 'profile';});;if (browser.msie) stManager.add('pinbar.js', function() {window.initPinBar('/id', '/im');});
+    }
+  </script>
+</body>
+
+</html>

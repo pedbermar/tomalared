@@ -1,0 +1,74 @@
+<% if current_user %>
+<script>
+<!--
+function ocultar_tags(elemento) {
+
+  if(elemento.value=="quote") {
+      document.getElementById("tags").style.display = "none";
+   } else {
+			document.getElementById("tags").style.display = "block";
+   }
+
+  if(elemento.value=="post") {
+     document.getElementById("post_title").style.display = "block"; 
+
+   } else {
+     document.getElementById("post_title").style.display = "none"; 
+   }
+
+  if(elemento.value=="image") {
+     document.getElementById("archivo").style.display = "block"; 
+
+   } else {
+     document.getElementById("archivo").style.display = "none"; 
+   }
+
+
+}
+-->
+</script>
+
+<%= form_tag('/save_post', :multipart=> true, :remote => true) do %>
+<div id="new-radio">
+  <input type="radio" class="nex" name="post[post_type]" value="quote" id="quote" onclick="ocultar_tags(this)" checked><label for="quote"> Quote </label>
+  <input type="radio" class="nex" name="post[post_type]" value="post" id="post" onclick="ocultar_tags(this)"><label for="post"> Post </label>
+  <input type="radio" class="nex" name="post[post_type]" value="link" id="link" onclick="ocultar_tags(this)"><label for="link"> Link </label>
+  <input type="radio" class="nex" name="post[post_type]" value="video" id="video" onclick="ocultar_tags(this)"><label for="video"> Video </label>
+  <input type="radio" class="nex" name="post[post_type]" value="image" id="image" onclick="ocultar_tags(this)"><label for="image"> Image </label>
+</div>
+
+<div class="new">
+		<div id="post-title">
+	  	 <%= text_field 'post', 'title', :class => 'new-title', :placeholder => 'Que te cuentas?', :style => "display:none"%>
+		</div>
+
+	<div class="new-foto"><br/>
+			<% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
+				<div class="mediano-muneco" style="background: url(/img/<%=current_user[:id]%>.jpg) no-repeat center; background-size: 200%;"></div>
+			<% else %>
+				<div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 200%;"></div>
+			<% end -%>
+	</div>
+
+	<div class="new-editor">
+
+
+			<div id="textarea">
+
+					  <%= text_area 'post','content' , :class => 'textarea' %>
+
+					<div id="archivo">
+							<%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>
+					</div>
+
+					<%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
+
+						<%= submit_tag 'Tumblear', :id => "tumblear" %>
+						<%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
+			</div>
+	<% end %>
+	</div>
+</div>
+<% end %>
+
+

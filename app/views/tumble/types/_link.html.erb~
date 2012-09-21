@@ -1,0 +1,27 @@
+<% if content.split[-2] =~ /https?:\/\/[\S]+\b+/ %>
+<% img = content.split[-2] %>
+<% end %>
+<% link = content.split[-1] %>
+<% desc = content.split[0..-3].join(" ") %>
+
+<div class="type-link">
+
+	<div 
+           <div class="post_link">
+		<% if img %>
+	      <div class="post_link_photo">
+	 	<img class="post_link_photo2" src="<%= img %>" width="95%">
+	      </div>
+		<% end %>
+	      <div style="">
+		<%= desc%>
+	      </div>
+	    </div><a href="<%= link %>" target="_blank">
+	<font color="#000000"><%= link %></font></p></a>
+        </div>
+</div>
+
+
+
+
+

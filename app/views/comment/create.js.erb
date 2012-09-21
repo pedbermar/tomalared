@@ -1,0 +1,4 @@
+$('.comments-old').prepend('<%= escape_javascript(render(@comment)) %>');
+$('.comment_form > form')[0].reset();
+$('.<%= dom_id(@comment) %>').remove();
+

@@ -1,0 +1,27 @@
+	<% @page_name = 'Lista de Grupos' -%>
+	-<%= @lo %>-
+
+<div style="text-align:left;">
+<% if @tags %>
+		Tags:
+		  <div id="search-results">
+		 		 <%= render :partial => "search/tags" %>
+		  </div>
+	<br/>
+<% end %>
+
+<% if @posts_s %>
+		Posts:
+		  <div id="search-results">
+		 		 <%= render :partial => "search/posts" %>
+		  </div>
+	<br/>
+<% end %>
+
+<% if @users %>
+		Users:
+		  <div id="search-results">
+		 		 <%= render :partial => "search/users" %>
+		  </div>
+<% end %>
+</div>

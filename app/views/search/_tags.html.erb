@@ -1,0 +1,10 @@
+<% @tags.each do |t| -%>
+<div id="tags-names"><%= link_to "##{t.name}",:controller => 'tumble', :action => 'list_post_tags', :id => t.name %>
+		<% if current_user.tags.exists?(t.id) %>
+					<div id="tags-unfollow" ><%= link_to 'unfollow', {:controller => 'tag', :action=> 'unfollow_tag', :id => t.id}, :confirm => 'Quieres dejar el grupo?' %></div>
+			<% else %>
+					<div id="tags-follow" ><%= link_to 'follow', {:controller => 'tag', :action=> 'follow_tag', :id => t.id}, :confirm => 'Quieres unirte al grupo?' %></div>
+			<% end %>
+</div>
+<% end -%>
+

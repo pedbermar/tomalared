@@ -1,0 +1,22 @@
+<% img = content.split[-2] -%>
+<% link = content.split[-1] -%>
+<% desc = content.split[0..-3].join(" ") -%>
+
+<div class="type-link">
+<a href="<%= link %>" target="_blank">
+	<% if img != "no-img" %>
+		<div class="post_link_photo">
+			<div class="mediano-muneco" style="background: url(<%= img %>) no-repeat center; background-size: 150%;"></div>
+		</div>
+	<% end %>
+
+	<div class="post_link_text">
+	<b><%= title.html_safe %></b>
+		<br>
+		<%= desc.html_safe %>
+		<br>
+		<i><%= link %></i>
+	</div>
+</a>
+</div>
+

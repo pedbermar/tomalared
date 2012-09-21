@@ -1,0 +1,4 @@
+<% @users.each do |t| -%>
+	<div id="tags-names"><%= link_to "@#{t.name}",:controller => 'tumble', :action => 'list_post_user', :name => t.name %></div>
+<% end -%>
+

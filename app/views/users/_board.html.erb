@@ -1,0 +1,96 @@
+<div id="board">
+		  <div id="notice">
+			 <a href="/me" class="notice_a">@<%= current_user.name %></a>
+				<% if flash[:notice] %>
+						<br><%= flash[:notice] %>
+				<% end %>
+		  </div>
+
+		<div id="marcofoto">
+		<% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
+			 <%= link_to image_tag( "/img/#{current_user.id}.jpg", :size => "200", :alt => "Tu imagen",
+					:class => "board_foto"), '/me'%>
+		<% else %>
+			<%= link_to image_tag( "/img/default.jpg", :size => "200", :alt => "Tu imagen",
+					:class => "board_foto"), '/me'%>
+		<% end -%>
+		</div>
+
+		<div id="board-notifi">
+	 					<%= link_to "#{Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 1, :unread => 1}).count}C", '/network/note/1'%>
+						<%= link_to "#{Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 2, :unread => 1}).count}#", '/network/note/2'%>
+						<%= link_to "#{Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 3, :unread => 1}).count}@", '/network/note/3'%>
+		</div>
+
+
+	<div id="board-block">
+		<div id="board-title">Mentions:</div>
+			<div id="board-tags">
+			<% @mentions1 = Notifications.find_user_mentios_unread(current_user[:id])
+				 @mentions2 = Notifications.find_user_mentios(current_user[:id], 20)
+				 @mentions = Array.new
+
+				 @mentions1.each do |m|
+							@mentions << m
+				 end
+
+  			 @mentions2.each do |m|
+							@mentions << m
+	  		 end
+
+  			 @mentions2.each do |m|
+						cont = Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count	%>
+
+      				 <a href="/tumble/mentions?user=<%= m.from %>">
+									@<%=User.find(m.from).name%> <% if cont != 0 %> [<%= Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count %>] <% end %>
+							 </a> <br>
+	  		 <% end %>
+			</div>
+	</div>
+
+
+	<div id="board-block">
+		<div id="board-title">Your groups:</div>
+				<% @tags_board = current_user.tags %>
+		<div id="board-tags">
+				<% @tags_board.each do |tag_board| -%>
+					<%= link_to "##{tag_board.name}", "/group/#{tag_board.name}" %> <br/>
+				<% end %>
+		</div>
+	</div>
+
+
+	<div id="board-block">
+		<div id="board-title">Latest tumblrs:</div>
+		<div id="board-tags">
+
+		<% @posts_board = Post.find(:all, :conditions => ["user_id = ? AND post_type NOT LIKE ?", current_user[:id], "image"], :order => 'id DESC') %>
+
+		<% @post_board_share = Share.find(:all, :conditions => {:user_id => current_user[:id]})
+     	@post_board_share.each do |ps|
+					p = Post.find(ps.post_id)
+					if p.post_type != "image"
+						p.created_at = ps.created_at
+						@posts_board << p
+					end
+		  end
+
+		@posts_board= @posts_board.sort_by {|post| post.created_at}.reverse %>
+
+		<% @posts_board.each do |post_board| -%>
+					<a href="/post/<%= post_board.id %>"><%= strip_textile(post_board.title.length > 0 ? post_board.title : post_board.content.to_s)[0..18] %></a><br/>
+		<% end %>
+   	</div>
+	</div>
+
+	<div id="board-block">
+		<div id="board-title">Popular groups:</div>
+				<% @tags_all_board = Tag.find_most_popular(20)%>
+		<div id="board-tags">
+				<% @tags_all_board.each do |tag_board| -%>
+					<%= link_to "##{tag_board.name}", "/group/#{tag_board.name}"%><br/>
+				<% end %>
+		</div>
+	</div>
+</div>
+

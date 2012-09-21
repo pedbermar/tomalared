@@ -1,0 +1,37 @@
+<% @page_name = "Ver usuaruio" -%>
+<center>
+<% if ( current_user[:id] ==  @user.id) %><br/>
+	<%= link_to 'Edit', '/edit_me' %>
+<% end %>
+</center>
+<br/>
+<div class="data_user">
+    <b>Nombre:</b><br/>@<%= @user.name %>
+</div>
+<div class="data_user">
+    <b>Email:</b><br/><%= @user.email %><br/>
+</div>
+<div class="data_user">
+    <b>Login count:</b><br/><%=h @user.login_count %>
+</div>
+
+	<div id="board-block">
+		<div id="board-title">Your groups tumbler:</div>
+				<% @tags_board = Tag.find_most_popular_by_user(current_user.id)%>
+		<div id="board-tags">
+				<% @tags_board.each do |tag_board| -%>
+					<%= link_to "##{tag_board.name}", "/group/#{tag_board.name}" %>
+				<% end %>
+		</div>
+	</div>
+<br/>
+<div class="data_user">
+		<b>Last request at:</b> <%=h @user.last_request_at %><br/>
+		<b>Current login at:</b> <%=h @user.current_login_at %><br/>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+<% @page_name = "Post" -%>
+<% error_messages_for 'user' %>
+
+<table>
+	<tr>
+		<td align="left">
+			<font size="5">@<%=@user.name %></font>
+		</td>
+		<td align="right">
+			<% if ( current_user[:id] ==  @user.id) -%><%= link_to 'Editar Perfil', :action => 'perfil' %><% end -%>
+		</td>
+	</tr>
+</table>
+
+<div class="muneco" style="background: url(/img/<%=@user.id%>.jpg) no-repeat center; background-size: 100%;"></div>
+<br>
+<table class="new_list_post_user">
+	<tr>
+		<td align="center" >
+			<%= render :partial => 'newex' %>
+		</td>
+	</tr>
+<table>
+
+<%= render :partial => 'posts' %>
+
+<%= link_to "<-- Anterior ", { :page => @post_pages.current.previous } if @post_pages.current.previous %>  
+<%= link_to " Siguiente -->", { :page => @post_pages.current.next } if @post_pages.current.next %> 
+
+

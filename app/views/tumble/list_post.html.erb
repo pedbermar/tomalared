@@ -1,0 +1,13 @@
+<% @page_name = "Todos los Posts" -%>
+<%# error_messages_for 'user' %>
+
+<% if current_user and !params[:id] %>
+<%= render :partial => 'newex' %>
+<% end %>
+
+
+<%= render :partial => 'posts', :remote => true %>
+
+<%#= link_to "<-- Anterior ", { :page => @post_pages.current.previous, :type => params[:type] } if @post_pages.current.previous %>
+<%#= link_to "Siguiente >>", { :page  => @post_pages.current.next, :type => params[:type], :remote => true } if @post_pages.current.next %>
+

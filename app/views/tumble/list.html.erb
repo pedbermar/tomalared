@@ -1,0 +1,64 @@
+<% @page_name = 'Listados de posts' -%>
+
+<table>
+<tr>
+<td class="tdvacio" valign="top">
+
+<table class="perfil-iz">
+
+      <td colspan="2">
+		<% if FileTest.exists?("public/img/#{@user.id}.jpg") %>
+			 <%= link_to image_tag( "/img/#{@user.id}.jpg", :size => "200", :alt => "Tu imagen", 
+					:class => "post_foto"),
+							:action => 'list_post_user', :id => @user.id %>
+		<% else %> 
+			<%= link_to image_tag( "/img/default.jpg", :size => "200", :alt => "Tu imagen", 
+					:class => "post_foto"),
+							:action => 'list_post_user', :id => @user.id %>
+		<% end -%>
+	<br/>
+      </td>
+  </tr>
+    <tr>
+    <th>Nombre</th></tr><tr><td>@<%= @user.name %></td>
+  </tr><tr>
+    <th>Email</th></tr><tr><td><%= @user.email %></td>
+ </tr>
+<% if ( current_user[:id] ==  @user.id) %>
+ <tr>
+    <td class="tdvacio" colspan="2"><br/><br/><br/><br/><%= link_to 'Editar Perfil', :action => 'perfil' %></td>
+ </tr>
+<% end %>
+</table>
+
+
+  <td class="tdvacio" valign="top">
+
+<div class="columnas">
+<table class="perfil-de">
+  <tr>
+    <th <% if ( current_user[:id] ==  @user.id) | (current_user[:name] == 'admin')  %>colspan="2"<% end %>><%= link_to 'Tumblrs', :action => 'list_post_user', :id => @user.id %></th>
+  </tr>
+
+<% @posts.each do |p| -%>
+ <tr>
+    <td align="left">
+      <a href="/admin/list_post/<%= p.id %>/"><%= strip_textile(p.title.length > 0 ? p.title : p.content.to_s)[0..50] %></a>
+    </td>
+<% if ( current_user[:id] ==  @user.id) | (current_user[:name] == 'admin')  %>
+    <td width="70" >
+        <%= link_to 'Editar', :action => :edit, :id => p.id %> | 
+        <%= link_to 'Borrar', {:action => :delete, :id => p.id }, :confirm => 'Seguro que quieres borrar el post?' %>
+    </td>
+<% end %>
+  </tr>
+<% end -%>
+</table>
+
+</div>
+    </td>
+  </tr>
+</table>
+
+
+

@@ -1,0 +1,271 @@
+class TumbleController < ApplicationController      
+
+  helper :all
+
+  # list all the posts
+  def list(options = Hash.new)
+    options.merge!({ :order => 'created_at DESC', :include => [:tags, :user], :per_page => TUMBLE['limit'] })
+
+    @post_pages, @posts = paginate :posts, options
+    render :action => 'list'
+  end
+
+  # list by date - its own method so we can do pagination right
+  def list_by_date
+    datestring = "#{params[:year]}-#{params[:month]}"
+    datestring << "-#{params[:day]}" if params[:day]
+    list :conditions => ['created_at LIKE ?', datestring + '%']
+  end
+  
+  # list by post type - its own method so we can do pagination right
+  def list_by_post_type
+    list :conditions => ['post_type = ?', params[:type]]
+  end
+
+  # list by user id
+  def list_by_uid
+     @user = User.find(params[:id])
+    list :conditions => ['user_id = ?', @user[:id]]
+  end
+
+  # display all the posts associated with a tag
+  def tag
+    tags = params[:tag].split(' ')
+    
+    # if more than one tag is specified, get the posts containing all the
+    # passed tags.  otherwise get all the posts with just the one tag.
+    if tags.size > 1
+      @posts = Post.find_by_tags(tags)
+    else
+      post_ids = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id', :include => :tags,
+                           :conditions => ['pt.tag_id = tags.id AND tags.name = ?', tags]).map(&:id)
+      @post_pages, @posts = paginate :posts, :include => [:tags, :user], :order => 'created_at DESC', 
+                                     :per_page => TUMBLE['limit'], :conditions => ['posts.id IN (?)', post_ids.join(',')]
+    end
+
+    if @posts.size.nonzero?
+      render :action => 'list'
+    else
+      error "Tag not found."
+    end
+  end
+
+  # show a post, or redirect if we got here through hackery.
+  def show
+    begin
+      if params[:id]
+        @post = Post.find(params[:id], :include => [:tags, :user])
+      else
+        redirect_to :action => 'list'
+      end
+    rescue ActiveRecord::RecordNotFound
+      error "Post not found."
+    end
+  end
+  
+  # error method, for redirecting to our hand rolled 404 page
+  # with a custom error message
+  def error(x = nil)
+    @error_msg = x
+    render :action => 'error'
+  end
+  
+  # override template root to your theme's
+  def self.template_root
+    theme_dir
+  end
+  helper :all 
+
+  #
+  # post management
+  #
+  
+  # we do this a lot.  hrm.
+  
+  def edit() 
+    if current_user[:id] != params[:user_id] 
+	save_post
+    end
+  end
+
+  # this method handles creation of new posts and editing of existing posts
+  def save_post
+
+    if params[:id] && request.get?
+      # Aqui se genera los datos para la view del edit
+      @post = Post.find(params[:id])
+      @tags = @post.tag_names
+      render :action => :edit
+    elsif params[:id] && request.post?
+      # Aqui se graba cuando editamos
+	@po = Post.find(params[:id]) 
+	@po.attributes = params[:post]
+	@po.tag_names = params[:tags]
+	@po.id = params[:id]
+	@po.save
+	redirect_to :action => :list_post_user, :id => current_user[:id]
+
+    elsif !params[:id] && request.get?
+      # want to create a new post -- go for it
+      @post = Post.new
+      @tags = nil
+      render :action => :new
+
+   	
+    elsif request.post?
+      # post request means something big is going to happen.
+      # set post variable to the post in question if we're editing, otherwise
+      # open a new object
+      post = params[:id] ? Post.find(params[:id]) : Post.new
+      
+      # reset all of post's attributes, replacing them with those submitted
+      # from the form
+      post.attributes = params[:post]
+      
+      # if post has no user_id set, give it the id of the logged in user
+      post.user_id ||= current_user[:id]
+      
+      # if this is a yaml post type, grab the params we need, yamlize them, 
+      # then set them as the content
+      type = params[:post_type]
+      post.content = params[:content] if TYPES[type]
+
+      # reset all the tag names attached to those submitted
+
+      # POST_TYPE == IMAGE
+      if post.post_type == 'image'
+	require 'open-uri'
+	capturanombre = "#{post.user_id}-#{Time.now}"
+	direcion = "public/post/#{capturanombre}.jpg"
+	open(direcion, "wb") do |file|
+	  file << open(post.content).read
+	 end	
+  	 direcion2 = "/post/#{capturanombre}.jpg"
+	 post.content = direcion2
+      end
+
+      # POST_TYPE == QUOTE
+      if post.post_type == 'quote'
+        t11 = Array.new
+        post.content.split.each do |t|
+          if t.scan(/^#\w+/) 
+            t11 = tag.gsub(/^#/,"")
+          end
+        end  
+        post.tag_names = t11      
+      else
+        post.tag_names = params[:tags]
+      end 
+
+      if post.title == 'Titulo'
+        post.title = ''
+      end 	
+
+      # POST_TYPE == (LINK) 
+      if (post.post_type == 'link') 
+        require 'metainspector'
+        require 'iconv'
+        doc = MetaInspector.new(post.content)
+        
+        # Codificacion de del post 
+        open("#{doc.url}") {|f| f.each_line {|line| p line}
+          p f.charset          
+          @f = f }
+            if @f.charset == 'utf-8'
+              title = doc.title
+              desc = doc.description
+              
+            else
+      	      title = Iconv.conv('utf-8', @f.charset, doc.title)
+      	      desc = Iconv.new('utf-8', @f.charset, doc.description)
+            end
+        post.title = title
+        if doc.image
+          post.content = desc + "\n" + doc.url + "\n" + doc.image
+        else
+          post.content = desc + "\n" + doc.url
+        end
+      end
+
+      # save the post - if it fails, send the user back from whence she came
+    if post.save
+      flash[:notice] = 'Mensaje se ha guardado correctamente.'
+      redirect_to :action => 'list_post'
+    else
+      flash[:notice] = "Hubo un error al guardar el mensaje."
+      render :action => self.action_name
+    end
+   end
+  # i don't know how you'd ever get here but i don't know a lot of things
+  # redirect_to :action => :list_post
+  end
+
+  # ooo, pagination.
+  def list
+    if params[:id]
+      @user = User.find(params[:id])
+    else	
+      @user = User.find(current_user[:id])
+    end
+      @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10' )
+  end
+
+  def list_post(options = Hash.new)
+    @po = Post.new
+    if params[:id] 
+      @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC', :limit => '10')
+      @uno_solo = true
+    else
+      if params[:type]
+	@posts = Post.find(:all, :conditions => {:post_type=> params[:type]}, :order => 'id DESC', :limit => '10')
+      else
+	@posts = Post.find(:all, :order => 'id DESC')
+      end
+    end	
+  end
+
+  def list_post_tags
+	@po = Post.new
+	@tag = Tag.find(:all,:conditions => "name like '#{params[:tag]}'")
+    # if more than one tag is specified, get the posts containing all the
+    # passed tags.  otherwise get all the posts with just the one tag.
+
+	if params[:type]
+	  @posts = Post.paginate(:page => params[:page], :per_page => 5,
+						 :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id', 
+						 :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', params[:tag], params[:type]],
+						 :include => [:tags, :user])	
+	else
+	  @posts = Post.paginate(:page => params[:page], :per_page => 5,
+						 :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id', 
+						 :conditions => ['pt.tag_id = tags.id AND tags.name = ?', params[:tag]],
+						 :include => [:tags, :user])	
+	end
+
+  end
+
+  def list_post_user()
+    @po = Post.new
+
+    if params[:name]
+      @user = User.find_by_name(params[:name])
+    elsif params[:id]	
+      @user = User.find(params[:id])
+    end	
+
+    if params[:type]
+      @posts = Post.find(:all, :conditions => { :user_id => @user.id , :post_type => params[:type]}, :order => 'id DESC', :limit => '10')
+    else   
+      @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
+    end	
+  end
+
+  # grab the post and destroy it.  simple enough.
+  def delete
+    post = Post.find(params[:id])
+    post.destroy
+    flash[:notice] = 'Post Borrado.'
+    redirect_to :action => :list_post
+  end
+
+end

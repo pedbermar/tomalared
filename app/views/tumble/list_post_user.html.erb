@@ -1,0 +1,16 @@
+<% @page_name = "Post de #{@user.name}" -%>
+<% @page = "user_list" -%>
+<%# error_messages_for 'user' %>
+
+			<div class="muneco" style="background: url(/img/<%=@user.id%>.jpg) no-repeat center; background-size: 100%;">
+				<font size="5">@<%=@user.name %> </font> <%= @user.posts.count%> posts <br /><br />
+			<% if ( current_user[:id] ==  @user.id) -%><%= link_to 'Editar Perfil', '/edit_me' %>&nbsp;<% end -%>
+		</div>
+
+<br>
+			<% if current_user %>
+				<%= render :partial => 'newex' %>
+			<% end %>
+
+<%= render :partial => 'posts' %>
+

@@ -1,0 +1,33 @@
+<% @page_name = "Post" -%>
+<% error_messages_for 'user' %>
+
+<h1>#<%= params[:id]%><%= params[:tag]%></h1>
+
+<%if current_user %>
+	<% @tag.each do |t| -%>
+	<% @sigue = 0 %>
+		<% # Tag.tag_users(t.id,current_user[:id]).each do |u| %>
+		<%= link_to 'Dejar', {:action => :unfollow_tag, :id => t.id, :page => @post_pages.current}, :confirm => 'Quieres dejar el grupo?' %>			
+			<% @sigue = 1 %>
+		<% #end %>
+		<% if @sigue == 0 %>
+			<%= link_to 'Seguir', {:action => :follow_tag, :id => t.id, :page => @post_pages.current}, :confirm => 'Quieres segir al grupo?' %>			
+		<% end %>
+	<% end %>
+<% end %>
+	<br/>
+
+<%= @posts.count%> posts
+
+<%if current_user %>
+	<%= render :partial => 'admin/newex' %>
+<% end %>
+
+<%= render :partial => 'admin/posts' %>
+
+<%= link_to "<-- Anterior ", { :page => @post_pages.current.previous } if @post_pages.current.previous %>  
+<%= link_to " Siguiente -->", { :page => @post_pages.current.next } if @post_pages.current.next %> 
+
+
+
+

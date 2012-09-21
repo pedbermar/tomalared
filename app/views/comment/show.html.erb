@@ -1,0 +1,9 @@
+<div id="comments">
+  <%= render @comment.comments %>
+</div>
+
+<% form_for [@post, Comment.new], :remote => true do |f| %>
+  <%= f.label :body %><br />
+  <%= f.text_area :body, :rows => 5 %><br />
+  <%= f.submit %>
+<% end %>
