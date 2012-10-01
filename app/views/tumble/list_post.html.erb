@@ -2,11 +2,13 @@
 <%# error_messages_for 'user' %>
 
 <% if current_user and !params[:id] %>
-<%= render :partial => 'newex' %>
+<div id="post_notice"></div>
+<%= render :partial => 'tumble/newex' %>
 <% end %>
 
-
-<%= render :partial => 'posts', :remote => true %>
+<div id= "posts">
+    <%= render :partial => 'tumble/posts', :collection => @posts, :as => "post" %>
+</div>
 
 <%#= link_to "<-- Anterior ", { :page => @post_pages.current.previous, :type => params[:type] } if @post_pages.current.previous %>
 <%#= link_to "Siguiente >>", { :page  => @post_pages.current.next, :type => params[:type], :remote => true } if @post_pages.current.next %>

@@ -2,22 +2,24 @@
 <%# error_messages_for 'user' %>
 
 <div class="muneco" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
-	<font size="5">#<%= params[:tag]%> | </font>
-				<% if current_user.tags.exists?(@tag.id) %>
-					<%= link_to 'unfollow', {:controller => 'tag', :action=> 'unfollow_tag', :id => @tag.id}, :confirm => 'Quieres dejar el grupo?' %>
-				<% else %>
-					<%= link_to 'follow', {:controller => 'tag', :action=> 'follow_tag', :id => @tag.id}, :confirm => 'Quieres unirte al grupo?' %>
-				<% end %>
-		<br>
-			Followers: <%= @tag.users.count%>
-		<br>
-					<% @users_tag.each do |user_tag| -%>
-							<%= link_to "@#{User.find(user_tag.user_id).name}", "/profile/#{User.find(user_tag.user_id).name}" %>&nbsp;
-					<% end -%>	
+    <font size="5">#<%= params[:tag]%> | </font>
+    <% if current_user.tags.exists?(@tag.id) %>
+    <%= link_to 'unfollow', {:controller => 'tag', :action=> 'unfollow_tag', :id => @tag.id}, :confirm => 'Quieres dejar el grupo?' %>
+    <% else %>
+    <%= link_to 'follow', {:controller => 'tag', :action=> 'follow_tag', :id => @tag.id}, :confirm => 'Quieres unirte al grupo?' %>
+    <% end %>
+    <br>
+    Followers: <%= @tag.users.count%>
+    <br>
+    <% @users_tag.each do |user_tag| -%>
+    <%= link_to "@#{User.find(user_tag.user_id).name}", "/profile/#{User.find(user_tag.user_id).name}" %>&nbsp;
+    <% end -%>
 </div>
 <%if current_user %>
-	<%= render :partial => 'tumble/newex' %>
+<div id="post_notice"></div>
+<%= render :partial => 'tumble/newex' %>
 <% end %>
-
-<%= render :partial => 'tumble/posts' %>
+<div id= "posts">
+    <%= render :partial => 'tumble/posts', :collection => @posts, :as => "post" %>
+</div>
 

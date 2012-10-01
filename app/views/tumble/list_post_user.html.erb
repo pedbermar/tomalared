@@ -2,15 +2,19 @@
 <% @page = "user_list" -%>
 <%# error_messages_for 'user' %>
 
-			<div class="muneco" style="background: url(/img/<%=@user.id%>.jpg) no-repeat center; background-size: 100%;">
-				<font size="5">@<%=@user.name %> </font> <%= @user.posts.count%> posts <br /><br />
-			<% if ( current_user[:id] ==  @user.id) -%><%= link_to 'Editar Perfil', '/edit_me' %>&nbsp;<% end -%>
-		</div>
+<div class="muneco" style="background: url(/img/<%=@user.id%>.jpg) no-repeat center; background-size: 100%;">
+    <font size="5">@<%= @user.name %> </font><span id="posts_count"><%= pluralize(Post.count, "posts") %></span>
+    <br />
+    <br />
+    <% if ( current_user[:id] ==  @user.id) -%><%= link_to 'Editar Perfil', '/edit_me' %>&nbsp;<% end -%>
+</div>
 
 <br>
-			<% if current_user %>
-				<%= render :partial => 'newex' %>
-			<% end %>
-
-<%= render :partial => 'posts' %>
+<% if current_user %>
+<div id="post_notice"></div>
+<%= render :partial => 'tumble/newex' %>
+<% end %>
+<div id= "posts">
+    <%= render :partial => 'tumble/posts', :collection => @posts, :as => "post" %>
+</div>
 

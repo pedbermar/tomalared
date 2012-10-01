@@ -48,7 +48,7 @@
 		<%= hidden_field_tag  'post_id', nil, :value => post.id %>
 		</div>
   </div>
-		<%= submit_tag "Comentar", :disable_with => 'Por favor espera' %>
+		<%= submit_tag "Comentar", :id => "comentar", :disable_with => 'Por favor espera' %>
 		<% end %>
 <% end %>
 </div>
