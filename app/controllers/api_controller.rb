@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-   # run the authorize method before we do anything that modifies stuff
+   ## run the authorize method before we do anything that modifies stuff
   before_filter :authorize, :only => [ :post, :edit, :delete, :whoami ]
 
   def list
