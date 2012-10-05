@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<% navegadores = ['Firefox','Chrome','Mobile','MSIE'] -%>
+<% navegadores.each do |n| -%>
+<% if request.env["HTTP_USER_AGENT"].include?(n) -%>
+<% @navegador = n -%>
+<% end -%>
+<% end -%>
+<% if @navegador == 'MSIE' -%>
+
+<html>
+    <head>
+        <meta name="http-equiv" content="Content-type: text/html; charset=utf-8"/>
+        <title>No queremos Internet explorer en esta paguina</title>
+        <META HTTP-EQUIV="REFRESH" CONTENT="30;URL=http://www.mozilla.org/es-ES/firefox/new/">
+    </head>
+    <body>
+        <center>
+            Tu navegador no es aceptado en nuestro sistema, por que lo consideramos defectuoso.
+            <br>
+            En breves segundos te redirigiremos por el buen camino.
+            <br>
+            Aunque Firefox es uno hay mas.
+            <br>
+            Descargate cualquier navegador que no sea Intenet Explorer y l&iacute;brate de los virus.
+            <h1>No Participaremos en la Corrupci&oacute;n de tu sistema operativo...</h1>
+            <i>Crearemos una cilivizacion del pensamiento en le ciberespacio.</i>
+            John Perry Barlow
+        </center>
+    </body>
+</html>
+
+<% else -%>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+        <title>TOMALARED.NET :: <%= @page_name %></title>
+        <%= stylesheet_link_tag    "application", :media => "all" %>
+        <%= stylesheet_link_tag    "external"%>
+        <%= stylesheet_link_tag    "tumblr"  %>
+        <%= stylesheet_link_tag    "jquery-ui-1.8.23.custom.css"  %>
+        <%= javascript_include_tag "application" %>
+        <%= javascript_include_tag :defaults %>
+        <%= csrf_meta_tags %>
+        <script>
+            var h1 = document.createElement('h1');
+
+            if (!('webkitTextStroke' in h1.style )) {
+
+                var heading = document.getElementsByTagName('h1')[0];
+
+                heading.style.color = 'black';
+            }
+        </script>
+    </head>
+    <body>
+
+        <div class="external">
+  		        <%= yield %>
+        </div>
+    </body>
+</html>
+<% end -%>

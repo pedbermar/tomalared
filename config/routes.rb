@@ -5,7 +5,7 @@ Fra::Application.routes.draw do
 
 	#Rutas principales
   root :to 	     => 'user_sessions#new', :as => :login
-
+ 
 	#Login
   match '/login'      => "user_sessions#new", :as => :login
   match '/logout'     => 'user_sessions#destroy'
@@ -60,12 +60,16 @@ Fra::Application.routes.draw do
 
 	#Buscador
   match '/search' => 'search#search'
+  
+  #External
+  match 'external/activador'       => 'external#index'
+  match 'external'       => 'external#share'
 
 	#Futuras ampliaciones
   match 'chat'       => 'chat#index'
   match 'maps'       => 'maps#index'
 
-	#resources
+  #resources
   resources :tags
   resources :comments
   resources :likes
