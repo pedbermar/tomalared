@@ -174,32 +174,6 @@ textarea{
 	float: left;
 }
 
-/******************Radial del selector de tipos de post para crear en el newex */
-#text{
-	padding: 6px;
-}
-
-.nex[type="radio"]{
-		visibility: hidden;
-		width: 0px;
-		height: 0px;
-		padding: 0px;
-		margin: 0px;
-}
-.nex[type="radio"]:label{
-		color: white;
-		font: 20px;
-}
-.nex[type="radio"]:label:hover{
-		color: black;
-		font: 20px;
-}
-.nex[type="radio"]:checked+label{
-		color: black;
-		font: 20px;	
-}
-
-
 /*******¿cuerpo de los post?********/
 #post-body{
 				text-align: left;
