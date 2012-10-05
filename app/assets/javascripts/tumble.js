@@ -1,3 +1,13 @@
+function vuelta() {
+	setTimeout(function() {
+		$("#posts").find("div").first().removeAttr("style");
+	}, 1000 );
+};
+
+function exito(){
+	$("#posts").find("div").first().effect("highlight", {}, "fast", vuelta());
+}
+
 $(document).ready(function() {
 	$("#save_post").submitWithAjax();
 	$("#delete").submitWithAjax();

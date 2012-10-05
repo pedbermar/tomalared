@@ -2,10 +2,7 @@
 $("#posts_count").html("<%= pluralize(Post.count, 'posts') %>");
 
 /* Add the new comment to the bottom of the comments list */
-$("#posts").find("div").before("<%= escape_javascript(render :partial => "tumble/posts", :object => @post, :as => "post" )%>");
+$("#posts").find("div").first().before("<%= escape_javascript(render :partial => "tumble/posts", :object => @post, :as => "post" )%>");
 
 /* Reset the comment form */
 resetForm($("#save_post"));
-
-/* Highlight the new comment */
-$("#post_<%= @post.id %>").effect("highlight", {}, 3000);

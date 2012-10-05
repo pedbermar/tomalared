@@ -15,9 +15,10 @@
 //= require_tree .
 
 function resetForm($form) {
-    $form.find('input:text, input:password, input:file, select, textarea').val('');
-    $form.find('input:radio, input:checkbox')
-         .removeAttr('checked').removeAttr('selected');
+	$form.find('input:text, input:password, input:file, select, textarea').val(
+			'');
+	$form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr(
+			'selected');
 }
 
 jQuery.ajaxSetup({
@@ -28,11 +29,10 @@ jQuery.ajaxSetup({
 
 jQuery.fn.submitWithAjax = function() {
 	this.submit(function() {
-		$.post(this.action, $(this).serialize(), null, "script");
+		$.post(this.action, $(this).serialize(), function(){
+			exito();
+		}, "script");
 		return false;
 	})
 	return this;
 };
-
-$(document).ready(function() {
-});
