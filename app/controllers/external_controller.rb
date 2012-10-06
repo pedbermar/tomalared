@@ -16,6 +16,12 @@ class ExternalController < ApplicationController
 	end
 	
 	def login
+    @user_session = UserSession.new(params[:user_session])
+    if @user_session.save
+      redirect_to :action => :share
+    else
+      render :action => :login
+    end
   end
 
 end

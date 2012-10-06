@@ -64,6 +64,7 @@ Fra::Application.routes.draw do
   #External
   match 'external/activador'       => 'external#index'
   match 'external'       => 'external#share'
+  match 'external/login'       => 'external#login'
 
 	#Futuras ampliaciones
   match 'chat'       => 'chat#index'
