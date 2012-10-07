@@ -10,9 +10,9 @@
   <%= f.check_box :remember_me %><%= f.label :remember_me%> 
   <%= f.submit "Login" %>	
   <%= link_to 'Regístrate', :controller => 'users', :action => 'new' %>
-  	<input id="post_title" name="post[title]" type="hidden" value="<%= params[:title] %>" />
-	<input id="post_content" name="post[content]" type="hidden" value="<%= params[:content] %>" />
-	<input id="post_post_type" name="post[post_type]" type="hidden" value="<%= params[:post_type] %>" />
+  	<input id="post_title" name="post[title]" type="hidden" value="<%= @post.title? ? @post.title : params[:title] %>" />
+	<input id="post_content" name="post[content]" type="hidden" value="<%= @post.content? ? @post.content : params[:content] %>" />
+	<input id="post_post_type" name="post[post_type]" type="hidden" value="<%= @post.post_type? ? @post.post_type : params[:post_type] %>" />
   
  <% end %>
 </div>
