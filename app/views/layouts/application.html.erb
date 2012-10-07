@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 
 <% navegadores = ['Firefox','Chrome','Mobile','MSIE'] -%>
 <% navegadores.each do |n| -%>
@@ -61,57 +61,44 @@
     <body>
 
         <% if current_user -%>
-        <div id="header">
-            <div id="titulo">
-                <br/>
-                <%= link_to image_tag( "/gfx/logo.png", :mouseover => image_path("/gfx/logo_hover.png"), :alt => "Logo", :class => 'logo'), '/network' %>
-            </div>
             <%= render :partial => 'user_sessions/login' %>
-            <div id="nav4">
-                <%= form_tag('/search', :id => 'search') do %>
-                <%= text_field_tag 'q' %>
-                <%= submit_tag 'Buscar', :id => "buscar" %>
-                <% end %>
-            </div>
-        </div>
         <% end -%>
-        <% if !current_user %>
-        <div class="centrar"
-        <% end %>
-        <div id="all"> <div id="main" align="center">
 
-        <div id="content">
-        <%= yield %>
-
-        <div id="footer">
-        <% if current_user %>
-        Hola, <%= current_user[:name] %>.&nbsp;
-        <% end %>&iquest;Estas esperando la revolucion?
-        <br/>
-        Pues corre que ella te espera a ti...
-        <br/>
-        TOMALARED.NET &nbsp;v0.1 (alpha)
-        <br/>
-        Powered By: <a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> ~
-        <a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~
-        <a href="http://ushahidi.com/">Ushahidi v2.2</a>
-        </div>
-        </div>
-        </div>
-
-        <div id="mainboard" align="center">
-        <% if current_user %>
-        <%= render :partial => 'users/board' %>
-
-            <% else %>
-            <% if flash[:notice] %>
-            <div id="notice">
-                <%= flash[:notice] %>
-            </div>
-            <% end %>
-            <% end %>
-
-        </div>
+        <div id="all">
+        	<div id="main" align="center">
+		        <div id="content">
+		        	
+		        	<%= yield %>
+		
+			        <footer id="footer">
+				        <% if current_user %>
+				        Hola, <%= current_user[:name] %>.&nbsp;
+				        <% end %>&iquest;Estas esperando la revolucion?
+				        <br/>
+				        Pues corre que ella te espera a ti...
+				        <br/>
+				        TOMALARED.NET &nbsp;v0.1 (alpha)
+				        <br/>
+				        Powered By: <a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> ~
+				        <a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~
+				        <a href="http://ushahidi.com/">Ushahidi v2.2</a>
+			        </footer>
+		        </div>
+	        </div>
+	
+	        <div id="mainboard" align="center">
+	        <% if current_user %>
+	        <%= render :partial => 'users/board' %>
+	
+	            <% else %>
+	            <% if flash[:notice] %>
+	            <div id="notice">
+	                <%= flash[:notice] %>
+	            </div>
+	            <% end %>
+	            <% end %>
+	
+	        </div>
         </div>
     </body>
 </html>

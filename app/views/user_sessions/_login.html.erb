@@ -1,10 +1,20 @@
-<% if current_user -%>
-	<div id="nav0">
-		<div id="nav2">
-				<%= link_to image_tag( "/gfx/home.png", :mouseover => image_path("/gfx/home_hover.png"), :alt => "Home", :class => "icons"),'/home', :title => "Home"%>
-				<%#= link_to image_tag( "/gfx/groups.png", :mouseover => image_path("/gfx/groups_hover.png"), :alt => "#Groups", :class => "icons"), '/groups', :title => "#Groups" %>  
-				<%= link_to image_tag( "/gfx/logout.png", :mouseover => image_path("/gfx/logout_hover.png"), :alt => "Logout", :class => "icons"), '/logout', :title => "Logout" %>
-	 </div>
+<header id="header">
+	<div id="titulo">
+	    <br/>
+	    <%= link_to image_tag( "/gfx/logo.png", :mouseover => image_path("/gfx/logo_hover.png"), :alt => "Logo", :class => 'logo'), '/network' %>
 	</div>
-<% end %>
-
+	<nav>
+		<div id="nav0">
+			<div id="nav2">
+				<%= link_to image_tag( "/gfx/home.png", :mouseover => image_path("/gfx/home_hover.png"), :alt => "Home", :class => "icons"),'/home', :title => "Home"%>				  
+				<%= link_to image_tag( "/gfx/logout.png", :mouseover => image_path("/gfx/logout_hover.png"), :alt => "Logout", :class => "icons"), '/logout', :title => "Logout" %>
+			</div>
+		</div>
+		<div id="nav4">
+	       <%= form_tag('/search', :id => 'search') do %>
+	    	   <%= text_field_tag 'q' %>
+		       <%= submit_tag 'Buscar', :id => "buscar" %>
+	       <% end %>
+		</div>
+	</nav>
+</header>
