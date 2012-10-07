@@ -1,50 +1,43 @@
 <% if current_user %>
-<%= form_tag('/save_post', :id => "save_post", :multipart=> true, :remote => true) do %>
-<div id="new-radio">
-    <input type="radio" name="post[post_type]" value="quote" id="quote" <% if @post.post_type == "quote"%>checked<% else %>disabled<% end %>  >
-    <label for="quote"> Quote </label>
-    <input type="radio" name="post[post_type]" value="post" id="post" <% if @post.post_type == "post"%>checked<% else %>disabled<% end %>>
-    <label for="post"> Post </label>
-    <input type="radio" name="post[post_type]" value="link" id="link" <% if @post.post_type == "link"%>checked<% else %>disabled<% end %>>
-    <label for="link"> Link </label>
-    <input type="radio" name="post[post_type]" value="video" id="video" <% if @post.post_type == "video"%>checked<% else %>disabled<% end %>>
-    <label for="video"> Video </label>
-    <input type="radio" name="post[post_type]" value="image" id="image" <% if @post.post_type == "image" %>checked<% else %>disabled<% end %>>
-    <label for="image"> Image </label>
-</div>
-
-
-
-
-<div class="post">
-    <span class="share-user_name">&nbsp;&nbsp;<b><u>@<%= current_user[:name] %></b></u></span>
-    <br />
-    <div class="new-foto">
-        <br>
-        <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
-        	<div class="mediano-muneco" style="background: url(/img/<%= current_user[:id]%>.jpg) no-repeat center; background-size: 200%;"></div>
-        <% else %>
-        	<div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 200%;"></div>
-        <% end -%>
-    </div>
-
-    <div class="share-editor">
-
-    
-        <div id="textare">
-			<%= render :partial => oz_type_partial(@post.post_type), :locals => { :content => @post.content, :title => @post.title } %>
+	<%= form_tag('/save_post?external=true', :onsubmit => "self.close ()") do %>
+		<div id="new-radio">
+		    <input type="radio" name="post[post_type]" value="quote" id="quote" <% if @post.post_type == "quote"%>checked<% else %>disabled<% end %>><label for="quote"> Quote </label>
+		    <input type="radio" name="post[post_type]" value="post" id="post" <% if @post.post_type == "post"%>checked<% else %>disabled<% end %>><label for="post"> Post </label>
+		    <input type="radio" name="post[post_type]" value="link" id="link" <% if @post.post_type == "link"%>checked<% else %>disabled<% end %>><label for="link"> Link </label>
+		    <input type="radio" name="post[post_type]" value="video" id="video" <% if @post.post_type == "video"%>checked<% else %>disabled<% end %>><label for="video"> Video </label>
+		    <input type="radio" name="post[post_type]" value="image" id="image" <% if @post.post_type == "image" %>checked<% else %>disabled<% end %>><label for="image"> Image </label>
+		</div>
+	
+		<div class="post">
+		    <span class="share-user_name">&nbsp;&nbsp;<b><u>@<%= current_user[:name] %></b></u></span>
+		    <br />
+		    <div class="new-foto">
+		        <br>
+		        <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
+		        	<div class="mediano-muneco" style="background: url(/img/<%= current_user[:id]%>.jpg) no-repeat center; background-size: 200%;"></div>
+		        <% else %>
+		        	<div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 200%;"></div>
+		        <% end -%>
+		    </div>
+		
+		    <div class="share-editor">
+				<div id="textare"><%= render :partial => oz_type_partial(@post.post_type), :locals => { :content => @post.content, :title => @post.title } %></div>
+				<%= hidden_field 'post', 'title', :value =>  @post.title %>
+				<%if @post.post_type == 'link'%>
+					<%= hidden_field 'post', 'content', :value =>  @url_link %>
+				<% else %>
+					<%= hidden_field 'post', 'content', :value =>  @post.content %>
+				<% end %>
+				<%= hidden_field 'external', 'active', :value => true  %>
+		    		<% if @post.post_type != "quote"%>
+		            	<%= text_field_tag 'tags', @tags, :class => 'share-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla'%>
+					<% end %>
+					
+					<br/>
+		            <%= submit_tag 'Tumblear', :id => "tumblear"%>
+		            <%= hidden_field 'post', 'user_id', :value => (@post.new_record? ? current_user[:id] : @post.user_id) %>
 		        </div>
-    
-    	
-			<% if @post.post_type != "quote"%>
-            	<%= text_field_tag 'tags', @tags, :class => 'share-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla'%>
-			<% end %>
-			
-			<br/>
-            <%= submit_tag 'Tumblear', :id => "tumblear" %>
-            <%= hidden_field 'post', 'user_id', :value => (@post.new_record? ? current_user[:id] : @post.user_id) %>
-        </div>
-        <% end %>
-    </div>
-</div>
+			</div>
+		</div>
+	<% end %>
 <% end %>
