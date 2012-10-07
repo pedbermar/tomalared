@@ -34,7 +34,7 @@
 					<% end %>
 					
 					<br/>
-		            <%= submit_tag 'Tumblear', :id => "tumblear"%>
+		            <%= submit_tag 'Tumblear', :id => "tumblear" %>
 		            <%= hidden_field 'post', 'user_id', :value => (@post.new_record? ? current_user[:id] : @post.user_id) %>
 		        </div>
 			</div>
