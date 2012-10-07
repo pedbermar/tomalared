@@ -21,24 +21,18 @@
         <br>
 
         <%if current_user%>
-        <%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id} %>
-
-        <%if current_user[:id] == post.user_id%>
-        <br>
-        <%if post.post_type == 'post'%>
-        <%= link_to 'Edit', :controller => :tumble, :action => 'edit', :id => post.id %>
-        <br>
-        <%end%>
-        <%= link_to 'Delete', {:controller => :tumble, :action => 'delete', :id => post.id } ,
-        :confirm => "¿Seguro que quieres borrar es post?", :method => :delete, :remote => true %>
+	        <%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id} %>
+	
+	        <%if current_user[:id] == post.user_id%>
+		        <br>
+		        <%if post.post_type == 'post'%>
+		        <%= link_to 'Edit', :controller => :tumble, :action => 'edit', :id => post.id %>
+		        <br>
+	        <%end%>
+    	   	<%= link_to 'Delete', {:controller => :tumble, :action => 'delete', :id => post.id },
+	       	:confirm => "¿Seguro que quieres borrar es post?", :method => :delete, :remote => true %>
         <% else %>
-        <% if @page == "user_list" %>
-        <%= link_to 'UnShare', :controller => :share, :action => 'unshare', :post_id => post.id,
-        :confirm => "¿Seguro que quieres dejar de compartir este post?", :method => :delete  %>
-        <% else %>
-        <%= link_to 'Share', :controller => :share, :action => 'share', :post_id => post.id,
-        :confirm => "¿Seguro que quieres compartir este post?", :method => :psot  %>
-        <% end %>
+        	<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
         <% end %>
 
         <% end %>
