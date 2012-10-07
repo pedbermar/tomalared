@@ -29,7 +29,8 @@ jQuery.ajaxSetup({
 
 jQuery.fn.submitWithAjax = function() {
 	this.submit(function() {
-		$.post(this.action, $(this).serialize(), function(){
+		$("#cargando").show();
+		$.post(this.action, $(this).serialize(), function() {
 			exito();
 		}, "script");
 		return false;

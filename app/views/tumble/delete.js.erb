@@ -1,4 +1,4 @@
-/* Replace the count of comments */
-$("#posts_count").html("<%= pluralize(Post.count, 'posts') %>");
 /* Eliminate the comment by fading it out */
 $('#post_<%= @post.id %>').fadeOut();
+/* Replace the count of comments */
+$("#posts_count").html("<%= pluralize(Post.count, 'posts') %>");

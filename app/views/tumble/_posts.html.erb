@@ -1,7 +1,7 @@
 <%= div_for post do %> <div id="div_hr"></div>
 <% @user = User.find(post.user_id) -%>
 
-<div class="post">
+<div class="datos">
     <span class="titulo"><b><u><%= link_to "@#{@user.name}" , "/profile/#{ User.find(@user.id).name}" %></b></u>,
         &nbsp;<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago</span>
     <br />

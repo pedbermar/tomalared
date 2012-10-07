@@ -1,6 +1,7 @@
 function vuelta() {
 	setTimeout(function() {
 		$("#posts").find("div").first().removeAttr("style");
+		$("#cargando").hide();
 	}, 1000 );
 };
 

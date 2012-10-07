@@ -1,7 +1,7 @@
 /***********Sistema de nuevo post****************/
 
 
-.post{
+.datos{
 	position: relative;
 	float: left;
 	left: -10px;
@@ -349,4 +349,12 @@ textarea{
 #img{
 	margin-left: 10px;
 	width: 450px;
+}
+
+#cargando {
+  position: absolute;
+  display: none;
+  left: 100px;
+  top: 75px;
+  margin: 0px;
 }

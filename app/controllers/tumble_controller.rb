@@ -185,7 +185,7 @@ class TumbleController < ApplicationController
           @post = Post.find(id)
         end
       else
-        @post = Post.create(:post_type => post.post_type, :title => post.title, :content => post.content, :user_id => post.user_id)
+        @post = Post.create!(:post_type => post.post_type, :title => post.title, :content => post.content, :user_id => post.user_id)
       end
       # save the post - if it fails, send the user back from whence she came
       if @post
