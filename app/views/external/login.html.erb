@@ -1,0 +1,18 @@
+<div id="login">
+<%= image_tag( "/gfx/logo.png", :alt => "Logo", :class => 'logo') %>
+<br />
+<%= form_for @user_session, :as => :user_session, :url => { :action => "login" } do |f| %>
+    <%= render "shared/error_messages", :target => @user_session %>
+  <%= f.text_field :email, :placeholder => 'Email' %><br />
+  <br />
+  <%= f.password_field :password, :placeholder => 'Password' %><br />
+  <br />
+  <%= f.check_box :remember_me %><%= f.label :remember_me%> 
+  <%= f.submit "Login" %>	
+  <%= link_to 'Regístrate', :controller => 'users', :action => 'new' %>
+  	<input type="hidden" id="post_title" name="post[title]"  value="<%= @post.title? ? @post.title : params[:title] %>" />
+	<input type="hidden" id="post_content" name="post[content]"  value="<%= @post.content? ? @post.content : params[:content] %>" />
+	<input type="hidden" id="post_post_type" name="post[post_type]" value="<%= @post.post_type? ? @post.post_type : params[:post_type] %>" />
+  
+ <% end %>
+</div>

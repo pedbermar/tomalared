@@ -226,9 +226,12 @@ class TumbleController < ApplicationController
       else
         flash[:notice] = "Hubo un error al guardar el mensaje."
       end
-      respond_to do |format|
-        format.html { redirect_to tumble_path }
-        format.js
+      
+      if !params[:external] 
+        respond_to do |format|
+          format.html { redirect_to tumble_path }
+          format.js
+        end      
       end
       #redirect_to :back
     end

@@ -1,8 +1,35 @@
 <br/><br/><br/><br/>
 <center>
-<script> 
-function abrir() { open('/external','','width=520,height=210') ;} 
-</script> 
 
-<a onclick="abrir()" style="color: white"> Click aqui</a>
+<form name=form onsubmit="window.open('/external','sharetomalared-quote','scrollbars=no,menubar=no,height=300,width=510,resizable=yes,toolbar=no,status=no')" method="post" target="sharetomalared-quote" action="/external" >
+	<input id="post_content" name="post[content]" type="hidden" value="@g #tomalared http://tomalared.net" />
+	<input id="post_post_type" name="post[post_type]" type="hidden" value="quote" />
+	<input type="submit" value="quote" name="cmd_aceptar" />
+</form>
+
+<form name=form onsubmit="window.open('/external','sharetomalared-post','scrollbars=no,menubar=no,height=300,width=510,resizable=yes,toolbar=no,status=no')" method="post" target="sharetomalared-post" action="/external" >
+	<input id="post_title" name="post[title]" type="hidden" value="title" />
+	<input id="post_content" name="post[content]" type="hidden" value=" textotextotextotextotexto" />
+	<input id="post_post_type" name="post[post_type]" type="hidden" value="post" />
+	<input type="submit" value="post" name="cmd_aceptar" />
+</form>
+
+<form name=form onsubmit="window.open('/external','sharetomalared-link','scrollbars=no,menubar=no,height=300,width=510,resizable=yes,toolbar=no,status=no')" method="post" target="sharetomalared-link" action="/external" >
+	<input id="post_content" name="post[content]" type="hidden" value="http://es.wikipedia.org/wiki/Felis_silvestris_catus" />
+	<input id="post_post_type" name="post[post_type]" type="hidden" value="link" />
+	<input type="submit" value="link" name="cmd_aceptar" />
+</form>
+
+<form name=form onsubmit="window.open('/external','sharetomalared-video','scrollbars=no,menubar=no,height=420,width=510,resizable=yes,toolbar=no,status=no')" method="post" target="sharetomalared-video" action="/external" >
+	<input id="post_content" name="post[content]" type="hidden" value="9kHgL6RXc5w" />
+	<input id="post_post_type" name="post[post_type]" type="hidden" value="video" />
+	<input type="submit" value="Video" name="cmd_aceptar" />
+</form>
+
+<form name=form onsubmit="window.open('/external','sharetomalared-image','scrollbars=no,menubar=no,height=600,width=510,resizable=yes,toolbar=no,status=no')" method="post" target="sharetomalared-image" action="/external" >
+	<input id="post_content" name="post[content]" type="hidden" value="http://www.todahistoria.com/wp-content/uploads/2010/12/gato-negro.jpg" />
+	<input id="post_post_type" name="post[post_type]" type="hidden" value="image" />
+	<input type="submit" value="Image" name="cmd_aceptar" />
+</form>
+
 </center>
