@@ -60,7 +60,7 @@ module Fra
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.force_ssl = true
+    config.force_ssl = false
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.available_locales = :es
