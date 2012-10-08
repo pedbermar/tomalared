@@ -1,7 +1,7 @@
 Fra::Application.routes.draw do
 
   # a convenience route
-  resources :sessions, :constraints => { :protocol => "https" }
+  #resources :sessions, :constraints => { :protocol => "https" }
 
 	#Rutas principales
   root :to 	     => 'user_sessions#new', :as => :login

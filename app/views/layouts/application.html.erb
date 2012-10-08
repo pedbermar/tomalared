@@ -1,36 +1,35 @@
 <!DOCTYPE HTML>
-
-<% navegadores = ['Firefox','Chrome','Mobile','MSIE'] -%>
-<% navegadores.each do |n| -%>
-<% if request.env["HTTP_USER_AGENT"].include?(n) -%>
-<% @navegador = n -%>
-<% end -%>
-<% end -%>
-<% if @navegador == 'MSIE' -%>
-
-<html>
-    <head>
-        <meta name="http-equiv" content="Content-type: text/html; charset=utf-8"/>
-        <title>No queremos Internet explorer en esta paguina</title>
-        <META HTTP-EQUIV="REFRESH" CONTENT="30;URL=http://www.mozilla.org/es-ES/firefox/new/">
-    </head>
-    <body>
-        <center>
-            Tu navegador no es aceptado en nuestro sistema, por que lo consideramos defectuoso.
-            <br>
-            En breves segundos te redirigiremos por el buen camino.
-            <br>
-            Aunque Firefox es uno hay mas.
-            <br>
-            Descargate cualquier navegador que no sea Intenet Explorer y l&iacute;brate de los virus.
-            <h1>No Participaremos en la Corrupci&oacute;n de tu sistema operativo...</h1>
-            <i>Crearemos una cilivizacion del pensamiento en le ciberespacio.</i>
-            John Perry Barlow
-        </center>
-    </body>
-</html>
-
+<%	navegadores = ['Firefox','Chrome','Mobile','MSIE'] 
+	navegadores.each do |n| 
+	    if request.env["HTTP_USER_AGENT"].include?(n) 
+	       @navegador = n 
+	    end 
+  	end
+  	 
+if @navegador == 'MSIE' -%>
+	<html>
+	    <head>
+	        <meta name="http-equiv" content="Content-type: text/html; charset=utf-8"/>
+	        <title>No queremos Internet explorer en esta paguina</title>
+	        <META HTTP-EQUIV="REFRESH" CONTENT="30;URL=http://www.mozilla.org/es-ES/firefox/new/"/>
+	    </head>
+	    <body>
+	        <center>
+	            Tu navegador no es aceptado en nuestro sistema, por que lo consideramos defectuoso.
+	            <br>
+	            En breves segundos te redirigiremos por el buen camino.
+	            <br>
+	            Aunque Firefox es uno hay mas.
+	            <br>
+	            Descargate cualquier navegador que no sea Intenet Explorer y l&iacute;brate de los virus.
+	            <h1>No Participaremos en la Corrupci&oacute;n de tu sistema operativo...</h1>
+	            <i>Crearemos una cilivizacion del pensamiento en le ciberespacio.</i>
+	            John Perry Barlow
+	        </center>
+	    </body>
+	</html>
 <% else -%>
+
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -54,7 +53,6 @@
                 var heading = document.getElementsByTagName('h1')[0];
 
                 heading.style.color = 'black';
-
             }
         </script>
     </head>
@@ -87,19 +85,19 @@
 	        </div>
 	
 	        <div id="mainboard" align="center">
-	        <% if current_user %>
-	        <%= render :partial => 'users/board' %>
-	
+		        <% if current_user %>
+	    		    <%= render :partial => 'users/board' %>
 	            <% else %>
-	            <% if flash[:notice] %>
-	            <div id="notice">
-	                <%= flash[:notice] %>
-	            </div>
+		            <% if flash[:notice] %>
+	    		        <div id="notice">
+	            	    	<%= flash[:notice] %>
+	            		</div>
+	            	<% end %>
 	            <% end %>
-	            <% end %>
-	
 	        </div>
+	        
         </div>
+        
     </body>
 </html>
 <% end -%>
