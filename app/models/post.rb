@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   has_many :notifications
   belongs_to :user
 
-  attr_accessible :title, :post_type, :content, :user_id
+  attr_accessible :title, :post_type, :content, :user_id, :tags
 
   validates_uniqueness_of :content, :scope => [:user_id]
 

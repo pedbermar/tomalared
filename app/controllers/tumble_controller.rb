@@ -185,7 +185,7 @@ class TumbleController < ApplicationController
           @post = Post.find(id)
         end
       else
-        @post = Post.create!(:post_type => post.post_type, :title => post.title, :content => post.content, :user_id => post.user_id)
+        @post = Post.create!(:post_type => post.post_type, :title => post.title, :content => post.content, :user_id => post.user_id, :tags => post.tags)
       end
       # save the post - if it fails, send the user back from whence she came
       if @post
@@ -259,33 +259,32 @@ class TumbleController < ApplicationController
   end
 
   def list_post_tags
-  @po = Post.new
-  @tag = Tag.find_by_name(params[:tag])
+    @po = Post.new
+    @tag = Tag.find_by_name(params[:tag])
     # if more than one tag is specified, get the posts containing all the
     # passed tags.  otherwise get all the posts with just the one tag.
-
-  if params[:type]
-    @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', params[:tag], params[:type]],
-             :order => 'posts.created_at DESC',
-             :include => [:tags, :user])
-  else
-    @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => ['pt.tag_id = tags.id AND tags.name = ?', params[:tag]],
-             :order => 'posts.created_at DESC',
-             :include => [:tags, :user])
-  end
+    if params[:type]
+      @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                         :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', params[:tag], params[:type]],
+                         :order => 'posts.created_at DESC',
+                         :include => [:tags, :user])
+    else
+      @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                         :conditions => ['pt.tag_id = tags.id AND tags.name = ?', params[:tag]],
+                         :order => 'posts.created_at DESC',
+                         :include => [:tags, :user])
+    end
 
     #foto aleatoria de la cabezera de list por tags
     @tag_foto = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-               :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', params[:tag], "image"],
-               :order => 'rand()',
-               :limit => 1,
-               :include => [:tags, :user])
+                          :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', params[:tag], "image"],
+                          :order => 'rand()',
+                          :limit => 1,
+                          :include => [:tags, :user])
 
-     @tag_foto.each do |tag_foto|   
-       @foto_tag = tag_foto.content
-     end 
+    @tag_foto.each do |tag_foto|
+      @foto_tag = tag_foto.content
+    end 
 
     @post = Post.new
     @post.content = "##{params[:tag]} "
@@ -293,7 +292,7 @@ class TumbleController < ApplicationController
     @users_tag =  Tag.find_by_sql(['SELECT `tags_users`.* FROM `tags_users` WHERE tag_id = ?', @tag])
   end
 
-  def list_post_user()
+  def list_post_user
     @po = Post.new
 
     if params[:name]
@@ -301,14 +300,14 @@ class TumbleController < ApplicationController
     else
       @user = User.find(current_user[:id])
     end
-      @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
-      @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
-       @post_share.each do |ps|
-          p = Post.find(ps.post_id)
-          p.created_at = ps.created_at
-          @posts << p
-        end
-      @posts= @posts.sort_by {|post| post.created_at}.reverse
+    @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
+    @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
+    @post_share.each do |ps|
+      p = Post.find(ps.post_id)
+      p.created_at = ps.created_at
+      @posts << p
+    end
+    @posts= @posts.sort_by {|post| post.created_at}.reverse
 
     @post = Post.new
     if params[:name]
@@ -321,14 +320,13 @@ class TumbleController < ApplicationController
     note = Notifications.find(:all, :conditions => { :user_id => current_user[:id], :note_type => params[:note_type]}, :order => 'id DESC')
 
     @posts = Array.new
-        note.each do |m|
-          @posts << Post.find(m.post_id)
-          m.unread = 0
-          m.save
-        end
-        @posts = @posts.uniq_by{|x| x.id}
+    note.each do |m|
+      @posts << Post.find(m.post_id)
+      m.unread = 0
+      m.save
+    end
+    @posts = @posts.uniq_by{|x| x.id}
     render :list_post
-
   end
 
   # grab the post and destroy it.  simple enough.
@@ -353,17 +351,14 @@ class TumbleController < ApplicationController
     @user  = User.find(params[:user])
     @post.post_type = 'quote'
     @post.content = "@#{@user.name} "
-
-
+    
     @mentions = Notifications.find(:all,
-            :conditions => ["((`user_id` = ? AND `from` = ?) OR (`user_id` = ? AND `from` = ?)) AND `note_type` = 3", current_user[:id], params[:user], params[:user], current_user[:id]],
-            :order => 'post_id DESC')
-
-
-
+                                   :conditions => ["((`user_id` = ? AND `from` = ?) OR (`user_id` = ? AND `from` = ?)) AND `note_type` = 3", current_user[:id], params[:user], params[:user], current_user[:id]],
+                                   :order => 'post_id DESC')
+    
     @posts = Array.new
     @mentions.each do |m|
-          @posts << Post.find(m.post_id)
+      @posts << Post.find(m.post_id)
     end 
     render :action => 'edit'
   end
