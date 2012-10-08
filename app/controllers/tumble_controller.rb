@@ -244,18 +244,23 @@ class TumbleController < ApplicationController
         @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
         @uno_solo = true
       else
-        if params[:type]
-          @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
+            @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id', :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
             @posts = @posts.uniq_by{|x| x.id}
-        else
-            @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
-        end
+            
+            @posts_user = Post.find(:all, :conditions => { :user_id => current_user[:id] })
+            @posts_user.each do |pu|
+              @posts << pu
+           end
+            
+            @posts_share = Share.find(:all, :conditions => {:user_id => current_user[:id] })
+            @posts_share.each do |ps|
+              p = Post.find(ps.post_id)
+              p.created_at = ps.created_at
+              @posts << p
+           end
+           @posts= @posts.sort_by {|post| post.created_at}.reverse 
       end
+      
   end
 
   def list_post_tags
@@ -302,8 +307,8 @@ class TumbleController < ApplicationController
       @user = User.find(current_user[:id])
     end
       @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
-      @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
-       @post_share.each do |ps|
+      @posts_share = Share.find(:all, :conditions => {:user_id => @user.id })
+      @posts_share.each do |ps|
           p = Post.find(ps.post_id)
           p.created_at = ps.created_at
           @posts << p
