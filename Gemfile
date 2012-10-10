@@ -38,12 +38,12 @@ gem 'jquery-rails', '>= 1.0.12'
 # gem 'debugger'
 gem "dotiw"
 gem 'rdoc'
-gem 'metainspector','1.9.10'
+gem 'metainspector'
 gem 'json'
 gem 'kaminari'
 gem 'dotiw'
 gem 'will_paginate', '~> 3.0.0'
-gem "authlogic" 
+gem "authlogic"
 gem 'rack-ssl', :require => 'rack/ssl'
 gem 'sqlite3'
 gem 'nifty-generators'
