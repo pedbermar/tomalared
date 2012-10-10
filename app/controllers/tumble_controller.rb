@@ -231,7 +231,7 @@ class TumbleController < ApplicationController
         respond_to do |format|
           format.html { redirect_to tumble_path }
           format.js
-        end      
+        end
       end
       #redirect_to :back
     end
@@ -240,22 +240,28 @@ class TumbleController < ApplicationController
   # ooo, pagination.
   def list_post(options = Hash.new)
     @po = Post.new
-      if params[:id]
-        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
-        @uno_solo = true
+    if params[:id]
+      @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
+      @uno_solo = true
+    else
+      if params[:type]
+        @posts = Post.find(:all,
+          :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+          :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
+          @posts = @posts.uniq_by{|x| x.id}
       else
-        if params[:type]
           @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
-        else
-            @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
-        end
+          :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+           :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
+          @posts = @posts.uniq_by{|x| x.id}
       end
+    end
+    if !params[:external] 
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
   end
 
   def list_post_tags
@@ -290,6 +296,13 @@ class TumbleController < ApplicationController
     @post.content = "##{params[:tag]} "
 
     @users_tag =  Tag.find_by_sql(['SELECT `tags_users`.* FROM `tags_users` WHERE tag_id = ?', @tag])
+    
+    if !params[:external] 
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
   end
 
   def list_post_user
@@ -312,6 +325,12 @@ class TumbleController < ApplicationController
     @post = Post.new
     if params[:name]
       @post.content = "@#{params[:name]} : "
+    end
+    if params[:remote]
+        respond_to do |format|
+          format.html
+          format.js
+        end
     end
   end
 

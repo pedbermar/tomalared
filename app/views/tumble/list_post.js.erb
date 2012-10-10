@@ -1,0 +1,3 @@
+<% unless @posts.empty? %>
+$("#actualizar").trigger("click", ["<div id='posts'><%= escape_javascript(render :partial => "tumble/posts", :collection => @posts, :as => "post" )%></div>"]);
+<% end %>
