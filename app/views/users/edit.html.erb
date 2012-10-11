@@ -20,9 +20,26 @@
 		<%= submit_tag "Subir foto" %>
 <% end %>
 
-<% form_for @user, :url => account_path do |f| %>
-  <%= render :partial => "form", :object => f, :locals => { :user => @user } %>
-  <%= f.submit "Update" %>
+<%= form_for @user do |f| %>
+  <%#= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+
 <% end %>
 
 <br /><%= link_to "My Profile", account_path %>
