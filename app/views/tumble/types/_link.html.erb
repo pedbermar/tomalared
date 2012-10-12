@@ -1,6 +1,7 @@
-<% img = content.split[-2] -%>
-<% link = content.split[-1] -%>
-<% desc = content.split[0..-3].join(" ") -%>
+<% img = content.split[-3] -%>
+<% link = content.split[-2] -%>
+<% host = content.split[-1] -%>
+<% desc = content.split[0..-4].join(" ") -%>
 
 <div class="type-link">
 <a href="<%= link %>" target="_blank">
@@ -11,11 +12,12 @@
 	<% end %>
 
 	<div class="post_link_text">
+<a href="<%= link %>" target="_blank">
 	<b><%= title.html_safe %></b>
 		<br>
 		<%= desc.html_safe %>
 		<br>
-		<i><%= link %></i>
+		<i><%= host %></i>
 	</div>
 </a>
 </div>

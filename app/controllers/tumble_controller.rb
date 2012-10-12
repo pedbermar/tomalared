@@ -173,10 +173,10 @@ class TumbleController < ApplicationController
           open(direcion, "wb") do |file|
             file << open(doc.image).read
           end
-          img_url = "https://tomalared.net/post/#{capturanombre}.jpg"
-          post.content = desc + "\n" + img_url + "\n" + doc.url
+          img_url = "http://localhost:3000/post/#{capturanombre}.jpg"
+          post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
         else
-          post.content = desc + "\n" + "no-img" + "\n" + doc.url
+          post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
       end
       @post = nil
@@ -202,7 +202,7 @@ class TumbleController < ApplicationController
             end
           end
         end
-        # Notificaciones para las MENCIONES       
+        # Notificaciones para las MENCIONES
         if post.post_type == 'quote'
           mentions = Array.new
           post.content.split.each do |t|
@@ -217,7 +217,7 @@ class TumbleController < ApplicationController
               note.user_id = user.id
               note.note_type = 3
               note.from = current_user[:id]
-              note.post_id = @post.id 
+              note.post_id = @post.id
               note.save
             end
           end
@@ -226,8 +226,8 @@ class TumbleController < ApplicationController
       else
         flash[:notice] = "Hubo un error al guardar el mensaje."
       end
-      
-      if !params[:external] 
+
+      if !params[:external]
         respond_to do |format|
           format.html { redirect_to tumble_path }
           format.js
@@ -256,7 +256,7 @@ class TumbleController < ApplicationController
           @posts = @posts.uniq_by{|x| x.id}
       end
     end
-    if !params[:external] 
+    if !params[:external]
       respond_to do |format|
         format.html
         format.js
@@ -290,14 +290,14 @@ class TumbleController < ApplicationController
 
     @tag_foto.each do |tag_foto|
       @foto_tag = tag_foto.content
-    end 
+    end
 
     @post = Post.new
     @post.content = "##{params[:tag]} "
 
     @users_tag =  Tag.find_by_sql(['SELECT `tags_users`.* FROM `tags_users` WHERE tag_id = ?', @tag])
-    
-    if !params[:external] 
+
+    if !params[:external]
       respond_to do |format|
         format.html
         format.js
@@ -352,7 +352,7 @@ class TumbleController < ApplicationController
   def delete
     @post = Post.find(params[:id])
     @notes = Notifications.find(:all, :conditions => { :post_id => @post.id})
-    
+
     @notes.each do |m|
       m.destroy
     end
@@ -370,17 +370,18 @@ class TumbleController < ApplicationController
     @user  = User.find(params[:user])
     @post.post_type = 'quote'
     @post.content = "@#{@user.name} "
-    
+
     @mentions = Notifications.find(:all,
                                    :conditions => ["((`user_id` = ? AND `from` = ?) OR (`user_id` = ? AND `from` = ?)) AND `note_type` = 3", current_user[:id], params[:user], params[:user], current_user[:id]],
                                    :order => 'post_id DESC')
-    
+
     @posts = Array.new
     @mentions.each do |m|
       @posts << Post.find(m.post_id)
-    end 
+    end
     render :action => 'edit'
   end
 
 
 end
+
