@@ -18,7 +18,7 @@
         <% end %>
 
         <% if  current_user[:id] == comment.user_id %>
-        <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, , :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
+        <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
         <% end %>
 
         <br>
