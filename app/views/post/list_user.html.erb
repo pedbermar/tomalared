@@ -12,9 +12,9 @@
 <br>
 <% if current_user %>
 <div id="post_notice"></div>
-<%= render :partial => 'tumble/newex' %>
+<%= render :partial => 'post/newex' %>
 <% end %>
 <div id= "posts">
-    <%= render :partial => 'tumble/posts', :collection => @posts, :as => "post" %>
+    <%= render :partial => 'post/posts', :collection => @posts, :as => "post" %>
 </div>
 

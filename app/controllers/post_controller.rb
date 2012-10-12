@@ -1,13 +1,6 @@
-class TumbleController < ApplicationController
+class PostController < ApplicationController
 
   helper :all
-
-  # list all the posts
-  def list(options = Hash.new)
-    options.merge!({ :order => 'created_at DESC', :include => [:tags, :user], :per_page => TUMBLE['limit'] })
-    @post_pages, @posts = paginate :posts, options
-    render :action => 'list'
-  end
 
   # list by date - its own method so we can do pagination right
   def list_by_date
@@ -17,7 +10,7 @@ class TumbleController < ApplicationController
   end
 
   # list by post type - its own method so we can do pagination right
-  def list_by_post_type
+  def list_by_type
     list :conditions => ['post_type = ?', params[:type]]
   end
 
@@ -83,12 +76,12 @@ class TumbleController < ApplicationController
 
   def edit()
     if current_user[:id] != params[:user_id]
-      save_post
+      save
     end
   end
 
   # this method handles creation of new posts and editing of existing posts
-  def save_post
+  def save
     if params[:id] && request.get?
       # Aqui se genera los datos para la view del edit
       @post = Post.find(params[:id])
@@ -101,7 +94,7 @@ class TumbleController < ApplicationController
       @po.tag_names = params[:tags]
       @po.id = params[:id]
       @po.save
-      redirect_to :action => :list_post_user, :id => current_user[:id]
+      redirect_to :action => :list_user, :id => current_user[:id]
     elsif !params[:id] && request.get?
       # want to create a new post -- go for it
       @post = Post.new
@@ -229,7 +222,7 @@ class TumbleController < ApplicationController
 
       if !params[:external]
         respond_to do |format|
-          format.html { redirect_to tumble_path }
+          format.html { redirect_to post_path }
           format.js
         end
       end
@@ -238,7 +231,7 @@ class TumbleController < ApplicationController
   end
 
   # ooo, pagination.
-  def list_post(options = Hash.new)
+  def list(options = Hash.new)
     @po = Post.new
     if params[:id]
       @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
@@ -264,7 +257,7 @@ class TumbleController < ApplicationController
     end
   end
 
-  def list_post_tags
+  def list_tag
     @po = Post.new
     @tag = Tag.find_by_name(params[:tag])
     # if more than one tag is specified, get the posts containing all the
@@ -305,7 +298,7 @@ class TumbleController < ApplicationController
     end
   end
 
-  def list_post_user
+  def list_user
     @po = Post.new
 
     if params[:name]
@@ -345,7 +338,7 @@ class TumbleController < ApplicationController
       m.save
     end
     @posts = @posts.uniq_by{|x| x.id}
-    render :list_post
+    render :list
   end
 
   # grab the post and destroy it.  simple enough.
@@ -360,7 +353,7 @@ class TumbleController < ApplicationController
 
     flash[:notice] = 'Post Borrado.'
     respond_to do |format|
-      format.html { redirect_to tumble_path }
+      format.html { redirect_to post_path }
       format.js
     end
   end

@@ -24,10 +24,10 @@
                 <%if current_user[:id] == post.user_id%>
                     <br>
                     <%if post.post_type == 'post'%>
-                        <%= link_to 'Edit', { :controller => :tumble, :action => 'edit', :id => post.id }, :class => "editarPost", :remote => true %>
+                        <%= link_to 'Edit', { :controller => :post, :action => 'edit', :id => post.id }, :class => "editarPost", :remote => true %>
                         <br>
                     <%end%>
-                    <%= link_to 'Delete', { :controller => :tumble, :action => 'delete', :id => post.id },
+                    <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
                                            :confirm => "¿Seguro que quieres borrar es post?", :class => "borrarPost", :method => :delete, :remote => true %>
                 <% else %>
                     <%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
