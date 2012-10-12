@@ -11,6 +11,7 @@ if @navegador == 'MSIE' -%>
 	    <head>
 	        <meta name="http-equiv" content="Content-type: text/html; charset=utf-8"/>
 	        <title>No queremos Internet explorer en esta paguina</title>
+	        <link rel="shortcut icon" href="/gfx/favicon.ico" type="image/x-icon" />
 	        <META HTTP-EQUIV="REFRESH" CONTENT="30;URL=http://www.mozilla.org/es-ES/firefox/new/"/>
 	    </head>
 	    <body>
@@ -33,7 +34,7 @@ if @navegador == 'MSIE' -%>
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/gfx/favicon.ico" type="image/x-icon" />
         <title>TOMALARED.NET :: <%= @page_name %></title>
         <%= stylesheet_link_tag    "application", :media => "all" %>
         <%= stylesheet_link_tag    "tumblr"  %>

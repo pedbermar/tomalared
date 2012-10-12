@@ -5,7 +5,7 @@ Fra::Application.routes.draw do
 
 	#Rutas principales
   root :to 	     => 'user_sessions#new', :as => :login
- 
+
 	#Login
   match '/login'      => "user_sessions#new", :as => :login
   match '/logout'     => 'user_sessions#destroy'
@@ -60,7 +60,7 @@ Fra::Application.routes.draw do
 
 	#Buscador
   match '/search' => 'search#search'
-  
+
   #External
   match 'external/activador'       => 'external#index'
   match 'external'       => 'external#share'
@@ -70,6 +70,8 @@ Fra::Application.routes.draw do
   match 'chat'       => 'chat#index'
   match 'maps'       => 'maps#index'
 
+  match 'password_resets'=> 'password_resets#new', :only => [ :new, :create, :edit, :update ]
+
   #resources
   resources :tags
   resources :comments
@@ -77,6 +79,7 @@ Fra::Application.routes.draw do
   resources :users                  # give us our some normal resource routes for users
   resource :user, :as => 'account'
   resources :user_sessions
+  resource :password_resets, :only => [ :new, :create, :edit, :update ]
 
 end
 

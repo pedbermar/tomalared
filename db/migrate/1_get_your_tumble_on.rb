@@ -50,10 +50,9 @@ class GetYourTumbleOn < ActiveRecord::Migration
     User.new( :name => "admin", :password => 'changeme', :email => 'root@tomalared.net' ).save
     
     Post.new( :title => "first post!", :post_type => "post", 
-              :content => %[Hello, world.  I'm tomalareadin'!
-              Check out 
-              <a href="http://tomalared.net">TOMALARED.NET</a>
-              for info on how to take the net!.],
+              :content => %[Hello, world.  We take the network'<br/>!
+              Hola Mundo. Hemos estoy tomado la red.<br/>
+              http://tomalared.net],
               :user_id => 1 ).save
   end
 

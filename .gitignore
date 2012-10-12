@@ -14,5 +14,8 @@
 /log/*
 /tmp/*
 /vendor/*
-database.yml
+/config/database.yml
+/config/initializers/mail.rb
+Gemfile.lock
 .project
+
