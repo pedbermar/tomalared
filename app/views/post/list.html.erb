@@ -3,11 +3,11 @@
 
 <% if current_user and !params[:id] %>
 <div id="post_notice"></div>
-<%= render :partial => 'tumble/newex' %>
+<%= render :partial => 'post/newex' %>
 <% end %>
 
 <div id= "posts">
-    <%= render :partial => 'tumble/posts', :collection => @posts, :as => "post" %>
+    <%= render :partial => 'post/posts', :collection => @posts, :as => "post" %>
 </div>
 
 <%#= link_to "<-- Anterior ", { :page => @post_pages.current.previous, :type => params[:type] } if @post_pages.current.previous %>

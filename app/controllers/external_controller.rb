@@ -2,7 +2,7 @@ class ExternalController < ApplicationController
 
 	
 	layout "external"   # admin layout
-	helper :tumble
+	helper :post
 
 	def share
 	   @post = Post.new(params[:post])

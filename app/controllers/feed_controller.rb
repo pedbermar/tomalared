@@ -1,5 +1,5 @@
 class FeedController < ApplicationController
-  helper :feed, :tumble
+  helper :feed, :post
   caches_page :atom, :rss
   #session :off
   

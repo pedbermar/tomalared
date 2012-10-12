@@ -1,8 +1,8 @@
-module TumbleHelper
+module PostHelper
   # if the types partial doesn't exist, serve post
   def oz_type_partial(post_type)
     # this is messy
-    types_base = 'tumble/types/'
+    types_base = 'post/types/'
     if File.exists? "#{Rails.root}/app/views/#{types_base}_#{post_type}.html.erb"
       types_base + post_type
     else
@@ -31,10 +31,10 @@ def text_parse(str)
 
       str.split.each do |t|
         t11 = t.gsub(/\s?(^#)?/, "")
-	      p = t.gsub(/^#\w+/) { link_to "##{t11}", :controller => 'tumble', :action => 'list_post_tags', :tag => t11 }
+	      p = t.gsub(/^#\w+/) { link_to "##{t11}", :controller => 'post', :action => 'list_tag', :tag => t11 }
 
         t21 = t.gsub(/\s?(^@)?/, "")
-        p1 = p.gsub(/^@\w+/) { link_to "@#{t21}", :controller => 'tumble', :action => 'list_post_user', :name => t21 }
+        p1 = p.gsub(/^@\w+/) { link_to "@#{t21}", :controller => 'post', :action => 'list_user', :name => t21 }
 
         t30 = t.scan(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
 	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}...",  "#{$1}", :popup => true}
@@ -89,7 +89,7 @@ end
 
   # clean date link
   def oz_clean_date_link(date)
-    url_for :controller => 'tumble', :action => 'list_by_date', :year => date.year,
+    url_for :controller => 'post', :action => 'list_by_date', :year => date.year,
             :month => ("%02d" % date.month), :day => ("%02d" % date.day)
   end
 
@@ -115,7 +115,7 @@ end
   end
 
   # the current tag
-  def oz_current_tag(default = 'tumble')
+  def oz_current_tag(default = 'post')
     if @error_msg
       "error"
     elsif params[:tag]
@@ -128,20 +128,20 @@ end
   # builds a link to a list of posts for a type
   def post_type_link(text, type = nil)
     type = text if type.nil?
-    link_to text, :controller => 'tumble', :action => 'list_by_post_type',
+    link_to text, :controller => 'post', :action => 'list_by_type',
                   :type => type
   end
 
   # builds a link to a month
   def month_link(text, date)
     date = date.respond_to?(:strftime) ? date : Time.parse(date)
-    link_to text, :controller => 'tumble', :action => 'list_by_date',
+    link_to text, :controller => 'post', :action => 'list_by_date',
                   :year => date.strftime('%Y'), :month => date.strftime('%m')
   end
 
   # if we're looking at a tag, give the option to add (or remove) another tag
   def tag_link(t)
-    link_to "##{t}", :controller => 'tumble', :action => 'list_post_tags', :tag => t
+    link_to "##{t}", :controller => 'post', :action => 'list_tag', :tag => t
   end
 
   # add a + or - in front of tags if we're looking at a tag's listing
@@ -153,14 +153,14 @@ end
         link_to('-', '/', :class => 'remove-tag')
       else
         link = link.reject { |x| x =~ /^#{tag}$/ } * '+'
-        link_to('-', {:controller => 'tumble', :action => 'tag', :tag => link},
+        link_to('-', {:controller => 'post', :action => 'tag', :tag => link},
                      { :class => 'remove-tag' })
       end
     elsif cur_tag
       link = "#{cur_tag.gsub(' ','+')}+#{tag}"
       # the gsub below is an annoying hack to fight against the uri encoding.
       # need to find a way to turn it off..
-      link_to('+', {:controller => 'tumble', :action => 'tag', :tag => link},
+      link_to('+', {:controller => 'post', :action => 'tag', :tag => link},
                    { :class => 'add-tag', :rel => 'nofollow' }).gsub(/%2B/,'+')
     else
       ""
@@ -176,7 +176,7 @@ end
 
   # messy.  sorry.
   def oz_render_theme_partial(partial, options = {})
-    render({:partial => ('tumble/' + partial) }.merge(options))
+    render({:partial => ('post/' + partial) }.merge(options))
   end
 end
 

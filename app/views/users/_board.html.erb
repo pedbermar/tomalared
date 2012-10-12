@@ -41,7 +41,7 @@
   			 @mentions2.each do |m|
 						cont = Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count	%>
 
-      				 <a href="/tumble/mentions?user=<%= m.from %>">
+      				 <a href="/post/mentions?user=<%= m.from %>">
 									@<%=User.find(m.from).name%> <% if cont != 0 %> [<%= Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count %>] <% end %>
 							 </a> <br>
 	  		 <% end %>

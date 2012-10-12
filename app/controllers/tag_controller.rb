@@ -1,7 +1,7 @@
 class TagController < ApplicationController
 
 
-  helper :tumble
+  helper :post
 
   # the big man
   def is_admin_user?
@@ -28,7 +28,7 @@ class TagController < ApplicationController
     tag = Tag.find(params[:id])
     tag.destroy
     flash[:notice] = 'Tag deleted.'
-    redirect_to :action => :list_tags
+    redirect_to :action => :list_tag
   end
 
   def follow_tag

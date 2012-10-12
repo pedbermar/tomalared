@@ -6,7 +6,7 @@ function actualizandoPosts() {
 		options = "&last=" + $("#created_at_" + id).val();
 	}
 	$.getScript($(location).attr('href') + "?remote=true" + options);
-	setTimeout(actualizandoPost, 10000);
+	setTimeout(actualizandoPosts, 10000);
 }
 
 function actualizadoPosts(data) {
@@ -53,7 +53,7 @@ function exito() {
 }
 
 $(document).ready(function() {
-	$("#save_post").submitWithAjax();
+	$("#save").submitWithAjax();
 	$("#tumblear").button();
 	$(".borrarPost").button({
         icons: {

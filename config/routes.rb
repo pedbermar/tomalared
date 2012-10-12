@@ -20,27 +20,27 @@ Fra::Application.routes.draw do
 
 	#Grupos
 			#Listados
-  match '/group/:tag' => 'tumble#list_post_tags'
-  match '/group/:id'  => 'tumble#list_post_tags'
+  match '/group/:tag' => 'post#list_tag'
+  match '/group/:id'  => 'post#list_tag'
 			#Funciones
 	match '/follow/:id' => 'tag#follow_tag'
 	match '/unfollow/:id' => 'tag#unfollow_tag'
 
 	#Tumblr
 			#Listados por post
-  match '/post/:id'   => 'tumble#list_post'
-  match '/network/note/:note_type'   => 'tumble#note'
-  match '/network'     => 'tumble#list_post'
+  match '/post/:id'   => 'post#list'
+  match '/network/note/:note_type'   => 'post#note'
+  match '/network'     => 'post#list'
 			#Funciones
-  match '/save_post'  => 'tumble#save_post'
-  match '/edit_post'  => 'tumble#edit'
-  match '/delete'     => 'tumble#delete'
-  match '/delete_tag' => 'tumble#delete_tag'
-  match '/tumble/save_post' => 'tumble#save_post'
-  match '/tumble/mentions' => 'tumble#mentions'
+  match '/save'  => 'post#save'
+  match '/edit'  => 'post#edit'
+  match '/delete'     => 'post#delete'
+  match '/delete_tag' => 'post#delete_tag'
+  match '/post/save' => 'post#save'
+  match '/post/mentions' => 'post#mentions'
 			#Listados por usuario
-  match '/me'  => 'tumble#list_post_user'
-  match '/profile/:name'       => 'tumble#list_post_user'
+  match '/me'  => 'post#list_user'
+  match '/profile/:name'       => 'post#list_user'
 			#comentarios
   match '/comment/new' => 'comment#new'
   match '/comment/delete/:id' => 'comment#delete'

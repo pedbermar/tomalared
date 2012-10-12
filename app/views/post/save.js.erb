@@ -2,7 +2,7 @@
 $("#posts_count").html("<%= pluralize(Post.count, 'posts') %>");
 
 /* Add the new comment to the bottom of the comments list */
-$("#posts").find("div").first().before("<%= escape_javascript(render :partial => "tumble/posts", :object => @post, :as => "post" )%>");
+$("#posts").find("div").first().before("<%= escape_javascript(render :partial => "post/posts", :object => @post, :as => "post" )%>");
 
 /* Reset the comment form */
-resetForm($("#save_post"));
+resetForm($("#save"));

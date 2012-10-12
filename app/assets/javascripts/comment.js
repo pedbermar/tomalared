@@ -6,7 +6,7 @@ function actualizandoComments() {
 		options = "&last=" + $("#created_at_" + id).val();
 	}
 	$.getScript($(location).attr('href') + "?remote=true" + options);
-	setTimeout(actualizandoPost, 10000);
+	setTimeout(actualizandoComments, 10000);
 }
 
 function actualizadoComments(data) {
