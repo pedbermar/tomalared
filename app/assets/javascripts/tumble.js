@@ -1,4 +1,4 @@
-function updateComments() {
+function actualizandoPosts() {
 	div = $("#posts").find(".post");
 	options = "";
 	if (div.length > 0) {
@@ -6,10 +6,10 @@ function updateComments() {
 		options = "&last=" + $("#created_at_" + id).val();
 	}
 	$.getScript($(location).attr('href') + "?remote=true" + options);
-	setTimeout(updateComments, 10000);
+	setTimeout(actualizandoPost, 10000);
 }
 
-function actualizarPost(data) {
+function actualizadoPosts(data) {
 	var postsData = $(data).find(".post");
 	if (postsData.length > 0) {
 		var posts = $("#posts").find(".post");
@@ -54,11 +54,22 @@ function exito() {
 
 $(document).ready(function() {
 	$("#save_post").submitWithAjax();
-	$("#delete").submitWithAjax();
 	$("#tumblear").button();
+	$(".borrarPost").button({
+        icons: {
+            primary: "ui-icon-trash"
+        },
+        text: false
+	});
+	$(".editarPost").button({
+        icons: {
+            primary: "ui-icon-document"
+        },
+        text: false
+	});
 	$("#new-radio").buttonset();
 	$("#actualizar").on("click", function(event, data) {
-		actualizarPost(data);
+		actualizadoPosts(data);
 	})
 	$("input:radio").click(function() {
 		if ($(this).val() == "quote") {
@@ -77,5 +88,5 @@ $(document).ready(function() {
 			$("#archivo").hide();
 		}
 	});
-	setTimeout(updateComments, 10000);
+	setTimeout(actualizandoPosts, 10000);
 });

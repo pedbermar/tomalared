@@ -1,0 +1,8 @@
+<div id="comments">
+    <div class="comment-separacion"></div>
+    <%= render :partial => 'comment/comments', :collection => post.comments, :as => "comment" %>
+    <% if current_user %>
+        <%= render :partial => 'comment/form', :object => post, :as => "post" %>
+    <% end %>
+</div>
+

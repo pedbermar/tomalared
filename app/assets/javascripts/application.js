@@ -37,3 +37,8 @@ jQuery.fn.submitWithAjax = function() {
 	})
 	return this;
 };
+
+$(document).ready(function(){
+	$("#delete").submitWithAjax();
+	$("#new").submitWithAjax();
+});

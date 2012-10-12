@@ -1,55 +1,30 @@
-<div id="comments">
-<div class="comment-separacion"></div>
-	<% @comments = post.comments %>
+<%= div_for comment do %> 
+<div id="comments-old">
+    <div id="comment-foto">
+        <% if FileTest.exists?("public/img/#{comment.user_id}.jpg") %>
+        <div class="comment-muneco" style="background: url(/img/<%= comment.user_id%>.jpg) no-repeat center; background-size: 150%;"></div>
+        <% else %>
+        <div class="comment-muneco" style="background: url(/img/default.jpg.jpg) no-repeat center; background-size: 150%;"></div>
+        <% end -%>
+    </div>
 
-	<% @comments.each do |comment| -%>
-  <div id="comments-old">
-	<div id="comment-foto">
-		<% if FileTest.exists?("public/img/#{comment.user_id}.jpg") %>
-			<div class="comment-muneco" style="background: url(/img/<%=comment.user_id%>.jpg) no-repeat center; background-size: 150%;"></div>
-		<% else %>
-			<div class="comment-muneco" style="background: url(/img/default.jpg.jpg) no-repeat center; background-size: 150%;"></div>
-		<% end -%>
-	</div>
+    <div id="comment-texto">
+        <% @user_ = User.find(comment.user_id)%>
+        <b><u><%= link_to "@#{@user_.name}" , :controller => 'tumble', :action => 'list_post_user', :id => comment.user_id %></u></b>, <%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
+        &nbsp;&nbsp;
 
-	<div id="comment-texto">
-		<% @user_ = User.find(comment.user_id)%>
-		<b><u><%= link_to "@#{@user_.name}" , :controller => 'tumble', :action => 'list_post_user', :id => comment.user_id %></u></b>, <%=distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
-		&nbsp;&nbsp;
+        <%if current_user%>
+        <%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id} %>
+        <% end %>
 
-			<%if current_user%>
-				<%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id} %>
-			<% end %>
+        <% if  current_user[:id] == comment.user_id %>
+        <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, , :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
+        <% end %>
 
-			<% if  current_user[:id] == comment.user_id %>
-				<%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :confirm => "¿Borrar el comentario?", :method => :delete %>
-			<% end %>
-
-			<br>	<%= text_parse(comment.body).html_safe %>
-	</div>
-  </div>
-<div class="comment-separacion"></div>
-	<% end %>
-
-
-<% if current_user %>
-  <div id="comments-old">
-	<div id="comment-new-foto">
-		<% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
-			<div class="comment-muneco1" style="background: url(/img/<%=current_user[:id]%>.jpg) no-repeat center; background-size: 150%;"></div>
-		<% else %>
-			<div class="comment-muneco1" style="background: url(/img/default.jpg.jpg) no-repeat center; background-size: 150%;"></div>
-		<% end -%>
-	</div>
-
-	<div id="comment-new">
-	<%=form_tag({ :controller => 'comment' , :action => 'new'}, :remote => true) do%>
-	 	<%= text_area_tag  'body', nil, :class=> 'comment-new', :placeholder => 'Comenta...' %><br/>
-		<%= hidden_field_tag  'post_id', nil, :value => post.id %>
-		</div>
-  </div>
-		<%= submit_tag "Comentar", :id => "comentar", :disable_with => 'Por favor espera' %>
-		<% end %>
-<% end %>
+        <br>
+        <%= text_parse(comment.body).html_safe %>
+    </div>
 </div>
+<div class="comment-separacion"></div>
+<% end %>
 
