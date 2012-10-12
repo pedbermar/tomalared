@@ -13,10 +13,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: tomalared
+  database: 
   pool: 5
-  username: root
-  password: ap0te0sic0
+  username:
+  password: 
 
 #test:
 #  adapter: mysql2
