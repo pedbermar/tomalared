@@ -12,8 +12,7 @@ gem 'mysql2'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
+  
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
@@ -45,7 +44,6 @@ gem 'dotiw'
 gem 'will_paginate', '~> 3.0.0'
 gem "authlogic"
 gem 'rack-ssl', :require => 'rack/ssl'
-gem 'sqlite3'
 gem 'nifty-generators'
 gem 'rails-i18n'
 
