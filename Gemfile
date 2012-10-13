@@ -45,7 +45,6 @@ gem 'dotiw'
 gem 'will_paginate', '~> 3.0.0'
 gem "authlogic"
 gem 'rack-ssl', :require => 'rack/ssl'
-gem 'sqlite3'
 gem 'nifty-generators'
 gem 'rails-i18n'
 
