@@ -111,11 +111,9 @@ class PostController < ApplicationController
       post.attributes = params[:post]
       # if post has no user_id set, give it the id of the logged in user
       post.user_id ||= current_user[:id]
-      # if this is a yaml post type, grab the params we need, yamlize them,
-      # then set them as the content
       type = params[:post_type]
       post.content = params[:content] if TYPES[type]
-      # reset all the tag names attached to those submitted
+      post.post_type = type_parse(post.content)
       # POST_TYPE == IMAGE
       if post.post_type == 'image'
         capturanombre = "#{post.user_id}-#{Time.now}"
@@ -159,12 +157,12 @@ class PostController < ApplicationController
         doc = MetaInspector.new(post.content)
         desc = doc.description
         post.title = doc.title
-        if doc.image
+        if doc.images.first
           require 'open-uri'
           capturanombre = "#{post.user_id}-#{Time.now.to_a.join}"
           direcion = "public/post/#{capturanombre}.jpg"
           open(direcion, "wb") do |file|
-            file << open(doc.image).read
+            file << open(doc.images.first).read
           end
           img_url = "http://localhost:3000/post/#{capturanombre}.jpg"
           post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
@@ -375,6 +373,20 @@ class PostController < ApplicationController
     render :action => 'edit'
   end
 
+  def type_parse(str)
+    if str.split.first.match(/\A(http|https):\/\/www.youtube.com/)
+      type = "video"
+    elsif str.split.first.match(/(.png|.jpg|.gif)$/)
+      type = "image"
+    elsif str.split.first.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/)
+      type = "link"
+    elsif str.size < 150
+      type = "quote"
+    else
+      type = "post"
+    end
+    return type
+  end
 
 end
 

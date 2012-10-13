@@ -1,17 +1,5 @@
 <% if current_user %>
 <%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
-<div id="new-radio">
-    <input type="radio" name="post[post_type]" value="quote" id="quote" checked>
-    <label for="quote"> Quote </label>
-    <input type="radio" name="post[post_type]" value="post" id="post">
-    <label for="post"> Post </label>
-    <input type="radio" name="post[post_type]" value="link" id="link">
-    <label for="link"> Link </label>
-    <input type="radio" name="post[post_type]" value="video" id="video">
-    <label for="video"> Video </label>
-    <input type="radio" name="post[post_type]" value="image" id="image">
-    <label for="image"> Image </label>
-</div>
 
 <div class="new">
     <div id="post-title">
