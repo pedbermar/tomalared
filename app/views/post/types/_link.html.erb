@@ -15,7 +15,7 @@
 <a href="<%= link %>" target="_blank">
 	<b><%= title.html_safe %></b>
 		<br>
-		<%= desc.html_safe %>
+		<%= desc.html_safe[0..150] %>
 		<br>
 		<i><%= host %></i>
 	</div>

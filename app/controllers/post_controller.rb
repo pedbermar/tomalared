@@ -157,15 +157,21 @@ class PostController < ApplicationController
         doc = MetaInspector.new(post.content)
         desc = doc.description
         post.title = doc.title
-        if doc.images.first
+        if doc.image
+          img_path = doc.image
+        else
+          img_path = doc.images.first
+        end
+
+        if img_path
           require 'open-uri'
           capturanombre = "#{post.user_id}-#{Time.now.to_a.join}"
           direcion = "public/post/#{capturanombre}.jpg"
           open(direcion, "wb") do |file|
-            file << open(doc.images.first).read
+            file << open(img_path).read
           end
           img_url = "http://localhost:3000/post/#{capturanombre}.jpg"
-          post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
+          post.content = desc + "\n" + img_path + "\n" + doc.url + "\n" + doc.host
         else
           post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
@@ -374,12 +380,14 @@ class PostController < ApplicationController
   end
 
   def type_parse(str)
-    if str.split.first.match(/\A(http|https):\/\/www.youtube.com/)
-      type = "video"
-    elsif str.split.first.match(/(.png|.jpg|.gif)$/)
-      type = "image"
-    elsif str.split.first.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/)
-      type = "link"
+    if str.split.count == 1
+      if str.split.first.match(/\A(http|https):\/\/www.youtube.com/)
+        type = "video"
+      elsif str.split.first.match(/(.png|.jpg|.gif)$/)
+        type = "image"
+      elsif str.split.first.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/)
+        type = "link"
+      end
     elsif str.size < 150
       type = "quote"
     else
