@@ -27,8 +27,6 @@ end
 
 def text_parse(str)
 	p2 = ""
-
-
       str.split.each do |t|
         t11 = t.gsub(/\s?(^#)?/, "")
 	      p = t.gsub(/^#\w+/) { link_to "##{t11}", :controller => 'post', :action => 'list_tag', :tag => t11 }
@@ -41,7 +39,6 @@ def text_parse(str)
       end
 	return p2
 end
-
 
 ######################################################################################
 ## theme_helper.rb
