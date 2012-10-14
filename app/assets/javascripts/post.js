@@ -21,10 +21,10 @@ function actualizadoPosts(data) {
 					var idData = $(divData).attr("id");
 					var idPost = $(div).attr("id");
 					if(idData.split("_")[1] < idPost.split("_")[1]){
-						$("#" + div).after(divData);
+						$("#" + idPost).after(divData);
 						postsData.splice(i, 1);
 					}else if(idData.split("_")[1] > idPost.split("_")[1] && j == 0){
-						$("#" + div).before(divData);
+						$("#" + idPost).before(divData);
 						postsData.splice(i, 1);
 					}else if(idData.split("_")[1] = idPost.split("_")[1]){
 						postsData.splice(i, 1);
