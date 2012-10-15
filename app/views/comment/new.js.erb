@@ -1,1 +1,4 @@
-$('#comments').find("div").last().after("<%= escape_javascript(render(:partial => 'comment/comments', :object => @comment, :as => "comment")) %>");
+$('#post_<%=@comment.post_id %>').find('.comments-old').append("<%= escape_javascript(render(:partial => 'comment/comments', :object => @comment, :as => "comment")) %>");
+/* Reset the comment form */
+resetForm($("#formComment"));
+exitoComment();

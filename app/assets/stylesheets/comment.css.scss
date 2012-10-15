@@ -3,84 +3,82 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /******************Comentarios */
-#comments{
+.comments{
 	position:relative;
 	float: right;
 	left:  -10px;
 	width: 400px;
 	text-align: right;
 }
+.comments a{
+	color: black;
+}
 
-#comments a{
-	color: black;
+.comment{
+  position:relative;
 }
-#comments-old{
+
+.comments-old{
   word-wrap: break-word;
-	background: #fafafa;
-	width: 400px;
 	color: black;
-	margin-bottom: 4px;
 }
-#comment-new{
+.comment-new{
 	position: relative;
 	height: 38px;
 }
 
-.comment-new{
+textarea.comment-new{
 	font-size: 15px;
-	width: 348px;
 	background: #fafafa;
 	border: 0px;
-	height: 38px;
+	height: 41px;
+	width: 340px;
 }
 
-#comment-new-foto{
+.comment-new-foto{
 	position: relative;
 	display:block;
 	float:left;
+  z-index: 1;
 	left: 80px;
 }
 
-#comment-texto{
+.comment-texto{
 	position: relative;
-	display:block;
+	display: block;
+  background: #fafafa;
 	text-align: left;
 	font-size: 12px;
-	left: 10px;	 
-	word-wrap: break-word;
-	z-index: 1;
-	min-height: 42px;
-	padding-right: 20px;
+	min-height: 45px;
+	width: 390px;
+	left: 10px;
 }
 
 
-#comment-texto a{
+.comment-texto a{
 	color: green;
 }
 
-#comment-texto a:hover{
+.comment-texto a:hover{
 	color: rgba(0,255,0,0.5);
 }
 
-#comment-foto{
+.comment-foto{
 	display:block;
 	float:left;
 	left: 200px;
-
+  z-index: 1;
+  -moz-box-shadow:    1px 0px 6px 2px .283327;
+  -webkit-box-shadow: 1px 0px 6px 2px .283327;
+  box-shadow:         1px 0px 3px 1px .283327;
 }
-.comment-foto{
-	-moz-box-shadow:    1px 0px 6px 2px #283327;
-	-webkit-box-shadow: 1px 0px 6px 2px #283327;
-	box-shadow:         1px 0px 3px 1px #283327;
-}
-
 
 .comment-new-foto{
 	position:relative;
 	left: -80px;
-	-moz-box-shadow:    1px 0px 6px 2px #283327;
-	-webkit-box-shadow: 1px 0px 6px 2px #283327;
-	box-shadow:         1px 0px 3px 1px #283327;
+	-moz-box-shadow:    1px 0px 6px 2px .283327;
+	-webkit-box-shadow: 1px 0px 6px 2px .283327;
+	box-shadow:         1px 0px 3px 1px .283327;
 }
 .comment-separacion{
 	height: 5px;
@@ -92,7 +90,7 @@
   width: 48px;
   height: 45px;	
   background: #fefeff;
-  z-index: 0;
+  z-index: 1;
 }
 
 .comment-muneco1
@@ -103,5 +101,5 @@
 	width: 48px;
 	height: 42px;	
 	background: #fefeff;
-	z-index: 0;
+	z-index: 1;
 }

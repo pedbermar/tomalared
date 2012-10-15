@@ -2,7 +2,6 @@
 <%# error_messages_for 'user' %>
 
 <% if current_user and !params[:id] %>
-<div id="post_notice"></div>
 <%= render :partial => 'post/newex' %>
 <% end %>
 

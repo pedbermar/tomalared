@@ -31,14 +31,13 @@ jQuery.fn.submitWithAjax = function() {
 	this.submit(function() {
 		$("#cargando").show();
 		$.post(this.action, $(this).serialize(), function() {
-			exito();
 		}, "script");
 		return false;
 	})
 	return this;
 };
 
-$(document).ready(function(){
+$(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
 });

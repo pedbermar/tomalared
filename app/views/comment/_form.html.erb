@@ -1,18 +1,14 @@
-<%=form_tag({ :controller => 'comment' , :action => 'new'}, :remote => true) do%>
-<div id="comments-old">
-    <div id="comment-new-foto">
-        <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
-        <div class="comment-muneco1" style="background: url(/img/<%= current_user[:id]%>.jpg) no-repeat center; background-size: 150%;"></div>
-        <% else %>
-        <div class="comment-muneco1" style="background: url(/img/default.jpg.jpg) no-repeat center; background-size: 150%;"></div>
-        <% end -%>
-    </div>
-
-    <div id="comment-new">
-        <%= text_area_tag  'body', nil, :class=> 'comment-new', :placeholder => 'Comenta...' %>
-        <br/>
-        <%= hidden_field_tag  'post_id', nil, :value => post.id %>
-    </div>
+<%=form_tag({ :controller => 'comment' , :action => 'new'}, :id => "formComment", :remote => true) do%>
+<div class="comment-foto">
+    <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
+    <div class="comment-muneco" style="background: url(/img/<%= current_user[:id]%>.jpg) no-repeat center; background-size: 150%;"></div>
+    <% else %>
+    <div class="comment-muneco" style="background: url(/img/default.jpg.jpg) no-repeat center; background-size: 150%;"></div>
+    <% end -%>
 </div>
-<%= submit_tag "Comentar", :id => "comentar", :disable_with => 'Por favor espera' %>
+<div class="comment-texto">
+    <%= text_area_tag  'body', nil, :class=> 'comment-new', :placeholder => 'Comenta...' %>
+</div>
+<%= hidden_field_tag  'post_id', nil, :value => post.id %>
+<%= submit_tag "Comentar", :class => "comentar", :disable_with => 'Por favor espera' %>
 <% end %>

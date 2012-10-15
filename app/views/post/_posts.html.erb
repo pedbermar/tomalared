@@ -1,49 +1,49 @@
 <%= div_for post do %> <div id="div_hr"></div>
-    <% @user = User.find(post.user_id) -%>
-    <div class="datos">
-        <span class="titulo"><b><u><%= link_to "@#{@user.name}" , "/profile/#{ User.find(@user.id).name}" %></b></u>,
-            &nbsp;<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago</span>
-        <br />
-    
-        <% if post.post_type != 'quote' %>
-            <span id="post-tags" <% if post.tags.empty? %>style="display:none;"<% end %>> <%= linked_tags_with_commas(post.tags).html_safe %> </span>
+<% @user = User.find(post.user_id) -%>
+<div class="datos">
+    <span class="titulo"><b><u><%= link_to "@#{@user.name}" , "/profile/#{ User.find(@user.id).name}" %></b></u>,
+        &nbsp;<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago</span>
+    <br />
+
+    <% if post.post_type != 'quote' %>
+    <span id="post-tags" <% if post.tags.empty? %>style="display:none;"<% end %>> <%= linked_tags_with_commas(post.tags).html_safe %> </span>
+    <% end %>
+
+    <div class="new-foto">
+        <br>
+        <% if FileTest.exists?("public/img/#{post.user_id}.jpg") %>
+        <div class="mediano-muneco" style="background: url(/img/<%= post.user_id%>.jpg) no-repeat center; background-size: 200%;"></div>
+        <% else %>
+        <div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 100%;"></div>
+        <% end -%>
+
+        <br>
+
+        <%if current_user%>
+        <%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id} %>
+        <%if current_user[:id] == post.user_id%>
+        <br>
+        <%if post.post_type == 'post'%>
+        <%= link_to 'Edit', { :controller => :post, :action => 'edit', :id => post.id }, :class => "editarPost", :remote => true %>
+        <br>
+        <%end%>
+        <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
+        :confirm => "¿Seguro que quieres borrar es post?", :class => "borrarPost", :method => :delete, :remote => true %>
+        <% else %>
+        <%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
         <% end %>
-    
-        <div class="new-foto">
-            <br>
-                <% if FileTest.exists?("public/img/#{post.user_id}.jpg") %>
-            <div class="mediano-muneco" style="background: url(/img/<%= post.user_id%>.jpg) no-repeat center; background-size: 200%;"></div>
-            <% else %>
-                <div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 100%;"></div>
-            <% end -%>
-    
-            <br>
-    
-            <%if current_user%>
-                <%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id} %>
-                <%if current_user[:id] == post.user_id%>
-                    <br>
-                    <%if post.post_type == 'post'%>
-                        <%= link_to 'Edit', { :controller => :post, :action => 'edit', :id => post.id }, :class => "editarPost", :remote => true %>
-                        <br>
-                    <%end%>
-                    <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
-                                           :confirm => "¿Seguro que quieres borrar es post?", :class => "borrarPost", :method => :delete, :remote => true %>
-                <% else %>
-                    <%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
-                <% end %>
-    
-            <% end %>
-        </div>
-    
-        <div id="textar">
-            <div id="textare">
-                <%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title } %>
-            </div>
-        </div>
-    
-        <%= render :partial => 'comment/index', :object => post, :as => "post" %>
+
+        <% end %>
     </div>
-    <input type="hidden" id="created_at_<%=post.id %>" value="<%=post.created_at %>">
+
+    <div id="textar">
+        <div id="textare">
+            <%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title } %>
+        </div>
+    </div>
+
+    <%= render :partial => 'comment/index', :object => post, :as => "post" %>
+    <input type="hidden" id="created_at_<%= post.id %>" value="<%= post.created_at %>"/>
+</div>
 <% end %>
 
