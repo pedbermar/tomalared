@@ -76,9 +76,15 @@ class User < ActiveRecord::Base
     Notifier.activation_confirmation(self).deliver
   end
 
-def email_address_with_name
-  "#{self.name} <#{self.email}>"
-end
+  def email_address_with_name
+    "#{self.name} <#{self.email}>"
+  end
+
+  def deliver_password_reset_instructions!
+    reset_perishable_token!
+    Notifier.password_reset_instructions(self)
+  end
+
 
 #########################################
 #### Buscar usarios por nombre
@@ -93,7 +99,7 @@ end
 
 	def self.search(query)
 		  if query
-		      tokens = query.split.collect {|c| "%#{c.downcase}%"} 
+		      tokens = query.split.collect {|c| "%#{c.downcase}%"}
 		      r = find_by_sql(["SELECT * from users WHERE #{ (["LOWER(name) like ?"] * tokens.size).join(" OR ") }", *tokens])
 		      return r.uniq # No need for duplicate entries
 		  end
