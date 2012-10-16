@@ -1,13 +1,12 @@
 class CommentController < ApplicationController
   respond_to :xml, :json
   def delete
-    comment = Comment.find(params[:id])
-    if comment.destroy
-      respond_to do |format|
-        format.html { redirect_to }
-        format.json { head :no_content }
-        format.js #added
-      end
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to }
+      format.json { head :no_content }
+      format.js #added
     end
   end
 
