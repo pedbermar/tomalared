@@ -18,7 +18,9 @@
     <% end %>
 
     <% if  current_user[:id] == comment.user_id %>
-    <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
+    <div class="iconBorrarComentario">
+        <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
+    </div>
     <% end %>
 
     <br>

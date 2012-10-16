@@ -1,7 +1,7 @@
-function pintarBotones() {
+function pintarBotonesComment() {
 	$(".borrarComentario").button({
 		icons : {
-			primary : "ui-icon-trash"
+			primary : "ui-icon-close"
 		},
 		text : false
 	});
@@ -15,7 +15,7 @@ function pintarBotones() {
 
 function vueltaComment() {
 	setTimeout(function() {
-		pintarBotones();
+		pintarBotonesComment();
 		$(".comments-old").find(".comment").first().removeAttr("style");
 	}, 1000);
 };
@@ -27,5 +27,5 @@ function exitoComment() {
 
 $(document).ready(function() {
 	$(".comentar").button();
-	pintarBotones();
+	pintarBotonesComment();
 });

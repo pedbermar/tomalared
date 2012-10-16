@@ -1,4 +1,4 @@
-function pintarBotones() {
+function pintarBotonesPost() {
 	$(".borrarPost").button({
 		icons : {
 			primary : "ui-icon-close"
@@ -58,12 +58,13 @@ function actualizado(data) {
 			$("#posts").html(data);
 		}
 	}
-	pintarBotones();
+	pintarBotonesPost();
+	pintarBotonesComment();
 }
 
 function vueltaPost() {
 	setTimeout(function() {
-		pintarBotones();
+		pintarBotonesPost();
 		$("#cargando").hide();
 		$("#posts").find(".post").first().removeAttr("style");
 	}, 1000);
@@ -98,6 +99,6 @@ $(document).ready(function() {
 			$("#archivo").hide();
 		}
 	});
-	pintarBotones();
+	pintarBotonesPost();
 	setTimeout(actualizando, 15000);
 });

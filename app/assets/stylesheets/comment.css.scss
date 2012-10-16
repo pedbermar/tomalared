@@ -51,6 +51,17 @@ textarea.comment-new{
 	padding: 1px 5px 0px 35px;
 }
 
+.iconBorrarComentario{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.borrarComentario{
+  width: 15px;
+  height: 15px;
+}
+
 .comment-texto a{
 	color: green;
 }
