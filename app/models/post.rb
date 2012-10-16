@@ -9,8 +9,6 @@ class Post < ActiveRecord::Base
 
   attr_accessible :title, :post_type, :content, :user_id, :tags
 
-  validates_uniqueness_of :content, :scope => [:user_id]
-
   # call yamlize_content after we load each record, to translate its content
   # from yaml to a hash (if necessary)
   def after_find() yaml_content_to_hash! end
