@@ -6,7 +6,7 @@
     <div class="comment-muneco" style="background: url(/img/default.jpg.jpg) no-repeat center; background-size: 150%;"></div>
     <% end -%>
 </div>
-<div class="comment-new-text">
+<div >
     <%= text_area_tag  'body', nil, :class=> 'comment-new', :placeholder => 'Comenta...' %>
 </div>
 <%= hidden_field_tag  'post_id', nil, :value => post.id %>
