@@ -1,6 +1,12 @@
 <%= div_for post do %> <div id="div_hr"></div>
 <% @user = User.find(post.user_id) -%>
 <div class="datos">
+    <%if current_user%>
+    <div class="iconBorrarPost">
+        <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
+        :confirm => "¿Seguro que quieres borrar es post?", :class => "borrarPost", :method => :delete, :remote => true %>
+    </div>
+    <% end %>
     <span class="titulo"><b><u><%= link_to "@#{@user.name}" , "/profile/#{ User.find(@user.id).name}" %></b></u>,
         &nbsp;<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago</span>
     <br />
@@ -27,8 +33,6 @@
         <%= link_to 'Edit', { :controller => :post, :action => 'edit', :id => post.id }, :class => "editarPost", :remote => true %>
         <br>
         <%end%>
-        <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
-        :confirm => "¿Seguro que quieres borrar es post?", :class => "borrarPost", :method => :delete, :remote => true %>
         <% else %>
         <%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
         <% end %>

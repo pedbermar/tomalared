@@ -1,7 +1,7 @@
 function pintarBotones() {
 	$(".borrarPost").button({
 		icons : {
-			primary : "ui-icon-trash"
+			primary : "ui-icon-close"
 		},
 		text : false
 	});
