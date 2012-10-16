@@ -23,16 +23,13 @@
 	color: black;
 }
 .comment-new{
-	position: relative;
 	height: 38px;
 }
 
 textarea.comment-new{
 	font-size: 15px;
-	background: #fafafa;
-	border: 0px;
-	height: 41px;
-	width: 340px;
+	height: 30px;
+	width: 362px;
 }
 
 .comment-new-foto{
@@ -49,11 +46,22 @@ textarea.comment-new{
   background: #fafafa;
 	text-align: left;
 	font-size: 12px;
-	min-height: 45px;
-	width: 390px;
-	left: 10px;
+	min-height: 32px;
+	width: 360px;
+	padding: 1px 5px 0px 35px;
 }
 
+.comment-new-text
+{
+	position: relative;
+	display: block;
+  background: #fafafa;
+	text-align: left;
+	font-size: 12px;
+	min-height: 34px;
+	width: 360px;
+	padding: 0px 0px 0px 0px;
+}
 
 .comment-texto a{
 	color: green;
@@ -87,8 +95,8 @@ textarea.comment-new{
 {
   position: relative;
   text-align: right;
-  width: 48px;
-  height: 45px;	
+  width: 34px;
+  height: 34px;	
   background: #fefeff;
   z-index: 1;
 }
