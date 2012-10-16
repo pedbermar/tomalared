@@ -19,3 +19,5 @@
 Gemfile.lock
 .project
 
+/log
+/tmp
