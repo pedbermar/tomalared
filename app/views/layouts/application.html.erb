@@ -69,7 +69,8 @@ if @navegador == 'MSIE' -%>
 		        	
 		        	<%= yield %>
 		
-			        <footer id="footer">
+		        </div>
+   			        <footer id="footer">
 				        <% if current_user %>
 				        Hola, <%= current_user[:name] %>.&nbsp;
 				        <% end %>&iquest;Estas esperando la revolucion?
@@ -82,7 +83,6 @@ if @navegador == 'MSIE' -%>
 				        <a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~
 				        <a href="http://ushahidi.com/">Ushahidi v2.2</a>
 			        </footer>
-		        </div>
 	        </div>
 	
 	        <div id="mainboard" align="center">

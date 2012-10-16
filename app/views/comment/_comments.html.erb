@@ -1,27 +1,28 @@
 <div class="comment-separacion"></div>
 <%= div_for comment do %>
-<div class="comment-foto">
-    <% if FileTest.exists?("public/img/#{comment.user_id}.jpg") %>
-    <div class="comment-muneco" style="background: url(/img/<%= comment.user_id%>.jpg) no-repeat center; background-size: 150%;"></div>
-    <% else %>
-    <div class="comment-muneco" style="background: url(/img/default.jpg.jpg) no-repeat center; background-size: 150%;"></div>
-    <% end -%>
-</div>
-
-<div class="comment-texto">
-    <% @user_ = User.find(comment.user_id)%>
-    <b><u><%= link_to "@#{@user_.name}" , :controller => 'post', :action => 'list_user', :id => comment.user_id %></u></b>, <%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
-    &nbsp;&nbsp;
-
-    <%if current_user%>
-    <%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id} %>
-    <% end %>
-
-    <% if  current_user[:id] == comment.user_id %>
-    <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
-    <% end %>
-
-    <br>
-    <%= text_parse(comment.body).html_safe %>
-</div>
+	<div class="comment-foto">
+	    <% if FileTest.exists?("public/img/#{comment.user_id}.jpg") %>
+	    <div class="comment-muneco" style="background: url(/img/<%= comment.user_id%>.jpg) no-repeat center; background-size: 150%;"></div>
+	    <% else %>
+	    <div class="comment-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 150%;"></div>
+	    <% end -%>
+	</div>
+	
+	<div class="comment-texto">
+	    <% @user_ = User.find(comment.user_id)%>
+	    <b><u><%= link_to "@#{@user_.name}" , :controller => 'post', :action => 'list_user', :id => comment.user_id %></u></b>, <%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
+	    &nbsp;&nbsp;
+	
+	    <%if current_user%>
+	    <%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id} %>
+	    <% end %>
+	
+	    <% if  current_user[:id] == comment.user_id %>
+	    <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
+	    <% end %>
+	
+	    <br>
+	    <%= text_parse(comment.body).html_safe %>
+	</div>
 <% end %>
+
