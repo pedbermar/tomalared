@@ -2,10 +2,12 @@
 <% @user = User.find(post.user_id) -%>
 <div class="datos">
     <%if current_user%>
+    <%if current_user[:id] == post.user_id%>
     <div class="iconBorrarPost">
         <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
         :confirm => "¿Seguro que quieres borrar es post?", :class => "borrarPost", :method => :delete, :remote => true %>
     </div>
+    <% end %>
     <% end %>
     <span class="titulo"><b><u><%= link_to "@#{@user.name}" , "/profile/#{ User.find(@user.id).name}" %></b></u>,
         &nbsp;<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago</span>
