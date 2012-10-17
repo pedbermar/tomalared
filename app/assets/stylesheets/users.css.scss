@@ -38,12 +38,12 @@
 
 #board{
 	margin: 6px;
-	height: 800px;
 	background: none;
 }
 #board-block{
-	background-color: rgba(0,0,0,0.5);
+
 }
+
 
 #board-mentions a{
 	font-size: 10px;
@@ -68,6 +68,7 @@
 	color: #ffffff;
   overflow: auto;
 	max-height: 72px;
+	background-color: rgba(0,0,0,0.5);
 }
 /* Let's get this party started */
 #board-tags::-webkit-scrollbar {
@@ -102,12 +103,18 @@
 }
 
 #board-title{
-	text-align: left;
-	text-weight: bold;
-	margin-left: 10px;	
-	margin-top: 10px;
-	border: 3px;
-  text-decoration:underline
+	text-align: center;	
+	height: 19px;	
+  
+  color: black;
+  background: rgba(0,255,0,0.8);  
+  -webkit-border-radius: 10px;
+  border-radius: 10px;  
+  border:0px;
+  -moz-box-shadow:    1px 0px 6px 2px #000000;
+  -webkit-box-shadow: 1px 0px 6px 2px #000000;
+  box-shadow:         1px 0px 3px 1px #000000;
+  margin: 5px;
 }
 
 #board-foto{
@@ -150,9 +157,28 @@
 }
 
 #board-notifi a{
-	font-size: 10px;
-	color: #ffffff;
+  text-align: center;
+  color: black;
+  font-size: 13px;
+  
+  background: rgba(0,255,0,0.8);  
+  -webkit-border-radius: 10px;
+  border-radius: 10px;  
+  border:0px;
+  -moz-box-shadow:    1px 0px 6px 2px #000000;
+  -webkit-box-shadow: 1px 0px 6px 2px #000000;
+  box-shadow:         1px 0px 3px 1px #000000;
+  padding: 1px 5px 1px 5px;
 }
+
+#board-notifi a:hover{
+  color: #fff;
+  background: rgba(0,255,0,0.5);  
+  border: 0px;
+  -moz-box-shadow:    1px 0px 6px 2px #00ff00;
+  -webkit-box-shadow: 1px 0px 6px 2px #00ff00;
+  box-shadow:         1px 0px 3px 1px #00ff00;
+}  
 
 .data_user{
 	margin: 2px;
