@@ -186,6 +186,7 @@ class PostController < ApplicationController
       end
       # save the post - if it fails, send the user back from whence she came
       if @post
+        flash[:notice] = 'El mensaje se ha guardado correctamente.'
         # Notificaciones para las usuarios que siguen los GRUPOS
         post.tags.each do |t|
           t.users.each do |u|
@@ -219,9 +220,8 @@ class PostController < ApplicationController
             end
           end
         end
-        flash[:notice] = 'Mensaje se ha guardado correctamente.'
       else
-        flash[:notice] = "Hubo un error al guardar el mensaje."
+        flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
       end
 
       if !params[:external]
@@ -348,14 +348,20 @@ class PostController < ApplicationController
   # grab the post and destroy it.  simple enough.
   def delete
     @post = Post.find(params[:id])
-    @notes = Notifications.find(:all, :conditions => { :post_id => @post.id})
+    if @post
+      @notes = Notifications.find(:all, :conditions => { :post_id => @post.id})
 
-    @notes.each do |m|
-      m.destroy
+      @notes.each do |m|
+        m.destroy
+      end
+      if @post.destroy
+        flash[:notice] = 'El mensaje se ha borrado correctamente.'
+      else
+        flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
+      end
+    else
+      flash[:notice] = 'No se encuentra el mensaje.'
     end
-    @post.destroy
-
-    flash[:notice] = 'Post Borrado.'
     respond_to do |format|
       format.html { redirect_to post_path }
       format.js
