@@ -43,9 +43,12 @@ function actualizado(data) {
 						$("#" + idPost).before(divData);
 						postsData.splice(i, 1);
 					} else if (idData.split("_")[1] = idPost.split("_")[1]) {
-						$("#" + idPost).find(".titulo").html($(divData).find(".titulo").html());
-						$("#" + idPost).find(".new-foto").html($(divData).find(".new-foto").html());
-						$("#" + idPost).find(".comments-old").html($(divData).find(".comments-old").html());
+						$("#" + idPost).find(".titulo").html(
+								$(divData).find(".titulo").html());
+						$("#" + idPost).find(".new-foto").html(
+								$(divData).find(".new-foto").html());
+						$("#" + idPost).find(".comments-old").html(
+								$(divData).find(".comments-old").html());
 						postsData.splice(i, 1);
 					}
 					if ($(data).find("#" + idPost).length == 0) {
@@ -82,6 +85,12 @@ $(document).ready(function() {
 	$("#actualizar").on("click", function(event, data) {
 		actualizado(data);
 	})
+	$("#tumblear").click(function() {
+		if ($("#post_content").val().length == 0) {
+			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
+			return false;
+		}
+	});
 	$("input:radio").click(function() {
 		if ($(this).val() == "quote") {
 			$("#tags").hide();

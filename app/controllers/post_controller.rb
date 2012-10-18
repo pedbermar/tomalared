@@ -253,7 +253,7 @@ class PostController < ApplicationController
           @posts = @posts.uniq_by{|x| x.id}
       end
     end
-    if !params[:external]
+    if !params[:external] || params[:remote]
       respond_to do |format|
         format.html
         format.js
@@ -294,7 +294,7 @@ class PostController < ApplicationController
 
     @users_tag =  Tag.find_by_sql(['SELECT `tags_users`.* FROM `tags_users` WHERE tag_id = ?', @tag])
 
-    if !params[:external]
+    if !params[:external] || params[:remote]
       respond_to do |format|
         format.html
         format.js

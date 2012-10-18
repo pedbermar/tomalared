@@ -71,7 +71,9 @@ Fra::Application.routes.draw do
   match 'maps'       => 'maps#index'
 
   match 'password_resets'=> 'password_resets#new', :only => [ :new, :create, :edit, :update ]
-
+  
+  match '/notif/list' => 'notification#list'
+  
   #resources
   resources :tags
   resources :comments
