@@ -21,3 +21,5 @@ Gemfile.lock
 
 /log
 /tmp
+/Gemfile
+/.swp
