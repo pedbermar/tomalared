@@ -1,6 +1,6 @@
 <div id="board">
     <div id="notice">
-        <a href="/me" class="notice_a">@<%= current_user.name %></a>
+        <a href="/post/user" class="notice_a linkRemote">@<%= current_user.name %></a>
         <% if flash[:notice] %>
         <br>
         <%= flash[:notice] %>
@@ -10,17 +10,17 @@
     <div id="marcofoto">
         <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
         <%= link_to image_tag( "/img/#{current_user.id}.jpg", :size => "200", :alt => "Tu imagen",
-        :class => "board_foto"), '/me'%>
+        :class => "board_foto"), '/post/user', :class => "linkRemote"%>
         <% else %>
         <%= link_to image_tag( "/img/default.jpg", :size => "200", :alt => "Tu imagen",
-        :class => "board_foto"), '/me'%>
+        :class => "board_foto"), '/post/user', :class => "linkRemote"%>
         <% end -%>
     </div>
 
     <div id="board-notifi">
-        <a href="/network/note/1" id="notifType1">0C</a>
-        <a href="/network/note/1" id="notifType1">0#</a>
-        <a href="/network/note/1" id="notifType1">0@</a>
+        <a href="/network/note/1" id="notifType1" class="linkRemote">0C</a>
+        <a href="/network/note/2" id="notifType2" class="linkRemote">0#</a>
+        <a href="/network/note/3" id="notifType3" class="linkRemote">0@</a>
     </div>
 
     <div id="board-block">
@@ -56,12 +56,11 @@
         <% @tags_board = current_user.tags %>
         <div id="board-tags">
             <% @tags_board.each do |tag_board| -%>
-            <%= link_to "##{tag_board.name}", "/group/#{tag_board.name}" %>
+            <%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>
             <br/>
             <% end %>
         </div>
     </div>
-
     <div id="board-block">
         <div id="board-title">
             Latest tumblrs
@@ -81,7 +80,7 @@
   @posts_board= @posts_board.sort_by {|post| post.created_at}.reverse %>
 
             <% @posts_board.each do |post_board| -%>
-            <a href="/post/<%= post_board.id %>"><%= strip_textile(post_board.title.length > 0 ? post_board.title : post_board.content.to_s)[0..18] %></a>
+            <a href="/post/list/<%= post_board.id %>" class="linkRemote"><%= strip_textile(post_board.title.length > 0 ? post_board.title : post_board.content.to_s)[0..18] %></a>
             <br/>
             <% end %>
         </div>
@@ -94,7 +93,7 @@
         <% @tags_all_board = Tag.find_most_popular(20)%>
         <div id="board-tags">
             <% @tags_all_board.each do |tag_board| -%>
-            <%= link_to "##{tag_board.name}", "/group/#{tag_board.name}"%>
+            <%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
             <br/>
             <% end %>
         </div>

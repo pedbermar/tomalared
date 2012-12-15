@@ -94,7 +94,7 @@ class PostController < ApplicationController
       @po.tag_names = params[:tags]
       @po.id = params[:id]
       @po.save
-      redirect_to :action => :list_user, :id => current_user[:id]
+      redirect_to :action => :list, :id => current_user[:id]
     elsif !params[:id] && request.get?
       # want to create a new post -- go for it
       @post = Post.new
@@ -224,7 +224,7 @@ class PostController < ApplicationController
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
       end
 
-      if !params[:external]
+      if !params[:external] || params[:remote]
         respond_to do |format|
           format.html { redirect_to post_path }
           format.js
@@ -237,97 +237,110 @@ class PostController < ApplicationController
   # ooo, pagination.
   def list(options = Hash.new)
     @po = Post.new
-    if params[:id]
-      @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
-      @uno_solo = true
-    else
-      if params[:type]
-        @posts = Post.find(:all,
-          :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-          :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
-          @posts = @posts.uniq_by{|x| x.id}
+    @post = Post.new
+    @pagina = params[:pagina]
+    @soloposts = params[:soloposts]?true:false
+    if @pagina == "list"
+      if params[:id]
+        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
+        @uno_solo = true
       else
+        if params[:type]
           @posts = Post.find(:all,
-          :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-           :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-          @posts = @posts.uniq_by{|x| x.id}
-      end
-    end
-    if !params[:external] || params[:remote]
-      respond_to do |format|
-        format.html
-        format.js
-      end
-    end
-  end
-
-  def list_tag
-    @po = Post.new
-    @tag = Tag.find_by_name(params[:tag])
-    # if more than one tag is specified, get the posts containing all the
-    # passed tags.  otherwise get all the posts with just the one tag.
-    if params[:type]
-      @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                         :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', params[:tag], params[:type]],
-                         :order => 'posts.created_at DESC',
-                         :include => [:tags, :user])
-    else
-      @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                         :conditions => ['pt.tag_id = tags.id AND tags.name = ?', params[:tag]],
-                         :order => 'posts.created_at DESC',
-                         :include => [:tags, :user])
-    end
-
-    #foto aleatoria de la cabezera de list por tags
-    @tag_foto = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                          :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', params[:tag], "image"],
-                          :order => 'rand()',
-                          :limit => 1,
-                          :include => [:tags, :user])
-
-    @tag_foto.each do |tag_foto|
-      @foto_tag = tag_foto.content
-    end
-
-    @post = Post.new
-    @post.content = "##{params[:tag]} "
-
-    @users_tag =  Tag.find_by_sql(['SELECT `tags_users`.* FROM `tags_users` WHERE tag_id = ?', @tag])
-
-    if !params[:external] || params[:remote]
-      respond_to do |format|
-        format.html
-        format.js
-      end
-    end
-  end
-
-  def list_user
-    @po = Post.new
-
-    if params[:name]
-      @user = User.find_by_name(params[:name])
-    else
-      @user = User.find(current_user[:id])
-    end
-    @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
-    @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
-    @post_share.each do |ps|
-      p = Post.find(ps.post_id)
-      p.created_at = ps.created_at
-      @posts << p
-    end
-    @posts= @posts.sort_by {|post| post.created_at}.reverse
-
-    @post = Post.new
-    if params[:name]
-      @post.content = "@#{params[:name]} : "
-    end
-    if params[:remote]
-        respond_to do |format|
-          format.html
-          format.js
+            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
+            @posts = @posts.uniq_by{|x| x.id}
+        else
+            @posts = Post.find(:all,
+            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
+            @posts = @posts.uniq_by{|x| x.id}
         end
+      end
+      if !@soloposts
+        @page_name = "Todos los Posts"
+      end
+    elsif @pagina == "tag"
+      @tagName = params[:id]
+      @tag = Tag.find_by_name(@tagName)
+      # if more than one tag is specified, get the posts containing all the
+      # passed tags.  otherwise get all the posts with just the one tag.
+      if params[:type]
+        @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                           :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, params[:type]],
+                           :order => 'posts.created_at DESC',
+                           :include => [:tags, :user])
+      else
+        @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                           :conditions => ['pt.tag_id = tags.id AND tags.name = ?', @tagName],
+                           :order => 'posts.created_at DESC',
+                           :include => [:tags, :user])
+      end
+      
+      if !@soloposts
+        #foto aleatoria de la cabezera de list por tags
+        @tag_foto = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                              :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, "image"],
+                              :order => 'rand()',
+                              :limit => 1,
+                              :include => [:tags, :user])
+    
+        @tag_foto.each do |tag_foto|
+          @foto_tag = tag_foto.content
+        end
+  
+        @post.content = "##{params[:id]} "
+    
+        @users_tag =  Tag.find_by_sql(['SELECT `tags_users`.* FROM `tags_users` WHERE tag_id = ?', @tag])
+        @page_name = "Post del Tag #{params[:id]}"
+      end
+    elsif @pagina == "user"
+      if params[:id]
+        @user = User.find_by_name(params[:id])
+      else
+        @user = User.find(current_user[:id])
+      end
+      @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
+      @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
+      @post_share.each do |ps|
+        p = Post.find(ps.post_id)
+        p.created_at = ps.created_at
+        @posts << p
+      end
+      @posts= @posts.sort_by {|post| post.created_at}.reverse
+      
+      if !@soloposts
+        if params[:id]
+          @post.content = "@#{params[:id]} : "
+        end
+        @page_name = "Post de #{@user.name}"
+      end
+    else
+      if params[:id]
+        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
+        @uno_solo = true
+      else
+        if params[:type]
+          @posts = Post.find(:all,
+            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
+            @posts = @posts.uniq_by{|x| x.id}
+        else
+            @posts = Post.find(:all,
+            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
+            @posts = @posts.uniq_by{|x| x.id}
+        end
+      end
+      if !@soloposts
+        @page_name = "Todos los Posts"
+      end
+    end
+    if !params[:external] || params[:remote]
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
   end
 

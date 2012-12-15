@@ -1,0 +1,22 @@
+<% if @tag %>
+<div id="muneco" class="muneco" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
+    <font size="5">#<%= params[:id] %> | </font> <% if current_user.tags.exists?(@tag.id) %>
+    <%= link_to "unfollow", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?" %>
+    <% else %>
+    <%= link_to "follow", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?" %>
+    <% end %>
+    <br>
+    <span>Followers: <%= @tag.users.count%></span>
+    <br>
+    <% @users_tag.each do |user_tag| -%>
+    <%= link_to "@#{User.find(user_tag.user_id).name}", "/post/user/#{User.find(user_tag.user_id).name}" %>&nbsp;
+    <% end -%>
+</div>
+<% elsif @user %>
+<div id="muneco" class="muneco" style="background: url(/img/<%= @user.id%>.jpg) no-repeat center; background-size: 100%;">
+    <font size="5">@<%= @user.name %> </font><span><%= pluralize(Post.count, "posts") %></span>
+    <br />
+    <br />
+    <% if ( current_user[:id] ==  @user.id) -%><%= link_to "Editar Perfil", "/edit_me" %>&nbsp;<% end -%>
+</div>
+<% end %>

@@ -10,7 +10,7 @@
 
 <div class="comment-texto">
     <% @user_ = User.find(comment.user_id)%>
-    <b><u><%= link_to "@#{@user_.name}" , :controller => 'post', :action => 'list_user', :id => comment.user_id %></u></b>, <%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
+    <b><u><%= link_to "@#{@user_.name}" , :controller => 'post', :action => 'list', :id => comment.user_id %></u></b>, <%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
     &nbsp;&nbsp;
 
     <%if current_user%>

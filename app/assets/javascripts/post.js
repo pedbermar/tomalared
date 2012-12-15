@@ -14,14 +14,28 @@ function pintarBotonesPost() {
 }
 
 function actualizando() {
-	div = $("#posts").find(".post");
-	options = "";
-	if (div.length > 0) {
-		id = $(div).first().attr("id").split("_")[1];
-		options = "&last=" + $("#created_at_" + id).val();
+	if ($("#remote").length > 0) {
+		var url = $(location).attr('href');
+		if ($("#remote").val() != "") {
+			url = $("#remote").val()
+		}
+		$.getScript(url + "?remote=true&soloposts=true");
 	}
-	$.getScript($(location).attr('href') + "?remote=true" + options);
 	setTimeout(actualizando, 15000);
+}
+
+function personalizarPag(muneco, data, formulario) {
+	if (muneco != "") {
+		$("#cabeceraMuneco").html(muneco);
+		$("#cabeceraMuneco").show();
+	}
+	if (formulario != "") {
+		$("#formulario").html(formulario);
+		$("#formulario").show();
+	}
+	actualizado(data);
+	if ($("#cargandoPag").dialog("isOpen"))
+		$("#cargandoPag").dialog("close");
 }
 
 function actualizado(data) {
@@ -61,6 +75,7 @@ function actualizado(data) {
 			$("#posts").html(data);
 		}
 	}
+	$("#posts").show();
 	pintarBotonesPost();
 	pintarBotonesComment();
 }
@@ -78,36 +93,64 @@ function exitoPost() {
 			vueltaPost());
 }
 
-$(document).ready(function() {
-	$("#save").submitWithAjax();
-	$("#tumblear").button();
-	$("#new-radio").buttonset();
-	$("#actualizar").on("click", function(event, data) {
-		actualizado(data);
-	})
-	$("#tumblear").click(function() {
-		if ($("#post_content").val().length == 0) {
-			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
-			return false;
-		}
-	});
-	$("input:radio").click(function() {
-		if ($(this).val() == "quote") {
-			$("#tags").hide();
-		} else {
-			$("#tags").show();
-		}
-		if ($(this).val() == "post") {
-			$("#post_title").show();
-		} else {
-			$("#post_title").hide();
-		}
-		if ($(this).val() == "image") {
-			$("#archivo").show();
-		} else {
-			$("#archivo").hide();
-		}
-	});
-	pintarBotonesPost();
-	setTimeout(actualizando, 15000);
-});
+$(document)
+		.ready(
+				function() {
+					$("#save").submitWithAjax();
+					$("#tumblear").button();
+					$("#new-radio").buttonset();
+					$("#cargandoPag").dialog({
+						autoOpen: false,
+						modal: true,
+						minHeight: 66,
+						minWidth: 66,
+						maxWidth: 66,
+						draggable: false,
+						resizable: false,
+						dialogClass: "cargandoPagPost"
+					});
+					$("#tumblear")
+							.click(
+									function() {
+										if ($("#post_content").val().length == 0) {
+											alert("El mensaje está vacío ¿seguro no quieres decir nada?");
+											return false;
+										}
+									});
+					$("input:radio").click(function() {
+						if ($(this).val() == "quote") {
+							$("#tags").hide();
+						} else {
+							$("#tags").show();
+						}
+						if ($(this).val() == "post") {
+							$("#post_title").show();
+						} else {
+							$("#post_title").hide();
+						}
+						if ($(this).val() == "image") {
+							$("#archivo").show();
+						} else {
+							$("#archivo").hide();
+						}
+					});
+					$(".linkRemote").on(
+							"click",
+							function() {
+								if ($("#remote").length > 0) {
+									$("#cargandoPag").dialog("open");
+									$("#cabeceraMuneco").hide();
+									$("#formulario").hide();
+									$("#posts").hide();
+									var url = $(location).attr('protocol')
+											+ "//" + $(location).attr('host')
+											+ $(this).attr('href');
+									$("#remote").val(url);
+									$("#posts").html("");
+									$.getScript(url + "?remote=true");
+									return false;
+								}
+							});
+					pintarBotonesPost();
+					setTimeout(actualizando, 15000);
+				});

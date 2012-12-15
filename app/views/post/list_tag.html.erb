@@ -12,7 +12,7 @@
     Followers: <%= @tag.users.count%>
     <br>
     <% @users_tag.each do |user_tag| -%>
-    <%= link_to "@#{User.find(user_tag.user_id).name}", "/profile/#{User.find(user_tag.user_id).name}" %>&nbsp;
+    <%= link_to "@#{User.find(user_tag.user_id).name}", "/post/user/#{User.find(user_tag.user_id).name}" %>&nbsp;
     <% end -%>
 </div>
 <%if current_user %>

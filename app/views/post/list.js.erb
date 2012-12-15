@@ -1,3 +1,8 @@
-<% unless @posts.empty? %>
-$("#actualizar").trigger("click", ["<div id='posts'><%= escape_javascript(render :partial => "post/posts", :collection => @posts, :as => "post" )%></div>"]);
+<% if !@soloposts %>
+    personalizarPag("<%= escape_javascript( render :partial => "muneco" ) %>", "<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>", "<% if current_user and !params[:id] %><%= escape_javascript( render :partial => "newex" ) %><% end %>");
+<% elsif @soloposts %>
+    actualizado("<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
 <% end %>
+
+
+

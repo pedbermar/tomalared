@@ -29,10 +29,10 @@ def text_parse(str)
 	p2 = ""
       str.split.each do |t|
         t11 = t.gsub(/\s?(^#)?/, "")
-	      p = t.gsub(/^#\w+/) { link_to "##{t11}", :controller => 'post', :action => 'list_tag', :tag => t11 }
+	      p = t.gsub(/^#\w+/) { link_to "##{t11}", "/post/tag/#{t11}", :class => "linkRemote" }
 
         t21 = t.gsub(/\s?(^@)?/, "")
-        p1 = p.gsub(/^@\w+/) { link_to "@#{t21}", :controller => 'post', :action => 'list_user', :name => t21 }
+        p1 = p.gsub(/^@\w+/) { link_to "@#{t21}", "/post/user/#{t21}", :class => "linkRemote" }
 
         t30 = t.scan(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
 	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}...",  "#{$1}", :popup => true}
@@ -138,7 +138,7 @@ end
 
   # if we're looking at a tag, give the option to add (or remove) another tag
   def tag_link(t)
-    link_to "##{t}", :controller => 'post', :action => 'list_tag', :tag => t
+    link_to "##{t}", :controller => 'post', :action => 'list', :id => t
   end
 
   # add a + or - in front of tags if we're looking at a tag's listing

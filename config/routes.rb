@@ -11,7 +11,7 @@ Fra::Application.routes.draw do
   match '/logout'     => 'user_sessions#destroy'
   match '/signup'     => 'users#new', :as => :signup
 
-	#Usuario
+  #Usuario
   match '/home'         => 'users#show'
   match '/edit_me'    => 'users#edit'
   match '/updatefoto' => 'users#updatefoto'
@@ -19,19 +19,18 @@ Fra::Application.routes.draw do
   match '/update' => 'users#update'
 
 	#Grupos
-			#Listados
-  match '/group/:tag' => 'post#list_tag'
-  match '/group/:id'  => 'post#list_tag'
-			#Funciones
+  #Listados
+	#Funciones
 	match '/follow/:id' => 'tag#follow_tag'
 	match '/unfollow/:id' => 'tag#unfollow_tag'
 
-	#Tumblr
-			#Listados por post
-  match '/post/:id'   => 'post#list'
+  #Tumblr
+  #Listados por post
+  match '/post/:pagina/:id'   => 'post#list'
+  match '/post/:pagina'     => 'post#list'
   match '/network/note/:note_type'   => 'post#note'
-  match '/network'     => 'post#list'
-			#Funciones
+
+  #Funciones
   match '/save'  => 'post#save'
   match '/edit'  => 'post#edit'
   match '/delete'     => 'post#delete'
@@ -39,8 +38,6 @@ Fra::Application.routes.draw do
   match '/post/save' => 'post#save'
   match '/post/mentions' => 'post#mentions'
 			#Listados por usuario
-  match '/me'  => 'post#list_user'
-  match '/profile/:name'       => 'post#list_user'
 			#comentarios
   match '/comment/new' => 'comment#new'
   match '/comment/delete/:id' => 'comment#delete'

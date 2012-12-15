@@ -28,7 +28,7 @@ class TagController < ApplicationController
     tag = Tag.find(params[:id])
     tag.destroy
     flash[:notice] = 'Tag deleted.'
-    redirect_to :action => :list_tag
+    redirect_to :action => :list, :id => 'tag'
   end
 
   def follow_tag

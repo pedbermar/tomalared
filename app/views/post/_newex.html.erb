@@ -1,3 +1,4 @@
+<br/>
 <% if current_user %>
 <%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
 
@@ -20,7 +21,7 @@
                 <%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>
             </div>
             <div id="cargando">
-                <%= image_tag("/img/ajax-loader.gif", :title => "Cargando", :alt => "Cargando") %>
+                <%= image_tag("/gfx/ajax-loader.gif", :title => "Cargando", :alt => "Cargando") %>
             </div>
             <%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
             <%= submit_tag 'Tumblear', :id => "tumblear" %>
