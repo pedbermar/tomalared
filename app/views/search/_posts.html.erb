@@ -1,4 +1,4 @@
 <% @posts_s.each do |t| -%>
-	<div id="tags-names"><%= link_to t.content[0..50], :controller => 'post', :action => 'list', :id => t.id %></div>
+	<div id="tags-names"><%= link_to t.content[0..50], :controller => 'post', :action => 'list', :pagina => "tag", :id => t.id %></div>
 <% end -%>
 

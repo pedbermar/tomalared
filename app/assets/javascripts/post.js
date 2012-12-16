@@ -100,14 +100,14 @@ $(document)
 					$("#tumblear").button();
 					$("#new-radio").buttonset();
 					$("#cargandoPag").dialog({
-						autoOpen: false,
-						modal: true,
-						minHeight: 66,
-						minWidth: 66,
-						maxWidth: 66,
-						draggable: false,
-						resizable: false,
-						dialogClass: "cargandoPagPost"
+						autoOpen : false,
+						modal : true,
+						minHeight : 66,
+						minWidth : 66,
+						maxWidth : 66,
+						draggable : false,
+						resizable : false,
+						dialogClass : "cargandoPagPost"
 					});
 					$("#tumblear")
 							.click(
@@ -150,6 +150,15 @@ $(document)
 									$.getScript(url + "?remote=true");
 									return false;
 								}
+							});
+					$(".linkRemote2").on(
+							"click",
+							function() {
+								var url = $(location).attr('protocol') + "//"
+										+ $(location).attr('host')
+										+ $(this).attr('href');
+								$.getScript(url + "?remote=true");
+								return false;
 							});
 					pintarBotonesPost();
 					setTimeout(actualizando, 15000);

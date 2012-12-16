@@ -291,12 +291,16 @@ class PostController < ApplicationController
   
         @post.content = "##{params[:id]} "
     
-        @users_tag =  Tag.find_by_sql(['SELECT `tags_users`.* FROM `tags_users` WHERE tag_id = ?', @tag])
+        @users_tag =  Tag.find_by_sql(['SELECT u.*, tu.tag_id FROM tags_users as tu, users as u WHERE u.id = tu.user_id and tu.tag_id = ?', @tag])
         @page_name = "Post del Tag #{params[:id]}"
       end
     elsif @pagina == "user"
       if params[:id]
-        @user = User.find_by_name(params[:id])
+        if /^[\d]+(\.[\d]+){0,1}$/ === params[:id]
+          @user = User.find(params[:id])
+        else
+          @user = User.find_by_name(params[:id])
+        end
       else
         @user = User.find(current_user[:id])
       end

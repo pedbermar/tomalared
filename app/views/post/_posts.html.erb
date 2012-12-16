@@ -9,7 +9,7 @@
     </div>
     <% end %>
     <% end %>
-    <span class="titulo"><b><u><%= link_to "@#{@user.name}" , "/post/user/#{ User.find(@user.id).name}" %></b></u>,
+    <span class="titulo"><b><u><%= link_to "@#{@user.name}" , "/post/user/@user.id", :class => "linkRemote" %></b></u>,
         &nbsp;<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago</span>
     <br />
 
