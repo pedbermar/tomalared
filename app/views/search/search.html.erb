@@ -4,7 +4,9 @@
 
 
 	<% if @tags %>
-			Tags:
+		<div class="search-titulo">
+			<%= @tags.count %> Tags:
+		</div>	
 	  	<div class="search-results">
 	 		 <%= render :partial => "search/tags" %>
 	  	</div>
@@ -12,7 +14,9 @@
 	<% end %>
 	
 	<% if @users %>
-		Users:
+		<div class="search-titulo">
+			<%= @users.count %> Users:
+		</div>
 		<div class="search-results">
 			<%= render :partial => "search/users" %>
 		</div>
@@ -20,9 +24,11 @@
 	<% end %>
 	
 	<% if @posts %>
-		
-			Posts:
+		<div class="search-titulo">
+			<%= @posts.count %> Posts:
+		</div>
+		<div class="search-results1">
 			<%= render :partial => "search/posts" %>
-		
+		</div>
 	<% end %>
 </div>

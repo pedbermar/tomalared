@@ -55,7 +55,7 @@ if @navegador == 'MSIE' -%>
                 var heading = document.getElementsByTagName('h1')[0];
 
                 heading.style.color = 'black';
-            }
+            }            
         </script>
     </head>
     <body>
@@ -65,18 +65,20 @@ if @navegador == 'MSIE' -%>
         <% end -%>
   		<script>
 			$( "#q" ).autocomplete({
-			    source: 
-			    [ 
-			    	<% @t = Tag.find(:all) %>
-		        	<% @t.each do |t| -%>
-		        		"#<%= t.name %>",  
-		        	<% end %> 
-			    	<% @t = User.find(:all) %>
-		        	<% @t.each do |t| -%>
-		        		"@<%= t.name %>",  
-		        	<% end %> 
-		        ]
-			});			
+			    source: "/search/searched",
+		        select: function(event, ui) 
+		        {
+	    	      window.location = ("/post/user/" + item.name)
+    	  		}
+    		})
+    		.data("autocomplete")._renderItem = function( ul, item ) 
+    		{
+    			return $( "<li></li>" )
+        		.data( "item.autocomplete", item )
+        		.append( "<a href='/post/"+ item.tipo+ "/"+ item.name+ "'><div class='a-autocomplete'><img width='40' src='/"+item.img+"/"+item.id+".jpg'> "+ item.label + "</div></a>")
+        		.appendTo( ul );
+    		};
+						
 		</script> 
         <div id="all">
         	<div id="main" align="center">

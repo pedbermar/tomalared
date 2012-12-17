@@ -20,7 +20,7 @@
   margin-top: 5px;
   margin-left: 6px;
   margin-bottom: 6px;
-  width: 154px;
+  width: 158px;
   text-align: center;
 }
 
@@ -84,6 +84,44 @@
   background: rgba(0,255,0,0.4); 
 }
 
+
+
+
+.search-results1{
+  position:relative;
+  text-align: left;
+  
+  overflow:auto;
+  background-color: rgba(0,0,0,.5);
+  width:520px;
+}
+
+.search-results1::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+ 
+/* Track */
+.search-results1::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,255,0,1); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1); 
+}
+
+
+/* Handle */
+.search-results1::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,255,0,0.7); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,255,0,1); 
+}
+
+.search-results1::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0,255,0,0.4); 
+}
+
 .search-muneco
 {
   position: relative;
@@ -92,4 +130,59 @@
   width: 60px;
   height: 60px; 
   background: #fefeff;
+}
+
+.search-titulo
+{
+  width: 500px;
+  height: 19px;
+  position: relative;
+  left: 10px;
+  text-align: center;
+  color: black;
+  background: rgba(0, 255, 0, 0.8);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 0px;
+  -moz-box-shadow: 1px 0px 6px 2px #000000;
+  -webkit-box-shadow: 1px 0px 6px 2px black;
+  box-shadow: 1px 0px 3px 1px black;   
+}
+
+/* Autocomplete
+----------------------------------*/
+.ui-autocomplete { position: absolute; cursor: default; }       
+.ui-autocomplete-loading { background: white url('gfx/ajax-loader.gif') right center no-repeat; }
+
+/* workarounds */
+* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+
+/* Menu
+----------------------------------*/
+.ui-menu {
+        list-style:none;
+        padding: 2px;
+        margin: 0;
+        display:block;
+        vertical-align:text-top;
+}
+.ui-menu .ui-menu-item {
+        margin:0;
+        padding: 0;
+        width: 100%;
+}
+.ui-menu .ui-menu-item a {
+        color: #000;
+        text-decoration:none;
+        display:block;             
+        zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+        margin: -1px;
+}
+
+.a-autocomplete{
+  vertical-align: top;
+  margin-top: 5px;
 }

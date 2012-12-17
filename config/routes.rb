@@ -57,6 +57,8 @@ Fra::Application.routes.draw do
 
 	#Buscador
   match '/search' => 'search#search'
+  match '/search/searched' => 'search#searched'
+  
 
   #External
   match 'external/activador'       => 'external#index'
