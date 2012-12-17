@@ -1,4 +1,14 @@
 <% @users.each do |t| -%>
-	<div id="tags-names"><%= link_to "@#{t.name}",:controller => 'post', :action => 'list', :pagina => "tag", :name => t.name %></div>
+	<div id="users-names">
+		<div>
+    <% if FileTest.exists?("public/img/#{t.id}.jpg") %>
+    	<div class="search-muneco" style="background: url(/img/<%= t.id%>.jpg) no-repeat center; background-size: 150%;"></div>
+    <% else %>
+    	<div class="search-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 150%;"></div>
+    <% end -%>
+    <%= link_to "@#{t.name}",:controller => 'post', :action => 'list', :pagina => "user", :id => t.name %></div>
+    
+	</div>
+		
 <% end -%>
 

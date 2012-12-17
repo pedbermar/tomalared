@@ -1,10 +1,11 @@
 <% @tags.each do |t| -%>
-<div id="tags-names"><%= link_to "##{t.name}",:controller => 'post', :action => 'list', :pagina => "tag", :id => t.name %>
+<div id="tags-names">
+<%= link_to "##{t.name}",:controller => 'post', :action => 'list', :pagina => "tag", :id => t.name %><br/>
 		<% if current_user.tags.exists?(t.id) %>
-					<div id="tags-unfollow" ><%= link_to 'unfollow', {:controller => 'tag', :action=> 'unfollow_tag', :id => t.id}, :confirm => 'Quieres dejar el grupo?' %></div>
-			<% else %>
-					<div id="tags-follow" ><%= link_to 'follow', {:controller => 'tag', :action=> 'follow_tag', :id => t.id}, :confirm => 'Quieres unirte al grupo?' %></div>
-			<% end %>
+					<div class="tags-unfollow" ><%= link_to 'unfollow', {:controller => 'tag', :action=> 'unfollow_tag', :id => t.id}, :confirm => 'Quieres dejar el grupo?' %></div>
+		<% else %>
+					<div class="tags-follow" ><%= link_to 'follow', {:controller => 'tag', :action=> 'follow_tag', :id => t.id}, :confirm => 'Quieres unirte al grupo?' %></div>
+		<% end %>
 </div>
 <% end -%>
 

@@ -3,16 +3,21 @@ class SearchController < ApplicationController
  def search
 	if params[:q] != ""
 
-			if params[:q].scan(/^#\w+/){$1} 
-				@lo = params[:q].scan(/^#\w+/)
+      @q = params[:q]
+      @q1 = params[:q]
+      
+			if @q.scan(/^#/){$1} 
+				@q = @q.gsub(/^#/,"")
 			end
+		  if @q.scan(/^@/){$1}
+        @q = @q.gsub(/^@/,"")            
+      end
 
-	    @tags = Tag.search(params[:q])
-	    @users = User.search(params[:q])
-	    @posts_s = Post.search(params[:q])
-
+	    @tags = Tag.search(@q).sort { |x, y| x.name <=> y.name }[0..11]
+	    @users = User.search(@q).sort { |x, y| x.name <=> y.name }[0..11]
+	    @posts = Post.search(@q1).sort_by{ |p| - p.id}[0..3]
 	else
-		redirect_to "/network"
+		redirect_to :back
   end
 
  end

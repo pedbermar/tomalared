@@ -35,7 +35,7 @@ def text_parse(str)
         p1 = p.gsub(/^@\w+/) { link_to "@#{t21}", "/post/user/#{t21}", :class => "linkRemote" }
 
         t30 = t.scan(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
-	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}...",  "#{$1}", :popup => true}
+	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}...",  "#{$1}", :target => "_blank"}
       end
 	return p2
 end

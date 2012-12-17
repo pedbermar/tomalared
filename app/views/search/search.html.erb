@@ -1,27 +1,28 @@
-	<% @page_name = 'Lista de Grupos' -%>
-	-<%= @lo %>-
+<% @page_name = 'Lista de Grupos' -%>
+<div id="busqueda">
+	<h2>Resualtado de la busqueda "<%= @q1 %>"</h2>
 
-<div style="text-align:left;">
-<% if @tags %>
-		Tags:
-		  <div id="search-results">
-		 		 <%= render :partial => "search/tags" %>
-		  </div>
-	<br/>
-<% end %>
 
-<% if @posts_s %>
-		Posts:
-		  <div id="search-results">
-		 		 <%= render :partial => "search/posts" %>
-		  </div>
-	<br/>
-<% end %>
-
-<% if @users %>
+	<% if @tags %>
+			Tags:
+	  	<div class="search-results">
+	 		 <%= render :partial => "search/tags" %>
+	  	</div>
+		<br/>
+	<% end %>
+	
+	<% if @users %>
 		Users:
-		  <div id="search-results">
-		 		 <%= render :partial => "search/users" %>
-		  </div>
-<% end %>
+		<div class="search-results">
+			<%= render :partial => "search/users" %>
+		</div>
+		<br/>
+	<% end %>
+	
+	<% if @posts %>
+		
+			Posts:
+			<%= render :partial => "search/posts" %>
+		
+	<% end %>
 </div>

@@ -25,12 +25,7 @@
 <% end %>
 <% end %>
 
-<div>
     <span style="color: green;"><%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0 }).count%></span>
-    &nbsp;
     <span style="color: red;"><%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 0, :dontlike => 1 }).count%></span>
-    <br>
-    <center>
-        <%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 0, :dontlike => 1 }).count  %>
-    </center>
-</div>
+    <%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 0, :dontlike => 1 }).count  %>
+    

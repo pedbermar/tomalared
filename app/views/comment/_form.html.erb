@@ -8,7 +8,7 @@
 	    <br/><br/>
 	</div>
 	<div class="comment-new-text">
-	    <%= text_area_tag  'body', nil, :class=> 'comment-new', :placeholder => 'Comenta...' %>
+		<%= text_area_tag  'body', nil, :class=> 'comment-new', :placeholder => 'Comenta...' %>
 	    <%= hidden_field_tag  'post_id', nil, :value => post.id %>
 		<%= submit_tag "Comentar", :class => "comentar", :disable_with => 'Por favor espera' %>
 	</div>

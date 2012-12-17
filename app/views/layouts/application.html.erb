@@ -41,6 +41,7 @@ if @navegador == 'MSIE' -%>
         <%= stylesheet_link_tag    "post"  %>
         <%= stylesheet_link_tag    "users"  %>
         <%= stylesheet_link_tag    "tags"  %>
+        <%= stylesheet_link_tag    "search"  %>
         <%= stylesheet_link_tag    "comment"  %>
         <%= stylesheet_link_tag    "user_sessions"  %>
         <%= javascript_include_tag "application" %>
@@ -62,7 +63,21 @@ if @navegador == 'MSIE' -%>
         <% if current_user -%>
             <%= render :partial => 'user_sessions/login' %>
         <% end -%>
-
+  		<script>
+			$( "#q" ).autocomplete({
+			    source: 
+			    [ 
+			    	<% @t = Tag.find(:all) %>
+		        	<% @t.each do |t| -%>
+		        		"#<%= t.name %>",  
+		        	<% end %> 
+			    	<% @t = User.find(:all) %>
+		        	<% @t.each do |t| -%>
+		        		"@<%= t.name %>",  
+		        	<% end %> 
+		        ]
+			});			
+		</script> 
         <div id="all">
         	<div id="main" align="center">
 		        <div id="content">
@@ -73,7 +88,7 @@ if @navegador == 'MSIE' -%>
    			        <footer id="footer">
 				        <% if current_user %>
 				        Hola, <%= current_user[:name] %>.&nbsp;
-				        <% end %>&iquest;Estas esperando la revolucion?
+				        <% end %>&iquest;Estas esperando la revoluci&oacute;n?
 				        <br/>
 				        Pues corre que ella te espera a ti...
 				        <br/>
