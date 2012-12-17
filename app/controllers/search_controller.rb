@@ -30,9 +30,9 @@ class SearchController < ApplicationController
       users = User.all
       tags = Tag.all
     end
-    list = users.map {|u| Hash[ id: u.id, label: "@#{u.name}", name: u.name, tipo: "user", img: "img" ]}
-    list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "tag" ]}
-    list.sort_by {|a,b| a[:name]}
+    list = users.map {|u| Hash[ id: u.id, label: "@#{u.name}", name: u.name, tipo: "user", img: "/img/#{u.id}.jpg" ]}
+    list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "/img/tag.png" ]}
+    list = list.sort_by {|a,b| a[:name]}
     render json: list
   end
 
