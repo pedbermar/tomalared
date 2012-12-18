@@ -26,7 +26,12 @@
 <% end %>
 
 &nbsp;
-<span style="color: green;"><%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count%></span>
-
-<span style="color: red;"><%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count%></span>
-	<%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count  %> 		
+<span title="
+    <div style='text-align:right;'>
+		<span style='color: green;'>Positivos <%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count%></span><br/>
+		<span style='color: red;'>Negativos <%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count%></span><br/>
+		<span style='color: black;'>Total <%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count  %></span>
+		</div>">
+		Votos: <%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count  %>
+	
+</span>
