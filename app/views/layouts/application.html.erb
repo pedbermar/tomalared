@@ -47,39 +47,13 @@ if @navegador == 'MSIE' -%>
         <%= javascript_include_tag "application" %>
         <%= javascript_include_tag :defaults %>
         <%= csrf_meta_tags %>
-        <script>
-            var h1 = document.createElement('h1');
-
-            if (!('webkitTextStroke' in h1.style )) {
-
-                var heading = document.getElementsByTagName('h1')[0];
-
-                heading.style.color = 'black';
-            }            
-        </script>
     </head>
     <body>
 
         <% if current_user -%>
             <%= render :partial => 'user_sessions/login' %>
         <% end -%>
-  		<script>
-			$( "#q" ).autocomplete({
-			    source: "/search/searched",
-		        select: function(event, ui) 
-		        {
-	    	      window.location = ("/post/user/" + item.name)
-    	  		}
-    		})
-    		.data("autocomplete")._renderItem = function( ul, item ) 
-    		{
-    			return $( "<li></li>" )
-        		.data( "item.autocomplete", item )
-        		.append( "<a href='/post/"+ item.tipo+ "/"+ item.name+ "'><div class='a-autocomplete'><img width='30' src='"+item.img+"'> "+ item.label + "</div></a>")
-        		.appendTo( ul );
-    		};
-						
-		</script> 
+
         <div id="all">
         	<div id="main" align="center">
 		        <div id="content">
