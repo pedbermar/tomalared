@@ -10,7 +10,7 @@ $(document).ready(function() {
     		{
     			return $( "<li></li>" )
         		.data( "item.autocomplete", item )
-        		.append( "<a href='/post/"+ item.tipo+ "/"+ item.name+ "'><div class='a-autocomplete'><img width='30' src='"+item.img+"'> "+ item.label + "</div></a>")
+        		.append( "<a href='/post/"+ item.tipo+ "/"+ item.name+ "'><div class='a-autocomplete'><img width='30' src='"+item.img+"' onError=\"this.src='/img/default.jpg';\"> "+ item.label + "</div></a>")
         		.appendTo( ul );
     		};
 });
