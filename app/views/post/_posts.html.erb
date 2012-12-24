@@ -33,11 +33,7 @@
     <div class="votos">            
 	    <%if current_user%>
 	    	<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id} %>
-	    	<%if current_user[:id] == post.user_id%>
-	    		<%if post.post_type == 'post'%>
-	    			<%= link_to 'Edit', { :controller => :post, :action => 'edit', :id => post.id }, :class => "editarPost", :remote => true %>
-	    		<%end%>
-	    	<% else %>
+	    	<%if current_user[:id] != post.user_id%>	    		
 	    		<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
 	    	<% end %>
 	    <% end %>

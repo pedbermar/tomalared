@@ -10,9 +10,10 @@
 
 <div class="comment-texto">
     <% @user_ = User.find(comment.user_id)%>
-    <b><u><%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => comment.user_id}, :class => "linkRemote" %></u></b>, <%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
-    &nbsp;&nbsp;
-
+    <div class="comment-fecha"
+    	<b><u><%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => comment.user_id}, :class => "linkRemote" %></u></b>, <%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
+    </div>
+    
     <%if current_user%>
     <%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id} %>
     <% end %>

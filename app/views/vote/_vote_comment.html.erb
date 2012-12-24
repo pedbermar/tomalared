@@ -3,32 +3,38 @@
 		<span style='color: green;'>Positivos <%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count%></span><br/>
 		<span style='color: red;'>Negativos <%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count%></span><br/>
 		<span style='color: black;'>Total <%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count  %></span>
-		</div>">
+	</div>">
 		
 		<%if !Likes.exists?(:user_id => current_user, :like_type => 2, :type_id => comment_id)%>
-					<%= link_to image_tag( "/gfx/positivo_b_hover.png", :alt => "Votar positivamente",:class => "icons3", :mouseover => image_path("/gfx/positivo.png")),
-												 {:controller => :vote, :action => 'like', :like_type => 2, :type_id => comment_id },
-												 :confirm => "¿Seguro que quieres votar positivamente este post?", :method => :delete %>  
-		
-					<%= link_to image_tag( "/gfx/negativo_b_hover.png", :alt => "Votar negativamentemente",:class => "icons3", :mouseover => image_path("/gfx/negativo.png")),
-												 {:controller => :vote, :action => 'dontlike', :like_type => 2, :type_id => comment_id},
-												 :confirm => "¿Seguro que quieres votar negativamente este post?", :method => :delete %> 
+				<div class="iconsVoteComentarios">
+					<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 2, :type_id => comment_id },
+									 :confirm => "¿Seguro que quieres votar positivamente este post?", :method => :delete, :class => 'iconsMasComentario' %>
+				</div>
+				<div class="iconsVoteComentarios">		
+					<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 2, :type_id => comment_id},
+									 :confirm => "¿Seguro que quieres votar negativamente este post?", :method => :delete, :class => 'iconsMenosComentario' %>
+				</div> 
 		<% else %>
 		
 					<% if Likes.exists?(:user_id => current_user, :like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0) %>
-									<%= image_tag( "/gfx/positivo.png", :alt => "Votar positivamente",:class => "icons3")%>  
-		
-									<%= link_to image_tag( "/gfx/negativo_b_hover.png", :alt => "Votar negativamente",:class => "icons3", :mouseover => image_path("/gfx/negativo.png")),
-																										{:controller => :vote, :action => 'change_to_dontlike', :like_type => 2, :type_id => comment_id }, 
-																										 :confirm => "¿Seguro que quieres cambiar tu voto a negativo?", :method => :delete %> 
+						<div class="iconsVoteComentarios">
+							<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 2, :type_id => comment_id },
+											 :confirm => "¿Seguro que quieres votar positivamente este post?", :method => :delete, :class => 'iconsMasComentarioDisable' %>
+						</div>
+						<div class="iconsVoteComentarios">
+							<%= link_to '', {:controller => :vote, :action => 'change_to_dontlike', :like_type => 2, :type_id => comment_id },
+											 :confirm => "¿Seguro que quieres cambiar tu voto a negativo?", :method => :delete, :class => 'iconsMenosComentario'  %>																										 
+						</div>
 					<% else %>
-		
-										<%= link_to image_tag( "/gfx/positivo_b_hover.png", :alt => "Votar positivamente",:class => "icons3", :mouseover => image_path("/gfx/positivo.png")),
-																										{:controller => :vote, :action => 'change_to_like', :like_type => 2, :type_id => comment_id},
-																										 :confirm => "¿Seguro que quieres cambiar tu voto a positivo?", :method => :delete %> 
-		
-										<%=image_tag( "/gfx/negativo.png", :alt => "Votar negativamente",:class => "icons3")%>
-		
+						<div class="iconsVoteComentarios">
+							<%= link_to '',	{:controller => :vote, :action => 'change_to_like', :like_type => 2, :type_id => comment_id},
+											 :confirm => "¿Seguro que quieres cambiar tu voto a positivo?", :method => :delete, :class => 'iconsMasComentario' %> 
+						</div>		
+						<div class="iconsVoteComentarios">		
+							<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 2, :type_id => comment_id},
+											 :confirm => "¿Seguro que quieres votar negativamente este post?", :method => :delete, :class => 'iconsMenosComentarioDisable' %>
+						</div> 
 					<% end %>
 		<% end %>	
+		
 </span>

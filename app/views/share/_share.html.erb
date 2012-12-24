@@ -1,7 +1,11 @@
 <% if Share.post_user_share(post_id, current_user[:id]) %>
-	<%= link_to 'UnShare', :controller => :share, :action => 'unshare', :post_id => post_id,
-	:confirm => "¿Seguro que quieres dejar de compartir este post?", :method => :delete  %>
+	<div class="iconsShare">
+		<%= link_to '', {:controller => :share, :action => 'unshare', :post_id => post_id},
+			:confirm => "¿Seguro que quieres dejar de compartir este post?", :method => :delete, :class => 'iconUnshare', :title => 'UnShare'   %>
+	</div>
 <% else %>
-    <%= link_to 'Share', :controller => :share, :action => 'share', :post_id => post_id,
-    :confirm => "¿Seguro que quieres compartir este post?", :method => :post  %>
+	<div class="iconsShare">
+    	<%= link_to '', {:controller => :share, :action => 'share', :post_id => post_id},
+    		:confirm => "¿Seguro que quieres compartir este post?", :method => :post, :class => 'iconShare', :title => 'Share'  %>
+    </div>
 <% end %> 

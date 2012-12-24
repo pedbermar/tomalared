@@ -78,6 +78,7 @@ function actualizado(data) {
 	$("#posts").show();
 	pintarBotonesPost();
 	pintarBotonesComment();
+	pintarBotonesVote();
 }
 
 function vueltaPost() {

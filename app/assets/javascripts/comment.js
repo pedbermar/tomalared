@@ -16,6 +16,7 @@ function pintarBotonesComment() {
 function vueltaComment() {
 	setTimeout(function() {
 		pintarBotonesComment();
+		pintarBotonesVote(); 
 		$(".comments-old").find(".comment").first().removeAttr("style");
 	}, 1000);
 };
@@ -35,4 +36,5 @@ $(document).ready(function() {
 		}
 	});
 	pintarBotonesComment();
+	pintarBotonesVote(); 
 });
