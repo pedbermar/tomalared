@@ -1,378 +1,203 @@
-/* Chupame un huevo y despues me cuentas */
-
-::-webkit-scrollbar-track-piece {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,255,0,0.0); 
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-   	background: rgba(0,255,0,0.2); 
-}
-body {
-	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
-
-	background: url(/gfx/fondo.jpg) fixed no-repeat center 0px black;
-	/*#A4A4A4;
-	/*  background-image: url(*/ /* gfx / /* / /*fondo.png);
-	/*  background-repeat: repeat-x; */
-	margin: 0;
-	position:relative;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-img{
-	border: 0px;
+body{
+  background:#CCCCCC;
 }
 .logo{
-	position: relative;
-	top: 7px;
-	width: 340px;
-	border: 0px;
+  width:300px;
 }
 
-a:link, a:visited {
-  color: #fafafa;
-  text-decoration: none;
+.board_foto{
+  width:200px;
 }
 
-a:hover {
-  color: green;
-  text-decoration: none;
-}
-
-p {
-  margin: 1%;
-  padding: 1%;
-}
-
-h1{
-	margin:0px;
-}
-
-
-.input-perfil{
-	width: 310px;
-}
-
-.botonoculto{
-  background: #fff;
-  border-style: none;
-  text-indent: -9000px;
-}
-
-.tdvacio {
-border: none;
- 
-}
-
-.fotoariba{
- border: 1px solid #000000;
+.topbar{
+  z-index: 99;
+  background-color: black;
   -moz-box-shadow:    0px 0px 6px 2px #283327;
   -webkit-box-shadow: 0px 0px 6px 2px #283327;
   box-shadow:         0px 0px 6px 2px #283327;
-}
-.fotoariba:hover{
-	zoom: 120%
+  min-width: 100%;
 }
 
-#nombreuser{
- text-align: right;
- position: relative; 
- top: 15px;
- z-index: 10;
- float: left;
+#nav0 li{
+  display: inline;
+}
+
+#search, #nav0{
+  margin-top: 2%;
 }
 
 
-.centrar{
-	position: relative;
-  height: 600px;
-}
 
-#all{
-	text-align:center;
-	display:block;
-	height: 100%;
-}
-#all1{
-	background: url(/gfx/fondo2.jpg) fixed no-repeat center 30px;
-	text-align:center;
-	display:block;
-	height: 100%;
+#board-notifi li{
+  display: inline;
 }
 
 
-#main {
-	color: white;
-	position: relative;
-	display: block;
-	top: 20px;
-	left: -100px;
-	text-align: center;
-	margin: auto;
-	padding: 10px 0px 10px 0px;
-	width: 499px; 
-	z-index: 0;
-	background: none;
+.comment-muneco
+{
+  min-width: 20%;
+  min-height: 34px;
+  margin: 1%;
+  float: left;
+}
+
+.comment-muneco1
+{
+  width: 48px;
+  height: 42px; 
 }
 
 
+
+.borrarComentario{
+  width: 15px;
+  height: 15px;
+  right: 0px;
+  top: 0px;
+  float: right;
+  margin: 0;
+}
+
+
+
+#archivo{
+  left: 6px;
+  top: 1px;
+  display: none;
+  background: white;
+  width: 394px; 
+  margin-left: 90px;
+  text-align: center;
+}
+
+#img{
+  margin-left: 10px;
+  width: 450px;
+}
+
+#cargando, .cargandoPagPost .ui-dialog-titlebar {
+  display: none; 
+}
+
+.cargandoPagPost {
+  width: 66px;
+  height: 66px;
+  border: 0;
+  background: transparent;
+}
+
+.votos
+{
+  float: right;
+  width: 400px;
+  margin-right: 10px;
+}
+
+#board-block li{
+  height: 14px;
+}
+#board-title{
+  text-decoration:underline;
+}
+
+#board-tags a{
+  color: green;
+}
+
+.textarea{
+  max-width: 76%;
+  max-height: 100px; 
+  margin: 1%;
+  float: left;
+}
+
+#tumblear{
+  float:right;
+  margin-right: 1%;
+}
+
+#formulario, #posts{
+  display: table;
+  width: 100%;
+}
 .muneco
 {
-  position: center;
-  width: 500px;
-  left: 20px;
-  height: 200px;	
-  background: #fefeff;
-  z-index: 0;
-  text-shadow: black 0.1em 0.1em 0.3em;
+  width: 100%; 
+  min-height: 200px;
 }
 .mediano-muneco
 {
-  position: center;
-  text-align: left;
-  width: 70px;
-  height: 83px;
-  background: #fefeff;
-  z-index: 0;
-  margin-bottom: 3px;
+  min-width: 20%;
+  min-height: 100px;
+  margin: 1%;
+  float: left;
 }
 
-#header {
-  position: fixed;
+#posts{
+  display: table;
   width: 100%;
-  border-bottom: 1px solid #000000;
-  background-color: black;
-  height: 40px;
-  z-index: 1;
-  -moz-box-shadow:    0px 0px 6px 2px #283327;
-  -webkit-box-shadow: 0px 0px 6px 2px #283327;
-  box-shadow:         0px 0px 6px 2px #283327;
 }
-
-#titulo {
-  position: relative;
-  top: -20px;
-  float: left;
-	font-size: 10px;
-  z-index: 7;
-}
-
-#titulo a {
-	font-size: 30px;
-	font-weight: bold;
-
-}
-#titulo a:hover{
-  text-decoration: none;
-}
-
-#nav0 {
-	color: white;	
-  position: relative;
-  float: right;
-	top: -5px;
-	left: -10%;
-  font-size: 17px;	
-  text-align: right;
-  z-index: 7;
-}
-
-#nav0 a{
-	color: white;	
-}
-
-#nav0 a:hover {
-  text-decoration: none;
-}
-#nav4 {
-  position: relative;
-  float: center;
-	top: 7px;
-	left: 10%;
-  text-align: left;
-	z-index: 5;
-	display: hidden;
-}
-.icons{
-	position: relative;
-	top: 12px;
-	width: 25px;
-	z-index: 7;
-}
-
-.icons2{
-	width: 15px;
-	margin-top: 5px;
-}
-
-.icons3{
-	width: 12px;
-}
-
-#nav1 {
-  position: relative;
-  float: right;
-  font-size: 17px;	
-  text-align: right;
-  z-index: 6;
-	left: 0px;
-}
-
-#nav2 {
-  position: relative;
-  float: right;
-  font-size: 17px;	
-  text-align: right;
-  z-index: 6;
-  top: 15px;
-	left: 20px;
-}
-
-
-
-#logouser {
-  position: relative;
-  width: 20%;
-  float: left;
-  text-align: center;
-  text-align: top;
-  margin: 0px;
-}
-
-#login {
-  position: relative;
-  top: 10px;
-  font-size: 10px; 
-  text-align: center;
-}
-#login a{
-  position: relative;
-  top: 10px;
-  font-size: 10px; 
-  text-align: center;
-	color: white;
-}
-
-#content{
-	text-align: right;
-	margin-top: 10px;
-}
-
-#content .show-post {
-  margin-top: 15px;
-  width: 90%;
-  text-align: center;
-}
-
-#content1 {
-  position: relative;
-  top: -180px;
-  text-align: left;
-}
-
-#content1 .show-post {
+.post{
+  display: table;
+  width: 100%;
+  border-top: solid 1px #000;
   margin-top: 20px;
-  width: 90%;
-  text-align: left;
 }
-#version {
-  font-size: .8em;
- float: right;
+.borrarPost{
+  float: right;
+  width: 15px;
+  height: 15px;
+  margin-right: .0em;
 }
 
-#footer {
-  position: relative; 
+.mainPostContent{
+  width: 76%;
+  margin: 1%;
+  min-height: 100px; 
+  float: left;
+  background-color: white;
+}
+.mainComentContent{
+  width: 76%;
+  margin: 1%;
+  min-height: 34px; 
+  float: left;
+  background-color: white;
+}
+
+.formComentContent{
+  width: 76%;
+  margin: 1%;
+  height: 34px; 
+  float: left;
+  font-size: 10px;
+}
+
+.mainPostContent #text{
+  margin: 1%;
+}
+.mainComentContent #text{
+  margin: 1%;
+  font-size:10px;
+}
+
+.voteMenu li{
+  display: inline;
+  float: left;
+  margin: 0px 1% 0px 1%;
+}
+
+.commentHeader{
+  font-size: 10px;
+}
+
+.comentar{
+  font-size: 10px;
+  float: right;
+  margin-right: 1%;
+}
+
+#footer{
   font-size: 12px;
-  font-weight:bold;
+  text-align: center;
 }
-
-#footer a{
-	color: #ffffff;
-	text-align: center;
-}
-#footer a:hover{
-	color: #9FFF92;
-	text-align: center;
-}
-
-#error {
-  color: red;
-  margin-bottom: 10px;
-}
-
-#scroll {
-     width:700px;
-     height:170px;
-     background-color:#adbcd7;
-     overflow:auto;
-}
-#wchat {
-     width:700px;
-     height:18px;
-     background-color:#ffffff;
-     overflow:auto;
-     border: 1px solid black;
-}
-
-#video{
-		position: relative;
-		margin: 0px;
-   	padding: 0px;
-}
-
-
-/** Grupos*/
-
-.grupos{
-	width: 450px;
-	position: relative;
-	background: #ffffff;
-	padding: 7px;
-}
-
-
-.new_list_user{
-	text-align: center;
-}
-
-.foto-new{
-	position: absolute;
-	left: 0px;
-	border: 1px solid #000000;
-
-	-moz-box-shadow:    1px 0px 6px 2px #283327;
-	-webkit-box-shadow: 1px 0px 6px 2px #283327;
-	box-shadow:         1px 0px 3px 1px #283327;
-}
-
-
-::-webkit-input-placeholder  { color: #2DC81B; font-weight: bold;}
-input:-moz-placeholder { color: #2DC81B; font-weight: bold;}
-
-input[type="submit"] {
-	color: black;
-	background: rgba(0,255,0,0.8);	
-  -webkit-border-radius: 10px;
-  border-radius: 10px;	
-	border:0px;
-	font-size: 11px;
-	-moz-box-shadow:    1px 0px 6px 2px #000000;
-	-webkit-box-shadow: 1px 0px 6px 2px #000000;
-	box-shadow:         1px 0px 3px 1px #000000;
-	margin: 5px;
-
-}
-
-input[type="submit"]:hover {
-	color: #fff;
-	background: rgba(0,255,0,0.5);	
-	border: 0px;
-	-moz-box-shadow:    1px 0px 6px 2px #00ff00;
-	-webkit-box-shadow: 1px 0px 6px 2px #00ff00;
-	box-shadow:         1px 0px 3px 1px #00ff00;
-}
-
-#q{
-	width: 200px;
-}
-

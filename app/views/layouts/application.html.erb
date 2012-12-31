@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <%	navegadores = ['Firefox','Chrome','Mobile','MSIE'] 
 	navegadores.each do |n| 
 	    if request.env["HTTP_USER_AGENT"].include?(n) 
@@ -36,61 +36,62 @@ if @navegador == 'MSIE' -%>
         <meta charset="UTF-8" />
         <link rel="shortcut icon" href="/gfx/favicon.ico" type="image/x-icon" />
         <title>TOMALARED.NET :: <%= @page_name %></title>
-        <%= stylesheet_link_tag    "jquery-ui.custom.css"  %>
-        <%= stylesheet_link_tag    "application", :media => "all" %>
-        <%= stylesheet_link_tag    "post"  %>
-        <%= stylesheet_link_tag    "users"  %>
-        <%= stylesheet_link_tag    "tags"  %>
-        <%= stylesheet_link_tag    "search"  %>
-        <%= stylesheet_link_tag    "comment"  %>
-        <%= stylesheet_link_tag    "user_sessions"  %>
-        <%= stylesheet_link_tag    "vote"  %>
+        <%= stylesheet_link_tag    "jquery-ui.custom"  %>
+        <%= stylesheet_link_tag    "gumby"  %>
+        <%= stylesheet_link_tag    "text"  %>
+        <%= stylesheet_link_tag    "imports"  %>
+        <%= stylesheet_link_tag    "style"  %>
+        <%= stylesheet_link_tag    "ui"  %>
+        <%= stylesheet_link_tag    "application"  %>
         <%= javascript_include_tag "application" %>
         <%= javascript_include_tag :defaults %>
         <%= csrf_meta_tags %>
     </head>
     <body>
-
-        <% if current_user -%>
-            <%= render :partial => 'user_sessions/login' %>
-        <% end -%>
-
-        <div id="all">
-        	<div id="main" align="center">
-		        <div id="content">
-		        	
-		        	<%= yield %>
+    	
+    	<header class="row topbar">
+		        <% if current_user -%>
+		            <%= render :partial => 'user_sessions/login' %>
+		        <% end -%>
+		</header>
 		
-		        </div>
-   			        <footer id="footer">
-				        <% if current_user %>
-				        Hola, <%= current_user[:name] %>.&nbsp;
-				        <% end %>&iquest;Estas esperando la revoluci&oacute;n?
-				        <br/>
-				        Pues corre que ella te espera a ti...
-				        <br/>
-				        TOMALARED.NET &nbsp;v0.1 (alpha)
-				        <br/>
-				        Powered By: <a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> ~
-				        <a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~
-				        <a href="http://ushahidi.com/">Ushahidi v2.2</a>
-			        </footer>
-	        </div>
-	
-	        <div id="mainboard" align="center">
-		        <% if current_user %>
-	    		    <%= render :partial => 'users/board' %>
-	            <% else %>
-		            <% if flash[:notice] %>
-	    		        <div id="notice">
-	            	    	<%= flash[:notice] %>
-	            		</div>
-	            	<% end %>
-	            <% end %>
-	        </div>
-	        
-        </div>
-        
+		<div class="container">
+			
+	        <div class="row maincontent">
+	        	<section id="main" class="nine columns">
+			        	<%= yield %>   			        
+		        </section>
+		
+		        <aside id="mainboard" class="three columns">
+			        <% if current_user %>
+		    		    <%= render :partial => 'users/board' %>
+		            <% else %>
+			            <% if flash[:notice] %>
+		    		        <div id="notice">
+		            	    	<%= flash[:notice] %>
+		            		</div>
+		            	<% end %>
+		            <% end %>
+		        </aside>
+		    </div>
+		    
+		        
+	        <footer id="footer" class="row">
+	        	<div class="twelve columns">
+			        <% if current_user %>
+			        Hola, <%= current_user[:name] %>.&nbsp;
+			        <% end %>&iquest;Estas esperando la revoluci&oacute;n?
+			        <br/>
+			        Pues corre que ella te espera a ti...
+			        <br/>
+			        TOMALARED.NET &nbsp;v0.1 (alpha)
+			        <br/>
+			        Powered By: <a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> ~
+			        <a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~
+			        <a href="http://ushahidi.com/">Ushahidi v2.2</a>
+			  	</div>
+	        </footer>
+		</div>
     </body>
 </html>
 <% end -%>

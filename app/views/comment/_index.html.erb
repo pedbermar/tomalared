@@ -2,7 +2,6 @@
     <div class="comments-old">
         <%= render :partial => 'comment/comments', :collection => post.comments, :as => "comment" %>
     </div>
-    <div class="comment-separacion"></div>
     <div class="comment-new">
         <% if current_user %>
         <%= render :partial => 'comment/form', :object => post, :as => "post" %>

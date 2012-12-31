@@ -1,13 +1,12 @@
-<div id="board">
-    <div id="notice">
+
+    <header id="notice">
         <a href="/post/user" class="notice_a linkRemote">@<%= current_user.name %></a>
         <% if flash[:notice] %>
-        <br>
-        <%= flash[:notice] %>
+        	<%= flash[:notice] %>
         <% end %>
-    </div>
+    </header>
 
-    <div id="marcofoto">
+    <article id="marcofoto">
         <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
         <%= link_to image_tag( "/img/#{current_user.id}.jpg", :size => "200", :alt => "Tu imagen",
         :class => "board_foto"), '/post/user', :class => "linkRemote"%>
@@ -15,89 +14,91 @@
         <%= link_to image_tag( "/img/default.jpg", :size => "200", :alt => "Tu imagen",
         :class => "board_foto"), '/post/user', :class => "linkRemote"%>
         <% end -%>
-    </div>
+    </article>
 
-    <div id="board-notifi">
-        <a href="/network/note/1" id="notifType1" class="linkRemote">0C</a>
-        <a href="/network/note/2" id="notifType2" class="linkRemote">0#</a>
-        <a href="/network/note/3" id="notifType3" class="linkRemote">0@</a>
-    </div>
-
-    <div id="board-block">
-        <div id="board-title">
-            Mentions
-        </div>
-        <div id="board-tags">
-            <% @mentions1 = Notifications.find_user_mentios_unread(current_user[:id])
-            @mentions2 = Notifications.find_user_mentios(current_user[:id], 20)
-            @mentions = Array.new
-
-            @mentions1.each do |m|
-            @mentions << m
-            end
-
-            @mentions2.each do |m|
-            @mentions << m
-            end
-
-            @mentions2.each do |m|
-            cont = Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count	%>
-
-            <a href="/post/mentions?user=<%= m.from %>"> @<%= User.find(m.from).name%> <% if cont != 0 %> [<%= Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count %>] <% end %> </a>
-            <br>
-            <% end %>
-        </div>
-    </div>
-
-    <div id="board-block">
-        <div id="board-title">
-            Your groups
-        </div>
-        <% @tags_board = current_user.tags %>
-        <div id="board-tags">
+    <nav>
+    	<ul id="board-notifi">
+	        <li><a href="/network/note/1" id="notifType1" class="linkRemote">0C</a></li>
+	        <li><a href="/network/note/2" id="notifType2" class="linkRemote">0#</a></li>
+	        <li><a href="/network/note/3" id="notifType3" class="linkRemote">0@</a></li>
+        </ul>
+    
+	
+	    <ul id="board-block">
+	        <li id="board-title">
+	            Mentions
+	        </li>
+	        
+	            <% @mentions1 = Notifications.find_user_mentios_unread(current_user[:id])
+	            @mentions2 = Notifications.find_user_mentios(current_user[:id], 20)
+	            @mentions = Array.new
+	
+	            @mentions1.each do |m|
+	            @mentions << m
+	            end
+	
+	            @mentions2.each do |m|
+	            @mentions << m
+	            end
+	
+	            @mentions2.each do |m|
+	            cont = Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count	%>
+	
+	            <li id="board-tags">
+	            	<a href="/post/mentions?user=<%= m.from %>"> @<%= User.find(m.from).name%> <% if cont != 0 %> [<%= Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count %>] <% end %> </a>
+	            </li>
+	            <% end %>	       
+	    </ul>
+	
+	    <ul id="board-block">
+	        <li id="board-title">
+	            Your groups
+	        </li>
+	        <% @tags_board = current_user.tags %>
+	        
             <% @tags_board.each do |tag_board| -%>
-            <%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>
-            <br/>
-            <% end %>
-        </div>
-    </div>
-    <div id="board-block">
-        <div id="board-title">
-            Latest tumblrs
-        </div>
-        <div id="board-tags">
-            <% @posts_board = Post.find(:all, :conditions => ["user_id = ? AND post_type NOT LIKE ?", current_user[:id], "image"], :order => 'id DESC') %>
-
-            <% @post_board_share = Share.find(:all, :conditions => {:user_id => current_user[:id]})
-  @post_board_share.each do |ps|
-    p = Post.find(ps.post_id)
-    if p.post_type != "image"
-    p.created_at = ps.created_at
-    @posts_board << p
-    end
-  end
-
-  @posts_board= @posts_board.sort_by {|post| post.created_at}.reverse %>
-
-            <% @posts_board.each do |post_board| -%>
-            <a href="/post/list/<%= post_board.id %>" class="linkRemote"><%= strip_textile(post_board.title.length > 0 ? post_board.title : post_board.content.to_s)[0..18] %></a>
-            <br/>
-            <% end %>
-        </div>
-    </div>
-
-    <div id="board-block">
-        <div id="board-title">
-            Popular groups
-        </div>
-        <% @tags_all_board = Tag.find_most_popular(20)%>
-        <div id="board-tags">
+            <li id="board-tags">
+            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
+            </li>
+            <% end %>	        
+	    </ul>
+	    
+	    <ul id="board-block">
+	        <li id="board-title">
+	            Latest tumblrs
+	        </li>	        
+	            <% @posts_board = Post.find(:all, :conditions => ["user_id = ? AND post_type NOT LIKE ?", current_user[:id], "image"], :order => 'id DESC') %>
+	
+	            <% @post_board_share = Share.find(:all, :conditions => {:user_id => current_user[:id]})
+	  @post_board_share.each do |ps|
+	    p = Post.find(ps.post_id)
+	    if p.post_type != "image"
+	    p.created_at = ps.created_at
+	    @posts_board << p
+	    end
+	  end
+	
+	  @posts_board= @posts_board.sort_by {|post| post.created_at}.reverse %>
+	
+	            <% @posts_board.each do |post_board| -%>
+	            <li id="board-tags">
+	            	<a href="/post/list/<%= post_board.id %>" class="linkRemote"><%= strip_textile(post_board.content.length > 0 ? post_board.content : post_board.content.to_s)[0..18] %></a>
+	            </li>
+	            <% end %>	        
+	    </ul>
+	
+	    <ul id="board-block">
+	        <li id="board-title">
+	            Popular groups
+	        </li>
+	        <% @tags_all_board = Tag.find_most_popular(20)%>
+	        
             <% @tags_all_board.each do |tag_board| -%>
-            <%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
-            <br/>
+            <li id="board-tags">
+            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
+            </li>
             <% end %>
-        </div>
-
-    </div>
-</div>
+        </ul>
+	        
+ 	</nav>
 

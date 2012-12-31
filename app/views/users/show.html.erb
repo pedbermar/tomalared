@@ -1,32 +1,28 @@
 <% @page_name = "Ver usuaruio" -%>
-<center>
-<% if ( current_user[:id] ==  @user.id) %><br/>
-	<%= link_to 'Edit', edit_user_path(:current) %>
-<% end %>
-</center>
-<br/>
-<div class="data_user">
-    <b>Nombre:</b><br/>@<%= @user.name %>
-</div>
-<div class="data_user">
-    <b>Email:</b><br/><%= @user.email %><br/>
-</div>
-<div class="data_user">
-    <b>Login count:</b><br/><%=h @user.login_count %>
-</div>
 
-	<div id="board-block">
-		<div id="board-title">Your groups tumbler:</div>
-				<% @tags_board = Tag.find_most_popular_by_user(current_user.id)%>
-		<div id="board-tags">
-				<% @tags_board.each do |tag_board| -%>
-					<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}" %>
-				<% end %>
-		</div>
-	</div>
-<br/>
-<div class="data_user">
-		<b>Last request at:</b> <%=h @user.last_request_at %><br/>
-		<b>Current login at:</b> <%=h @user.current_login_at %><br/>
-</div>
+
+
+
+<header><h1>User Data</h1></header>
+
+<article>
+	<ul>
+		<li class="data_user">
+		    Nombre: @<%= @user.name %>
+		</li>
+		<li class="data_user">
+		    Email: <%= @user.email %>
+		</li>
+		<% if ( current_user[:id] ==  @user.id) %>
+			<li><%= link_to 'Edit', edit_user_path(:current) %></li>
+		<% end %>
+	</ul>
+</article>
+<article>
+	<header id="board-title">Your groups tumbler:</header>
+	<nav>
+			<% @tags = Tag.find_most_popular_by_user(current_user.id)%>
+			 <%= render :partial => "search/tags" %>
+	</nav>
+</article>
 

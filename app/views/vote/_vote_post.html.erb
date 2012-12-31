@@ -4,37 +4,47 @@
 		    <span style='color: red;'>Negativos <%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 0, :dontlike => 1 }).count%></span><br/>
 		    <span style='color: black;'>Total <%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 0, :dontlike => 1 }).count  %></span>
 	    </div>">
+	    
+	    <ul class="voteMenu">
 			<%if !Likes.exists?(:user_id => current_user, :like_type => 1, :type_id => post_id)%>
-   				 <div class="iconsVote">
+   				 <li>
 					<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 1, :type_id => post_id },
 										:confirm => "¿Seguro que quieres votar positivamente este post?", :method => :delete, :class => "iconsMas" %>
-				</div>
-			 	<div class="iconsVote">
+				</li>
+			 	<li>
 					<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 1, :type_id => post_id},
 										:confirm => "¿Seguro que quieres votar negativamente este post?", :method => :delete, :class => "iconsMenos"  %>
-				</div>
+				</li>
 			<% else %>
 			
 				<% if Likes.exists?(:user_id => current_user, :like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0) %>
-	 				<div class="iconsVote">
+	 				<li>
 						<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 1, :type_id => post_id },
 											:confirm => "¿Seguro que quieres votar positivamente este post?", :method => :delete, :class => "iconsMasDisable" %>
-					</div>			
+					</li>			
 						
-	 				<div class="iconsVote">						
+	 				<li>						
 						<%= link_to '',	{:controller => :vote, :action => 'change_to_dontlike', :like_type => 1, :type_id => post_id },
 											:confirm => "¿Seguro que quieres cambiar tu voto a negativo?", :method => :delete, :class => "iconsMenos"  %>
-					</div>
+					</li>
 				<% else %>
-					<div class="iconsVote">
+					<li>
 						<%= link_to '', {:controller => :vote, :action => 'change_to_like', :like_type => 1, :type_id => post_id},
 											:confirm => "¿Seguro que quieres cambiar tu voto a positivo?", :method => :delete, :class => "iconsMas"  %>
-					</div>
-					<div class="iconsVote">
+					</li>
+					<li>
 						<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 1, :type_id => post_id},
 											:confirm => "¿Seguro que quieres votar negativamente este post?", :method => :delete, :class => "iconsMenosDisable"  %>
-					</div>
+					</li>
 									
 				<% end %>
 			<% end %>
+			
+			
+			<%if current_user[:id] != post_user_id%>	    		
+	    		<%= render :partial => 'share/share', :locals => { :post_id => post_id } %>     
+	    	<% end %>	
+	    	
+	    	
+		</ul>
     </span>

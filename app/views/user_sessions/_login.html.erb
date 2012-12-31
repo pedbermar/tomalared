@@ -1,20 +1,17 @@
-<header id="header">
-	<div id="titulo">
-	    <br/>
-	    <%= link_to image_tag( "/gfx/logo.png", :mouseover => image_path("/gfx/logo_hover.png"), :alt => "Logo", :class => 'logo'), '/post/list', :class => "linkRemote" %>
-	</div>
-	<nav>
-		<div id="nav0">
-			<div id="nav2">
-				<%= link_to '','/home', :class => "icon-home", :title => "Home"%>				  
-				<%= link_to '', '/logout', :class => "icon-exit", :title => "Logout" %>
-			</div>
-		</div>
-		<div id="nav4">
-	       <%= form_tag('/search', :id => 'search') do %>
-	    	   <%= text_field_tag 'q' %>
-		       <%= submit_tag 'Buscar', :id => "buscar" %>
-	       <% end %>
-		</div>
-	</nav>
-</header>
+<div class="five columns">
+	<%= link_to image_tag( "/gfx/logo.png", :mouseover => image_path("/gfx/logo_hover.png"), :alt => "Tomalared.net", :class => 'logo'), '/post/list', :class => "linkRemote" %>
+</div>
+
+<section class="five columns">
+   <%= form_tag('/search', :id => 'search') do %>
+	   <%= search_field_tag 'q' %>
+       <%= submit_tag 'Buscar', :id => "buscar" %>
+   <% end %>
+</section>
+
+<nav class="two columns">
+	<ul id="nav0">
+		<li id="nav1"><%= link_to '','/home', :class => "icon-home", :title => "Home"%></li>				  
+		<li id="nav2"><%= link_to '', '/logout', :class => "icon-exit", :title => "Logout" %></li>			
+	</ul>
+</nav>
