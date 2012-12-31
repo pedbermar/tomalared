@@ -8,33 +8,27 @@
 	    <ul class="voteMenu">
 			<%if !Likes.exists?(:user_id => current_user, :like_type => 1, :type_id => post_id)%>
    				 <li>
-					<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 1, :type_id => post_id },
-										:confirm => "¿Seguro que quieres votar positivamente este post?", :method => :delete, :class => "iconsMas" %>
+					<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 1, :type_id => post_id }, :class => "iconsMas linkRemote2" %>
 				</li>
 			 	<li>
-					<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 1, :type_id => post_id},
-										:confirm => "¿Seguro que quieres votar negativamente este post?", :method => :delete, :class => "iconsMenos"  %>
+					<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 1, :type_id => post_id}, :method => :delete, :class => "iconsMenos linkRemote2"  %>
 				</li>
 			<% else %>
 			
 				<% if Likes.exists?(:user_id => current_user, :like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0) %>
 	 				<li>
-						<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 1, :type_id => post_id },
-											:confirm => "¿Seguro que quieres votar positivamente este post?", :method => :delete, :class => "iconsMasDisable" %>
+						<%= link_to '', '', :class => "iconsMasDisable" %>
 					</li>			
 						
 	 				<li>						
-						<%= link_to '',	{:controller => :vote, :action => 'change_to_dontlike', :like_type => 1, :type_id => post_id },
-											:confirm => "¿Seguro que quieres cambiar tu voto a negativo?", :method => :delete, :class => "iconsMenos"  %>
+						<%= link_to '',	{:controller => :vote, :action => 'change_to_dontlike', :like_type => 1, :type_id => post_id }, :method => :delete, :class => "iconsMenos linkRemote2"  %>
 					</li>
 				<% else %>
 					<li>
-						<%= link_to '', {:controller => :vote, :action => 'change_to_like', :like_type => 1, :type_id => post_id},
-											:confirm => "¿Seguro que quieres cambiar tu voto a positivo?", :method => :delete, :class => "iconsMas"  %>
+						<%= link_to '', {:controller => :vote, :action => 'change_to_like', :like_type => 1, :type_id => post_id}, :method => :delete, :class => "iconsMas linkRemote2"  %>
 					</li>
 					<li>
-						<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 1, :type_id => post_id},
-											:confirm => "¿Seguro que quieres votar negativamente este post?", :method => :delete, :class => "iconsMenosDisable"  %>
+						<%= link_to '', '', :class => "iconsMenosDisable"  %>
 					</li>
 									
 				<% end %>

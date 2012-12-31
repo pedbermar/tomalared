@@ -1,6 +1,9 @@
-<% if title != "" %>
-<%= title %>
-<% end %>
+<div id="text">
+	<% if title != "" %>
+		<%= title %>
+	<% end %>
+	
 	<%= text_parse(content).html_safe%>
+</div>
 
 
