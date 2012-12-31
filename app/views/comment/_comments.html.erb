@@ -12,10 +12,15 @@
 	    
 	    <span class="mainComentContent">
 	    	<% if  current_user[:id] == comment.user_id %>
-		    <span class="borrarComentario">
-		        <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
+		    <span class="iconBorrarComentario">
+		        <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id},
+		        		 :confirm => "¿Borrar el comentario?", :class => "borrarComentario", :method => :delete, :remote => true %>
 		    </span>
 	   		 <% end %>
+	   		 
+	   		 
+	   		 
+	   		 
 	    	<div id="text">
 	    		<%= text_parse(comment.body).html_safe %>
     		</div>

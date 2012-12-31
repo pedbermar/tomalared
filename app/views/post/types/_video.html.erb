@@ -1,5 +1,5 @@
 <div id="video">
-<% url = content.split[-1] %>
-<% desc = content.split[0..-2].join(" ") %>
-	<iframe width="380" height="230" src="https://www.youtube.com/embed/<%= parse_youtube(url) -%>?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
+<% url = content.split[-1] -%>
+<% desc = content.split[0..-2].join(" ") -%>
+	<iframe class="youtube" src="https://www.youtube.com/embed/<%= parse_youtube(url) -%>?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
 </div>

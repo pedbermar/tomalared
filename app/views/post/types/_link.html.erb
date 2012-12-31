@@ -11,14 +11,14 @@
 		</div>
 	<% end %>
 
-	<div class="post_link_text">
-<a href="<%= link %>" target="_blank">
-	<b><%= title.html_safe %></b>
-		<br>
-		<%= desc.html_safe[0..150] %>
-		<br>
-		<i><%= host %></i>
+	<div id="text">
+		<a href="<%= link %>" target="_blank">
+			<%= title.html_safe %>
+		
+			<%= desc.html_safe[0..150] %>
+		
+			<%= host %>
+		</a>
 	</div>
-</a>
 </div>
 
