@@ -30,14 +30,12 @@ class SearchController < ApplicationController
       tags = Array.new
       users = Array.new 
             
-      d = @q[0..0]
-      
-      if d == "#" 
+      if @q[0] == "#" 
         @q1 = @q.gsub(/^#/,"")
         like= "%".concat(@q1.concat("%"))
         tags = Tag.where("name like ?", like)      
       else
-        if d == "@"
+        if @q[0] == "@"
           @q1 = @q.gsub(/^@/,"")
           like= "%".concat(@q1.concat("%"))
           users = User.where("name like ?", like)
