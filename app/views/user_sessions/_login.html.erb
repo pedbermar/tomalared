@@ -2,11 +2,12 @@
 	<%= link_to image_tag( "/gfx/logo.png", :mouseover => image_path("/gfx/logo_hover.png"), :alt => "Tomalared.net", :class => 'logo'), '/post/list', :class => "linkRemote" %>
 </div>
 
-<section class="five columns">
-   <%= form_tag('/search', :id => 'search') do %>
-	   <%= search_field_tag 'q' %>
-       <%= submit_tag 'Buscar', :id => "buscar" %>
+<section class="five columns searcher">	
+   <%= form_tag('/search', :id => 'search', :method=> 'get') do %>   		
+	   	<%= search_field_tag 'q', '',:placeholder =>  '¡Busca!' %>
+   		<span id="resultado-busqueda"></span>
    <% end %>
+   
 </section>
 
 <nav class="two columns">

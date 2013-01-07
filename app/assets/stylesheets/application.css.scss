@@ -83,7 +83,7 @@ body{
   width: 66px;
   height: 66px;
   border: 0;
-  background: transparent;
+  background: black;
 }
 
 .votos
@@ -155,6 +155,8 @@ body{
   margin: 1%;
   min-height: 100px; 
   float: left;
+  font-size: 13px;
+  line-height: 15px;
   background-color: white;
 }
 .mainComentContent{
@@ -219,4 +221,13 @@ body{
 }
 .post-image{
   width: 100%;
+}
+
+.searcher{
+  color: white; 
+}
+
+#resultado-busqueda{
+  color: red;
+  font-size: 12px;
 }

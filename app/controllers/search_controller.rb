@@ -21,20 +21,36 @@ class SearchController < ApplicationController
   end
 
  end
+ 
+ 
   def searched
+    
     if params[:term]
-      like= "%".concat(params[:term].concat("%"))
-      users = User.where("name like ?", like)
-      tags = Tag.where("name like ?", like)
-    else
-      users = User.all
-      tags = Tag.all
-    end
+      @q = params[:term]
+      tags = Array.new
+      users = Array.new 
+            
+      d = @q[0..0]
+      
+      if d == "#" 
+        @q1 = @q.gsub(/^#/,"")
+        like= "%".concat(@q1.concat("%"))
+        tags = Tag.where("name like ?", like)      
+      else
+        if d == "@"
+          @q1 = @q.gsub(/^@/,"")
+          like= "%".concat(@q1.concat("%"))
+          users = User.where("name like ?", like)
+        else
+          like= "%".concat(@q)
+          users = User.where("name like ?", like)
+          tags = Tag.where("name like ?", like)
+        end
+      end
     list = users.map {|u| Hash[ id: u.id, label: "@#{u.name}", name: u.name, tipo: "user", img: "/img/#{u.id}.jpg" ]}
-    list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "/img/tag.png" ]}
+    list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "/img/tag.png" ]}  
     list = list.sort_by {|a,b| a[:name]}
     render json: list
+    end
   end
-
 end
-
