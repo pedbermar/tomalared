@@ -22,28 +22,28 @@ class CommentController < ApplicationController
     @comment = Comment.create!(:body => params[:body], :post_id => params[:post_id], :user_id => current_user[:id])
     
     if @comment
-      # Notificaciones para el propietario del post donde se hace el COMENTARIO
-      post = Post.find(params[:post_id])
-      user = User.find(post.user_id)
-      if user.id != @comment.user_id
-        note = Notifications.new
-        note.user_id = user.id
-        note.note_type = 1
-        note.from = @comment.user_id
-        note.post_id = @comment.post_id
-        note.save
-      end
-
-      comm = post.comments.uniq_by {|x| x.user_id}
-      comm.each do |c|
-        if current_user.id != c.user_id
+      ActiveSupport::Notifications.instrument("p_" + "#{@comment.post_id}",
+                      :note_type => Notifications::COMMENT,
+                      :from => current_user[:id],
+                      :resource_id => @comment.id)
+      unless Subscriptions.find(:user_id => current_user[:id], :resource_type => Notifications::POST, :resource_id => @comment.post_id)
+        events = []
+        subscription = Subscriptions.new
+        subscription.user_id = current_user[:id]
+        subscription.subscriptions_type = Subscriptions::S_POST
+        subscription.resource_id = @comment.post_id
+        subscription.name = ActiveSupport::Notifications.subscribe ("p_" + "#{@comment.post_id}") do |*args|
+          events << ActiveSupport::Notifications::Event.new(*args)
+          event = events.last
           note = Notifications.new
-          note.user_id = c.user_id
-          note.note_type = 1
-          note.from = @comment.user_id
-          note.post_id = @comment.post_id
+          note.user_id = current_user[:id]
+          note.note_type = event.payload[:note_type]
+          note.from = event.payload[:from]
+          note.resource_id = event.payload[:resource_id]
+          note.unread = 1
           note.save
         end
+        subscription.save
       end
       flash[:notice] = 'El mensaje se ha guardado correctamente.'
     else

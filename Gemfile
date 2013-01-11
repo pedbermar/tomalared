@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-
 gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
@@ -48,3 +47,5 @@ gem 'rack-ssl', :require => 'rack/ssl'
 gem 'nifty-generators'
 gem 'rails-i18n'
 
+gem 'mongoid'
+gem 'bson_ext'

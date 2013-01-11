@@ -18,9 +18,9 @@
 
     <nav>
     	<ul id="board-notifi">
-	        <li><a href="/network/note/1" id="notifType1" class="linkRemote">0C</a></li>
-	        <li><a href="/network/note/2" id="notifType2" class="linkRemote">0#</a></li>
-	        <li><a href="/network/note/3" id="notifType3" class="linkRemote">0@</a></li>
+	        <li><%=Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 5, :unread => 1}).count%>C</a></li>
+	        <li><%=Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 3, :unread => 1}).count%>#</a></li>
+	        <li><%=Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 1, :unread => 1}).count%>@</a></li>
         </ul>
     
 	
@@ -29,25 +29,7 @@
 	            Mentions
 	        </li>
 	        
-	            <% @mentions1 = Notifications.find_user_mentios_unread(current_user[:id])
-	            @mentions2 = Notifications.find_user_mentios(current_user[:id], 20)
-	            @mentions = Array.new
-	
-	            @mentions1.each do |m|
-	            @mentions << m
-	            end
-	
-	            @mentions2.each do |m|
-	            @mentions << m
-	            end
-	
-	            @mentions2.each do |m|
-	            cont = Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count	%>
-	
-	            <li id="board-tags">
-	            	<a href="/post/mentions?user=<%= m.from %>"> @<%= User.find(m.from).name%> <% if cont != 0 %> [<%= Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count %>] <% end %> </a>
-	            </li>
-	            <% end %>	       
+	         
 	    </ul>
 	
 	    <ul id="board-block">

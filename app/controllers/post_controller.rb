@@ -66,8 +66,6 @@ class PostController < ApplicationController
   def self.template_root
     theme_dir
   end
-  helper :all
-
   #
   # post management
   #
@@ -121,19 +119,20 @@ class PostController < ApplicationController
         direcion = "public/post/#{capturanombre}.jpg"
         if params[:img] == nil
           require 'open-uri'
+          urls = Array.new
+          post.content.split.each do |u|
+            if u.match(/(.png|.jpg|.gif)$/)
+              urls << u
+            end
+          end
           open(direcion, "wb") do |file|
-            file << open(post.content).read
+            file << open(urls.first).read
           end
         else
           File.open(direcion, "wb") do |file|
             file << open(params[:img]).read
           end
         end
-        direcion2 = "/post/#{capturanombre}.jpg"
-        post.content = direcion2
-      end
-      # POST_TYPE == QUOTE
-      if post.post_type == 'quote'
         t11 = Array.new
         post.content.split.each do |t|
           if t.first == '#'
@@ -144,17 +143,74 @@ class PostController < ApplicationController
           tag = Tag.find_by_name(t) || Tag.new(:name => t)
           post.tags << tag
         end
+        direcion2 = "/post/#{capturanombre}.jpg"
+        post.content = direcion2
+      end
+      # POST_TYPE == QUOTE || POST
+      if post.post_type == 'quote' || post.post_type == 'post'
+        t11 = Array.new
+        post.content.split.each do |t|
+          if t.first == '#'
+            t11 << t.gsub(/^#/,"")
+          end
+        end
+        t11.each do |t|
+          tag = Tag.find_by_name(t) || Tag.new(:name => t)
+          post.tags << tag
+        end
+        mentions = Array.new
+        post.content.split.each do |t|
+          if t.first == '@'
+            mentions << t.gsub(/^@/,"")
+          end
+        end
+        mentions.each do |u|
+          user = User.find_by_name(u)
+          if user.id != current_user[:id]
+            ActiveSupport::Notifications.instrument("u_" + "#{user.id}",
+                    :note_type => Notifications::USER,
+                    :from => current_user[:id],
+                    :resource_id => user.id)
+          end
+        end
       else
         params[:tags].split.each do |t|
           tag = Tag.find_by_name(t) || Tag.new(:name => t)
           post.tags << tag
         end
       end
-      # POST_TYPE == (LINK)
-      if post.post_type == 'link'
+      # POST_TYPE == (LINK) || (video)
+      if post.post_type == 'link' || post.post_type == 'video'
         require 'metainspector'
         require 'iconv'
-        doc = MetaInspector.new(post.content)
+        if post.post_type == 'link'
+          urls = Array.new
+          post.content.split.each do |u|
+            if u.match(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
+              urls << u
+            end
+          end
+          doc = MetaInspector.new(urls.first)
+        end
+        if post.post_type == 'video'
+          urls = Array.new
+          post.content.split.each do |u|
+            if u.match(/\A(http|https):\/\/www.youtube.com/)
+              urls << u
+            end
+          end
+          doc = MetaInspector.new(urls.first)
+        end
+        t11 = Array.new
+        post.content.split.each do |t|
+          if t.first == '#'
+            t11 << t.gsub(/^#/,"")
+          end
+        end
+        t11.each do |t|
+          tag = Tag.find_by_name(t) || Tag.new(:name => t)
+          post.tags << tag
+        end
         desc = doc.description
         post.title = doc.title
         if doc.image
@@ -189,37 +245,32 @@ class PostController < ApplicationController
         flash[:notice] = 'El mensaje se ha guardado correctamente.'
         # Notificaciones para las usuarios que siguen los GRUPOS
         post.tags.each do |t|
-          t.users.each do |u|
-            if u.id != current_user[:id]
-              note = Notifications.new
-              note.user_id = u.id
-              note.note_type = 2
-              note.from = current_user[:id]
-              note.post_id = @post.id
-              note.save
-            end
-          end
+          ActiveSupport::Notifications.instrument("t_" + "#{t.id}",
+                      :note_type => Notifications::TAG_POST,
+                      :from => current_user[:id],
+                      :resource_id => @post.id)
         end
-        # Notificaciones para las MENCIONES
+
         if post.post_type == 'quote'
-          mentions = Array.new
-          post.content.split.each do |t|
-            if t.first == '@'
-              mentions << t.gsub(/^@/,"")
-            end
-          end
-          mentions.each do |u|
-            user = User.find_by_name(u)
-            if user.id != current_user[:id]
-              note = Notifications.new
-              note.user_id = user.id
-              note.note_type = 3
-              note.from = current_user[:id]
-              note.post_id = @post.id
-              note.save
-            end
-          end
+
         end
+        events = []
+        subscription = Subscriptions.new
+        subscription.user_id = current_user[:id]
+        subscription.subscription_type = Subscriptions::S_POST
+        subscription.resource_id = @post.id
+        subscription.name = ActiveSupport::Notifications.subscribe ("p_" + "#{@post.id}") do |*args|
+          events << ActiveSupport::Notifications::Event.new(*args)
+          event = events.last
+          note = Notifications.new
+          note.user_id = current_user[:id]
+          note.note_type = event.payload[:note_type]
+          note.from = event.payload[:from]
+          note.resource_id = event.payload[:resource_id]
+          note.unread = 1
+          note.save!
+        end
+        subscription.save!
       else
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
       end
@@ -366,11 +417,6 @@ class PostController < ApplicationController
   def delete
     @post = Post.find(params[:id])
     if @post
-      @notes = Notifications.find(:all, :conditions => { :post_id => @post.id})
-
-      @notes.each do |m|
-        m.destroy
-      end
       if @post.destroy
         flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
@@ -403,11 +449,21 @@ class PostController < ApplicationController
   end
 
   def type_parse(str)
-    if str.split.count == 1
-      if str.split.first.match(/\A(http|https):\/\/www.youtube.com/)
-        type = "video"
-      elsif str.split.first.match(/(.png|.jpg|.gif)$/)
+    plain = 0
+    str.split.each do |x|
+      if x.match(/\A(http|https):\/\/www.youtube.com/) == nil and 
+      x.match(/(.png|.jpg|.gif)$/) == nil and
+      x.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/) == nil and 
+      x.match(/^#/) == nil and
+      x.match(/^@/) == nil
+        plain = 1
+      end
+    end
+    if  plain == 0 #str.split.count == 1
+      if str.split.first.match(/(.png|.jpg|.gif)$/)
         type = "image"
+      elsif str.split.first.match(/\A(http|https):\/\/www.youtube.com/)
+        type = "video"
       elsif str.split.first.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/)
         type = "link"
       end
@@ -418,6 +474,5 @@ class PostController < ApplicationController
     end
     return type
   end
-
 end
 

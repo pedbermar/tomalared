@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   has_many :posts, :order => 'created_at DESC'
   has_and_belongs_to_many :tags
   has_many :comments, :order => "created_at DESC", :through => :posts
-  has_many :notifications, :order => "created_at DESC", :through => :posts
   has_many :likes
 
   before_destroy :dont_destroy_admin
