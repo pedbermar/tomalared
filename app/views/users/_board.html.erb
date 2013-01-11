@@ -1,6 +1,20 @@
 
     <header id="notice">
-        <a href="/post/user" class="notice_a linkRemote">@<%= current_user.name %></a>
+    <ul id="board-block">
+    	<li>
+        <a href="/post/user" class="notice_a linkRemote"><%= current_user.profile%> (@<%= current_user.name%>) </a>
+        </li>
+    </ul>
+    <ul id="board-block">
+        <li>
+        <%= current_user.posts.count%> Posts
+		</li>
+    </ul>
+     <ul id="board-block">
+        <li>
+        <%= current_user.tags.count%> Grupos
+		</li>
+    </ul>
         <% if flash[:notice] %>
         	<%= flash[:notice] %>
         <% end %>
