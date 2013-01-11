@@ -6,11 +6,9 @@
 class CantDestroyAdminUser < StandardError; end
 
 class User < ActiveRecord::Base
-  ADMIN_USER_ID = 1
-  PASSWORD_MIN_LENGTH = 6
 
   acts_as_authentic do |c|
-    c.login_field :login
+    c.login_field :name
     c.validate_email_field = false
   end
   
@@ -23,10 +21,10 @@ class User < ActiveRecord::Base
 
   #attr_accessor   :password
   #attr_accessible :name, :password, :email
-  attr_accessible :id, :login, :name, :email, :bio, :password, :password_confirmation, :openid_identifier, :notifications
+  attr_accessible :id, :profile, :name, :email, :bio, :password, :password_confirmation, :openid_identifier, :notifications
 
-  validates_uniqueness_of :login
-  validates_presence_of   :login
+  validates_uniqueness_of :name
+  validates_presence_of   :name
   validates_presence_of   :password, :on => :create
 
   #has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }

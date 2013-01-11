@@ -5,7 +5,7 @@
 <br />
 <%= form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f| %>
   <%= render "shared/error_messages", :target => @user_session %>
-  <%= f.text_field :login, :placeholder => 'Login' %><br />
+  <%= f.text_field :name, :placeholder => 'Username' %><br />
   <br />
   <%= f.password_field :password, :placeholder => 'Password' %><br />
   <br />

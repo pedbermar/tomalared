@@ -22,7 +22,7 @@ class GetYourTumbleOn < ActiveRecord::Migration
     add_index :tags, :id, :unique
     
     create_table :users do |t|
-      t.string    :login,             :null => false                # optional, see below
+      t.string    :profile,             :null => false                # optional, see below
       t.string    :crypted_password,    :null => false                # optional, see below
       t.string    :password_salt,       :null => false                # optional, but highly recommended
       t.string    :email                           # optional, you can use login instead, or both

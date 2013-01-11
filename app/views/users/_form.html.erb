@@ -1,12 +1,11 @@
 <%= render "shared/error_messages", :target => @user %>
-
 <p>
-  <%= form.label :login %><br />
-  <%= form.text_field :login %>
+  <%= form.label :username %><br />
+  <%= form.text_field :name %>
 </p>
 <p>
-  <%= form.label :name %><br />
-  <%= form.text_field :name %>
+  <%= form.label :nombre_del_perfil %><br />
+  <%= form.text_field :profile %>
 </p>
 <p>
   <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />

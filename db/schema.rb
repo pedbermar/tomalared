@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(:version => 13) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "note_type"
+    t.integer  "from"
+    t.integer  "post_id"
+    t.boolean  "unread",     :default => true, :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "user_id",    :default => 1
     t.string   "title",      :default => ""
@@ -80,7 +90,7 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "login",                                  :null => false
+    t.string   "profile",                                :null => false
     t.string   "crypted_password",                       :null => false
     t.string   "password_salt",                          :null => false
     t.string   "email"
