@@ -4,7 +4,6 @@ class Post < ActiveRecord::Base
 
   has_many :comments, :order => "created_at", :dependent => :destroy
   has_and_belongs_to_many :tags
-  has_many :notifications
   belongs_to :user
 
   attr_accessible :title, :post_type, :content, :user_id, :tags

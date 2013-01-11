@@ -9,11 +9,29 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
     # the User has not yet been activated
     if @user.save_without_session_maintenance
+      
+      events = []
+      subscription = Subscriptions.new
+      subscription.user_id = @user.id
+      subscription.subscription_type = Subscriptions::S_USER
+      subscription.resource_id = @user.id
+      subscription.name = ActiveSupport::Notifications.subscribe ("u_" + "#{@user.id}") do |*args|
+        events << ActiveSupport::Notifications::Event.new(*args)
+        event = events.last
+        note = Notifications.new
+        note.user_id = @user.id
+        note.note_type = event.payload[:note_type]
+        note.from = event.payload[:from]
+        note.resource_id = event.payload[:resource_id]
+        note.unread = 1
+        note.save!
+      end
+      subscription.save!
+      
       @user.send_activation_instructions!
       flash[:notice] = "Tu cuenta ha sido creada. Por favor mira tu e-mail para ver las instrucciones de activacion!"
       redirect_to '/login'
@@ -21,7 +39,6 @@ class UsersController < ApplicationController
       flash[:notice] = "Hubo un problema creando tu usuario."
       render :action => :new
     end
-
   end
 
   def activate

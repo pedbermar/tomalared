@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120916160704) do
+ActiveRecord::Schema.define(:version => 13) do
 
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
@@ -90,9 +90,10 @@ ActiveRecord::Schema.define(:version => 20120916160704) do
   end
 
   create_table "users", :force => true do |t|
+    t.string   "profile",                                :null => false
     t.string   "crypted_password",                       :null => false
     t.string   "password_salt",                          :null => false
-    t.string   "email",                                  :null => false
+    t.string   "email"
     t.string   "persistence_token",                      :null => false
     t.string   "single_access_token",                    :null => false
     t.string   "perishable_token",                       :null => false
@@ -104,6 +105,8 @@ ActiveRecord::Schema.define(:version => 20120916160704) do
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.string   "name",                :default => "",    :null => false
+    t.string   "bio"
+    t.string   "url"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.boolean  "active",              :default => false, :null => false

@@ -3,15 +3,21 @@
 
 
 
-<header><h1>User Data</h1></header>
+<header><h4>Configuracion de la cuenta</h4></header>
 
 <article>
 	<ul>
 		<li class="data_user">
-		    Nombre: @<%= @user.name %>
+		    Nombre de usuario: @<%= @user.name %>
+		</li>
+		<li class="data_user">
+		    Nombre del perfil: <%= @user.profile %>
 		</li>
 		<li class="data_user">
 		    Email: <%= @user.email %>
+		</li>
+		<li class="data_user">
+		    Biografia: <%= @user.bio %>
 		</li>
 		<% if ( current_user[:id] ==  @user.id) %>
 			<li><%= link_to 'Edit', edit_user_path(:current) %></li>

@@ -22,10 +22,10 @@ class GetYourTumbleOn < ActiveRecord::Migration
     add_index :tags, :id, :unique
     
     create_table :users do |t|
-      # t.string    :login,             :null => false                # optional, see below
+      t.string    :profile,             :null => false                # optional, see below
       t.string    :crypted_password,    :null => false                # optional, see below
       t.string    :password_salt,       :null => false                # optional, but highly recommended
-      t.string    :email,               :null => false                # optional, you can use login instead, or both
+      t.string    :email                           # optional, you can use login instead, or both
       t.string    :persistence_token,   :null => false                # required
       t.string    :single_access_token, :null => false                # optional, see Authlogic::Session::Params
       t.string    :perishable_token,    :null => false                # optional, see Authlogic::Session::Perishability
@@ -42,13 +42,14 @@ class GetYourTumbleOn < ActiveRecord::Migration
       t.string    :last_login_ip                                      # optional, see Authlogic::Session::MagicColumns
       
       t.string    :name,                :null => false, :default => ''
+      t.string    :bio
+      t.string    :url
       t.timestamps
     end
     
 
     add_index :users, :id, :unique
-    User.new( :name => "admin", :password => 'changeme', :email => 'root@tomalared.net' ).save
-    
+        
     Post.new( :title => "first post!", :post_type => "post", 
               :content => %[Hello, world.  We take the network'<br/>!
               Hola Mundo. Hemos estoy tomado la red.<br/>

@@ -6,23 +6,22 @@
 class CantDestroyAdminUser < StandardError; end
 
 class User < ActiveRecord::Base
-  ADMIN_USER_ID = 1
-  PASSWORD_MIN_LENGTH = 6
 
   acts_as_authentic do |c|
+    c.login_field :name
+    c.validate_email_field = false
   end
-
+  
   has_many :posts, :order => 'created_at DESC'
   has_and_belongs_to_many :tags
   has_many :comments, :order => "created_at DESC", :through => :posts
-  has_many :notifications, :order => "created_at DESC", :through => :posts
   has_many :likes
 
   before_destroy :dont_destroy_admin
 
   #attr_accessor   :password
   #attr_accessible :name, :password, :email
-  attr_accessible :id, :name, :email, :password, :password_confirmation, :openid_identifier, :notifications
+  attr_accessible :id, :profile, :name, :email, :bio, :password, :password_confirmation, :openid_identifier, :notifications
 
   validates_uniqueness_of :name
   validates_presence_of   :name
