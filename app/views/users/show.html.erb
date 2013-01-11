@@ -13,6 +13,9 @@
 		<li class="data_user">
 		    Email: <%= @user.email %>
 		</li>
+		<li class="data_user">
+		    Biografia: <%= @user.bio %>
+		</li>
 		<% if ( current_user[:id] ==  @user.id) %>
 			<li><%= link_to 'Edit', edit_user_path(:current) %></li>
 		<% end %>
