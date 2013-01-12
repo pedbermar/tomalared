@@ -14,8 +14,9 @@
 </div>
 <% elsif @user %>
 <div id="muneco" class="muneco" style="background: url(/img/<%= @user.id%>.jpg) no-repeat center; background-size: 100%;">
-    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font><span><%= pluralize(@user.posts.count, "posts") %></span>
+    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font><span><%= pluralize(@user.posts.count, "posts") %> | <%= pluralize(@user.tags.count, "tags") %></span>
     <br />
+    "<%=@user.bio%>"
     <br />
     <% if ( current_user[:id] ==  @user.id) -%><%= link_to "Editar Perfil", "/edit_me" %>&nbsp;<% end -%>
 </div>

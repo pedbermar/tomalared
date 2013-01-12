@@ -1,32 +1,7 @@
-<h4>Editar usuario</h4>
+<h1>Edit My Account</h1>
 <% @page_name = "Editar tu usuario" -%>
 <br>
 <center>
-<%= form_for @user do |f| %>
-  <%#= f.error_messages %>
-  <p>
-    <%= f.label :profile %>
-    <%= f.text_field :profile %>
-  </p>
-  <p>
-    <%= f.label :biografia %>
-    <%= f.text_field :bio %>
-  </p>
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-
-<% end %>
 <%= form_tag '/updatefoto', :multipart=> true do %>
 	Escoja un foto
 
@@ -38,9 +13,38 @@
 		<% end -%>
 <br/>
 		<%= file_field_tag 'user_pic', :accept => 'image/png,image/gif,image/jpeg' %>
+
+
+
+
 		<%= submit_tag "Subir foto" %>
 <% end %>
 
+<%= form_for @user do |f| %>
+  <%#= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :bio %><br />
+    <%= f.text_field :bio %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+
+<% end %>
 
 <br /><%= link_to "My Profile", account_path %>
 <center>

@@ -6,18 +6,29 @@
 <header><h4>Configuracion de la cuenta</h4></header>
 
 <article>
-	<ul>
-		<li class="data_user">
-		    Nombre de usuario: @<%= @user.name %>
-		</li>
+	<ul><h5>Perfil</h5>
 		<li class="data_user">
 		    Nombre del perfil: <%= @user.profile %>
 		</li>
 		<li class="data_user">
-		    Email: <%= @user.email %>
+		    Website: <%= @user.url %>
 		</li>
 		<li class="data_user">
 		    Biografia: <%= @user.bio %>
+		</li>
+		<br/>
+		<% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
+			 <%= image_tag( "/img/#{current_user[:id]}.jpg", :size => "300", :alt => "Tu imagen", :class => "post_foto")  %>
+		<% else %>
+			<%= image_tag( "/img/default.jpg", :size => "300", :alt => "Tu imagen", :class => "post_foto") %>
+		<% end -%>
+<br/>
+		<h5>Cuenta</h5>
+		<li class="data_user">
+		    Nombre de usuario: @<%= @user.name %>
+		</li>
+		<li class="data_user">
+		    Email: <%= @user.email %>
 		</li>
 		<% if ( current_user[:id] ==  @user.id) %>
 			<li><%= link_to 'Edit', edit_user_path(:current) %></li>

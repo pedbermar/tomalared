@@ -26,7 +26,7 @@
 	    
 	    	<%= link_to "@#{@user.name}" , "/post/user/#{@user.name}", :class => "linkRemote" %>,
         <%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago
-    
+    	
 	   	<span id="post-tags" <% if post.tags.empty? %>style="display:none;"<% end %>> 
 	   		<%= linked_tags_with_commas(post.tags).html_safe %> 
 	   	</span>	

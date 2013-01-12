@@ -9,8 +9,13 @@ module PostHelper
       types_base + 'post'
     end
   end
-
-
+  
+  def post_unsuscribe(post_id)
+    post = Post.find(post_id)
+    sub = Subscriptions.where(user_id: "#{current_user[:id]}", subscription_type: Subscriptions::S_TAG, resource_id: "#{@tag.id}")
+    ActiveSupport::Notifications.unsubscribe(sub.name)
+    sub.destroy
+  end
 #################################################################################
 ###  Videos de youtube
 def parse_youtube(url)
