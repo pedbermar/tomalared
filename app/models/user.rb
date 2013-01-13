@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   #attr_accessor   :password
   #attr_accessible :name, :password, :email
-  attr_accessible :id, :profile, :name, :email, :bio, :password, :password_confirmation, :openid_identifier, :notifications
+  attr_accessible :id, :profile, :name, :email,:url, :bio, :password, :password_confirmation, :openid_identifier, :notifications
 
   validates_uniqueness_of :name
   validates_presence_of   :name
