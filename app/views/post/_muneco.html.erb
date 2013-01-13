@@ -1,23 +1,33 @@
 <% if @tag %>
-<div id="muneco" class="muneco" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
-    <font size="5">#<%= @tag.name %> | </font> <% if current_user.tags.exists?(@tag.id) %>
-    <%= link_to "unfollow", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?", :remote => true, :class => "linkRemote2" %>
-    <% else %>
-    <%= link_to "follow", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?", :remote => true, :class => "linkRemote2" %>
-    <% end %>
-    <br>
-    <span><%= @tag.posts.count%> Posts</span>
-    <br>
-    <span><%= @tag.users.count%> Seguidores: </span>
-    <% @users_tag.each do |user_tag| -%>
-    <%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
-    <% end -%>
-</div>
+	<div id="muneco" class="muneco" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
+		<div id="muneco-text">
+		    <font size="5">#<%= @tag.name %> | </font> 
+		    <% if current_user.tags.exists?(@tag.id) %>
+		    	<%= link_to "unfollow", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?", :remote => true, :class => "linkRemote2" %>
+		    <% else %>
+		    	<%= link_to "follow", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?", :remote => true, :class => "linkRemote2" %>
+		    <% end %>
+		    
+		    <br>
+		    <span><%= @tag.posts.count%> Posts</span>
+		    <br>
+		    
+		    <span><%= @tag.users.count%> Seguidores: </span>
+		    <% @users_tag.each do |user_tag| -%>
+		    	<%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
+		    <% end -%>
+		</div>		    
+	</div>
 <% elsif @user %>
-<div id="muneco" class="muneco" style="background: url(/img/<%= @user.id%>.jpg) no-repeat center; background-size: 100%;">
-    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font><span><%= pluralize(@user.posts.count, "posts") %> | <%= pluralize(@user.tags.count, "tags") %></span>
-    <br />
-    "<%=@user.bio%>"
-    <br />
-</div>
+	<div id="muneco" class="muneco" style="background: url(/img/<%= @user.id%>.jpg) no-repeat center; background-size: 100%;">
+		<div id="muneco-text">	    
+		    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font>    
+		    
+		    <br />
+		    "<%=@user.bio%>"
+		    <br />
+		    
+		    <span><%= pluralize(@user.posts.count, "Posts") %> | <%= pluralize(@user.tags.count, "Groups") %></span>
+	    </div>
+	</div>
 <% end %>

@@ -43,19 +43,3 @@ $(document).ready(function() {
 });
 
 $( document ).tooltip();
-
-
-$(function(){
-        // Check the initial Poistion of the Sticky Header
-        var stickyHeaderTop = $('.topbar').offset().top;
- 
-        $(window).scroll(function(){
-                if( $(window).scrollTop() > stickyHeaderTop ) {
-                        $('.topbar').css({position: 'fixed', top: '0px'});
-                        $('#maincontent').css('display', 'block');
-                } else {
-                        $('.topbar').css({position: 'static', top: '0px'});
-                        $('#maincontent').css('display', 'none');
-                }
-        });
-  });

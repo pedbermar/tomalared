@@ -1,8 +1,23 @@
 body{
-  background:#CCCCCC;
+  background: #ccc;
+  font-family: monospace;
 }
 .logo{
   width:300px;
+}
+
+.titulo{
+  font-size: 28px;
+  color: black;
+  margin-left: 15px;
+  font-weight: bold;
+  font-family: monospace;
+  text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
+}
+
+.titulo:hover{
+  color: black;  
+  text-shadow: -1px 0px green, 0px 1px green, 1px 0px green, 0px -1px green;
 }
 
 .board_foto{
@@ -10,7 +25,8 @@ body{
 }
 
 .topbar{
-  z-index: 99;
+  position :fixed;
+  z-index: 991;
   background-color: black;
   -moz-box-shadow:    0px 0px 6px 2px #283327;
   -webkit-box-shadow: 0px 0px 6px 2px #283327;
@@ -127,8 +143,12 @@ body{
 {
   width: 100%; 
   min-height: 200px;
-  color: #ccc;
-  text-shadow: 2px 2px black;
+  color: #fff;
+  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+}
+#muneco-text
+{
+  margin-left: 15px;
 }
 .mediano-muneco
 {
@@ -155,6 +175,19 @@ body{
   margin-right: .0em;
 }
 
+#main{
+    position: relative;
+    z-index:50;
+}
+.comment-form{
+  width: 100%;
+  display:block;
+  margin-top: 2px;  
+}
+.maincontent{
+    position: relative;
+    top: 45px;    
+}
 .mainPostContent{
   width: 76%;
   margin: 1%;
@@ -202,6 +235,12 @@ body{
   font-size: 10px;
 }
 
+#mainboard{
+  position: fixed;
+  width: 100%;
+  top: 45px;  
+}
+
 .comentar{
   font-size: 10px;
   float: right;
@@ -209,6 +248,8 @@ body{
 }
 
 #footer{
+  position: relative;
+  top: 45px;
   font-size: 12px;
   text-align: center;
   padding-bottom: 30px;

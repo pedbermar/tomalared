@@ -56,25 +56,30 @@ if @navegador == 'MSIE' -%>
 		</header>
 		
 		<div class="container">
-			
-	        <div class="row maincontent">
+		    <div class="row maincontent">
 	        	<section id="main" class="nine columns">
 			        	<%= yield %>   			        
 		        </section>
+		    </div>
+		</div>
+				    
+	    <div class="container" id="mainboard">
+			<div class="row">
+				    <aside class="three columns push_nine">
+					        <% if current_user %>
+				    		    <%= render :partial => 'users/board' %>
+				            <% else %>
+					            <% if flash[:notice] %>
+				    		        <div id="notice">
+				            	    	<%= flash[:notice] %>
+				            		</div>
+				            	<% end %>
+				            <% end %>
+			        </aside>
+		    </div>  
+        </div>
 		
-		        <aside id="mainboard" class="three columns">
-			        <% if current_user %>
-		    		    <%= render :partial => 'users/board' %>
-		            <% else %>
-			            <% if flash[:notice] %>
-		    		        <div id="notice">
-		            	    	<%= flash[:notice] %>
-		            		</div>
-		            	<% end %>
-		            <% end %>
-		        </aside>
-		    </div>		    
-		        
+		<div class="container">		     
 	        <footer id="footer" class="row">
 	        	<div class="twelve columns">
 			        <% if current_user %>
