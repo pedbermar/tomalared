@@ -8,6 +8,6 @@
 	    
 		<%= text_area_tag  'body', nil, :class=> 'formComentContent', :placeholder => 'Comenta...' %>
 	    <%= hidden_field_tag  'post_id', nil, :value => post.id %>
-		<%= submit_tag "Comentar", :class => "comentar", :disable_with => 'Por favor espera' %>
+		<%= submit_tag "Comentar", :class => "comentar", :data-disable_with => 'Por favor espera' %>
 	
 <% end %>
