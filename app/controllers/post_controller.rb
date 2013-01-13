@@ -166,13 +166,12 @@ class PostController < ApplicationController
         end
         mentions.each do |u|
           user = User.find_by_name(u)
-          if user.id != current_user[:id]
-            ActiveSupport::Notifications.instrument("u_" + "#{user.id}",
-                    :note_type => Notifications::USER,
-                    :from => current_user[:id],
-                    :resource_id => post.id)
-          end
+          ActiveSupport::Notifications.instrument("u_" + "#{user.id}",
+                  :note_type => Notifications::USER,
+                  :from => current_user[:id],
+                  :resource_id => post.id)
         end
+      
       else
         params[:tags].split.each do |t|
           tag = Tag.find_by_name(t) || Tag.new(:name => t)
@@ -244,7 +243,7 @@ class PostController < ApplicationController
       if @post
         flash[:notice] = 'El mensaje se ha guardado correctamente.'
         # Notificaciones para las usuarios que siguen los GRUPOS
-        post.tags.each do |t|
+        @post.tags.each do |t|
           ActiveSupport::Notifications.instrument("t_" + "#{t.id}",
                       :note_type => Notifications::TAG_POST,
                       :from => current_user[:id],

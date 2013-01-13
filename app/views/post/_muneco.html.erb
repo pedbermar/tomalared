@@ -6,8 +6,9 @@
     <%= link_to "follow", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?", :remote => true, :class => "linkRemote2" %>
     <% end %>
     <br>
-    <span>Followers: <%= @tag.users.count%></span>
+    <span><%= @tag.posts.count%> Posts</span>
     <br>
+    <span><%= @tag.users.count%> Seguidores: </span>
     <% @users_tag.each do |user_tag| -%>
     <%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
     <% end -%>
@@ -18,6 +19,5 @@
     <br />
     "<%=@user.bio%>"
     <br />
-    <% if ( current_user[:id] ==  @user.id) -%><%= link_to "Editar Perfil", "/edit_me" %>&nbsp;<% end -%>
 </div>
 <% end %>
