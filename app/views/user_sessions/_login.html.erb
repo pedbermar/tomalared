@@ -1,5 +1,5 @@
 <div class="five columns">
-	<%= link_to image_tag( "/gfx/logo.png", :mouseover => image_path("/gfx/logo_hover.png"), :alt => "Tomalared.net", :class => 'logo'), '/post/list', :class => "linkRemote" %>
+	<%= link_to image_tag( "/gfx/logo.png", :onmouseover => "this.src='/gfx/logo_hover.png'", :onmouseout => "this.src='/gfx/logo.png'", :alt => "Tomalared.net", :class => 'logo'), '/post/list', :class => "linkRemote" %>
 </div>
 
 <section class="five columns searcher">	
