@@ -12,7 +12,7 @@ Fra::Application.routes.draw do
   match '/signup'     => 'users#new', :as => :signup
 
   #Usuario
-  match '/home'         => 'users#show'
+  match '/home'         => 'users#edit'
   match '/edit_me'    => 'users#edit'
   match '/updatefoto' => 'users#updatefoto'
   match '/updatedatos'=> 'users#updatedatos'

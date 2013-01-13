@@ -170,7 +170,7 @@ class PostController < ApplicationController
             ActiveSupport::Notifications.instrument("u_" + "#{user.id}",
                     :note_type => Notifications::USER,
                     :from => current_user[:id],
-                    :resource_id => user.id)
+                    :resource_id => post.id)
           end
         end
       else

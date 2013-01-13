@@ -1,4 +1,4 @@
-
+<center>
     <header id="notice">
     <ul id="board-block">
     	<li>
@@ -7,11 +7,8 @@
     </ul>
     <ul id="board-block">
         <li>
-        <%= current_user.posts.count%> Posts
-		</li>
-    </ul>
-     <ul id="board-block">
-        <li>
+        <%= current_user.posts.count%> Posts |
+
         <%= current_user.tags.count%> Grupos
 		</li>
     </ul>
@@ -19,7 +16,6 @@
         	<%= flash[:notice] %>
         <% end %>
     </header>
-
     <article id="marcofoto">
         <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
         <%= link_to image_tag( "/img/#{current_user.id}.jpg", :size => "200", :alt => "Tu imagen",
@@ -36,11 +32,11 @@
 	        <li><%=Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 3, :unread => 1}).count%>#</a></li>
 	        <li><%=Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 1, :unread => 1}).count%>@</a></li>
         </ul>
-    
+</center>    
 	
 	    <ul id="board-block">
 	        <li id="board-title">
-	            Mentions
+	            Ultimas conversaciones
 	        </li>
 	        
 	         
@@ -48,7 +44,7 @@
 	
 	    <ul id="board-block">
 	        <li id="board-title">
-	            Your groups
+	            Tus grupos
 	        </li>
 	        <% @tags_board = current_user.tags %>
 	        
