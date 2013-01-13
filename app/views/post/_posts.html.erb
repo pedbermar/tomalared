@@ -3,7 +3,7 @@
 
   	
 	<article class="postContent">
-		
+
 	    <% if FileTest.exists?("public/img/#{post.user_id}.jpg") %>
 	    	<div class="mediano-muneco" style="background: url(/img/<%= post.user_id%>.jpg) no-repeat center; background-size: 200%;"></div>
 	    <% else %>
