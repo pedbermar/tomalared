@@ -1,20 +1,21 @@
 <center>
-    <header id="notice">
-    <ul id="board-block">
-    	<li>
-        <h5><a href="/post/user" class="notice_a linkRemote"><%= current_user.profile%> (@<%= current_user.name%>) </a><h5>
-        </li>
-    </ul>
-    <ul id="board-block">
-        <li>
-        <%= current_user.posts.count%> Posts |
-
-        <%= current_user.tags.count%> Grupos
-		</li>
-    </ul>
-        <% if flash[:notice] %>
-        	<%= flash[:notice] %>
-        <% end %>
+    <header>
+    	<% if flash[:notice] %>
+		    <div id="notice">
+		    	<%= flash[:notice] %>
+		   	</div>
+	    <% end %>
+	    
+	    <ul>
+	    	<li>
+		        <h5><a href="/post/user" class="notice_a linkRemote"><%= current_user.profile%> (@<%= current_user.name%>) </a><h5>
+	        </li>
+	    </ul>
+	
+	    <div>
+	        <%= current_user.posts.count%> Posts |
+	        <%= current_user.tags.count%> Grupos
+	    </div>
     </header>
     <article id="marcofoto">
         <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>

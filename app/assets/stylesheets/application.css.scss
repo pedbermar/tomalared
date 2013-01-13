@@ -32,6 +32,9 @@ body{
   display: inline;
 }
 
+#notice{
+  color: green;  
+}
 
 .comment-muneco
 {
@@ -124,6 +127,8 @@ body{
 {
   width: 100%; 
   min-height: 200px;
+  color: #ccc;
+  text-shadow: 2px 2px black;
 }
 .mediano-muneco
 {
