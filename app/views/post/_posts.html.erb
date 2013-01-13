@@ -13,7 +13,7 @@
 		<span class="mainPostContent">
 			<%if current_user[:id] == post.user_id%>  
 			    <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
-		        :confirm => "¿Seguro que quieres borrar es post?", :class => "borrarPost", :method => :delete, :remote => true %>
+		        :data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
 			<% end %>
 		
 			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title } %>
