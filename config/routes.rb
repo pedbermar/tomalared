@@ -4,7 +4,7 @@ Fra::Application.routes.draw do
   #resources :sessions, :constraints => { :protocol => "https" }
 
 	#Rutas principales
-  root :to 	     => 'post#list', :as => :login
+  root :to 	     => 'user_sessions#new', :as => :login
 
 	#Login
   match '/login'      => "user_sessions#new", :as => :login

@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def show
-      @user = User.find(current_user[:id])
+      redirect_to "/post/list/"
   end
 
   def edit
