@@ -65,7 +65,7 @@ if @navegador == 'MSIE' -%>
 				    
 	    <div class="container" id="mainboard">
 			<div class="row">
-				    <aside class="three columns push_nine">
+				    <aside class="three columns push_nine board-background">
 					        <% if current_user %>
 				    		    <%= render :partial => 'users/board' %>
 				            <% else %>
@@ -81,7 +81,7 @@ if @navegador == 'MSIE' -%>
 		
 		<div class="container">		     
 	        <footer id="footer" class="row">
-	        	<div class="twelve columns">
+	        	<div class="six columns centered"">
 			        <% if current_user %>
 			        Hola, <%= current_user[:name] %>.&nbsp;
 			        <% end %>&iquest;Estas esperando la revoluci&oacute;n?

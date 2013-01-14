@@ -56,35 +56,12 @@
             <% end %>	        
 	    </ul>
 	    
-	    <ul id="board-block">
-	        <li id="board-title">
-	            Latest tumblrs
-	        </li>	        
-	            <% @posts_board = Post.find(:all, :conditions => ["user_id = ? AND post_type NOT LIKE ?", current_user[:id], "image"], :order => 'id DESC') %>
-	
-	            <% @post_board_share = Share.find(:all, :conditions => {:user_id => current_user[:id]})
-	  @post_board_share.each do |ps|
-	    p = Post.find(ps.post_id)
-	    if p.post_type != "image"
-	    p.created_at = ps.created_at
-	    @posts_board << p
-	    end
-	  end
-	
-	  @posts_board= @posts_board.sort_by {|post| post.created_at}.reverse %>
-	
-	            <% @posts_board.each do |post_board| -%>
-	            <li id="board-tags">
-	            	<a href="/post/list/<%= post_board.id %>" class="linkRemote"><%= strip_textile(post_board.content.length > 0 ? post_board.content : post_board.content.to_s)[0..18] %></a>
-	            </li>
-	            <% end %>	        
-	    </ul>
 	
 	    <ul id="board-block">
 	        <li id="board-title">
 	            Popular groups
 	        </li>
-	        <% @tags_all_board = Tag.find_most_popular(20)%>
+	        <% @tags_all_board = Tag.find_most_popular(5)%>
 	        
             <% @tags_all_board.each do |tag_board| -%>
             <li id="board-tags">
