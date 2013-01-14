@@ -28,23 +28,22 @@ class SearchController < ApplicationController
     if params[:term]
       @q = params[:term]
       tags = Array.new
-      users = Array.new 
+      users = Array.new      
             
       if @q[0] == "#" 
         @q1 = @q.gsub(/^#/,"")
         like= "%".concat(@q1.concat("%"))
-        tags = Tag.where("name like ?", like)      
-      else
-        if @q[0] == "@"
-          @q1 = @q.gsub(/^@/,"")
-          like= "%".concat(@q1.concat("%"))
-          users = User.where("name like ?", like)
-        else
-          like= "%".concat(@q)
-          users = User.where("name like ?", like)
-          tags = Tag.where("name like ?", like)
-        end
+        tags = Tag.where("name like ?", like)
+      elsif @q[0] == "@"
+        @q1 = @q.gsub(/^@/,"")
+        like= "%".concat(@q1.concat("%"))
+        users = User.where("name like ?", like)        
+      else 
+        like= "%".concat(@q.concat("%"))
+        users = User.where("name like ?", like)
+        tags = Tag.where("name like ?", like)
       end
+      
     list = users.map {|u| Hash[ id: u.id, label: "@#{u.name}", name: u.name, tipo: "user", img: "/img/#{u.id}.jpg" ]}
     list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "/img/tag.png" ]}  
     list = list.sort_by {|a,b| a[:name]}
