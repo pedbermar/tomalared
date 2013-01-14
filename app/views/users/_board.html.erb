@@ -37,11 +37,10 @@
 	        </li>
 	        
 	        
-	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1)[0..3].each do |mention_board| -%>
-	            <li id="board-tags">
-	            	
-	            	<%= mention_board.resource_id %>
-	            	<%= link_to "@#{User.find(mention_board.from).name}", "/post/list/#{mention_board.resource_id}", :class => "linkRemote" %>	            
+	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).desc(:id).uniq_by {|x| x.user_id}[0..3].each do |mention_board| -%>
+	            <li id="board-tags">	            	
+	            	<%= link_to "#{User.find(mention_board.from).name[0..5]}", "/post/user/#{User.find(mention_board.from).name}", :class => "linkRemote" %>:
+	            	<%= link_to "#{Post.find(mention_board.resource_id).content[0..15]}", "/post/mention/#{mention_board.resource_id}", :class => "linkRemote" %>	            
 	            </li>
             <% end %>
 	         
