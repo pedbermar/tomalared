@@ -89,7 +89,8 @@ a:hover{
 
 
 
-.borrarComentario, .iconsMas, .iconsMenos, .iconShare, .iconsMasComentario, .iconsMenosComentario {
+.borrarComentario, .iconsMas, .iconsMenos, .iconShare, .iconsMasComentario, .iconsMenosComentario,
+.iconsMenosComentarioDisable, .iconsMasComentarioDisable, .iconsMasDisable, .iconsMenosDisable, .iconUnshare {
   width: 12px;
   height: 12px;
   padding: 1px;
@@ -97,14 +98,32 @@ a:hover{
   float: right;
 }
 
-.iconsMas, .iconsMenos, .iconShare, {
-  left: 5px;
-}
-
-.iconsMasComentario, .iconsMenosComentario{
+.mainComentContent .iconsMas, .mainComentContent .iconsMenos,.mainComentContent .iconsMasDisable,.mainComentContent .iconsMenosDisable {
+  position: relative;  
   top: -8px;
 }
 
+.mainPostContent .iconsMas, .mainPostContent .iconsMenos,.mainPostContent .iconsMasDisable,.mainPostContent .iconsMenosDisable {
+  position: relative;  
+  top: 5px;
+  left: 3px;
+}
+
+
+.icons2{
+  position: relative;  
+  top: 8px;  
+  text-align: center;
+}
+
+.iconsMasComentario, .iconsMenosComentario, .iconsMenosComentarioDisable, .iconsMasComentarioDisable{
+  top: -8px;
+}
+
+.icons{
+  position: relative;
+  top: -4px;
+}
 .icon-exit, .icon-home{
   width: 23px;
   height: 23px;
@@ -228,6 +247,29 @@ a:hover{
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
 }
+
+#user-edit{
+  position:relative;
+  display: block;  
+  top: 10px;
+  padding: 20px;
+  text-align: center;
+  height: 545px;
+  background-color:rgba(255,255,255,0.5);
+  margin: 0;
+  
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.user-edit{
+  display: block;  
+  padding: 5px;
+  text-align: center;
+  margin: 0px;
+  background-color:rgba(255,255,255,1);
+  }
+
 .borrarPost{
   float: right;
   width: 15px;

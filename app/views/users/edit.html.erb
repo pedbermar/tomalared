@@ -1,57 +1,48 @@
-<center>
-<h4>Editar usuario</h4>
-<% @page_name = "Editar tu usuario" -%>
-
-<p>
-<%= form_tag '/updatefoto', :multipart=> true do %>
-	Escoja un foto
-
-<br/>
-		<% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
-			 <%= image_tag( "/img/#{current_user[:id]}.jpg", :size => "300", :alt => "Tu imagen", :class => "post_foto")  %>
-		<% else %>
-			<%= image_tag( "/img/default.jpg", :size => "300", :alt => "Tu imagen", :class => "post_foto") %>
-		<% end -%>
-<br/>
-		<%= file_field_tag 'user_pic', :accept => 'image/png,image/gif,image/jpeg' %>
-
-
-
-
-		<%= submit_tag "Subir foto" %>
-<% end %>
-</p>
-<%= form_for @user do |f| %>
-  <%#= f.error_messages %>
-  <p>
-    <%= f.label :nombre_del_perfil %><br />
-    <%= f.text_field :profile %>
-  </p>
-  <p>
-    <%= f.label :bio %><br />
-    <%= f.text_field :bio %>
-  </p>
-    <p>
-    <%= f.label :website %><br />
-    <%= f.text_field :url %>
-  </p>
-  
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-
-<% end %>
-
-<br /><%= link_to "My Profile", account_path %>
-<center>
-
+<section id="user-edit" >
+	<h4>Editar usuario</h4>
+	<% @page_name = "Editar tu usuario" -%>
+	
+	<div class="six columns user-edit">
+	<%= form_tag '/updatefoto', :multipart=> true do %>
+		Escoja un foto
+	
+	
+			<% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
+				 <%= image_tag( "/img/#{current_user[:id]}.jpg", :width => "100%", :alt => "Tu imagen", :class => "post_foto")  %>
+			<% else %>
+				<%= image_tag( "/img/default.jpg", :width => "100%", :alt => "Tu imagen", :class => "post_foto") %>
+			<% end -%>
+	
+			<%= file_field_tag 'user_pic', :accept => 'image/png,image/gif,image/jpeg' %>
+	
+			<%= submit_tag "Subir foto" %>	
+	</div>
+		
+		<% end %>
+	<div class="five columns push_one user-edit">	  
+		<%= form_for @user do |f| %>
+		  <%#= f.error_messages %>
+		  
+		    <%= f.label :nombre_del_perfil %>
+		    <%= f.text_field :profile %>
+	   <br />  <br />
+		    <%= f.label :bio %>
+		    <%= f.text_field :bio %>
+		<br />  <br />
+		    <%= f.label :website %>
+		    <%= f.text_field :url %>
+		<br />  <br />
+		    <%= f.label :email %>
+		    <%= f.text_field :email %>
+		<br />  <br />
+		    <%= f.label :password %>
+		    <%= f.password_field :password %>
+		<br />  <br />
+		    <%= f.label :password_confirmation %>
+		    <%= f.password_field :password_confirmation %>
+		  
+		  <%= f.submit "Submit" %>
+		
+		<% end %>
+	</div>
+</section>>
