@@ -29,7 +29,7 @@ class PasswordResetsController < ApplicationController
     # Use @user.save_without_session_maintenance instead if you
     # don't want the user to be signed in automatically.
     if @user.save
-      flash[:success] = "Your password was successfully updated"
+      flash[:success] = "Tu password ha sido actualizada con exito!"
       redirect_to @user
     else
       render :action => :edit
@@ -42,7 +42,7 @@ class PasswordResetsController < ApplicationController
   def load_user_using_perishable_token
     @user = User.find_using_perishable_token(params[:id])
     unless @user
-      flash[:error] = "We're sorry, but we could not locate your account"
+      flash[:error] = "Lo sentimos, pero no pudimos encontrar tu cuenta"
       redirect_to root_url
     end
   end
