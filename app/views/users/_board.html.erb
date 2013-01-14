@@ -1,5 +1,4 @@
-<center>
-    <header>
+    <header class="board-white">
     	<% if flash[:notice] %>
 		    <div id="notice">
 		    	<%= flash[:notice] %>
@@ -8,62 +7,55 @@
 	    
 	    <ul>
 	    	<li>
-		        <h5><a href="/post/user" class="notice_a linkRemote"><%= current_user.profile%> (@<%= current_user.name%>) </a><h5>
+		        <a href="/post/user" class="notice_a linkRemote"><%= current_user.profile%> (@<%= current_user.name%>) </a>
 	        </li>
 	    </ul>
 	
-	    <div>
-	        <%= current_user.posts.count%> Posts |
-	        <%= current_user.tags.count%> Grupos
-	    </div>
     </header>
     <article id="marcofoto">
         <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
         <%= link_to image_tag( "/img/#{current_user.id}.jpg", :size => "200", :alt => "Tu imagen",
-        :class => "board_foto"), '/post/user', :class => "linkRemote"%>
+        :class => "board-foto"), '/post/user', :class => "linkRemote"%>
         <% else %>
         <%= link_to image_tag( "/img/default.jpg", :size => "200", :alt => "Tu imagen",
-        :class => "board_foto"), '/post/user', :class => "linkRemote"%>
+        :class => "board-foto"), '/post/user', :class => "linkRemote"%>
         <% end -%>
     </article>
 
     <nav>
-    	<ul id="board-notifi">
-	        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1).count%>C</a></li>
-	        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1).count%>#</a></li>
-	        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).count%>@</a></li>
-        </ul>
-</center>    
-	
-	    <ul id="board-block">
+		
+	    	<ul id="board-notifi">
+		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1).count%>C</a></li>
+		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1).count%>#</a></li>
+		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).count%>@</a></li>
+	        </ul>
+		
+	    <ul id="board-block" style="display:none;">
 	        <li id="board-title">
-	            Ultimas conversaciones
+	            Conversaciones:
 	        </li>
-	        
 	         
 	    </ul>
 	
-	    <ul id="board-block">
+	    <ul id="board-block" <% if current_user.tags.empty? %>style="display:none;"<% end %>>
 	        <li id="board-title">
-	            Tus grupos
+	            Tus grupos:
 	        </li>
-	        <% @tags_board = current_user.tags %>
-	        
-            <% @tags_board.each do |tag_board| -%>
-            <li id="board-tags">
-            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
-            </li>
+	        	        
+            <% current_user.tags.each do |tag_board| -%>
+	            <li id="board-tags">
+	            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
+	            </li>
             <% end %>	        
 	    </ul>
 	    
 	
 	    <ul id="board-block">
 	        <li id="board-title">
-	            Popular groups
+	            Tendencias:
 	        </li>
-	        <% @tags_all_board = Tag.find_most_popular(5)%>
 	        
-            <% @tags_all_board.each do |tag_board| -%>
+            <% Tag.find_most_popular(4).each do |tag_board| -%>
             <li id="board-tags">
             	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
             </li>

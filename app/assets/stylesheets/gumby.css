@@ -194,7 +194,7 @@
   	
   ======================================================*/
   	
-  	ul, ol { margin-bottom: 18px; }
+  	ul, ol { margin-bottom: 6px; }
   	ul { list-style: none outside; }
   	ol { list-style: decimal; }
   	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }

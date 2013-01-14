@@ -17,6 +17,7 @@ a{
 a:hover{
   color: green;
 }
+
 .logo{
   width:300px;
 }
@@ -35,8 +36,8 @@ a:hover{
   text-shadow: -1px 0px green, 0px 1px green, 1px 0px green, 0px -1px green;
 }
 
-.board_foto{
-  width:200px;
+.board-foto{
+  width: 100%;
 }
 
 .topbar{
@@ -61,6 +62,11 @@ a:hover{
 
 #board-notifi li{
   display: inline;
+  background: white;
+}
+
+#board-notifi{
+  background: white;
 }
 
 #notice{
@@ -83,17 +89,29 @@ a:hover{
 
 
 
-.borrarComentario{
-  width: 15px;
-  height: 15px;
-  right: 0px;
-  top: 0px;
+.borrarComentario, .iconsMas, .iconsMenos, .iconShare, .iconsMasComentario, .iconsMenosComentario {
+  width: 12px;
+  height: 12px;
+  padding: 1px;
+  margin: 2px;
   float: right;
-  margin: 0;
 }
 
+.iconsMas, .iconsMenos, .iconShare, {
+  left: 5px;
+}
 
+.iconsMasComentario, .iconsMenosComentario{
+  top: -8px;
+}
 
+.icon-exit, .icon-home{
+  width: 23px;
+  height: 23px;
+  padding: 2px;
+  top: 5px;
+}
+  
 #archivo{
   left: 6px;
   top: 1px;
@@ -127,19 +145,29 @@ a:hover{
   margin-right: 10px;
 }
 
+#board-block {  
+  background: white;
+  text-align: left;  
+  padding-left: 10px;
+  padding-bottom: 1px;  
+  
+}
 #board-block li{
   height: 14px;
+  background: white;
+  margin: 5px;
 }
 #board-title{
   text-decoration:underline;
 }
 
 .textarea{
-  max-width: 74%;
-  max-height: 100px; 
   margin: 1%;
+  float: left;  
+  height: 45px;   
+  width: 74%;
   padding: 1%;
-  float: left;
+  background: #fff;   
 }
 
 #tumblear{
@@ -328,7 +356,7 @@ a:hover{
 #mainboard{
   position: fixed;
   width: 100%;
-  top: 45px; 
+  top: 52px; 
   z-index: 1;  
 }
 
@@ -339,11 +367,13 @@ a:hover{
 }
 
 #footer{
-  position: relative;
-  top: 45px;
+  position: relative;  
+  padding: 5px;
+  top: 60px;
   font-size: 12px;
-  text-align: center;
-  padding-bottom: 30px;
+  text-align: center;  
+  color: white; 
+  margin-bottom: 100px;  
 }
 
 .youtube{
@@ -372,7 +402,7 @@ a:hover{
 .arrow-left { 
   position: relative;
   float:right;
-  top: 12px;
+  top: 6px;
   left: 10%;
   width: 0; 
   height: 0; 
@@ -385,7 +415,7 @@ a:hover{
 .arrow-left1 { 
   position: relative;
   float:right;
-  top: 12px;
+  top: 6px;
   left: 10%;
   width: 0; 
   height: 0; 
@@ -398,8 +428,8 @@ a:hover{
 .arrow-left-comment { 
   position: relative;
   float:right;
-  top: 3px;
-  left: 10%;
+  top: 6px;
+  left: 11%;
   width: 0; 
   height: 0; 
   border-top: 7px solid transparent;
@@ -407,13 +437,29 @@ a:hover{
   
   border-right: 7px solid white; 
 }
-.iconBorrarComentario{
-    position:relative;
-    left: 1px;
-}
 
 .board-background{
    background-color:rgba(255,255,255,0.5);
-   height: 2000px;
-   padding: 10px;
+   padding-top: 0px;
+   padding-bottom: 0px;
+   padding-left: 5px;   
+   padding-right: 5px;   
+   text-align: center;
+   -moz-border-radius: 7px;
+   -webkit-border-radius: 7px;
+}
+
+.board-white{
+  background: white;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  padding: 5px;
+}
+.board-white a, #board-block a{ 
+  color: black;
+  text-shadow: none;   
+}
+.board-white a:hover, #board-block a:hover, #board-notifi a:hover{ 
+  color: green;
+  text-shadow: none;   
 }
