@@ -112,24 +112,7 @@ class PostController < ApplicationController
       type = params[:post_type]
       post.content = params[:content] if TYPES[type]
       post.post_type = type_parse(post.content)
-      # Notificaciones para las menciones
-      mentions = Array.new
-      post.content.split.each do |t|
-        if t.first == '@'
-          mentions << t.gsub(/^@/,"")
-        end
-      end
-      @mentions_note = Array.new
-      mentions.each do |u|
-        user = User.find_by_name(u)
-        note = Notifications.new
-        note.user_id = user.id
-        note.note_type = Notifications::USER
-        note.from = current_user[:id]
-        note.resource_id = post.id
-        note.unread = 1
-        @mentions_note << note
-      end
+      
       # POST_TYPE == IMAGE
       if post.post_type == 'image'
         capturanombre = "#{post.user_id}-#{Time.now}"
@@ -164,6 +147,7 @@ class PostController < ApplicationController
         direcion2 = "/post/#{capturanombre}.jpg"
         post.content = direcion2
       end
+      
       # POST_TYPE == QUOTE || POST
       if post.post_type == 'quote' || post.post_type == 'post'
         t11 = Array.new
@@ -194,7 +178,7 @@ class PostController < ApplicationController
           post.tags << tag
         end
       end
-      # POST_TYPE == (LINK) || (video)
+      # POST_TYPE == LINK || VIDEO
       if post.post_type == 'link' || post.post_type == 'video'
         require 'metainspector'
         require 'iconv'
@@ -251,13 +235,29 @@ class PostController < ApplicationController
       if id
         if post.save
           @post = Post.find(id)
-          @mentions.save
         end
       else
         @post = Post.create!(:post_type => post.post_type, :title => post.title, :content => post.content, :user_id => post.user_id, :tags => post.tags)
       end
       # save the post - if it fails, send the user back from whence she came
       if @post
+        # Notificaciones para las menciones
+        mentions = Array.new
+        post.content.split.each do |t|
+          if t.first == '@'
+            mentions << t.gsub(/^@/,"")
+          end
+        end      
+        mentions.each do |u|
+          user = User.find_by_name(u)
+          note = Notifications.new
+          note.user_id = user.id
+          note.note_type = Notifications::USER
+          note.from = current_user[:id]
+          note.resource_id = @post.id
+          note.unread = 1
+          note.save
+        end
         flash[:notice] = 'El mensaje se ha guardado correctamente.'
       else
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
@@ -417,23 +417,6 @@ class PostController < ApplicationController
       format.html { redirect_to post_path }
       format.js
     end
-  end
-
-  def mentions
-    @post = Post.new
-    @user  = User.find(params[:user])
-    @post.post_type = 'quote'
-    @post.content = "@#{@user.name} "
-
-    @mentions = Notifications.find(:all,
-                                   :conditions => ["((`user_id` = ? AND `from` = ?) OR (`user_id` = ? AND `from` = ?)) AND `note_type` = 3", current_user[:id], params[:user], params[:user], current_user[:id]],
-                                   :order => 'post_id DESC')
-
-    @posts = Array.new
-    @mentions.each do |m|
-      @posts << Post.find(m.post_id)
-    end
-    render :action => 'edit'
   end
 
   def type_parse(str)
