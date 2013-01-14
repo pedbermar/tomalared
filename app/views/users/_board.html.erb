@@ -31,10 +31,19 @@
 		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).count%>@</a></li>
 	        </ul>
 		
-	    <ul id="board-block" style="display:none;">
+	    <ul id="board-block" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).empty? %>style="display:none;"<% end %>>
 	        <li id="board-title">
 	            Conversaciones:
 	        </li>
+	        
+	        
+	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1)[0..3].each do |mention_board| -%>
+	            <li id="board-tags">
+	            	
+	            	<%= mention_board.resource_id %>
+	            	<%= link_to "@#{User.find(mention_board.from).name}", "/post/list/#{mention_board.resource_id}", :class => "linkRemote" %>	            
+	            </li>
+            <% end %>
 	         
 	    </ul>
 	
@@ -43,7 +52,7 @@
 	            Tus grupos:
 	        </li>
 	        	        
-            <% current_user.tags.each do |tag_board| -%>
+            <% current_user.tags[0..3].each do |tag_board| -%>
 	            <li id="board-tags">
 	            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
 	            </li>

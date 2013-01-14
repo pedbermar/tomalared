@@ -18,7 +18,9 @@
 			<%if current_user[:id] == post.user_id%>  
 			    <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
 		        :data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
-			<% end %>
+			<% else %>							    		
+	    		<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>     
+	    	<% end %>	
 			
 			<%= link_to "@#{@user.name}" , "/post/user/#{@user.name}", :class => "linkRemote" %>,
     		<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:	
@@ -30,9 +32,10 @@
 	     		<%if current_user%>	    	
 		    		<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>	
 		    	<% end %>
-		    	<span <% if post.tags.empty? %>style="display:none;"<% end %>>      	
-		   			<%= linked_tags_with_commas(post.tags).html_safe %> 
+		    	<span <%if post.post_type == "quote"%> style="display: none;" <%end%>>      	
+		   			<%= linked_tags_with_commas(post.tags).html_safe %>
 		   		</span>
+		   		&nbsp; 
 	   		</div>
 	    </div>	    
 	</article>

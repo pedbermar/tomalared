@@ -1,15 +1,9 @@
-    <span title="
-	    <div style='text-align:right;'>
-		   	<span style='color: green;'>Positivos <%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0 }).count%></span><br/>
-		    <span style='color: red;'>Negativos <%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 0, :dontlike => 1 }).count%></span><br/>
-		    <span style='color: black;'>Total <%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 0, :dontlike => 1 }).count  %></span>
-	    </div>">
-	    
 	    <ul class="voteMenu">
 			<%if !Likes.exists?(:user_id => current_user, :like_type => 1, :type_id => post_id)%>
    				 <li>
 					<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 1, :type_id => post_id }, :class => "iconsMas linkRemote2" %>
 				</li>
+	
 			 	<li>
 					<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 1, :type_id => post_id}, :method => :delete, :class => "iconsMenos linkRemote2"  %>
 				</li>
@@ -19,7 +13,7 @@
 	 				<li>
 						<%= link_to '', '', :class => "iconsMasDisable" %>
 					</li>			
-						
+	
 	 				<li>						
 						<%= link_to '',	{:controller => :vote, :action => 'change_to_dontlike', :like_type => 1, :type_id => post_id }, :method => :delete, :class => "iconsMenos linkRemote2"  %>
 					</li>
@@ -33,12 +27,7 @@
 									
 				<% end %>
 			<% end %>
+	
+				<li class="icons2"><%= Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 1, :type_id => post_id, :like => 0, :dontlike => 1 }).count  %></li>			
 			
-			
-			<%if current_user[:id] != post_user_id%>	    		
-	    		<%= render :partial => 'share/share', :locals => { :post_id => post_id } %>     
-	    	<% end %>	
-	    	
-	    	
 		</ul>
-    </span>
