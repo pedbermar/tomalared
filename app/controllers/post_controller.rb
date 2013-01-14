@@ -358,6 +358,14 @@ class PostController < ApplicationController
         end
         @page_name = "Post de #{@user.name}"
       end
+    elsif params[:pagina] == 'mentions'
+      con = Notifications.where(:user_id => current_user[:id], :from => params[:id], :note_type => Notifications::USER)
+      con = con + Notifications.where(:user_id => params[:id], :from => current_user[:id], :note_type => Notifications::USER)
+      cons = Array.new
+      con.each do |c|
+        cons << c.resource_id
+      end
+      @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
     else
       if params[:id]
         @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
