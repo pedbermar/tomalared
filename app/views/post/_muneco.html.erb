@@ -9,24 +9,32 @@
 		    <% end %>
 		    
 		    <br>
+		    <%if @tag.posts%>
 		    <span><%= @tag.posts.count%> Posts</span>
 		    <br>
-		    
+		    <%end%>
+		    <%if @tag.users%>
 		    <span><%= @tag.users.count%> Seguidores: </span>
+
 		    <% @tag.users.each do |user_tag| -%>
 		    	<%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
 		    <% end -%>
+
 		</div>		    
 	</div>
 <% elsif @user %>
 	<div id="muneco" class="muneco" style="background: url(/img/<%= @user.id%>.jpg) no-repeat center; background-size: 100%;">
 		<div id="muneco-text">	    
 		    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font>    
-		    
 		    <br />
-		    "<%=@user.bio%>"
+		    <%if @user.bio%>
+		    <%=@user.bio%>
 		    <br />
-		    
+		    <%end%>
+		    <%if @user.url%>
+		    <%= link_to @user.url, @user.url%>
+		    <br />
+		    <%end%>
 		    <span><%= pluralize(@user.posts.count, "Posts") %> | <%= pluralize(@user.tags.count, "Groups") %></span>
 		    </div>
 	</div>
