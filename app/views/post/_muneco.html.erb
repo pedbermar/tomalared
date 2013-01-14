@@ -13,7 +13,7 @@
 		    <br>
 		    
 		    <span><%= @tag.users.count%> Seguidores: </span>
-		    <% @user_tag.each do |user_tag| -%>
+		    <% @tag.users.each do |user_tag| -%>
 		    	<%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
 		    <% end -%>
 		</div>		    
@@ -28,6 +28,6 @@
 		    <br />
 		    
 		    <span><%= pluralize(@user.posts.count, "Posts") %> | <%= pluralize(@user.tags.count, "Groups") %></span>
-	    </div>
+		    </div>
 	</div>
 <% end %>
