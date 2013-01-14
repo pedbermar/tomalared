@@ -112,6 +112,35 @@ class PostController < ApplicationController
       type = params[:post_type]
       post.content = params[:content] if TYPES[type]
       post.post_type = type_parse(post.content)
+      # Notificaciones para las menciones
+      mentions = Array.new
+      post.content.split.each do |t|
+        if t.first == '@'
+          mentions << t.gsub(/^@/,"")
+        end
+      end
+      mentions.each do |u|
+        user = User.find_by_name(u)
+        note = Notifications.new
+        note.user_id = user.id
+        note.note_type = Notifications::USER
+        note.from = current_user[:id]
+        note.resource_id = post.id
+        note.unread = 1
+        note.save
+      end
+      # Notificaciones para las usuarios que siguen los GRUPOS
+      post.tags.each do |t|
+        t.users.each do |user|
+          note = Notifications.new
+          note.user_id = user.id
+          note.note_type = Notifications::TAG_POST
+          note.from = current_user[:id]
+          note.resource_id = post.id
+          note.unread = 1
+          note.save
+        end
+      end
       # POST_TYPE == IMAGE
       if post.post_type == 'image'
         capturanombre = "#{post.user_id}-#{Time.now}"
@@ -242,34 +271,6 @@ class PostController < ApplicationController
       # save the post - if it fails, send the user back from whence she came
       if @post
         flash[:notice] = 'El mensaje se ha guardado correctamente.'
-        # Notificaciones para las usuarios que siguen los GRUPOS
-        @post.tags.each do |t|
-          ActiveSupport::Notifications.instrument("t_" + "#{t.id}",
-                      :note_type => Notifications::TAG_POST,
-                      :from => current_user[:id],
-                      :resource_id => @post.id)
-        end
-
-        if post.post_type == 'quote'
-
-        end
-        events = []
-        subscription = Subscriptions.new
-        subscription.user_id = current_user[:id]
-        subscription.subscription_type = Subscriptions::S_POST
-        subscription.resource_id = @post.id
-        subscription.name = ActiveSupport::Notifications.subscribe ("p_" + "#{@post.id}") do |*args|
-          events << ActiveSupport::Notifications::Event.new(*args)
-          event = events.last
-          note = Notifications.new
-          note.user_id = current_user[:id]
-          note.note_type = event.payload[:note_type]
-          note.from = event.payload[:from]
-          note.resource_id = event.payload[:resource_id]
-          note.unread = 1
-          note.save!
-        end
-        subscription.save!
       else
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
       end

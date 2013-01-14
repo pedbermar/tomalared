@@ -22,28 +22,46 @@ class CommentController < ApplicationController
     @comment = Comment.create!(:body => params[:body], :post_id => params[:post_id], :user_id => current_user[:id])
     
     if @comment
-      ActiveSupport::Notifications.instrument("p_" + "#{@comment.post_id}",
-                      :note_type => Notifications::COMMENT,
-                      :from => current_user[:id],
-                      :resource_id => @comment.id)
-      unless Subscriptions.find(:user_id => current_user[:id], :resource_type => Notifications::POST, :resource_id => @comment.post_id)
-        events = []
-        subscription = Subscriptions.new
-        subscription.user_id = current_user[:id]
-        subscription.subscriptions_type = Subscriptions::S_POST
-        subscription.resource_id = @comment.post_id
-        subscription.name = ActiveSupport::Notifications.subscribe ("p_" + "#{@comment.post_id}") do |*args|
-          events << ActiveSupport::Notifications::Event.new(*args)
-          event = events.last
+      post = Post.find(@comment.post_id)
+      # Notificacion para el dueño del post
+      if current_user[:id] != post.user_id 
+        note = Notifications.new
+        note.user_id =  post.user_id
+        note.note_type = Notifications::COMMENT
+        note.from = current_user[:id]
+        note.resource_id = @comment.post_id
+        note.unread = 1
+        note.save
+      end
+      # Notificacion para los propietarios de los comentarios del post  
+      comms = post.comments.uniq_by {|x| x.user_id}
+      comms.each do |c|
+        if current_user[:id] != c.user_id
           note = Notifications.new
-          note.user_id = current_user[:id]
-          note.note_type = event.payload[:note_type]
-          note.from = event.payload[:from]
-          note.resource_id = event.payload[:resource_id]
+          note.user_id =  c.user_id
+          note.note_type = Notifications::COMMENT
+          note.from = current_user[:id]
+          note.resource_id = c.post_id
           note.unread = 1
           note.save
         end
-        subscription.save
+      end  
+      # Notificaciones para las menciones
+      mentions = Array.new
+      @comment.body.split.each do |t|
+        if t.first == '@'
+          mentions << t.gsub(/^@/,"")
+        end
+      end
+      mentions.each do |u|
+        user = User.find_by_name(u)
+        note = Notifications.new
+        note.user_id = user.id
+        note.note_type = Notifications::COMMENT
+        note.from = current_user[:id]
+        note.resource_id = @comment.id
+        note.unread = 1
+        note.save
       end
       flash[:notice] = 'El mensaje se ha guardado correctamente.'
     else
