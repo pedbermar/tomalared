@@ -129,18 +129,6 @@ class PostController < ApplicationController
         note.unread = 1
         note.save
       end
-      # Notificaciones para las usuarios que siguen los GRUPOS
-      post.tags.each do |t|
-        t.users.each do |user|
-          note = Notifications.new
-          note.user_id = user.id
-          note.note_type = Notifications::TAG_POST
-          note.from = current_user[:id]
-          note.resource_id = post.id
-          note.unread = 1
-          note.save
-        end
-      end
       # POST_TYPE == IMAGE
       if post.post_type == 'image'
         capturanombre = "#{post.user_id}-#{Time.now}"
@@ -187,20 +175,18 @@ class PostController < ApplicationController
           tag = Tag.find_by_name(t) || Tag.new(:name => t)
           post.tags << tag
         end
-        mentions = Array.new
-        post.content.split.each do |t|
-          if t.first == '@'
-            mentions << t.gsub(/^@/,"")
+        # Notificaciones para las usuarios que siguen los GRUPOS
+        post.tags.each do |t|
+          t.users.each do |user|
+            note = Notifications.new
+            note.user_id = user.id
+            note.note_type = Notifications::TAG_POST
+            note.from = current_user[:id]
+            note.resource_id = post.id
+            note.unread = 1
+            note.save
           end
         end
-        mentions.each do |u|
-          user = User.find_by_name(u)
-          ActiveSupport::Notifications.instrument("u_" + "#{user.id}",
-                  :note_type => Notifications::USER,
-                  :from => current_user[:id],
-                  :resource_id => post.id)
-        end
-      
       else
         params[:tags].split.each do |t|
           tag = Tag.find_by_name(t) || Tag.new(:name => t)
