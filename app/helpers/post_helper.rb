@@ -34,13 +34,13 @@ def text_parse(str)
 	p2 = ""
       str.split.each do |t|
         t11 = t.gsub(/\s?(^#)?/, "")
-	      p = t.gsub(/^#\w+/) { link_to "##{t11}", "/post/tag/#{t11}", :class => "linkRemote" }
+	      p = t.gsub(/^#\w+/) { link_to "##{t11} ", "/post/tag/#{t11}", :class => "linkRemote" }
 
         t21 = t.gsub(/\s?(^@)?/, "")
-        p1 = p.gsub(/^@\w+/) { link_to "@#{t21}", "/post/user/#{t21}", :class => "linkRemote" }
+        p1 = p.gsub(/^@\w+/) { link_to "@#{t21} ", "/post/user/#{t21}", :class => "linkRemote" }
 
         t30 = t.scan(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
-	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}...",  "#{$1}", :target => "_blank"}
+	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}... ",  "#{$1}", :target => "_blank"}
       end
 	return p2
 end

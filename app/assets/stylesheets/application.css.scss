@@ -1,6 +1,21 @@
 body{
-  background: #ccc;
+  background-image: url('/gfx/fondo.jpg');
+  background-color: black;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  background-position:top; 
   font-family: monospace;
+  color: #000;
+}
+
+a{
+  color: white;  
+  font-weight: bold;
+  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+}
+
+a:hover{
+  color: green;
 }
 .logo{
   width:300px;
@@ -119,14 +134,11 @@ body{
   text-decoration:underline;
 }
 
-#board-tags a{
-  color: green;
-}
-
 .textarea{
-  max-width: 76%;
+  max-width: 74%;
   max-height: 100px; 
   margin: 1%;
+  padding: 1%;
   float: left;
 }
 
@@ -135,9 +147,19 @@ body{
   margin-right: 1%;
 }
 
-#formulario, #posts{
+#posts{
   display: table;
   width: 100%;
+}
+
+#save{
+  display: table;
+  width: 100%;
+  background-color:rgba(255,255,255,0.5);
+  margin-top: 1%;
+  padding-bottom: 5px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
 }
 .muneco
 {
@@ -146,6 +168,12 @@ body{
   color: #fff;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
+.postCommentsVote{
+  position: relative;
+  left: 1px;
+  font-size: 10px;
+}
+
 #muneco-text
 {
   margin-left: 15px;
@@ -164,9 +192,13 @@ body{
 }
 .post{
   display: table;
-  width: 100%;
-  border-top: solid 1px #000;
+  width: 100%;  
   margin-top: 20px;
+  padding-bottom: 5px;
+  background-color:rgba(255,255,255,0.5);
+  
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
 }
 .borrarPost{
   float: right;
@@ -179,23 +211,49 @@ body{
     position: relative;
     z-index:50;
 }
-.comment-form{
-  width: 100%;
+
+.postComments {
+  float: right;
+  width: 78%;
   display:block;
   margin-top: 2px;  
 }
+
+.postFooter{
+  position: relative;
+  bottom: 0px;
+  left: 1px;
+  float: right;
+  width: 100%;
+  display:block;
+  vertical-align: text-bottom;
+}
+
+.postFooter a{
+  text-shadow: none; 
+  color: black;
+}
+
 .maincontent{
     position: relative;
     top: 45px;    
 }
+
+.comment {
+  display: block; 
+  width: 100%; 
+}
+
 .mainPostContent{
-  width: 76%;
+  width: 74%;
   margin: 1%;
-  min-height: 100px; 
+  padding: 1%;
+  margin-bottom: 0px;  
   float: left;
   font-size: 13px;
   line-height: 15px;
   background-color: white;
+  color: black;
 }
 .mainComentContent{
   width: 76%;
@@ -206,9 +264,10 @@ body{
 }
 
 .formComentContent{
-  width: 76%;
+  width: 74%;
   margin: 1%;
-  height: 34px; 
+  padding: 1%;
+  height: 23px; 
   float: left;
   font-size: 10px;
 }
@@ -224,11 +283,42 @@ body{
 }
 #text{
   display: table;
+  color: black;
+  height: 28px;
+}
+
+.text-quote{
+  display: table;
+  color: black;
+  font-size: 18px;
+  color: black;
+  margin: 1%;
+  font-size: 12px;
+  text-align: justify;
+  height: 28px;
+}
+
+.mainPostContent a, .mainComentContent a{
+  color: black;
+  text-shadow: none;
+}
+
+.mainPostContent a:hover, .mainComentContent a:hover{ 
+  color: green;
+}
+
+.text-quote a{
+  color: black;
+  text-shadow: none;    
+}
+.text-link a{
+  color: black;
+  text-shadow: none;    
 }
 .voteMenu li{
   display: inline;
-  float: left;
-  margin: 0px 0px 0px 1%;  
+  float: right;
+  height: 0px;  
 }
 
 .commentHeader{
@@ -238,7 +328,8 @@ body{
 #mainboard{
   position: fixed;
   width: 100%;
-  top: 45px;  
+  top: 45px; 
+  z-index: 1;  
 }
 
 .comentar{
@@ -276,4 +367,53 @@ body{
 #resultado-busqueda{
   color: red;
   font-size: 12px;
+}
+
+.arrow-left { 
+  position: relative;
+  float:right;
+  top: 12px;
+  left: 10%;
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  
+  border-right:10px solid white; 
+}
+
+.arrow-left1 { 
+  position: relative;
+  float:right;
+  top: 12px;
+  left: 10%;
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  
+  border-right:10px solid white; 
+}
+
+.arrow-left-comment { 
+  position: relative;
+  float:right;
+  top: 3px;
+  left: 10%;
+  width: 0; 
+  height: 0; 
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent; 
+  
+  border-right: 7px solid white; 
+}
+.iconBorrarComentario{
+    position:relative;
+    left: 1px;
+}
+
+.board-background{
+   background-color:rgba(255,255,255,0.5);
+   height: 2000px;
+   padding: 10px;
 }
