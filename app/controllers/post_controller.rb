@@ -119,6 +119,7 @@ class PostController < ApplicationController
           mentions << t.gsub(/^@/,"")
         end
       end
+      @mentions_note = Array.new
       mentions.each do |u|
         user = User.find_by_name(u)
         note = Notifications.new
@@ -127,7 +128,7 @@ class PostController < ApplicationController
         note.from = current_user[:id]
         note.resource_id = post.id
         note.unread = 1
-        note.save
+        @mentions_note << note
       end
       # POST_TYPE == IMAGE
       if post.post_type == 'image'
@@ -250,6 +251,7 @@ class PostController < ApplicationController
       if id
         if post.save
           @post = Post.find(id)
+          @mentions.save
         end
       else
         @post = Post.create!(:post_type => post.post_type, :title => post.title, :content => post.content, :user_id => post.user_id, :tags => post.tags)
