@@ -29,9 +29,9 @@
 
     <nav>
     	<ul id="board-notifi">
-	        <li><%=Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 5, :unread => 1}).count%>C</a></li>
-	        <li><%=Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 3, :unread => 1}).count%>#</a></li>
-	        <li><%=Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 1, :unread => 1}).count%>@</a></li>
+	        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1).count%>C</a></li>
+	        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1).count%>#</a></li>
+	        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).count%>@</a></li>
         </ul>
 </center>    
 	
