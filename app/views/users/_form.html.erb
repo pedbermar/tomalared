@@ -1,24 +1,19 @@
 <%= render "shared/error_messages", :target => @user %>
-<p>
-  <%= form.label :nombre_de_usuario %><br />
-  <%= form.text_field :name %>
-</p>
-<p>
-  <%= form.label :nombre_del_perfil %><br />
-  <%= form.text_field :profile %>
-</p>
-<p>
-<p>
-  <%= form.label :email %><br />
-  <%= form.text_field :email %>
-</p>
-<p>
 
-  <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
+  <%= form.label :nombre_de_usuario %>
+  <%= form.text_field :name %>
+
+  <%= form.label :nombre_del_perfil %>
+  <%= form.text_field :profile %>
+
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+
+  <%= form.label :password, form.object.new_record? ? nil : "Change password" %>
   <%= form.password_field :password %>
-</p>
-<p>
-  <%= form.label :password_confirmation %><br />
+
+  <%= form.label :password_confirmation %>
   <%= form.password_field :password_confirmation %>
-</p>
+  <br />
+  <%= form.submit "Crear" %>
 

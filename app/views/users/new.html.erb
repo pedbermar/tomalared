@@ -1,10 +1,8 @@
-<div id="create_user">
-<br /><br />
-<%= image_tag( "/gfx/logo.png", :alt => "Logo", :class => 'logo') %>
-<br /><br />	
+<div id="login">
+	<%= link_to "tomalared.net", '/', :class => "linkRemote titulo" %>
+	
 	<%= form_for(@user) do |f| %>
-		<%= render :partial => "form", :object => f, :locals => { :user => @user } %>
-		<%= f.submit "Crear" %>
+		<%= render :partial => "form", :object => f, :locals => { :user => @user } %>		
 	<% end %>
 </div>
 
