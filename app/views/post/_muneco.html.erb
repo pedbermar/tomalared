@@ -10,12 +10,14 @@
 		    
 		    <br>
 		    <%if @tag.posts%>
-		    <span><%= @tag.posts.count%> Posts</span>
-		    <br>
+			    <span><%= @tag.posts.count%> Posts</span>
+			    <br>
 		    <%end%>
+		    
 		    <%if @tag.users%>
-		    <span><%= @tag.users.count%> Seguidores: </span>
-
+		    	<span><%= @tag.users.count%> Seguidores: </span>
+			<% end -%>
+		    
 		    <% @tag.users.each do |user_tag| -%>
 		    	<%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
 		    <% end -%>
