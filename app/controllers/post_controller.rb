@@ -112,7 +112,7 @@ class PostController < ApplicationController
       type = params[:post_type]
       post.content = params[:content] if TYPES[type]
       post.post_type = type_parse(post.content)
-      
+      content = post.content
       # POST_TYPE == IMAGE
       if post.post_type == 'image'
         capturanombre = "#{post.user_id}-#{Time.now}"
@@ -243,7 +243,7 @@ class PostController < ApplicationController
       if @post
         # Notificaciones para las menciones
         mentions = Array.new
-        post.content.split.each do |t|
+        content.split.each do |t|
           if t.first == '@'
             mentions << t.gsub(/^@/,"")
           end
@@ -439,12 +439,26 @@ class PostController < ApplicationController
       end
     end
     if  plain == 0 #str.split.count == 1
-      if str.split.first.match(/(.png|.jpg|.gif)$/)
-        type = "image"
-      elsif str.split.first.match(/\A(http|https):\/\/www.youtube.com/)
-        type = "video"
-      elsif str.split.first.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/)
-        type = "link"
+      imgs = Array.new
+      videos = Array.new
+      links = Array.new
+      str.split.each do |w|
+        if w.match(/(.png|.jpg|.gif)$/)
+          imgs << w
+        elsif w.match(/\A(http|https):\/\/www.youtube.com/)
+          videos << w
+        elsif w.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/)
+          links << w
+        end
+      end
+      if imgs.count + videos.count + links.count == 1
+        if imgs.first
+          type = "image"
+        elsif videos.first
+          type = "video"
+        elsif links.first
+          type = "link"
+        end
       end
     elsif str.size < 150
       type = "quote"

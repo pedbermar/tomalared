@@ -11,13 +11,12 @@
 		</div>
 	<% end %>
 
-	<div class="text-link">
+	<div class="text-link"><br>
 		<a href="<%= link %>" target="_blank">
-			<%= title.html_safe %>
-		
+			<%= title.html_safe %></a>		
 			<%= desc.html_safe[0..150] %>
-		</a>
-		<%= host %>
+			<p>
+		<%= host %></p>
 	</div>
 </div>
 
