@@ -1,16 +1,5 @@
     <header class="board-white">
-    	<% if flash[:notice] %>
-		    <div id="notice">
-		    	<%= flash[:notice] %>
-		   	</div>
-	    <% end %>
-	    
-	    <ul>
-	    	<li>
-		        <a href="/post/user" class="notice_a linkRemote"><%= current_user.profile%> (@<%= current_user.name%>) </a>
-	        </li>
-	    </ul>
-	
+	    <a href="/post/user" class=" linkRemote"><%= current_user.profile%> <span class="user">@<%= current_user.name%></span></a>
     </header>
     <article id="marcofoto">
         <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
@@ -30,6 +19,12 @@
 		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1).count%>#</a></li>
 		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).count%>@</a></li>
 	        </ul>
+
+       	<% if flash[:notice] %>
+		    <div id="notice">
+		    	<%= flash[:notice] %>
+		   	</div>
+	    <% end %>
 		
 	    <ul id="board-block" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).empty? %>style="display:none;"<% end %>>
 	        <li id="board-title">
@@ -39,8 +34,8 @@
 	        
 	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>
 	            <li id="board-tags">	            	
-	            	<%= link_to "#{User.find(mention_board.from).name[0..5]}", "/post/user/#{User.find(mention_board.from).name}", :class => "linkRemote" %>:
-	            	<%= link_to "#{Post.find(mention_board.resource_id).content[0..15]}", "/post/mentions/#{mention_board.from}", :class => "linkRemote" %>	            
+	            	<%= link_to "@#{User.find(mention_board.from).name[0..5]}", "/post/user/#{User.find(mention_board.from).name}", :class => "user linkRemote" %>:
+	            	<%= link_to "#{Post.find(mention_board.resource_id).content[0..16]}", "/post/mentions/#{mention_board.from}", :class => "linkRemote" %>	            
 	            </li>
             <% end %>
 	         
