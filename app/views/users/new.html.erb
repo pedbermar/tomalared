@@ -1,6 +1,5 @@
 <div id="login">
-	<%= link_to "tomalared.net", '/', :class => "linkRemote titulo" %>
-	
+	<h1>Reg&iacute;strate</h1>
 	<%= form_for(@user) do |f| %>
 		<%= render :partial => "form", :object => f, :locals => { :user => @user } %>		
 	<% end %>

@@ -160,18 +160,7 @@ class PostController < ApplicationController
           tag = Tag.find_by_name(t) || Tag.new(:name => t)
           post.tags << tag
         end
-        # Notificaciones para las usuarios que siguen los GRUPOS
-        post.tags.each do |t|
-          t.users.each do |user|
-            note = Notifications.new
-            note.user_id = user.id
-            note.note_type = Notifications::TAG_POST
-            note.from = current_user[:id]
-            note.resource_id = post.id
-            note.unread = 1
-            note.save
-          end
-        end
+        
       else
         params[:tags].split.each do |t|
           tag = Tag.find_by_name(t) || Tag.new(:name => t)
@@ -257,6 +246,18 @@ class PostController < ApplicationController
           note.resource_id = @post.id
           note.unread = 1
           note.save
+        end
+        # Notificaciones para las usuarios que siguen los GRUPOS
+        @post.tags.each do |t|
+          t.users.each do |user|
+            note = Notifications.new
+            note.user_id = user.id
+            note.note_type = Notifications::TAG_POST
+            note.from = current_user[:id]
+            note.resource_id = @post.id
+            note.unread = 1
+            note.save
+          end
         end
         flash[:notice] = 'El mensaje se ha guardado correctamente.'
       else
@@ -366,6 +367,22 @@ class PostController < ApplicationController
         cons << c.resource_id
       end
       @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
+      
+    elsif params[:pagina] == 'notifications'
+      comm= Notifications.where(:user_id => current_user[:id], :note_type => params[:id])
+      cons = Array.new
+      comm.each do |c|        
+        cons << c.resource_id
+      end
+      if cons
+        @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
+        comm.each do |c|       
+          if c.unread == 1
+            c.unread = 0
+            c.save
+          end 
+        end
+      end      
     else
       if params[:id]
         @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')

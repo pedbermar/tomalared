@@ -1,9 +1,9 @@
 body{
-  background-image: url('/gfx/fondo.jpg');
+  background-image: url('/gfx/fondo.png');
   background-color: black;
   background-repeat:no-repeat;
   background-attachment:fixed;
-  background-position:top; 
+  background-position:center; 
   font-family: monospace;
   color: #000;
 }
@@ -177,7 +177,10 @@ a:hover{
   margin: 5px;
 }
 #board-title{
-  text-decoration:underline;
+  font-weight:bold;
+  text-align: center;
+  font-size: 13px;
+  padding-bottom: 2px;  
 }
 
 .textarea{
@@ -369,7 +372,7 @@ a:hover{
 }
 
 .mainPostContent a, .mainComentContent a{
-  color: black;
+  color: red;
   text-shadow: none;
 }
 
@@ -377,14 +380,6 @@ a:hover{
   color: green;
 }
 
-.text-quote a{
-  color: black;
-  text-shadow: none;    
-}
-.text-link a{
-  color: black;
-  text-shadow: none;    
-}
 .voteMenu li{
   display: inline;
   float: right;
@@ -497,14 +492,39 @@ a:hover{
   margin-top: 6px;
   padding: 5px;
 }
-.board-white a, #board-block a{ 
-  color: black;
-  text-shadow: none;   
-}
-.board-white a:hover, #board-block a:hover, #board-notifi a:hover{ 
+
+.board-white a, #board-block a, .text-quote a ,.text-link a{ 
   color: green;
   text-shadow: none;   
 }
+
+ 
+#board-block a,{ 
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.board-white a{ 
+  font-size: 14px;    
+}
+
+.board-white a:hover, #board-block a:hover, #board-notifi a:hover, .text-quote a:hover ,.text-link a:hover{ 
+  color: red;
+  text-shadow: none;
+}
+
+.user{
+  color: red;
+}
+
+.tag a{
+  color: green;
+}
+
+.tag a:hover{
+  color: red;
+}
+
 
 #login{
    background-color:rgba(255,255,255,0.8);
@@ -513,4 +533,8 @@ a:hover{
    -webkit-border-radius: 7px;
    color: black;
    padding-bottom: 10px;
+}
+
+#login label{
+  font-size: 12px;
 }
