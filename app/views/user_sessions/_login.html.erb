@@ -1,18 +1,20 @@
 <div class="five columns">
-	<%= link_to "tomalared.net", '/post/list', :class => "linkRemote titulo" %>
+	<%= link_to "tomalared.net", '/', :class => "linkRemote titulo" %>
 </div>
-
-<section class="five columns searcher">	
-   <%= form_tag('/search', :id => 'search', :method=> 'get') do %>   		
-	   	<%= search_field_tag 'q', '',:placeholder =>  '¡Busca!' %>
-   		<span id="resultado-busqueda"></span>
-   <% end %>
-   
-</section>
-
-<nav class="two columns">
-	<ul id="nav0">
-		<li id="nav1"><%= link_to '','/home', :class => "icon-home", :title => "Home"%></li>				  
-		<li id="nav2"><%= link_to '', '/logout', :class => "icon-exit", :title => "Logout" %></li>			
-	</ul>
-</nav>
+<% if current_user -%>
+	<section class="five columns searcher">	
+	   <%= form_tag('/search', :id => 'search', :method=> 'get') do %>   		
+		   	<%= search_field_tag 'q', '',:placeholder =>  '¡Busca!' %>
+	   		<span id="resultado-busqueda"></span>
+	   <% end %>
+	   
+	</section>
+	
+	<nav class="two columns">
+		<ul id="nav0">
+			<li id="nav1"><%= link_to '','/home', :class => "icon-home", :title => "Home"%></li>				  
+			<li id="nav2"><%= link_to '', '/logout', :class => "icon-exit", :title => "Logout" %></li>			
+		</ul>
+	</nav>
+<% else -%>
+<% end -%>

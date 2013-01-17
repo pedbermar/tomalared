@@ -48,11 +48,11 @@ if @navegador == 'MSIE' -%>
         <%= csrf_meta_tags %>
     </head>
     <body>
-    	<% if current_user -%>
+
 	    	<header class="row topbar">			        
 			            <%= render :partial => 'user_sessions/login' %>			        
 			</header>
-		<% end -%>
+
 		
 		<div class="container">
 		    <div class="row maincontent">

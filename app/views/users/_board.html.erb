@@ -63,15 +63,15 @@
 	        <li id="board-title">
 	            Tus grupos:
 	        </li>
-	    </ul> 
-	     <div id="board-block">   	        
-            <% current_user.tags[0..11].each do |tag_board| -%>
-	          
-	            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
-	            
-            <% end %>	        
-	    </div>
 	    
+		     <div id="board-block">   	        
+	            <% current_user.tags[0..11].each do |tag_board| -%>
+		          
+		            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
+		            
+	            <% end %>	        
+		    </div>
+	    </ul> 
 	
 	    <ul id="board-block">
 	        <li id="board-title">

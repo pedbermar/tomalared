@@ -9,13 +9,13 @@ body{
 }
 
 a{
-  color: green;  
+  color: white;  
   font-weight: bold;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
 a:hover{
-  color: red;
+  color: green;
 }
 
 .logo{
@@ -533,4 +533,8 @@ a:hover{
    -webkit-border-radius: 7px;
    color: black;
    padding-bottom: 10px;
+}
+
+#login label{
+  font-size: 12px;
 }
