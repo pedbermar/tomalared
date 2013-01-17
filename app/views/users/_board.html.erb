@@ -52,7 +52,7 @@
 	        
 	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>
 	            <li id="board-tags">	            	
-	            	<%= link_to "@#{User.find(mention_board.from).name[0..5]}", "/post/user/#{User.find(mention_board.from).name}", :class => "user linkRemote" %>:
+	            	<%= link_to "@#{User.find(mention_board.from).name[0..5]}", "/post/user/#{User.find(mention_board.from).name}", :class => "user linkRemote", :style => "color:red;" %>:
 	            	<%= link_to "#{Post.find(mention_board.resource_id).content[0..16]}", "/post/mentions/#{mention_board.from}", :class => "linkRemote" %>	            
 	            </li>
             <% end %>
@@ -63,13 +63,14 @@
 	        <li id="board-title">
 	            Tus grupos:
 	        </li>
-	        	        
-            <% current_user.tags[0..3].each do |tag_board| -%>
-	            <li id="board-tags">
+	    </ul> 
+	     <div id="board-block">   	        
+            <% current_user.tags[0..11].each do |tag_board| -%>
+	          
 	            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
-	            </li>
+	            
             <% end %>	        
-	    </ul>
+	    </div>
 	    
 	
 	    <ul id="board-block">
