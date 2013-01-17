@@ -15,9 +15,27 @@
 		
 	    	<ul id="board-notifi">
 	    		
-		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1).count%>C</a></li>
-		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1).count%>#</a></li>
-		        <li><%=Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).count%>@</a></li>
+		        <li><%comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>
+		        	<%if comm.count != 0%>
+		        		<%= link_to "(#{comm.count})C", "/post/notifications/5"%>
+		        	<%else%>
+		        		C
+		        	<%end%>
+		        </li>
+		        <li><%tags = Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1)%>
+		        	<%if tags.count != 0%>
+		        		<%= link_to "(#{tags.count})#", "/post/notifications/3"%>
+		        	<%else%>
+		        		#
+		        	<%end%>
+		        </li>
+		        <li><%users = Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1)%>
+		        	<%if users.count != 0%>
+		        	<%= link_to "(#{users.count})@", "/post/notifications/1"%>
+		        	<%else%>
+		        		@
+		        	<%end%>
+		        </li>
 	        </ul>
 
        	<% if flash[:notice] %>
@@ -26,13 +44,13 @@
 		   	</div>
 	    <% end %>
 		
-	    <ul id="board-block" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).empty? %>style="display:none;"<% end %>>
+	    <ul id="board-block" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>
 	        <li id="board-title">
 	            Conversaciones:
 	        </li>
 	        
 	        
-	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>
+	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>
 	            <li id="board-tags">	            	
 	            	<%= link_to "@#{User.find(mention_board.from).name[0..5]}", "/post/user/#{User.find(mention_board.from).name}", :class => "user linkRemote" %>:
 	            	<%= link_to "#{Post.find(mention_board.resource_id).content[0..16]}", "/post/mentions/#{mention_board.from}", :class => "linkRemote" %>	            

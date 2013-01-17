@@ -34,7 +34,7 @@
 		    <br />
 		    <%end%>
 		    <%if @user.url%>
-		    <%= link_to @user.url, @user.url%>
+		    <%= link_to @user.url, @user.url, :target => "_blank"%>
 		    <br />
 		    <%end%>
 		    <span><%= pluralize(@user.posts.count, "Posts") %> | <%= pluralize(@user.tags.count, "Groups") %></span>

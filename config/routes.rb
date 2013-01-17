@@ -36,7 +36,7 @@ Fra::Application.routes.draw do
   match '/delete'     => 'post#delete'
   match '/delete_tag' => 'post#delete_tag'
   match '/post/save' => 'post#save'
-  match '/post/mentions' => 'post#mentions'
+  
 			#Listados por usuario
 			#comentarios
   match '/comment/new' => 'comment#new'
