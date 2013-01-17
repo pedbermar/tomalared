@@ -203,7 +203,7 @@ class PostController < ApplicationController
         t11 = Array.new
         post.content.split.each do |t|
           if t.first == '#'
-            t11 << t.gsub(/^#/,"")
+            t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
           end
         end
         t11.each do |t|
