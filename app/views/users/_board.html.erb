@@ -77,12 +77,11 @@
 	        <li id="board-title">
 	            Tendencias:
 	        </li>
-	        
-            <% Tag.find_most_popular(4).each do |tag_board| -%>
-            <li id="board-tags">
-            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
-            </li>
-            <% end %>
+	        <div id="board-block">
+	            <% Tag.find_most_popular(12).each do |tag_board| -%>
+	              	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
+	            <% end %>
+	        </div>
         </ul>
 	        
  	</nav>
