@@ -41,5 +41,3 @@ $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
 });
-
-$( document ).tooltip();

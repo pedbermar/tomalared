@@ -4,26 +4,28 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update]
 
   def new
-    @user = User.new
+    @user_session = UserSession.new
+    @usernew = User.new
   end
 
   def create
-    @user = User.new(params[:user])
+    @user_session = UserSession.new    
+    @usernew = User.new(params[:user])
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
     # the User has not yet been activated
-    if @user.save_without_session_maintenance
+    if @usernew .save_without_session_maintenance
       
       events = []
       subscription = Subscriptions.new
-      subscription.user_id = @user.id
+      subscription.user_id = @usernew .id
       subscription.subscription_type = Subscriptions::S_USER
-      subscription.resource_id = @user.id
-      subscription.name = ActiveSupport::Notifications.subscribe ("u_" + "#{@user.id}") do |*args|
+      subscription.resource_id = @usernew .id
+      subscription.name = ActiveSupport::Notifications.subscribe ("u_" + "#{@usernew .id}") do |*args|
         events << ActiveSupport::Notifications::Event.new(*args)
         event = events.last
         note = Notifications.new
-        note.user_id = @user.id
+        note.user_id = @usernew .id
         note.note_type = event.payload[:note_type]
         note.from = event.payload[:from]
         note.resource_id = event.payload[:resource_id]
@@ -32,7 +34,7 @@ class UsersController < ApplicationController
       end
       subscription.save!
       
-      @user.send_activation_instructions!
+      @usernew.send_activation_instructions!
       flash[:notice] = "Tu cuenta ha sido creada. Por favor mira tu e-mail para ver las instrucciones de activacion!"
       redirect_to '/login'
     else

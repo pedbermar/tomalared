@@ -1,7 +1,7 @@
 <div id="login">
 	<h1>Reg&iacute;strate</h1>
-	<%= form_for(@user) do |f| %>
-		<%= render :partial => "form", :object => f, :locals => { :user => @user } %>		
+	<%= form_for(@usernew) do |f| %>
+		<%= render :partial => "users/form", :object => f, :locals => { :user => @usernew } %>		
 	<% end %>
 </div>
 

@@ -1,5 +1,8 @@
-<%= render "shared/error_messages", :target => @user %>
-
+<% if @usernew.errors.any? %>
+	<div class="registro">
+<% else %>
+	<div class="registro2">
+<% end %>
   <%= form.label :nombre_de_usuario %>
   <%= form.text_field :name %>
 
@@ -16,4 +19,6 @@
   <%= form.password_field :password_confirmation %>
   <br />
   <%= form.submit "Crear" %>
+</div>
+<%= render "shared/error_messages", :target => @usernew %>
 

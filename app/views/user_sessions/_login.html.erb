@@ -1,13 +1,12 @@
-<div class="five columns">
+<div class="three columns">	
 	<%= link_to "tomalared.net", '/', :class => "linkRemote titulo" %>
 </div>
 <% if current_user -%>
-	<section class="five columns searcher">	
+	<section class="seven columns searcher">	
 	   <%= form_tag('/search', :id => 'search', :method=> 'get') do %>   		
 		   	<%= search_field_tag 'q', '',:placeholder =>  '¡Busca!' %>
 	   		<span id="resultado-busqueda"></span>
 	   <% end %>
-	   
 	</section>
 	
 	<nav class="two columns">
@@ -17,4 +16,7 @@
 		</ul>
 	</nav>
 <% else -%>
+	<section class="seven columns searcher">	
+		<%= render :partial => "user_sessions/new" %>
+	</section>	
 <% end -%>

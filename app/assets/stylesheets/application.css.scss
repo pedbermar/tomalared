@@ -69,9 +69,44 @@ a:hover{
   background: white;
 }
 
-#notice{
-  color: green;  
+#notice, .notice-li{
+  text-align: center;
+  border: 1px red;
+  border-style:solid;
+  border-width: 2px;
+  background: #F78181;
+  color: white;  
+  margin: 5px;
 }
+
+
+.notice-block{
+  width: 300px;
+  position: relative;
+  float: left;
+  left: 10%;
+}
+
+.notice-title{ 
+    font-size: 14px;
+}
+
+.notice-li{
+  width: 300px;
+  text-align: justify;
+  float: left;
+  padding: 5px;
+  font-size: 10px;  
+}
+
+.registro, .errorExplanation{
+  display: block;
+  width: 400px;
+  position: relative;
+  float: left;  
+  left: 10%;
+}
+
 
 .comment-muneco
 {
@@ -429,6 +464,7 @@ a:hover{
 
 .searcher{
   color: white; 
+  text-align: center;
 }
 
 #resultado-busqueda{
@@ -527,12 +563,14 @@ a:hover{
 
 
 #login{
+   display: table;
+   width: 100%;
    background-color:rgba(255,255,255,0.8);
    text-align: center;
    -moz-border-radius: 7px;
    -webkit-border-radius: 7px;
    color: black;
-   padding-bottom: 10px;
+   padding: 10px;
 }
 
 #login label{
