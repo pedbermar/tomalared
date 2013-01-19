@@ -1,6 +1,5 @@
 <div id="errorExplanation">
-	<% if target.errors.any? %>
-	  
+	<% if target.errors.any? %>	  
 	    <ul class="notice-block">
 	    	<li class="notice-title"><%= pluralize(target.errors.count, "error") %> prohibited this record from being saved:</li>
 	      <% target.errors.full_messages.each do |msg| %>
@@ -9,4 +8,3 @@
 	    </ul> 
 	<% end %>	
 </div>
-

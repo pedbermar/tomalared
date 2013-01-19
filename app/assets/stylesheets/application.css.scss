@@ -91,6 +91,17 @@ a:hover{
     font-size: 14px;
 }
 
+.notice-login{
+  text-align: center;
+  border: 1px red;
+  border-style:solid;
+  border-width: 2px;
+  background: #F78181;
+  color: white;  
+  padding-left: 5px;
+  font-size: 10px;
+}
+
 .notice-li{
   width: 300px;
   text-align: justify;
@@ -98,7 +109,9 @@ a:hover{
   padding: 5px;
   font-size: 10px;  
 }
-
+#user_session_name, #user_session_password{
+  width: 100px;
+}
 .registro, .errorExplanation{
   display: block;
   width: 400px;

@@ -1,10 +1,12 @@
+
 <%= form_for @user_session, :as => :user_session, :url => { :controller => "user_sessions", :action => "create" } do |f| %>
-<%= render "shared/error_messages", :target => @user_session %>
 		<%= f.text_field :name, :placeholder => 'Username' %>
 		<%= f.password_field :password, :placeholder => 'Password' %>
 		<%= f.submit "Login" %>
-		<%= f.check_box :remember_me %> Remember me  
+		<%= render "shared/error_messages_login", :target => @user_session %><br>
+		<%= f.check_box :remember_me %> Remember me		
 		<%= link_to 'Regístrate', :controller => 'users', :action => 'new' %>
-		<%= link_to 'Olvidaste tu contraseña?', password_resets_path %>
+		<%= link_to 'Olvidaste tu contraseña?', password_resets_path %>		  
 <% end %>
+	
 
