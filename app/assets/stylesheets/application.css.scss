@@ -178,15 +178,11 @@ a:hover{
   height: 42px; 
 }
 
-
-
-.borrarComentario, .iconsMas, .iconsMenos, .iconShare, .iconsMasComentario, .iconsMenosComentario,
-.iconsMenosComentarioDisable, .iconsMasComentarioDisable, .iconsMasDisable, .iconsMenosDisable, .iconUnshare {
-  width: 12px;
-  height: 12px;
-  padding: 1px;
-  margin: 2px;
+.borrarPost, .borrarComentario, .iconUnshare, .iconsMas, .iconsMenos, .iconShare, .iconsMasComentario, .iconsMenosComentario,
+.iconsMenosComentarioDisable, .iconsMasComentarioDisable, .iconsMasDisable, .iconsMenosDisable{
   float: right;
+  width: 15px;
+  height: 15px;
 }
 
 .mainComentContent .iconsMas, .mainComentContent .iconsMenos,.mainComentContent .iconsMasDisable,.mainComentContent .iconsMenosDisable {
@@ -387,12 +383,6 @@ a:hover{
   background-color:rgba(255,255,255,1);
   }
 
-.borrarPost{
-  float: right;
-  width: 15px;
-  height: 15px;
-  margin-right: .0em;
-}
 
 #main{
     position: relative;
