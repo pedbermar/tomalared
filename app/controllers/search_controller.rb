@@ -13,9 +13,9 @@ class SearchController < ApplicationController
         @q = @q.gsub(/^@/,"")            
       end
 
-	    @tags = Tag.search(@q).sort { |x, y| x.name <=> y.name }[0..11]
-	    @users = User.search(@q).sort { |x, y| x.name <=> y.name }[0..11]
-	    @posts = Post.search(@q1).sort_by{ |p| - p.id}[0..3]
+	    @tags = Tag.search(@q).sort { |x, y| x.name <=> y.name }
+	    @users = User.search(@q).sort { |x, y| x.name <=> y.name }
+	    @posts = Post.search(@q1).sort_by{ |p| - p.id}
 	else
 		redirect_to :back
   end

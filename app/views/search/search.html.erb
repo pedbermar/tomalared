@@ -1,34 +1,40 @@
 <% @page_name = 'Lista de Grupos' -%>
-<div id="busqueda">
-	<h2>Resualtado de la busqueda "<%= @q1 %>"</h2>
-
+<div class="busqueda">
+	<h5>Resualtado de la busqueda "<%= @q1 %>"</h5>
+</div>
 
 	<% if @tags %>
-		<div class="search-titulo">
-			<%= @tags.count %> Tags:
-		</div>	
-	  	<div class="search-results">
-	 		 <%= render :partial => "search/tags" %>
-	  	</div>
-		<br/>
+		<div class="busqueda">
+			<div class="search-titulo">
+				<%= @tags.count %> Tags:
+			</div>	
+		  	<div class="search-results">
+		 		 <%= render :partial => "search/tags" %>
+		  	</div>
+		</div>
 	<% end %>
 	
 	<% if @users %>
-		<div class="search-titulo">
-			<%= @users.count %> Users:
+		<div class="busqueda">
+			<div class="search-titulo">
+				<%= @users.count %> Users:
+			</div>
+			<div class="search-results">
+				<%= render :partial => "search/users" %>
+			</div>
 		</div>
-		<div class="search-results">
-			<%= render :partial => "search/users" %>
-		</div>
-		<br/>
 	<% end %>
 	
 	<% if @posts %>
-		<div class="search-titulo">
-			<%= @posts.count %> Posts:
+		<div class="busqueda">
+			<div class="search-titulo">
+				<%= @posts.count %> Posts:
+			</div>
+				
+			<div id= "search-results">
+			   	<%= render :partial => "post/posts", :collection => @posts, :as => "post" %>
+			</div>
 		</div>
-		<div class="search-results1">
-			<%= render :partial => "search/posts" %>
-		</div>
+		
 	<% end %>
-</div>
+

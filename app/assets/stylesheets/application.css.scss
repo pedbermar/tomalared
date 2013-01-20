@@ -129,6 +129,13 @@ a:hover{
   float: left;
 }
 
+.search-muneco{
+  width: 97px;
+  min-height: 80px;
+  margin: 2px;
+  float: left;
+}
+
 .comment-muneco1
 {
   width: 48px;
@@ -567,9 +574,18 @@ a:hover{
   font-size: 14px;    
 }
 
-.board-white a:hover, #board-block a:hover, #board-notifi a:hover, .text-quote a:hover ,.text-link a:hover{ 
+.board-white a:hover, #board-block a:hover, .text-quote a:hover ,.text-link a:hover{ 
   color: red;
   text-shadow: none;
+}
+
+#board-notifi a{
+  color:green;
+    text-shadow: -1px 0px #fff, 0px 1px #fff, 1px 0px #fff, 0px -1px #fff;
+}
+
+#board-notifi a:hover{
+    text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
 .user{
@@ -598,7 +614,7 @@ a:hover{
    margin-bottom: 10px;
 }
 
-#login,{
+#login{
    display: table;
    width: 100%;
    background-color:rgba(255,255,255,0.8);
@@ -613,6 +629,20 @@ a:hover{
   font-size: 12px;
 }
 
+.busqueda{
+   display: block;   
+   background-color:rgba(255,255,255,0.5);
+   text-align: center;
+   -moz-border-radius: 7px;
+   -webkit-border-radius: 7px;
+   color: black;
+   padding: 10px;
+   margin-top: 10px;
+}
+.search-titulo{
+  font-size: 16px;
+}
+
 .user-edit input[type='text'], .user-edit input[type='password'] {
   width: 250px;
 }
@@ -620,6 +650,39 @@ a:hover{
   width: 300px;  
   font-size: 10px;
   text-align: center;
+}
+
+.tags-unfollow a{
+ color: red !important; 
+}
+
+.tags-follow a{
+   color: green !important; 
+}
+
+.tags-follow a:hover, .tags-unfollow a:hover, .tags-orden a:hover {
+   color: gray !important; 
+}
+
+.tags-orden{
+   width: 99px;
+   float: left; 
+   margin: 3px;
+   border: 1px solid gray;
+   background: white;
+   overflow: hidden;
+   padding: 3px;
+   text-align: center;
+}
+
+.tags-orden:hover{
+   border: 1px solid green;
+   background: #baf8ba;
+}
+.tags-block{
+    
+   display: table; 
+   text-align: justify;
 }
 
 
