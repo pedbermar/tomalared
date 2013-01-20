@@ -113,6 +113,7 @@ class PostController < ApplicationController
       post.content = params[:content] if TYPES[type]
       post.post_type = type_parse(post.content)
       content = post.content
+
       # POST_TYPE == IMAGE
       if post.post_type == 'image'
         capturanombre = "#{post.user_id}-#{Time.now}"
@@ -134,39 +135,12 @@ class PostController < ApplicationController
             file << open(params[:img]).read
           end
         end
-        t11 = Array.new
-        post.content.split.each do |t|
-          if t.first == '#'
-            t11 << t.gsub(/^#/,"")
-          end
-        end
-        t11.each do |t|
-          tag = Tag.find_by_name(t) || Tag.new(:name => t)
-          post.tags << tag
-        end
         direcion2 = "/post/#{capturanombre}.jpg"
         post.content = direcion2
       end
       
       # POST_TYPE == QUOTE || POST
-      if post.post_type == 'quote' || post.post_type == 'post'
-        t11 = Array.new
-        post.content.split.each do |t|
-          if t.first == '#'
-            t11 << t.gsub(/^#/,"")
-          end
-        end
-        t11.each do |t|
-          tag = Tag.find_by_name(t) || Tag.new(:name => t)
-          post.tags << tag
-        end
-        
-      else
-        params[:tags].split.each do |t|
-          tag = Tag.find_by_name(t) || Tag.new(:name => t)
-          post.tags << tag
-        end
-      end
+
       # POST_TYPE == LINK || VIDEO
       if post.post_type == 'link' || post.post_type == 'video'
         require 'metainspector'
@@ -188,16 +162,6 @@ class PostController < ApplicationController
             end
           end
           doc = MetaInspector.new(urls.first)
-        end
-        t11 = Array.new
-        post.content.split.each do |t|
-          if t.first == '#'
-            t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
-          end
-        end
-        t11.each do |t|
-          tag = Tag.find_by_name(t) || Tag.new(:name => t)
-          post.tags << tag
         end
         desc = doc.description
         post.title = doc.title
@@ -230,6 +194,18 @@ class PostController < ApplicationController
       end
       # save the post - if it fails, send the user back from whence she came
       if @post
+        # Agregar tags
+        t11 = Array.new
+        content.split.each do |t|
+          if t.first == '#'
+            t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
+          end
+        end
+        t11.each do |t|
+          tag = Tag.find_by_name(t) || Tag.new(:name => t)
+          @post.tags << tag
+        end
+        
         # Notificaciones para las menciones
         mentions = Array.new
         content.split.each do |t|

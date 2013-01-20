@@ -32,7 +32,7 @@
 									<%= link_to "@#{User.find(n.from).name}", "/post/user/#{n.from}"%>
 									ha  <%= link_to "publicado", "/post/list/#{n.resource_id}"%> en
 									<%Post.find(n.resource_id).tags.each do |t|%>
-										<%= link_to "##{t.name}", "/post/tag/#{t.name}"%>
+										<%= link_to "##{t.name} ", "/post/tag/#{t.name}"%>
 									<%end%>
 									
 								<%end%>
