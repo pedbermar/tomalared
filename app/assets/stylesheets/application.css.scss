@@ -214,9 +214,10 @@ a:hover{
 
 #board-block {  
   background: white;
-  text-align: left;  
-  padding-left: 10px;
-  padding-bottom: 1px;  
+  text-align: justify;  
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-bottom: 2px;
   
 }
 #board-block li{
@@ -307,8 +308,7 @@ a:hover{
   text-align: center;
   height: 545px;
   background-color:rgba(255,255,255,0.5);
-  margin: 0;
-  
+  margin: 0;  
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
 }
@@ -318,6 +318,9 @@ a:hover{
   padding: 5px;
   text-align: center;
   margin: 0px;
+  float: left;
+  margin: 1%;
+  width: 46%;
   background-color:rgba(255,255,255,1);
   }
 
@@ -458,7 +461,14 @@ a:hover{
   font-size: 12px;
   text-align: center;  
   color: white; 
-  margin-bottom: 100px;  
+  margin-bottom: 100px;
+}
+
+#footer2{
+  background-color:rgba(255,255,255,0.5);
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  color: black;
 }
 
 .youtube{
@@ -588,4 +598,58 @@ a:hover{
 
 #login label{
   font-size: 12px;
+}
+
+.user-edit input[type='text'], .user-edit input[type='password'] {
+  width: 250px;
+}
+.user-edit input[type='file']{
+  width: 300px;  
+  font-size: 10px;
+  text-align: center;
+}
+
+
+/* Autocomplete
+----------------------------------*/
+.ui-autocomplete { position: absolute; cursor: default; }       
+.ui-autocomplete-loading { background: white url('/gfx/ajax-loader.gif') center center no-repeat; }
+
+/* workarounds */
+* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+
+/* Menu
+----------------------------------*/
+.ui-menu {
+        list-style:none;
+        padding: 2px;
+        margin: 0;
+        display:block; 
+        background: black;
+}
+.ui-menu .ui-menu {
+        margin-top: -3px;        
+}
+.ui-menu .ui-menu-item {
+        margin:0;
+        padding: 0;
+        width: 100%;   
+        border-style: solid;
+        border-width: 1px;     
+}
+.ui-menu .ui-menu-item a {
+        text-decoration:none;
+        display:block;
+        padding:.2em .4em;
+        color: white;
+        line-height:1.5;
+        zoom:1;
+        text-shadow: none;
+        font-size: 14px;
+        vertical-align: middle;
+        height: 30px;               
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+        margin: -1px;
 }

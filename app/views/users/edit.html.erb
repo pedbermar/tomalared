@@ -2,7 +2,7 @@
 	<h4>Editar usuario</h4>
 	<% @page_name = "Editar tu usuario" -%>
 	
-	<div class="six columns user-edit">
+	<div class="user-edit">
 	<%= form_tag '/updatefoto', :multipart=> true do %>
 		Escoja un foto
 	
@@ -14,12 +14,12 @@
 			<% end -%>
 	
 			<%= file_field_tag 'user_pic', :accept => 'image/png,image/gif,image/jpeg' %>
-	
+			<br/>	
 			<%= submit_tag "Subir foto" %>	
 	</div>
 		
 		<% end %>
-	<div class="five columns push_one user-edit">	  
+	<div class="user-edit">	  
 		<%= form_for @user do |f| %>
 		  <%#= f.error_messages %>
 		  
@@ -40,8 +40,8 @@
 		<br />  <br />
 		    <%= f.label :password_confirmation %>
 		    <%= f.password_field :password_confirmation %>
-		  
-		  <%= f.submit "Submit" %>
+		<br />  
+		  <%= f.submit "Cambiar" %>
 		
 		<% end %>
 	</div>

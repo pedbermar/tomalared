@@ -61,7 +61,7 @@ if @navegador == 'MSIE' -%>
 		        <% else -%>		
 		        	<section id="main" class="twelve columns">
         		<% end -%>
-	        					<% if flash[:notice] and !current_user %>
+	        					<% if flash[:notice] %>
 				    		        <div id="notice">
 				            	    	<%= flash[:notice] %>
 				            		</div>
@@ -83,7 +83,7 @@ if @navegador == 'MSIE' -%>
 		<div class="container">		     
 	        <footer id="footer" class="row">
 	        	<% if current_user -%>
-		        	<div class="nine columns" id="login">
+		        	<div class="nine columns" id="footer2">
 		        <% else -%>		
 		        	<div class="twelve columns" id="login">
         		<% end -%>
