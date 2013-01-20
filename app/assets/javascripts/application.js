@@ -41,3 +41,8 @@ $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
 });
+
+$(function(){
+    $('.tags-cloud').tagcloud({type:"sphere",centrex:100,centrey:50,zoom:50,sizemin:8,sizemax:26,power:.3});
+    $('.users-cloud').tagcloud({type:"sphere",centrex:100,centrey:10,zoom:15,sizemin:8,sizemax:26,power:.3});
+});

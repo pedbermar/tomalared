@@ -1,30 +1,44 @@
 <% if current_user %>
-<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
+<button id="open-publicar">Escribe</button>
+	<div id="form-new" title="Comenta lo que piensas!!!">
+		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
+	 
+	        <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
+	        <div class="mediano-muneco" style="background: url(/img/<%= current_user[:id]%>.jpg) no-repeat center; background-size: 200%;">
+	        	<div class="arrow-left1"></div>	
+	        </div>
+	        <% else %>
+	        <div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 200%;">
+	        	<div class="arrow-left1"></div>
+	        </div>
+	        <% end -%>
+	   
+	            <%= text_area 'post','content' , :class => 'textarea', :placeholder => 'Escribe!'%>            
+	            <div id="archivo">
+	                <%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>
+	            </div>
+	            <div id="cargando">
+	                <%= image_tag("/gfx/ajax-loader.gif", :title => "Cargando", :alt => "Cargando") %>
+	            </div>
+	            <%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
+	            <%= submit_tag 'Tumblear', :id => "tumblear" %>
+	            <%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
+	       
+	
+			<div id="actualizar" style="display: none"></div>
+		<% end %>
+	</div>
+	
+	<script>
+$( "#form-new" ).dialog({ autoOpen: false });
+$( "#open-publicar" ).click(function() {
+	$( "#form-new" ).dialog( "open" );
+});
+$( "#tumblear" ).click(function() {
+	$( "#form-new" ).dialog( "destroy" );
+});
 
- 
-        <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
-        <div class="mediano-muneco" style="background: url(/img/<%= current_user[:id]%>.jpg) no-repeat center; background-size: 200%;">
-        	<div class="arrow-left1"></div>	
-        </div>
-        <% else %>
-        <div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 200%;">
-        	<div class="arrow-left1"></div>
-        </div>
-        <% end -%>
-   
-            <%= text_area 'post','content' , :class => 'textarea', :placeholder => 'Escribe!'%>            
-            <div id="archivo">
-                <%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>
-            </div>
-            <div id="cargando">
-                <%= image_tag("/gfx/ajax-loader.gif", :title => "Cargando", :alt => "Cargando") %>
-            </div>
-            <%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
-            <%= submit_tag 'Tumblear', :id => "tumblear" %>
-            <%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
-       
+</script>
+<% end %>
 
-<div id="actualizar" style="display: none"></div>
-<% end %>
-<% end %>
 

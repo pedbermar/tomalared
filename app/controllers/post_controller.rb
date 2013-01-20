@@ -267,7 +267,6 @@ class PostController < ApplicationController
   # ooo, pagination.
   def list(options = Hash.new)
     @po = Post.new
-    @post = Post.new
     @pagina = params[:pagina]
     @soloposts = params[:soloposts]?true:false
     if @pagina == "list"

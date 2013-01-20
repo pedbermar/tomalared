@@ -11,6 +11,13 @@ function pintarBotonesHeader() {
     },
     text : false
   });
+  
+    $("#open-publicar").button({
+    icons : {
+      primary : "ui-icon-pencil"
+    },
+    text : false
+  });
 };
 
 $(document).ready(function() {  

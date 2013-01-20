@@ -1,6 +1,7 @@
     <header class="board-white">
 	    <a href="/post/user" class=" linkRemote"><%= current_user.profile%> <span class="user">@<%= current_user.name%></span></a>
     </header>
+    
     <article id="marcofoto">
         <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
         <%= link_to image_tag( "/img/#{current_user.id}.jpg", :size => "200", :alt => "Tu imagen",
@@ -38,52 +39,54 @@
 		        	<%end%>
 		        </li>
 		        
-		        <br/>
+		        
 					<%= link_to "Todas", "/notifications"%>		
 				
 		        
 	        </ul>
 	        
-			<ul id="board-block" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>
-	        
-	        <li id="board-title">
+			<div id="board-mention" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>
 	            Conversaciones:
-	        </li>
 	        
+	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>	        
+	        	    <div class="board-munecos" style="background: url(/img/<%= mention_board.from %>.jpg) no-repeat center; background-size: 100%;">
+							<%= link_to "@#{User.find(mention_board.from).name}", "/post/mentions/#{mention_board.from}", :class => "linkRemote usersboard"%>	            
+		    	 	</div>
+		    <% end %>
 	        
-	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>
-	             <div>	            	
-	            	<%= link_to "@#{User.find(mention_board.from).name[0..5]}", "/post/user/#{User.find(mention_board.from).name}", :class => "user linkRemote", :style => "color:red;" %>:
-	            	<%= link_to "#{Post.find(mention_board.resource_id).content[0..16]}", "/post/mentions/#{mention_board.from}", :class => "linkRemote" %>	            
-	            </div>
-            <% end %>
-	         
-	    </ul>
+	    </div>
 	
 	    <ul id="board-block" <% if current_user.tags.empty? %>style="display:none;"<% end %>>
 	        <li id="board-title">
 	            Tus grupos:
 	        </li>
 	    
-		     <div>   	        
-	            <% current_user.tags[0..11].each do |tag_board| -%>
-		          
-		            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
-		            
+		     <div class="tags-cloud" style="width:200px; height:120px;position:relative; overflow: hidden;">   	        
+	            <% current_user.tags[0..19].each do |tag_board| -%>
+		          <ul>
+		            	<li><%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote", :rel => tag_board.posts.count %></li>	            
+		          </ul>
 	            <% end %>	        
 		    </div>
 	    </ul> 
-	
 	    <ul id="board-block">
 	        <li id="board-title">
 	            Tendencias:
 	        </li>
-	        <div>
-	            <% Tag.find_most_popular(12).each do |tag_board| -%>
-	              	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
-	            <% end %>
+	       <div class="tags-cloud" style="width:200px; height:120px;position:relative; overflow: hidden;">
+	            <% Tag.find_most_popular(20).each do |tag_board| -%>
+		            <ul>
+		            	<li><%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote", :rel => tag_board.count %></li>
+	            	</ul>
+		        <% end %>
 	        </div>
         </ul>
 	        
+	        
+	        
+	        
  	</nav>
+ 	
+ 	
+ 	
 

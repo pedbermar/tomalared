@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
 
  def search
+  @po = Post.new
 	if params[:q] != ""
 
       @q = params[:q]
