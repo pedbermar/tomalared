@@ -41,7 +41,7 @@ $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
 	
-	$( "#form-new" ).dialog({ autoOpen: false,resizable: false, height:200, width: 700, closeOnEscape: true });
+	$( "#form-new" ).dialog({ autoOpen: false,resizable: false, height:180, width: 600, closeOnEscape: true });
 	
 	$( "#open-publicar" ).click(function() 
 	{
@@ -55,6 +55,5 @@ $(document).ready(function() {
 });
 
 $(function(){
-    $('.tags-cloud').tagcloud({type:"sphere",centrex:100,centrey:50,zoom:50,sizemin:8,sizemax:26,power:.3});
-    $('.users-cloud').tagcloud({type:"sphere",centrex:100,centrey:10,zoom:15,sizemin:8,sizemax:26,power:.3});
-});
+    $('.tags-cloud').tagcloud({type:"sphere",centrex:100,centrey:35,zoom:35,sizemin:20,sizemax:20,power:.3});    
+});0

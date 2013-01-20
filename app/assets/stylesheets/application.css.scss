@@ -10,8 +10,7 @@ body{
 
 a{
   color: white;  
-  font-weight: bold;
-  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+  font-weight: bold;  
 }
 
 a:hover{
@@ -37,7 +36,8 @@ a:hover{
 }
 
 .board-foto{
-  width: 100%;
+  max-width: 100%;
+  max-height: 140px;
 }
 
 .topbar{
@@ -144,6 +144,7 @@ a:hover{
   margin: 2px;
   float: left;
   overflow: hidden;
+  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
 .board-munecos a{
@@ -152,6 +153,7 @@ a:hover{
 #board-mention{
   display: table;
   background: white;
+  font-weight:bold;
 }
 
 .search-muneco{
@@ -291,14 +293,15 @@ a:hover{
 }
 
 #form-new{
-
+  
 }
 
 .ui-dialog{
   display: table;  
   background-color:rgba(0,0,0,1) !important;
   margin-top: 1%;
-  padding-bottom: 5px;
+  padding: 0px !important;
+  margin: 0px !important;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px; 
 }
@@ -313,6 +316,11 @@ a:hover{
   min-height: 200px;
   color: #fff;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+}
+#save{
+  display: table;  
+  widht: 550px;
+  margin-left: 0px;
 }
 .postCommentsVote{
   position: relative;
@@ -766,6 +774,10 @@ a:hover{
         margin: -1px;
 }
 
+.ui-dialog-titlebar{
+    height: 5px;    
+}
+
 .point a
   {
       text-decoration:none;
@@ -775,7 +787,4 @@ a:hover{
 .ui-widget-header{
   background: white !important;
 }
-.ui-dialog-titlebar, .ui-widget-header, .ui-corner-all, .ui-helper-clearfix{
-  display: hidden !important;  
-}
-.no-close .ui-dialog-titlebar-close {display: none }
+
