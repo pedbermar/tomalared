@@ -1,6 +1,6 @@
 <% if current_user %>
 <button id="open-publicar">Escribe</button>
-	<div id="form-new" title="Comenta lo que piensas!!!">
+	<div id="form-new">
 		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
 	 
 	        <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
@@ -21,7 +21,7 @@
 	                <%= image_tag("/gfx/ajax-loader.gif", :title => "Cargando", :alt => "Cargando") %>
 	            </div>
 	            <%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
-	            <%= submit_tag 'Tumblear', :id => "tumblear" %>
+	            <%= submit_tag 'Publicar', :id => "tumblear" %>
 	            <%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
 	       
 	
@@ -29,16 +29,6 @@
 		<% end %>
 	</div>
 	
-	<script>
-$( "#form-new" ).dialog({ autoOpen: false });
-$( "#open-publicar" ).click(function() {
-	$( "#form-new" ).dialog( "open" );
-});
-$( "#tumblear" ).click(function() {
-	$( "#form-new" ).dialog( "destroy" );
-});
-
-</script>
 <% end %>
 
 

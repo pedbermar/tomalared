@@ -1,13 +1,7 @@
 function pintarBotonesComment() {
 	$(".borrarComentario").button({
 		icons : {
-			primary : "ui-icon-close"
-		},
-		text : false
-	});
-	$(".editarComentario").button({
-		icons : {
-			primary : "ui-icon-document"
+			primary : "ui-icon-trash"
 		},
 		text : false
 	});

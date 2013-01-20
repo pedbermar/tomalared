@@ -1,13 +1,13 @@
 function pintarBotonesVote() {
   $(".iconsMas").button({
     icons : {
-      primary : "ui-icon-plusthick"
+      primary : "ui-icon-arrowthick-1-n"
     },
     text : false
   });
   $(".iconsMasDisable").button({
     icons : {
-      primary : "ui-icon-plusthick"
+      primary : "ui-icon-arrowthick-1-n"
     },
     text : false
   });
@@ -16,27 +16,29 @@ function pintarBotonesVote() {
   
   $(".iconsMenos").button({
     icons : {
-      primary : "ui-icon-minusthick"
+      primary : "ui-icon-arrowthick-1-s"
     },
     text : false
   });
   $(".iconsMenosDisable").button({
     icons : {
-      primary : "ui-icon-minusthick"
+      primary : "ui-icon-arrowthick-1-s"
     },
     text : false
   });
   $('.iconsMenosDisable').button("disable");
   
+  
+  
   $(".iconShare").button({
     icons : {
-      primary : "ui-icon-link"
+      primary : "ui-icon-arrowreturnthick-1-e"
     },
     text : false
   });
   $(".iconUnshare").button({
     icons : {
-      primary : "ui-icon-cancel"
+      primary : "ui-icon-trash"
     },
     text : false
   });

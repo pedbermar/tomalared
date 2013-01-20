@@ -55,7 +55,7 @@ a:hover{
 }
 
 #search, #nav0{
-  margin-top: 2%;
+  margin-top: 10px;
 }
 
 .usersboard{
@@ -208,14 +208,14 @@ a:hover{
   width: 23px;
   height: 23px;
   padding: 2px;
-  top: 5px;
+  top: 0px;
 }
 
 #open-publicar{
   width: 29px;
   height: 29px;
   padding: 2px;
-  top: 5px;
+  top: 0px;
 }
   
 #archivo{
@@ -274,7 +274,7 @@ a:hover{
 .textarea{
   margin: 1%;
   float: left;  
-  height: 45px;   
+  height: 50px;   
   width: 74%;
   padding: 1%;
   background: #fff;   
@@ -295,9 +295,8 @@ a:hover{
 }
 
 .ui-dialog{
-  display: table;
-  width: 600px !important;
-  background-color:rgba(0,0,0,0.8) !important;
+  display: table;  
+  background-color:rgba(0,0,0,1) !important;
   margin-top: 1%;
   padding-bottom: 5px;
   -moz-border-radius: 7px;
@@ -353,8 +352,7 @@ a:hover{
   display: block;  
   top: 10px;
   padding: 20px;
-  text-align: center;
-  height: 545px;
+  text-align: center;  
   background-color:rgba(255,255,255,0.5);
   margin: 0;  
   -moz-border-radius: 7px;
@@ -492,7 +490,7 @@ a:hover{
 #mainboard{
   position: fixed;
   width: 100%;
-  top: 52px; 
+  top: 60px; 
   z-index: 1;  
 }
 
@@ -773,3 +771,11 @@ a:hover{
       text-decoration:none;
       font-weight:bold !important;
   } 
+  
+.ui-widget-header{
+  background: white !important;
+}
+.ui-dialog-titlebar, .ui-widget-header, .ui-corner-all, .ui-helper-clearfix{
+  display: hidden !important;  
+}
+.no-close .ui-dialog-titlebar-close {display: none }

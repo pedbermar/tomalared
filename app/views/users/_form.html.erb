@@ -2,22 +2,17 @@
 	<div class="registro">
 <% else %>
 	<div class="registro2">
-<% end %>
-  <%= form.label :nombre_de_usuario %>
-  <%= form.text_field :name %>
+<% end %>  
+  <%= form.text_field :name, :placeholder => 'Nombre de usuario' %><br/>
+  
+  <%= form.text_field :profile , :placeholder => 'Profile' %><br/>
+  
+  <%= form.text_field :email, :placeholder => 'Email' %><br/>
 
-  <%= form.label :nombre_del_perfil %>
-  <%= form.text_field :profile %>
+  <%= form.password_field :password, :placeholder => 'Password' %><br/>
 
-  <%= form.label :email %>
-  <%= form.text_field :email %>
-
-  <%= form.label :password, form.object.new_record? ? nil : "Change password" %>
-  <%= form.password_field :password %>
-
-  <%= form.label :password_confirmation %>
-  <%= form.password_field :password_confirmation %>
-  <br />
+  <%= form.password_field :password_confirmation, :placeholder => 'Password' %><br/>
+  
   <%= form.submit "Crear" %>
 </div>
 <%= render "shared/error_messages", :target => @usernew %>

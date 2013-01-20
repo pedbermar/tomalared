@@ -1,30 +1,27 @@
 	<ul class="voteMenu">	
 		<%if !Likes.exists?(:user_id => current_user, :like_type => 2, :type_id => comment_id)%>
-				<li class="iconsVoteComentarios">
-					<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 2, :type_id => comment_id }, :method => :delete, :class => 'iconsMas linkRemote2' %>
-				</li>
-
 				<li class="iconsVoteComentarios">		
 					<%= link_to '', {:controller => :vote, :action => 'dontlike', :like_type => 2, :type_id => comment_id}, :method => :delete, :class => 'iconsMenos linkRemote2' %>
+				</li>
+				<li class="iconsVoteComentarios">
+					<%= link_to '', {:controller => :vote, :action => 'like', :like_type => 2, :type_id => comment_id }, :method => :delete, :class => 'iconsMas linkRemote2' %>
 				</li> 
 		<% else %>
 		
 				<% if Likes.exists?(:user_id => current_user, :like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0) %>
 					<li class="iconsVoteComentarios">
-						<%= link_to '', '', :class => 'iconsMasDisable' %>
-					</li>
-
-					<li class="iconsVoteComentarios">
 						<%= link_to '', {:controller => :vote, :action => 'change_to_dontlike', :like_type => 2, :type_id => comment_id }, :method => :delete, :class => 'iconsMenos linkRemote2'  %>																										 
 					</li>
-				<% else %>
 					<li class="iconsVoteComentarios">
-						<%= link_to '',	{:controller => :vote, :action => 'change_to_like', :like_type => 2, :type_id => comment_id}, :method => :delete, :class => 'iconsMas linkRemote2' %> 
+						<%= link_to '', '', :class => 'iconsMasDisable' %>
 					</li>
-					
+				<% else %>
 					<li class="iconsVoteComentarios">		
 						<%= link_to '', '', :class => 'iconsMenosDisable' %>
 					</li> 
+					<li class="iconsVoteComentarios">
+						<%= link_to '',	{:controller => :vote, :action => 'change_to_like', :like_type => 2, :type_id => comment_id}, :method => :delete, :class => 'iconsMas linkRemote2' %> 
+					</li>
 				<% end %>
 		<% end %>
 

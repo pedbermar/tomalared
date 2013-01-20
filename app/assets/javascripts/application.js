@@ -40,6 +40,18 @@ jQuery.fn.submitWithAjax = function() {
 $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
+	
+	$( "#form-new" ).dialog({ autoOpen: false,resizable: false, height:200, width: 700, closeOnEscape: true });
+	
+	$( "#open-publicar" ).click(function() 
+	{
+		$( "#form-new" ).dialog( "open" );
+	});
+	
+	$( "#tumblear" ).click(function() 
+	{
+		$( "#form-new" ).dialog( "destroy" );
+	});
 });
 
 $(function(){

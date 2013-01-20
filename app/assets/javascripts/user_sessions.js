@@ -1,7 +1,7 @@
 function pintarBotonesHeader() {
   $(".icon-home").button({
     icons : {
-      primary : "ui-icon-home"
+      primary : "ui-icon-wrench"
     },
     text : false
   });

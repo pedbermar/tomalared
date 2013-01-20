@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @po = Post.new    
     @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Tu cuenta ha sido actualizada!"
