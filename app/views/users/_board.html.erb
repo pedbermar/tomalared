@@ -37,16 +37,13 @@
 		        		<%= link_to "@", "/post/notifications/1"%>
 		        	<%end%>
 		        </li>
+		        
+		        <br/>
+					<%= link_to "Todas", "/notifications"%>		
+				
+		        
 	        </ul>
 	        
-		        <ul id="board-block">
-		        	<li id="board-title">
-						<%= link_to "Todas las notificaciones", "/notifications"%>
-					</li>
-						<%#= link_to "Usuarios", "/users"%>
-					</li>
-				</ul>
-			
 			<ul id="board-block" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>
 	        
 	        <li id="board-title">
