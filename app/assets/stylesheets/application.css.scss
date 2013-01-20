@@ -139,16 +139,25 @@ a:hover{
 .board-munecos
 {
   position:static;
-  width: 48%;
-  min-height: 34px;
+  width: 48%;  
   margin: 2px;
   float: left;
+  text-align: right;
+  vertical-align: text-bottom;
+  padding-top: 30px;
+  padding-bottom: 0px;
   overflow: hidden;
+  font-size: 10px;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
 .board-munecos a{
  color: white !important;
+}
+
+
+.board-munecos a:hover{
+ color: black !important;
 }
 #board-mention{
   display: table;

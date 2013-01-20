@@ -50,7 +50,7 @@
 	        
 	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>	        
 	        	    <div class="board-munecos" style="background: url(/img/<%= mention_board.from %>.jpg) no-repeat center; background-size: 100%;">
-							<%= link_to "@#{User.find(mention_board.from).name}", "/post/mentions/#{mention_board.from}", :class => "linkRemote usersboard"%>	            
+							<%= link_to "@#{User.find(mention_board.from).name}", "/post/mentions/#{mention_board.from}", :class => "linkRemote"%>	            
 		    	 	</div>
 		    <% end %>
 	        
