@@ -1,3 +1,47 @@
-
-
+<br>
+<% if @notifications%>
+	<%@notifications.each do |n|%>
+		<%#if n.from != current_user[:id]%>
+			<%if n.note_type == 1%>
+				<p>
+				<%= link_to "@#{User.find(n.from).name}", "/post/user/#{n.from}"%>
+				te ha mencionado en una <%= link_to "publicacion", "/post/list/#{n.resource_id}"%>
+				</p>
+			<%end%>
+			
+			<%if n.note_type == 3%>
+				<p>
+				<%= link_to "@#{User.find(n.from).name}", "/post/user/#{n.from}"%>
+				ha  <%= link_to "publicado", "/post/list/#{n.resource_id}"%> en
+				<%Post.find(n.resource_id).tags.each do |t|%>
+					<%= link_to "##{t.name}", "/post/tag/#{t.name}"%>
+				<%end%>
+				</p>
+			<%end%>
+			
+			<%if n.note_type == 5%>
+				<p>
+				<%from = User.find(n.from)%>
+				<%= link_to "@#{from.name}", "/post/user/#{n.from}"%>
+				ha comentado
+				
+				
+				<%post = Post.find(n.resource_id)%> 
+				<%if post.user_id == current_user[:id]%>
+					una <%= link_to "publicacion", "/post/list/#{n.resource_id}"%>
+					tuya	
+				<%elsif post.user_id == n.from%>
+				    una <%= link_to "publicacion", "/post/list/#{n.resource_id}"%>
+				 	suya
+				<%else%>
+					la <%= link_to "publicacion", "/post/list/#{n.resource_id}"%> de 
+	                <%= link_to "@#{User.find(post.user_id).name}", "/post/user/#{post.user_id}"%>
+				<%end%>
+				
+				</p>
+			<%end%>
+			
+		<%end%>
+	<%#end%>
+<%end%>
 	

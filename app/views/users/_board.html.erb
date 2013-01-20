@@ -14,36 +14,32 @@
     <nav>
 		
 	    	<ul id="board-notifi">
-	    		
-		        <li><%comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>
+	 		        <li><%comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>
 		        	<%if comm.count != 0%>
 		        		<%= link_to "(#{comm.count})C", "/post/notifications/5"%>
 		        	<%else%>
-		        		C
+		        		<%= link_to "C", "/post/notifications/5"%>
 		        	<%end%>
 		        </li>
 		        <li><%tags = Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1)%>
 		        	<%if tags.count != 0%>
 		        		<%= link_to "(#{tags.count})#", "/post/notifications/3"%>
 		        	<%else%>
-		        		#
+		        		<%= link_to "#", "/post/notifications/3"%>
 		        	<%end%>
+		        
 		        </li>
+		        
 		        <li><%users = Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1)%>
 		        	<%if users.count != 0%>
 		        	<%= link_to "(#{users.count})@", "/post/notifications/1"%>
 		        	<%else%>
-		        		@
+		        		<%= link_to "@", "/post/notifications/1"%>
 		        	<%end%>
 		        </li>
 	        </ul>
-
-       	<% if flash[:notice] %>
-		    <div id="notice">
-		    	<%= flash[:notice] %>
-		   	</div>
-	    <% end %>
-		
+<%= link_to "Todas las notificaciones", "/notifications"%>
+<%#= link_to "Usuarios", "/users"%>
 	    <ul id="board-block" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>
 	        <li id="board-title">
 	            Conversaciones:

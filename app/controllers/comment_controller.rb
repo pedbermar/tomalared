@@ -22,30 +22,11 @@ class CommentController < ApplicationController
     @comment = Comment.create!(:body => params[:body], :post_id => params[:post_id], :user_id => current_user[:id])
     
     if @comment
-      post = Post.find(@comment.post_id)
-      # Notificacion para el dueño del post
-      if current_user[:id] != post.user_id 
-        note = Notifications.new
-        note.user_id =  post.user_id
-        note.note_type = Notifications::COMMENT
-        note.from = current_user[:id]
-        note.resource_id = @comment.post_id
-        note.unread = 1
-        note.save
+     # Notificaciones para los subscriptores del post  
+      sub = Subscriptions.where(:resource_id => @comment.post_id, :resource_type => Subscriptions::S_POST)
+      sub.each do |s|
+          Notifications.send(s.user_id, current_user[:id], Notifications::COMMENT, s.resource_id)
       end
-      # Notificacion para los propietarios de los comentarios del post  
-      comms = post.comments.uniq_by {|x| x.user_id}
-      comms.each do |c|
-        if current_user[:id] != c.user_id
-          note = Notifications.new
-          note.user_id =  c.user_id
-          note.note_type = Notifications::COMMENT
-          note.from = current_user[:id]
-          note.resource_id = c.post_id
-          note.unread = 1
-          note.save
-        end
-      end  
       # Notificaciones para las menciones
       mentions = Array.new
       @comment.body.split.each do |t|
@@ -55,14 +36,12 @@ class CommentController < ApplicationController
       end
       mentions.each do |u|
         user = User.find_by_name(u)
-        note = Notifications.new
-        note.user_id = user.id
-        note.note_type = Notifications::COMMENT
-        note.from = current_user[:id]
-        note.resource_id = @comment.id
-        note.unread = 1
-        note.save
+        Notifications.send(user.id, current_user[:id], Notifications::USER, @comment.id)
       end
+      # Nos subscribimos al post
+      unless Subscriptions.where(:user_id => current_user[:id], :resource_type => Subscriptions::S_POST, :resource_id => @comment.post_id).exists?
+        Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @comment.post_id)
+      end      
       flash[:notice] = 'El mensaje se ha guardado correctamente.'
     else
       flash[:notice] = 'Hubo un problema al guardar el mensaje.'

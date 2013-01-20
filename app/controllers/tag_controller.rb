@@ -30,15 +30,7 @@ class TagController < ApplicationController
 
   def follow_tag
     @tag = Tag.find(params[:id])
-    @tag.users.each do |user|
-      note = Notifications.new
-      note.user_id = user.id
-      note.note_type = Notifications::FOLLOW
-      note.from = current_user[:id]
-      note.resource_id = @tag.id
-      note.unread = 1
-      note.save
-    end
+    Subscriptions.subscribe(current_user[:id], Subscriptions::S_TAG, @tag.id)
     @tag.users << User.find(current_user[:id])
     
     #foto aleatoria de la cabezera de list por tags

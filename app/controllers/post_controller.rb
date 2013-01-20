@@ -239,26 +239,16 @@ class PostController < ApplicationController
         end      
         mentions.each do |u|
           user = User.find_by_name(u)
-          note = Notifications.new
-          note.user_id = user.id
-          note.note_type = Notifications::USER
-          note.from = current_user[:id]
-          note.resource_id = @post.id
-          note.unread = 1
-          note.save
+          Notifications.send(user.id, current_user[:id], Notifications::USER, @post.id)
         end
         # Notificaciones para las usuarios que siguen los GRUPOS
         @post.tags.each do |t|
-          t.users.each do |user|
-            note = Notifications.new
-            note.user_id = user.id
-            note.note_type = Notifications::TAG_POST
-            note.from = current_user[:id]
-            note.resource_id = @post.id
-            note.unread = 1
-            note.save
+          subs = Subscriptions.where(:resource_id => t.id, :resource_type => Subscriptions::S_TAG)
+          subs.each do |sub|
+            Notifications.send(sub.user_id, current_user[:id], Notifications::TAG_POST, @post.id)
           end
         end
+        Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
         flash[:notice] = 'El mensaje se ha guardado correctamente.'
       else
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
