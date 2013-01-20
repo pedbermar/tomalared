@@ -27,7 +27,7 @@
 	   		 
 	    	<div id="text">
 	    		<% @user_ = User.find(comment.user_id)%>
-	   			<%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => comment.user_id}, :class => "linkRemote" %></u></b>, 
+	   			<%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => comment.user_id}, :class => "linkRemote" %>, 
 	   			<%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
 	   
 	    		<%= text_parse(comment.body).html_safe %>	    		
