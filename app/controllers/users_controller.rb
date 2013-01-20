@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
     # the User has not yet been activated
-    if @usernew .save_without_session_maintenance
+    if @usernew .save_without_session_maintenance 
       @usernew.send_activation_instructions!
       flash[:notice] = "Tu cuenta ha sido creada. Por favor mira tu e-mail para ver las instrucciones de activacion!"
       redirect_to '/login'

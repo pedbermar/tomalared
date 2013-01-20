@@ -54,6 +54,8 @@ Fra::Application.routes.draw do
 	#Share
   match '/share/:post_id' => 'share#share'
   match '/unshare/:post_id' => 'share#unshare'
+  
+  match '/notifications' => 'notification#list'
 
 	#Buscador
   match '/search' => 'search#search'

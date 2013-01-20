@@ -8,8 +8,7 @@ FOLLOW = 2     # New follower
 TAG_POST = 3     # New post with this tag
 
 # 'Post channel' notifications types
-POST = 4       # New post
+LIKE = 4       # New like
 COMMENT = 5    # New comment
-LIKE = 6       # New like
 SHARE = 7      # New share
 
