@@ -55,7 +55,7 @@
 	        
 	        
 	        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>
-	             <div id="board-block">	            	
+	             <div>	            	
 	            	<%= link_to "@#{User.find(mention_board.from).name[0..5]}", "/post/user/#{User.find(mention_board.from).name}", :class => "user linkRemote", :style => "color:red;" %>:
 	            	<%= link_to "#{Post.find(mention_board.resource_id).content[0..16]}", "/post/mentions/#{mention_board.from}", :class => "linkRemote" %>	            
 	            </div>
@@ -68,7 +68,7 @@
 	            Tus grupos:
 	        </li>
 	    
-		     <div id="board-block">   	        
+		     <div>   	        
 	            <% current_user.tags[0..11].each do |tag_board| -%>
 		          
 		            	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>	            
@@ -81,7 +81,7 @@
 	        <li id="board-title">
 	            Tendencias:
 	        </li>
-	        <div id="board-block">
+	        <div>
 	            <% Tag.find_most_popular(12).each do |tag_board| -%>
 	              	<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
 	            <% end %>

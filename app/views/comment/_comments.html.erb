@@ -16,20 +16,18 @@
 	    
 	    <span class="mainComentContent">
 	    	<% if  current_user[:id] == comment.user_id %>
-		    <span class="iconBorrarComentario">
-		        <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id},
-		        		 :data => { :confirm => "¿Borrar el comentario?"}, :class => "borrarComentario", :method => :delete, :remote => true %>
-		    </span>
-	   		 <% end %>
-	   		 
-	   		 
+			    <span class="iconBorrarComentario">
+			        <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id},
+			        		 :data => { :confirm => "¿Borrar el comentario?"}, :class => "borrarComentario", :method => :delete, :remote => true %>
+			    </span>
+	   		<% end %>
 	   		 
 	   		 
 	    	<div id="text">
 	    		<% @user_ = User.find(comment.user_id)%>
-	   			<%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => comment.user_id}, :class => "linkRemote" %>, 
+	   			<%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => comment.user_id}, :class => "linkRemote user" %>, 
 	   			<%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
-	   
+	   			<br/>
 	    		<%= text_parse(comment.body).html_safe %>	    		
     		</div>
     		 	<footer class="postCommentsVote">

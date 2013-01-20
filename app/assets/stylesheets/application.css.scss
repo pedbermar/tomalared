@@ -430,12 +430,12 @@ a:hover{
 }
 
 .mainPostContent a, .mainComentContent a{
-  color: red;
+  color: green;
   text-shadow: none;
 }
 
 .mainPostContent a:hover, .mainComentContent a:hover{ 
-  color: green;
+  color: black;
 }
 
 .voteMenu li{
@@ -575,7 +575,7 @@ a:hover{
 }
 
 .board-white a:hover, #board-block a:hover, .text-quote a:hover ,.text-link a:hover{ 
-  color: red;
+  color: black;
   text-shadow: none;
 }
 
@@ -588,16 +588,12 @@ a:hover{
     text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
-.user{
-  color: red;
+.user, .tag a{
+  color: green !important;
 }
 
-.tag a{
-  color: green;
-}
-
-.tag a:hover{
-  color: red;
+.tag:hover, .user:hover{
+  color: black !important;
 }
 
 .notification-list{

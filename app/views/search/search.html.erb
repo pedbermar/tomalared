@@ -30,11 +30,9 @@
 			<div class="search-titulo">
 				<%= @posts.count %> Posts:
 			</div>
-				
-			<div id= "search-results">
+			<div id= "posts-names">
 			   	<%= render :partial => "post/posts", :collection => @posts, :as => "post" %>
 			</div>
-		</div>
-		
+		</div>		
 	<% end %>
 
