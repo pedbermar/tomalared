@@ -58,7 +58,14 @@ a:hover{
   margin-top: 2%;
 }
 
+.usersboard{
+  color: black !important;
+  
+}
 
+.usersboard:hover{
+  color: gray !important;
+}
 
 #board-notifi li{
   display: inline;
@@ -129,6 +136,24 @@ a:hover{
   float: left;
 }
 
+.board-munecos
+{
+  position:static;
+  width: 48%;
+  min-height: 34px;
+  margin: 2px;
+  float: left;
+  overflow: hidden;
+}
+
+.board-munecos a{
+ color: white !important;
+}
+#board-mention{
+  display: table;
+  background: white;
+}
+
 .search-muneco{
   width: 97px;
   min-height: 80px;
@@ -179,9 +204,16 @@ a:hover{
   position: relative;
   top: -4px;
 }
-.icon-exit, .icon-home{
+.icon-exit, .icon-home {
   width: 23px;
   height: 23px;
+  padding: 2px;
+  top: 5px;
+}
+
+#open-publicar{
+  width: 29px;
+  height: 29px;
   padding: 2px;
   top: 5px;
 }
@@ -221,16 +253,16 @@ a:hover{
 
 #board-block {  
   background: white;
-  text-align: justify;  
-  padding-left: 3px;
-  padding-right: 3px;
+  text-align: justify;
   padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
   
 }
 #board-block li{
   height: 14px;
   background: white;
-  margin: 5px;
+  margin: 5px;  
 }
 #board-title{
   font-weight:bold;
@@ -258,14 +290,23 @@ a:hover{
   width: 100%;
 }
 
-#save{
+#form-new{
+
+}
+
+.ui-dialog{
   display: table;
-  width: 100%;
-  background-color:rgba(255,255,255,0.5);
+  width: 600px !important;
+  background-color:rgba(0,0,0,0.8) !important;
   margin-top: 1%;
   padding-bottom: 5px;
   -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
+  -webkit-border-radius: 7px; 
+}
+
+.ui-widget-content{
+  border: none;
+  background: none;
 }
 .muneco
 {
@@ -590,6 +631,7 @@ a:hover{
 
 .user, .tag a{
   color: green !important;
+  font-weight:bold !important;
 }
 
 .tag:hover, .user:hover{
@@ -725,3 +767,9 @@ a:hover{
 .ui-menu .ui-menu-item a.ui-state-active {
         margin: -1px;
 }
+
+.point a
+  {
+      text-decoration:none;
+      font-weight:bold !important;
+  } 

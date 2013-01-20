@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @po = Post.new
     @user = User.find(current_user[:id])
   end
 
