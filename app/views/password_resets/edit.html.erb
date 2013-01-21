@@ -1,9 +1,9 @@
-<h1>Update your password</h1>
+<div id="login">
+	<h5>Update your password</h1>
+	Please enter the new password below and then press "Update Password".
 
-<p>Please enter the new password below and then press "Update Password".</p>
-
-<% form_tag password_reset_path, :method => :put do %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Update Password" %>
-<% end %>
-
+	<% form_tag password_reset_path, :method => :put do %>
+  		<%= password_field_tag :password %>
+  		<%= submit_tag "Update Password" %>
+	<% end %>
+</div>

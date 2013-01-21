@@ -71,7 +71,9 @@ Fra::Application.routes.draw do
   match 'chat'       => 'chat#index'
   match 'maps'       => 'maps#index'
 
-  match 'password_resets'=> 'password_resets#new', :only => [ :new, :create, :edit, :update ]
+  match 'password_resets'=> 'password_resets#new'
+  match 'password_resets/edit'=> 'password_resets#edit'
+  match 'password_resets/create'=> 'password_resets#create'
   
   match '/notif/list' => 'notification#list'
   match '/users/crop' => 'users#crop'
