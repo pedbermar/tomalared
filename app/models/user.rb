@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   has_attached_file :photo, :styles => { :small => "50x50#", :medium => "210x210>", :large => "500x500>"}, :processors => [:cropper]
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  after_update :reprocess_avatar, :if => :cropping?
   
   before_destroy :dont_destroy_admin
   
@@ -39,11 +38,7 @@ class User < ActiveRecord::Base
     @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
   end
   
-  private
-  
-  def reprocess_avatar
-    photo.reprocess!
-  end
+
   
   def before_save
     # hash the plaintext password and set it to an instance variable

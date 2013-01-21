@@ -7,19 +7,14 @@
 
   <div id="perfil">
  	<div class="user-edit">
-	<%= form_tag '/updatefoto', :multipart=> true do %>
+	<%= form_for @user, :html => { :multipart => true } do |form|%>
 		Escoja un foto
 	
-	
-			<% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
-				 <%= image_tag( "/img/#{current_user[:id]}.jpg", :width => "100%", :alt => "Tu imagen", :class => "post_foto")  %>
-			<% else %>
-				<%= image_tag( "/img/default.jpg", :width => "100%", :alt => "Tu imagen", :class => "post_foto") %>
-			<% end -%>
-	
-			<%= file_field_tag 'user_pic', :accept => 'image/png,image/gif,image/jpeg' %>
-			<br/>	
-			<%= submit_tag "Subir foto" %>	
+		<%= image_tag @user.photo.url(:medium) %>
+	      <%= form.label :photo, "" %>
+      	  <%= form.file_field :photo %>
+				
+			 <%= form.submit "Submit" %>
 	</div>
 		
 		<% end %>
@@ -36,8 +31,9 @@
 		    <%= f.text_field :url %>
 			<br />  <br />
 		  <%= f.submit "Cambiar" %>
-		
 		<% end %>
+		
+
   		</div>
   </div>
   

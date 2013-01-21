@@ -62,6 +62,9 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       flash[:notice] = "Tu cuenta ha sido actualizada!"
       if params[:user][:photo].blank?
+        if @user.cropping?
+          @user.photo.reprocess!
+        end
         redirect_to @user
       else
         render :action => 'crop'
