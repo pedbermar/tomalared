@@ -140,8 +140,8 @@ a:hover{
 
 .comment-muneco
 {
-  width: 50px;
-  height: 50px;
+  width: 10%;
+  height: 45px;
   margin: 1%;
   float: left;
   margin-left: 7px;;
@@ -174,6 +174,7 @@ a:hover{
   display: table;
   background: white;
   font-weight:bold;
+  width: 210px;
 }
 
 .search-muneco{
@@ -296,6 +297,7 @@ a:hover{
   width: 393px;;  
   height: 83px;    
   padding: 1%;
+  padding-top: 2%;
   background: #fff;   
 }
 
@@ -573,8 +575,8 @@ div #form-new{
   width: 94%;  
   margin: 3%;
 }
-.post-image{
-  width: 550px;
+.post-image img{
+  width: 100%;
 }
 
 .searcher{
