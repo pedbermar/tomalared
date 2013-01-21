@@ -74,7 +74,7 @@ Fra::Application.routes.draw do
   match 'password_resets'=> 'password_resets#new', :only => [ :new, :create, :edit, :update ]
   
   match '/notif/list' => 'notification#list'
-  
+  match '/users/crop' => 'users#crop'
   #resources
   resources :tags
   resources :comments
@@ -83,6 +83,6 @@ Fra::Application.routes.draw do
   resource :user, :as => 'account'
   resources :user_sessions
   resource :password_resets, :only => [ :new, :create, :edit, :update ]
-
+  resources :photos, :member => {:crop => :get}
 end
 

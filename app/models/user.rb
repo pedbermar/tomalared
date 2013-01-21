@@ -16,19 +16,35 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :tags
   has_many :comments, :order => "created_at DESC", :through => :posts
   has_many :likes
-
+  
+  has_attached_file :photo, :styles => { :small => "50x50#", :medium => "210x210>", :large => "500x500>"}, :processors => [:cropper]
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :reprocess_avatar, :if => :cropping?
+  
   before_destroy :dont_destroy_admin
-
-  #attr_accessor   :password
-  #attr_accessible :name, :password, :email
-  attr_accessible :id, :profile, :name, :email,:url, :bio, :password, :password_confirmation, :openid_identifier, :notifications
+  
+  attr_accessible :id, :profile, :name, :email,:url, :bio, :password, :password_confirmation, :openid_identifier, :notifications, :photo
 
   validates_uniqueness_of :name
   validates_presence_of   :name
   validates_presence_of   :email
   validates_presence_of   :password, :on => :create
 
-  #has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+  
+  def avatar_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
+  end
+  
+  private
+  
+  def reprocess_avatar
+    avatar.reprocess!
+  end
+  
   def before_save
     # hash the plaintext password and set it to an instance variable
     self.hashed_password = User.hash_password(self.password) if self.password
@@ -47,10 +63,7 @@ class User < ActiveRecord::Base
     (password == confirm ? true : false)
   end
 
-  def dont_destroy_admin
-    # that's you.
-    raise CantDestroyAdminUser if self.id == 1
-  end
+
 
   def active?
    active

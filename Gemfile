@@ -49,3 +49,4 @@ gem 'rails-i18n'
 
 gem 'mongoid'
 gem 'bson_ext'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"

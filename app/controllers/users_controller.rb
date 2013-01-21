@@ -14,10 +14,14 @@ class UsersController < ApplicationController
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
     # the User has not yet been activated
-    if @usernew .save_without_session_maintenance 
-      @usernew.send_activation_instructions!
-      flash[:notice] = "Tu cuenta ha sido creada. Por favor mira tu e-mail para ver las instrucciones de activacion!"
-      redirect_to '/login'
+    if @usernew.save_without_session_maintenance 
+      @usernew.send_activation_instructions! 
+      if params[:user][:photo].blank?
+        flash[:notice] = "Tu cuenta ha sido creada. Por favor mira tu e-mail para ver las instrucciones de activacion!"
+        redirect_to @user
+      else
+        render :action => 'crop'
+      end
     else
       flash[:notice] = "Hubo un problema creando tu usuario."
       render :action => :new
@@ -41,6 +45,11 @@ class UsersController < ApplicationController
   def show
       redirect_to "/post/list/"
   end
+  
+   def crop
+    @po = Post.new
+    @user = User.find(current_user[:id])
+  end
 
   def edit
     @po = Post.new
@@ -52,7 +61,11 @@ class UsersController < ApplicationController
     @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Tu cuenta ha sido actualizada!"
-      redirect_to '/post/user'
+      if params[:user][:photo].blank?
+        redirect_to @user
+      else
+        render :action => 'crop'
+      end
     else
       render :action => :edit
     end
