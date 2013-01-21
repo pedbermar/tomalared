@@ -4,8 +4,9 @@
   	
 	<article class="postContent">
 		
-	    	<div class="mediano-muneco" style="background: url('<%= @user.photo.url(:medium) %>') no-repeat center; background-size: 100%;"> 
-	    		<div class="arrow-left"></div> 		
+	    	<div class="mediano-muneco"> 
+	    		<div class="arrow-left"></div>
+	    		<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %> 		
 	    	</div>
 	    
 		<div class="mainPostContent">				
