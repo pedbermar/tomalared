@@ -1,14 +1,10 @@
 <div class="tags-block">
-	<% @users.each do |t| -%>
+	<% @users.each do |u| -%>
 		<div class="tags-orden">
-			
-		    <% if FileTest.exists?("public/img/#{t.id}.jpg") %>
-		    	<div class="search-muneco" style="background: url(/img/<%= t.id%>.jpg) no-repeat center; background-size: 150%;"></div>
-		    <% else %>
-		    	<div class="search-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 150%;"></div>
-		    <% end -%>
-	    	<%= link_to "@#{t.name}",:controller => 'post', :action => 'list', :pagina => "user", :id => t.name %>
-	    
+		    	<div class="search-muneco">
+		    		<%= link_to image_tag( u.photo.url(:medium)  , :alt => "Imagen de #{u.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{u.name}" %>
+		    	</div>
+	    	<%= link_to "@#{u.name}",:controller => 'post', :action => 'list', :pagina => "user", :id => u.name %>
 		</div>		
 	<% end -%>
-</div>
+</div> 

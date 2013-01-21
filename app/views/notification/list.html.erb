@@ -2,22 +2,19 @@
 	<h5>Notificaciones:</h5>
 </div>
 <% if @notifications%>
+
 	<%@notifications.each do |n|%>
+		<% @user = User.find(n.from) -%>
 		<%if n.from != current_user[:id]%>
 			<div class="notification-list">	
 					<article class="postContent">    	
+	
+				    	<div class="noti-muneco">
+				    		<div class="arrow-left1"></div>
+						    <%= link_to image_tag( @user.photo.url(:small)  , :alt => "Imagen de #{@user.name}", :class => "linkRemote noti-muneco-photo", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}" %>
+				    	</div>
 					    
-					    <% if FileTest.exists?("public/img/#{n.from}.jpg") %>
-					    	<div class="comment-muneco" style="background: url(/img/<%= n.from%>.jpg) no-repeat center; background-size: 150%;">
-					    		<div class="arrow-left-comment"></div>
-					    	</div>
-					    <% else %>
-					    	<div class="comment-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 150%;">
-					    		<div class="arrow-left-comment"></div>
-					    	</div>
-					    <% end -%>
-					    
-					    <span class="mainComentContent">
+					    <span class="mainNotiContent">
 				
 					    	<div id="text">
 						    	<%if n.note_type == 1%>
