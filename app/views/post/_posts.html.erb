@@ -4,15 +4,9 @@
   	
 	<article class="postContent">
 		
-	    <% if FileTest.exists?("public/img/#{post.user_id}.jpg") %>
-	    	<div class="mediano-muneco" style="background: url(/img/<%= post.user_id%>.jpg) no-repeat center; background-size: 200%;"> 
+	    	<div class="mediano-muneco" style="background: url('<%= @user.photo.url(:medium) %>') no-repeat center; background-size: 100%;"> 
 	    		<div class="arrow-left"></div> 		
 	    	</div>
-	    <% else %>
-	   		<div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 100%;"> 
-	   			<div class="arrow-left"></div>	
-	   		</div>
-	    <% end -%>
 	    
 		<div class="mainPostContent">				
 			<%if current_user[:id] == post.user_id%>  

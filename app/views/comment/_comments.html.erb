@@ -1,18 +1,10 @@
 
 <%= div_for comment do %>
-    
-    		
+	<% @user_ = User.find(comment.user_id)%>
     <article class="postContent">    	
-	    
-	    <% if FileTest.exists?("public/img/#{comment.user_id}.jpg") %>
-	    	<div class="comment-muneco" style="background: url(/img/<%= comment.user_id%>.jpg) no-repeat center; background-size: 150%;">
+	    	<div class="comment-muneco" style="background: url('<%= @user_.photo.url(:small)%>') no-repeat center; background-size: 100%;">
 	    		<div class="arrow-left-comment"></div>
 	    	</div>
-	    <% else %>
-	    	<div class="comment-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 150%;">
-	    		<div class="arrow-left-comment"></div>
-	    	</div>
-	    <% end -%>
 	    
 	    <span class="mainComentContent">
 	    	<% if  current_user[:id] == comment.user_id %>
@@ -24,7 +16,7 @@
 	   		 
 	   		 
 	    	<div id="text">
-	    		<% @user_ = User.find(comment.user_id)%>
+	    		
 	   			<%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => comment.user_id}, :class => "linkRemote user" %>, 
 	   			<%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
 	   			<br/>

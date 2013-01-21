@@ -3,16 +3,10 @@
 	<div id="form-new">
 		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
 	 
-	        <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
-	        <div class="mediano-muneco" style="background: url(/img/<%= current_user[:id]%>.jpg) no-repeat center; background-size: 200%;">
+	        <div class="mediano-muneco" style="background: url('<%= current_user.photo.url(:large)%>') no-repeat center; background-size: 100%;">
 	        	<div class="arrow-left1"></div>	
 	        </div>
-	        <% else %>
-	        <div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 200%;">
-	        	<div class="arrow-left1"></div>
-	        </div>
-	        <% end -%>
-	   
+
 	            <%= text_area 'post','content' , :class => 'textarea', :placeholder => 'Escribe!'%>            
 	            <div id="archivo">
 	                <%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>

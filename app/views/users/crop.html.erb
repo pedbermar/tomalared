@@ -3,36 +3,42 @@ $(function() {
   $('#target-photo').Jcrop({
     onChange: update_crop,
     onSelect: update_crop,
-    setSelect: [0, 0, 500, 500],
     aspectRatio: 1
   });
-});
+
 
 function update_crop(coords) {
+ var bounds = this.getBounds();
+        boundx = bounds[0];
+        boundy = bounds[1];
   var rx = 100/coords.w;
-  var ry = 100/coords.h;
+  var ry = 100/coords.h; 
+  
   $('#preview-photo').css({
-    width: Math.round(rx * <%= @user.avatar_geometry(:large).width %>) + 'px',
-    height: Math.round(ry * <%= @user.avatar_geometry(:large).height %>) + 'px',
-    marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-    marginTop: '-' + Math.round(ry * coords.y) + 'px'
+		width: Math.round(rx * <%= @user.avatar_geometry(:large).width %>) + 'px',
+		height: Math.round(ry * <%= @user.avatar_geometry(:large).height %>) + 'px',
+		marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+		marginTop: '-' + Math.round(ry * coords.y) + 'px'
   });
   var ratio = <%= @user.avatar_geometry(:original).width %> / <%= @user.avatar_geometry(:large).width %>;
   $("#crop_x").val(Math.round(coords.x * ratio));
   $("#crop_y").val(Math.round(coords.y * ratio));
   $("#crop_w").val(Math.round(coords.w * ratio));
   $("#crop_h").val(Math.round(coords.h * ratio));
+
 }
+
+});
 </script>
-   <img src="<%=@user.photo.url%>" id="target-photo" width="400" />
+   <img src="<%=@user.photo.url(:large)%>" id="target-photo" />
       <div style="width:100px;height:100px;overflow:hidden;">
-    	  <img src="<%=@user.photo.url%>" id="preview-photo" alt="Preview" class="jcrop-preview" />
+    	  <img src="<%=@user.photo.url%>" id="preview-photo" alt="Preview" class="jcrop-preview"  />
 	   </div>
           
     <%= form_for @user do |form| %>
-  		<% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-  		<%= form.hidden_field attribute, :id => attribute %>
-  	<% end %>
+  		<% for attribute in [:crop_w, :crop_h, :crop_x, :crop_y] %>
+  			<%= form.text_field attribute, :id => attribute %>
+  		<% end %>
   	<p><%= form.submit "Crop" %></p>
 	<% end %>
 
