@@ -111,12 +111,12 @@
 
 /* line 81, ../sass/lightbox.sass */
 .lb-prev:hover {
-  background: url(../images/prev.png) left 48% no-repeat;
+  background: url(/gfx/prev-photo.png) left 48% no-repeat;
 }
 
 /* line 85, ../sass/lightbox.sass */
 .lb-next:hover {
-  background: url(../images/next.png) right 48% no-repeat;
+  background: url(/gfx/next-photo.png) right 48% no-repeat;
 }
 
 /* line 88, ../sass/lightbox.sass */
@@ -180,3 +180,15 @@
   cursor: pointer;
 }
 
+.lb-image{
+	max-width: 100%;
+	max-height: 70% ;
+}
+
+.lb-outerContainer{
+	max-width: 70% !important;
+	height: 70% !important;
+}
+.lb-nav, .lb-dataContainer{
+	width: 70% !important;
+}
