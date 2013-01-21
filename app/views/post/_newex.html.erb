@@ -3,9 +3,10 @@
 	<div id="form-new">
 		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
 	 
-	        <div class="mediano-muneco" style="background: url('<%= current_user.photo.url(:large)%>') no-repeat center; background-size: 100%;">
-	        	<div class="arrow-left1"></div>	
-	        </div>
+	        <div class="mediano-muneco2"> 
+	    		<div class="arrow-left"></div>
+	    		<%= link_to image_tag( current_user.photo.url(:medium)  , :alt => "Tu imagen"), "/post/user/#{current_user.name}", :class => "linkRemote mediano-muneco-post" %> 		
+	    	</div>
 
 	            <%= text_area 'post','content' , :class => 'textarea', :placeholder => 'Escribe!'%>            
 	            <div id="archivo">
