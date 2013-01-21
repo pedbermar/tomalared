@@ -5,7 +5,6 @@
 <% desc = content.split[0..-4].join(" ") -%>
 <%=title.html_safe%>
 <div class="post_link_photo">
-			<div class="mediano-muneco" style="background: url(<%= img %>) no-repeat center; background-size: 150%;"></div>
 		</div>
 	<iframe class="youtube" src="https://www.youtube.com/embed/<%= parse_youtube(url) -%>?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
 <%=desc.html_safe%>
