@@ -1,3 +1,21 @@
 <div class="imagen">
-	<%= image_tag ( "#{content}"),:class => 'post-image' %>
+<div class="imagen">
+    <ul>
+        <li>
+        <%=link_to( image_tag("#{content}"), "#{content}", :class=> "post-image", :rel => "lightbox") %>
+          
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 </div>
