@@ -140,12 +140,46 @@ a:hover{
 
 .comment-muneco
 {
+  position: relative;
+  top: -13px;
   width: 10%;
   height: 45px;
-  margin: 1%;
   float: left;
+  margin: 1%;
+  padding-top: 0px;
   margin-left: 7px;;
 }
+
+.comment-muneco-photo{
+  width: 50px;
+  height: 50px;  
+}
+.mainNotiContent{
+  position: relative;
+  top: 2px;
+  background-color: white;
+  width: 88%;
+  margin-top: 5px;
+  margin-right: 7px;
+  padding: 2px;
+  height: 46px;  
+  float: right;
+  font-size: 14px;
+}
+
+.noti-muneco
+{
+  position: relative;
+  float: left;
+  margin: 1%;
+  padding-top: 0px;
+  margin-left: 7px;;
+}
+
+.noti-muneco-photo{
+  width: 50px;
+}
+
 
 .board-munecos
 {
@@ -214,6 +248,7 @@ a:hover{
   top: 8px;  
   text-align: center;
 }
+
 
 .iconsMasComentario, .iconsMenosComentario, .iconsMenosComentarioDisable, .iconsMasComentarioDisable{
   top: -8px;
@@ -515,12 +550,12 @@ div #form-new{
   height: 23px;
 }
 
-.mainPostContent a, .mainComentContent a{
+.mainPostContent a, .mainComentContent a, .mainNotiContent a{
   color: green;
   text-shadow: none;
 }
 
-.mainPostContent a:hover, .mainComentContent a:hover{ 
+.mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover{ 
   color: black;
 }
 
@@ -609,21 +644,21 @@ div #form-new{
 .arrow-left1 { 
   position: relative;
   float:right;
-  top: 6px;
-  left: 10%;
+  top: 5px;
+  left: 15%;
   width: 0; 
   height: 0; 
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent; 
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent; 
   
-  border-right:10px solid white; 
+  border-right: 7px solid white; 
 }
 
 .arrow-left-comment { 
   position: relative;
   float:right;
-  top: 6px;
-  left: 40%;
+  top: 23px;
+  left: 25%;
   width: 0; 
   height: 0; 
   border-top: 7px solid transparent;
@@ -748,9 +783,12 @@ div #form-new{
    color: green !important; 
 }
 
-.tags-follow a:hover, .tags-unfollow a:hover, .tags-orden a:hover {
-   color: gray !important; 
+.tags-follow a:hover, .tags-unfollow a:hover{
+  color: gray !important;   
 }
+.tags-orden a {
+    text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+} 
 
 .tags-orden{
    width: 99px;

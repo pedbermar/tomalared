@@ -2,8 +2,9 @@
 <%= div_for comment do %>
 	<% @user_ = User.find(comment.user_id)%>
     <article class="postContent">    	
-	    	<div class="comment-muneco" style="background: url('<%= @user_.photo.url(:small)%>') no-repeat center; background-size: 100%;">
+	    	<div class="comment-muneco" >
 	    		<div class="arrow-left-comment"></div>
+	    		<%= link_to image_tag( @user_.photo.url(:small)  , :alt => "Imagen de #{@user_.name}",  :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user_.name}", :class => "linkRemote comment-muneco-photo" %>
 	    	</div>
 	    
 	    <span class="mainComentContent">

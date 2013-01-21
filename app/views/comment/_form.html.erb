@@ -1,8 +1,9 @@
 <div class="comment-form">
 	<%=form_tag({ :controller => 'comment' , :action => 'new'}, :id => "formComment", :remote => true) do%>
 		
-		    <div class="comment-muneco" style="background: url('<%= current_user.photo.url(:medium)%>') no-repeat center; background-size: 100%;">
+		    <div class="comment-muneco">
 		    	<div class="arrow-left-comment"></div>
+	    		<%= link_to image_tag( current_user.photo.url(:small)  , :alt => "Imagen de #{@user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}", :class => "linkRemote comment-muneco-photo" %>
 		    </div>
 		    
 			<%= text_area_tag  'body', nil, :class=> 'formComentContent', :placeholder => 'Comenta...' %>
