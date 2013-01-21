@@ -7,16 +7,18 @@ class PasswordResetsController < ApplicationController
     @user_session = UserSession.new 
   end
 
-  def create     
+  def create
+    @user_session = UserSession.new     
     @user = User.find_by_email(params[:email])
-    if @user
+    if @user 
       @user.deliver_password_reset_instructions!
       flash[:notice] = "Instructions to reset your password have been emailed to you"
-      redirect_to root_path
+      render :controller => :user, :action => :new
     else
-      flash.now[:error] = "No user was found with email address #{params[:email]}"
+      flash[:error] = "No user was found with email address #{params[:email]}"
       render :action => :new
     end
+  
   end
 
   def edit

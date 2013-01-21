@@ -76,13 +76,23 @@ a:hover{
   background: white;
 }
 
-#notice, .notice-li{
+#error, .notice-li{
   text-align: center;
   border: 1px red;
   border-style:solid;
   border-width: 2px;
   background: #F78181;
   color: white;  
+  margin: 5px;
+}
+
+#notice{
+  text-align: center;
+  border: 1px green;
+  border-style:solid;
+  border-width: 2px;
+  background: #aff675;
+  color: black;  
   margin: 5px;
 }
 
