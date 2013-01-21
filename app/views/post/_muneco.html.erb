@@ -25,8 +25,8 @@
 		</div>		    
 	</div>
 <% elsif @user %>
-	<div id="muneco" class="muneco" style="background: url(/img/<%= @user.id%>.jpg) no-repeat center; background-size: 100%;">
-		<div id="muneco-text">	    
+	<div id="muneco" class="muneco" style="background: url('<%= @user.photo.url%>') no-repeat center; background-size: 100%;">
+		<div id="muneco-text">	     
 		    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font>    
 		    <br />
 		    <%if @user.bio%>

@@ -3,13 +3,9 @@
 </header>
 
 <article id="marcofoto">
-    <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
-        <%= link_to image_tag( "/img/#{current_user.id}.jpg", :size => "200", :alt => "Tu imagen",
-        :class => "board-foto"), '/post/user', :class => "linkRemote"%>
-        <% else %>
-        <%= link_to image_tag( "/img/default.jpg", :size => "200", :alt => "Tu imagen",
-        :class => "board-foto"), '/post/user', :class => "linkRemote"%>
-    <% end -%>
+    
+        <%= link_to image_tag(current_user.photo.url(:medium) , :alt => "Tu imagen"), '/post/user', :class => "linkRemote" %>
+    
 </article>
 
 <nav>
@@ -45,7 +41,7 @@
 		<div id="board-mention" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>
             Conversaciones:
         <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>	        
-            <div class="board-munecos" style="background: url(/img/<%= mention_board.from %>.jpg) no-repeat center; background-size: 100%;">
+            <div class="board-munecos" style="background: url('<%= User.find(mention_board.from).photo.url(:small) %>') no-repeat center; background-size: 100%;">
 				<%= link_to "@#{User.find(mention_board.from).name}", "/post/mentions/#{mention_board.from}", :class => "linkRemote"%>	            
 	    	</div>
 	    <% end %>

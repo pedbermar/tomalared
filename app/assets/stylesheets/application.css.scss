@@ -140,8 +140,8 @@ a:hover{
 
 .comment-muneco
 {
-  min-width: 20%;
-  min-height: 34px;
+  width: 50px;
+  height: 50px;
   margin: 1%;
   float: left;
 }
@@ -290,9 +290,9 @@ a:hover{
 
 .textarea{
   margin: 1%;
-  float: left;  
-  height: 50px;   
-  width: 74%;
+  float: left;
+  width: 72%;  
+  height: 50px;    
   padding: 1%;
   background: #fff;   
 }
@@ -349,8 +349,8 @@ a:hover{
 }
 .mediano-muneco
 {
-  min-width: 20%;
-  min-height: 100px;
+  width: 115px;
+  height: 115px;
   margin: 1%;
   float: left;
 }
@@ -443,15 +443,16 @@ a:hover{
   color: black;
 }
 .mainComentContent{
-  width: 76%;
+  width: 82.5%;
   margin: 1%;
+  padding: 1%;
   min-height: 34px; 
   float: left;
   background-color: white;
 }
 
 .formComentContent{
-  width: 74%;
+  width: 82.5%;
   margin: 1%;
   padding: 1%;
   height: 23px; 
@@ -588,7 +589,7 @@ a:hover{
   position: relative;
   float:right;
   top: 6px;
-  left: 11%;
+  left: 18%;
   width: 0; 
   height: 0; 
   border-top: 7px solid transparent;

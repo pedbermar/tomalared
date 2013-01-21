@@ -1,15 +1,9 @@
 <div class="comment-form">
 	<%=form_tag({ :controller => 'comment' , :action => 'new'}, :id => "formComment", :remote => true) do%>
 		
-		    <% if FileTest.exists?("public/img/#{current_user[:id]}.jpg") %>
-		    <div class="comment-muneco" style="background: url(/img/<%= current_user[:id]%>.jpg) no-repeat center; background-size: 150%;">
+		    <div class="comment-muneco" style="background: url('<%= current_user.photo.url(:medium)%>') no-repeat center; background-size: 100%;">
 		    	<div class="arrow-left-comment"></div>
 		    </div>
-		    <% else %>
-		    <div class="comment-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 150%;">
-		    	<div class="arrow-left-comment"></div>
-		    </div>
-		    <% end -%>
 		    
 			<%= text_area_tag  'body', nil, :class=> 'formComentContent', :placeholder => 'Comenta...' %>
 		    <%= hidden_field_tag  'post_id', nil, :value => post.id %>
