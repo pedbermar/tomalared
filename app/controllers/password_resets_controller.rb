@@ -4,9 +4,10 @@ class PasswordResetsController < ApplicationController
   before_filter :load_user_using_perishable_token, :only => [ :edit, :update ]
 
   def new
+    @user_session = UserSession.new 
   end
 
-  def create
+  def create     
     @user = User.find_by_email(params[:email])
     if @user
       @user.deliver_password_reset_instructions!
