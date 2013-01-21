@@ -1,0 +1,69 @@
+	<script type="text/javascript">
+
+    jQuery(function($){
+
+      // Create variables (in this scope) to hold the API and image size
+      var jcrop_api, boundx, boundy;
+
+      $('#target-photo').Jcrop({
+        onChange: updatePreview,
+        onSelect: showCoords,
+        aspectRatio: 1,
+        onRelease:  clearCoords
+     
+      },function(){
+        // Use the API to get the real image size
+        var bounds = this.getBounds();
+        boundx = bounds[0];
+        boundy = bounds[1];
+        // Store the API in the jcrop_api variable
+        jcrop_api = this;
+      });
+      
+    function showCoords(c)
+    {
+      $('#crop_x').val(c.x);
+      $('#crop_y').val(c.y);
+      $('#crop_w').val(c.x2);
+      $('#crop_h').val(c.y2);
+    };
+
+    function clearCoords()
+    {
+      $('#coords input').val('');
+    };
+      
+
+      function updatePreview(c)
+      {
+        if (parseInt(c.w) > 0)
+        {
+          var rx = 100 / c.w;
+          var ry = 100 / c.h;
+
+          $('#preview-photo').css({
+            width: Math.round(rx * boundx) + 'px',
+            height: Math.round(ry * boundy) + 'px',
+            marginLeft: '-' + Math.round(rx * c.x) + 'px',
+            marginTop: '-' + Math.round(ry * c.y) + 'px'
+          });
+        }
+      };         
+});
+
+   </script>
+   <img src="<%=@user.photo.url%>" id="target-photo" width="400" />
+      <div style="width:100px;height:100px;overflow:hidden;">
+    	  <img src="<%=@user.photo.url%>" id="preview-photo" alt="Preview" class="jcrop-preview" />
+	   </div>
+          
+    <%= form_for @user do |form| %>
+  		<% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+  		<%= form.hidden_field attribute, :id => attribute %>
+  	<% end %>
+  	<p><%= form.submit "Crop" %></p>
+	<% end %>
+
+
+
+
