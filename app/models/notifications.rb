@@ -19,3 +19,4 @@ class Notifications
     end
   end
 end
+

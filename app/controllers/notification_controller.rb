@@ -9,5 +9,10 @@ class NotificationController < ApplicationController
         end
     end
   end
+  
+  def update_config
+    @config = NotificationsConfig.where(:user_id => current_user[:id])
+    if @config.update_attributes(params[:config])
+  end
 end
 

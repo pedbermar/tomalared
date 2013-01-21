@@ -59,12 +59,18 @@
 
   <div id="notificaciones">
   		<br />  <br />
-  		<li>Rebibir notificaciones de los grupos</li>
+  		<%form_tag "/notifications/update_config", :method => :post do %>
+  			<% NotificationsConfig.where(:user_id => current_user[:id]) do |config| %>
+  			<%= check_box_tag "Rebibir notificaciones de los grupos", config.tag_notifications, :false %>
+      				<%= citiy.city1 %>
+  				<li>Rebibir notificaciones de los grupos</li>
   		<br />  <br />
-  		<li>Recibir notificaciones de tus publicaciones</li>
+  				<li>Recibir notificaciones de tus publicaciones</li>
   		<br />  <br />
   		<li>Recibir notificaciones cuando te mencionan</li>
 		<br />  <br />
+			<%end%>
+		<%end%>
   </div>
 
 <script>
