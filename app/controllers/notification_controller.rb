@@ -13,6 +13,9 @@ class NotificationController < ApplicationController
   def update_config
     @config = NotificationsConfig.where(:user_id => current_user[:id])
     if @config.update_attributes(params[:config])
+      @config.save
+      flash[:notice] = "Tu cuenta ha sido actualizada!"
+    end
   end
 end
 
