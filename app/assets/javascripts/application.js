@@ -53,7 +53,3 @@ $(document).ready(function() {
 		$( "#form-new" ).dialog( "destroy" );
 	});
 });
-
-$(function(){
-    $('.tags-cloud').tagcloud({type:"sphere",centrex:100,centrey:35,zoom:35,sizemin:20,sizemax:20,power:.3});    
-});0

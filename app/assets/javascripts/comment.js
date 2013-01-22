@@ -22,6 +22,9 @@ function exitoComment() {
 
 $(document).ready(function() {
 	$(".comentar").button();
+	$("#body").charCount({
+		warning: 20
+	});
 	$(".comentar").click(function() {
 		var texto = $(this).parent().find("textarea.comment-new").val();
 		if (texto.length == 0) {

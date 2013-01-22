@@ -10,8 +10,7 @@
 	<%= form_for @user, :html => { :multipart => true } do |form|%>
 		Escoja un foto
 	
-		<%= image_tag @user.photo.url(:medium) %>
-	      <%= form.label :photo, "" %>
+		<%= image_tag @user.photo.url(:medium) %>	      
       	  <%= form.file_field :photo %>
 				
 			 <%= form.submit "Submit" %>
@@ -61,9 +60,6 @@
 
   </div>
 
-<script>
-$( "#tabs" ).tabs();
-</script>
   </ul>
   </div>
 </section>

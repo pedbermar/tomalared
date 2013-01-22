@@ -47,12 +47,19 @@
 	    <% end %>
     </div>
 
-    <ul id="board-block" <% if current_user.tags.empty? %>style="display:none;"<% end %>>
-		<li id="board-title">
-            Tus grupos:
-        </li>
-    	<div class="tags-cloud" style="width:200px; height:120px;position:relative; overflow: hidden;">   	        
-        	<% current_user.tags[0..19].each do |tag_board| -%>
+
+
+<div id="tabs-board">
+  <ul>
+  	<% if current_user.tags.count != 0 %>
+    	<li><a href="#tusgrupos">Tus grupos</a></li>
+    <% end %>	
+    <li><a href="#tendencias">Tendencias</a></li>
+    
+    
+	<% if current_user.tags.count != 0 %>
+    	<div id="tusgrupos" class="tags-cloud-groups" style="width:200px; height:120px;position:relative; overflow: hidden;">   	        
+        	<% current_user.tags[0..9].each do |tag_board| -%>
 			    <ul>
 		        	<li>
 		        		<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote", :rel => tag_board.posts.count, :title => tag_board.name %>
@@ -60,13 +67,10 @@
 			   	</ul>
 	        <% end %>	        
     	</div>
-    </ul> 
-    <ul id="board-block">
-        <li id="board-title">
-            Tendencias:
-		</li>
-       	<div class="tags-cloud" style="width:200px; height:120px;position:relative; overflow: hidden;">
-        	<% Tag.find_most_popular(20).each do |tag_board| -%>
+     <% end %>
+    
+     <div id="tendencias" <% if current_user.tags.count != 0 %>class="tags-cloud-populars"<% else %>class="tags-cloud-groups"<% end %> style="width:200px; height:120px;position:relative; overflow: hidden;">
+        	<% Tag.find_most_popular(10).each do |tag_board| -%>
 	        	<ul>
 	            	<li>
 	            		<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote", :rel => tag_board.count, :title => tag_board.name %>
@@ -75,6 +79,7 @@
 	        <% end %>
         </div>
     </ul>
+  </div>
 </nav>
 
 

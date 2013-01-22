@@ -110,6 +110,10 @@ $(document)
 						resizable : false,
 						dialogClass : "cargandoPagPost"
 					});
+					$("#post_content").charCount({
+						warning: 0,
+						counterText: 'Quote < 140 > Post: '
+					});
 					$("#tumblear")
 							.click(
 									function() {

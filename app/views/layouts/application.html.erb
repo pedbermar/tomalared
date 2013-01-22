@@ -95,10 +95,8 @@ if @navegador == 'MSIE' -%>
 		        	<div class="twelve columns" id="login">
         		<% end -%>
 	        	    <% if current_user %>
-			        Hola, <%= current_user[:name] %>.&nbsp;
-			        <% end %>&iquest;Estas buscando @#?
-			        <br/>
-			        Pues corre que #@ te busca a ti...
+			        Hola <%= current_user[:name] %>, 
+			        b<% else %>B<% end %>ienvenido al ciberespacio, el nuevo hogar de la mente.
 			        <br/>
 			        TOMALARED.NET &nbsp;v0.1 (alpha)
 			        <br/>

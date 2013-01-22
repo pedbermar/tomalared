@@ -28,7 +28,7 @@
 		    		<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>	
 		    	<% end %>
 		    	<span class="tag"<%if post.post_type == "quote"%> style="display: none;" <%end%>>      	
-		   			<%= linked_tags_with_commas(post.tags).html_safe %>
+		   			<%= linked_tags_with_commas(Post.find(post.id).tags).html_safe %>
 		   		</span>
 		   		&nbsp; 
 	   		</div>
