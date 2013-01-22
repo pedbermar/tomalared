@@ -20,11 +20,12 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 }
 
       /* Fondos blancos */
-#board-notifi li, #board-notifi,.mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header{
+#board-notifi li, #board-notifi,.mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea{
   background: #FAFAF4 url(images/ui-bg_highlight-hard_100_fafaf4_1x100.png) 50% 50% repeat-x !important;
 }
 
-#tabs li a, {
+      /* Fuente botones y Fuentes _board */
+#tabs li a, #board-title, #tumblear, .mainPostContent {
   font-size: 13px;
 }
 
@@ -326,19 +327,17 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
  
 #board-title{
   font-weight:bold;
-  text-align: center;
-  font-size: 13px;
+  text-align: center;  
   padding-bottom: 2px;  
 }
 
 .textarea{
-  margin: 1%;
+  margin: 6px;
   float: right;
   width: 393px;;  
-  height: 83px;    
-  padding: 1%;
-  padding-top: 2%;
-  background: #fff;   
+  height: 92px;    
+  padding: 6px;
+  padding-top: 11px;   
 }
 
 #tumblear{
