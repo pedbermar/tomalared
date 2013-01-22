@@ -34,20 +34,20 @@ class SearchController < ApplicationController
       if @q[0] == "#" 
         @q1 = @q.gsub(/^#/,"")
         like= "%".concat(@q1.concat("%"))
-        tags = Tag.where("name like ?", like)
+        tags = Tag.where("name like ?", like)[0..4]
       elsif @q[0] == "@"
         @q1 = @q.gsub(/^@/,"")
         like= "%".concat(@q1.concat("%"))
-        users = User.where("name like ?", like)        
+        users = User.where("name like ?", like)[0..4]        
       else 
         like= "%".concat(@q.concat("%"))
-        users = User.where("name like ?", like)
-        tags = Tag.where("name like ?", like)
+        users = User.where("name like ?", like)[0..4]
+        tags = Tag.where("name like ?", like)[0..4]
       end
       
-    list = users.map {|u| Hash[ id: u.id, label: "@#{u.name}", name: u.name, tipo: "user", img: "/img/#{u.id}.jpg" ]}
-    list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "/img/tag.png" ]}  
-    list = list.sort_by {|a,b| a[:name]}
+    list = users.map {|u| Hash[ id: u.id, label: "@#{u.name}", name: u.name, tipo: "user", img: u.photo.url(:small) ]}.sort_by {|a| a[:name]}
+    list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "/img/tag.png" ]}.sort_by {|a| a[:name]}
+    
     render json: list
     end
   end
