@@ -1,3 +1,4 @@
+/* Etiquetas generales*/
 body{
   background-image: url('/gfx/fondo.png');
   background-color: black;
@@ -12,9 +13,26 @@ a{
   color: white;  
   font-weight: bold;  
 }
+        /* Enlaces */
+a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-white a, #board-block a, .text-quote a ,.text-link a, #board-notifi a, .user, .tag a, .tags-follow a
+{
+  color: #459E00 !important;
+}
 
-a:hover{
-  color: green;
+      /* Fondos blancos */
+#board-notifi li, #board-notifi,.mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header{
+  background: #FAFAF4 url(images/ui-bg_highlight-hard_100_fafaf4_1x100.png) 50% 50% repeat-x !important;
+}
+
+#tabs li a, {
+  font-size: 13px;
+}
+
+.ui-tabs-anchor{
+  font-size: 12px;
+}
+.ui-tabs-nav{
+  overflow: hidden !important;
 }
 
 .logo{
@@ -68,12 +86,7 @@ a:hover{
 }
 
 #board-notifi li{
-  display: inline;
-  background: white;
-}
-
-#board-notifi{
-  background: white;
+  display: inline;  
 }
 
 #error, .notice-li{
@@ -156,8 +169,7 @@ a:hover{
 }
 .mainNotiContent{
   position: relative;
-  top: 2px;
-  background-color: white;
+  top: 2px;  
   width: 88%;
   margin-top: 5px;
   margin-right: 7px;
@@ -196,17 +208,11 @@ a:hover{
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
-.board-munecos a{
- color: white !important;
-}
-
-
 .board-munecos a:hover{
  color: black !important;
 }
 #board-mention{
-  display: table;
-  background: white;
+  display: table;  
   font-weight:bold;
   width: 210px;
 }
@@ -276,8 +282,7 @@ a:hover{
 #archivo{
   left: 6px;
   top: 1px;
-  display: none;
-  background: white;
+  display: none;  
   width: 394px; 
   margin-left: 90px;
   text-align: center;
@@ -306,19 +311,19 @@ a:hover{
   margin-right: 10px;
 }
 
-#board-block {  
-  background: white;
+#board-block {
   text-align: justify;
   padding-bottom: 2px;
   padding-left: 10px;
   padding-right: 10px;
   
 }
+
 #board-block li{
-  height: 14px;
-  background: white;
+  height: 14px;  
   margin: 5px;  
 }
+ 
 #board-title{
   font-weight:bold;
   text-align: center;
@@ -448,7 +453,7 @@ div #form-new{
   padding: 5px;
   text-align: center;
   margin: 0px;
-  float: left;
+  float: right;
   margin: 1%;
   width: 46%;
   background-color:rgba(255,255,255,1);
@@ -499,12 +504,11 @@ div #form-new{
   margin-bottom: 0px;  
   float: left;
   font-size: 13px;
-  line-height: 15px;
-  background-color: white;
+  line-height: 15px;  
   color: black;
 }
-.mainComentContent{
-  background-color: white;
+
+.mainComentContent{  
   width: 83%;
   margin-top: 5px;
   margin-right: 7px;
@@ -548,11 +552,6 @@ div #form-new{
   font-size: 12px;
   text-align: justify;
   height: 23px;
-}
-
-.mainPostContent a, .mainComentContent a, .mainNotiContent a{
-  color: green;
-  text-shadow: none;
 }
 
 .mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover{ 
@@ -678,19 +677,13 @@ div #form-new{
    -webkit-border-radius: 7px;
 }
 
-.board-white{
-  background: white;
+.board-white{  
   margin-bottom: 6px;
   margin-top: 6px;
   padding: 5px;
 }
 
-.board-white a, #board-block a, .text-quote a ,.text-link a{ 
-  color: green;
-  text-shadow: none;   
-}
 
- 
 #board-block a,{ 
   font-size: 12px;
   font-weight: normal;
@@ -705,8 +698,7 @@ div #form-new{
   text-shadow: none;
 }
 
-#board-notifi a{
-  color:green;
+#board-notifi a{  
     text-shadow: -1px 0px #fff, 0px 1px #fff, 1px 0px #fff, 0px -1px #fff;
 }
 
@@ -714,8 +706,7 @@ div #form-new{
     text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
-.user, .tag a{
-  color: green !important;
+.user, .tag a{  
   font-weight:bold !important;
 }
 
@@ -779,10 +770,6 @@ div #form-new{
  color: red !important; 
 }
 
-.tags-follow a{
-   color: green !important; 
-}
-
 .tags-follow a:hover, .tags-unfollow a:hover{
   color: gray !important;   
 }
@@ -794,8 +781,7 @@ div #form-new{
    width: 99px;
    float: left; 
    margin: 3px;
-   border: 1px solid gray;
-   background: white;
+   border: 1px solid gray;   
    overflow: hidden;
    padding: 3px;
    text-align: center;
@@ -864,8 +850,4 @@ div #form-new{
   {
       text-decoration:none;
       font-weight:bold !important;
-  } 
-  
-.ui-widget-header{
-  background: white !important;
-}
+  }
