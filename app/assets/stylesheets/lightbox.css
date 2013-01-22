@@ -184,14 +184,16 @@
   max-height: 80%;
 }
 
-.lb-image{
-}
-
 .lb-outerContainer{
 	width: 80% !important;
 	height: 80% !important;
 	background: none;
 }
-.lb-nav, .lb-dataContainer{
+.lb-nav{
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.lb-dataContainer{
 	width: 80% !important;
 }

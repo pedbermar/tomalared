@@ -2,7 +2,7 @@
 <div class="imagen">
     <ul>
         <li>
-        <%=link_to( image_tag("#{content}"), "#{content}", :class=> "post-image", :rel => "lightbox[posts]", :title => "@#{link_to (Post.find(post_id).user.name), "/post/user/#{Post.find(post_id).user.id}" } en #{linked_tags_with_commas(Post.find(post_id).tags).html_safe}") %>          
+        <%=link_to( image_tag("#{content}"), "#{content}", :class=> "post-image", :rel => "lightbox[posts]", :title => "#{link_to ("@#{Post.find(post_id).user.name}"), "/post/user/#{Post.find(post_id).user.name}" } en #{linked_tags_with_commas(Post.find(post_id).tags).html_safe}") %>          
         </li>
     </ul>
 </div>
