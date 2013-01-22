@@ -20,7 +20,7 @@
 			<%= link_to "@#{@user.name}" , "/post/user/#{@user.name}", :class => "linkRemote user" %>,
     		<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:	
 		
-			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title } %>
+			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title, :post_id => post.id } %>
 			
 		    <div class="postFooter">
 		    	  
