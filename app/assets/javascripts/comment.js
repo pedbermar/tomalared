@@ -5,6 +5,7 @@ function pintarBotonesComment() {
 		},
 		text : false
 	});
+	$(".comentar").button();
 }
 
 function vueltaComment() {
