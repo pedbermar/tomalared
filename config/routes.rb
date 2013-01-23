@@ -43,10 +43,7 @@ Fra::Application.routes.draw do
   match '/comment/delete/:id' => 'comment#delete'
 
 	#Likes
-  match '/like' => 'vote#like'
-  match '/dontlike' => 'vote#dontlike'
-  match '/change_to_like' => 'vote#change_to_like'
-  match '/change_to_dontlike' => 'vote#change_to_dontlike'
+  match '/vote' => 'vote#vote'
 
   match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account
   match 'send_activation(/:user_id)' => 'users#send_activation', :as => :send_activation

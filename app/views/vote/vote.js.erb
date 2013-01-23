@@ -1,0 +1,19 @@
+<% if params[:like_type] == "1" %>
+	$("#numVotosPost_<%= params[:type_id]%>").html(<%= @numLikes%>);
+	<% if params[:like] %>
+		$("#votoMenosPost_<%= params[:type_id]%>").button( "option", "disabled", false );
+		$("#votoMasPost_<%= params[:type_id]%>").button( "option", "disabled", true );
+	<% elsif params[:dontLike] %>
+		$("#votoMenosPost_<%= params[:type_id]%>").button( "option", "disabled", true );
+		$("#votoMasPost_<%= params[:type_id]%>").button( "option", "disabled", false );
+	<% end %>
+<% elsif params[:like_type] == "2" %>
+	$("#numVotosComment_<%= params[:type_id]%>").html(<%= @numLikes%>);
+	<% if params[:like] %>
+		$("#votoMenosComment_<%= params[:type_id]%>").button( "option", "disabled", false );
+		$("#votoMasComment_<%= params[:type_id]%>").button( "option", "disabled", true );
+	<% elsif params[:dontLike] %>
+		$("#votoMenosComment_<%= params[:type_id]%>").button( "option", "disabled", true );
+		$("#votoMasComment_<%= params[:type_id]%>").button( "option", "disabled", false );
+	<% end %>
+<% end %>

@@ -1,40 +1,33 @@
 class VoteController < ApplicationController
-		#Likes
-	def like
-		like = Likes.new
-		like.user_id = current_user[:id]
-		like.like_type = params[:like_type]
-		like.type_id = params[:type_id]
-		like.dontlike = 0
-		like.like = 1
-		like.save
-		redirect_to :back
-	end
-
-	def dontlike
-		like = Likes.new
-		like.user_id = current_user[:id]
-		like.like_type = params[:like_type]
-		like.type_id = params[:type_id]
-		like.dontlike = 1
-		like.like = 0
-		like.save
-		redirect_to :back
-	end
-
-	def change_to_like
-		like = Likes.find(:first, :conditions => {:user_id => current_user[:id], :like_type => params[:like_type], :type_id => params[:type_id]}) 
-		like.dontlike = 0
-		like.like = 1
-		like.save
-		redirect_to :back
-	end
-
-	def change_to_dontlike
-		like = Likes.find(:first, :conditions => {:user_id => current_user[:id], :like_type => params[:like_type], :type_id => params[:type_id]}) 
-		like.dontlike = 1
-		like.like = 0
-		like.save		
-		redirect_to :back
-	end
+  def vote
+    like = Likes.find(:first, :conditions => {:user_id => current_user[:id], :like_type => params[:like_type], :type_id => params[:type_id]})
+    if !like
+      like = Likes.new
+    end 
+    like.user_id = current_user[:id]
+    like.like_type = params[:like_type]
+    like.type_id = params[:type_id]
+    if params[:dontLike]
+      like.dontlike = 1
+      like.like = 0
+    end
+    if params[:like]
+      like.dontlike = 0
+      like.like = 1
+    end
+    like.save
+    if params[:like_type] == 1
+      @post = true
+    end
+    if params[:like_type] == 2
+      @comment = true
+    end
+    @numLikes = Likes.find(:all, :conditions => {:like_type => params[:like_type], :type_id => params[:type_id], :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => params[:like_type], :type_id => params[:type_id], :like => 0, :dontlike => 1 }).count
+    if params[:remote]
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
+    end
+  end
 end
