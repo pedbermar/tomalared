@@ -83,8 +83,7 @@ function actualizado(data) {
 
 function vueltaPost() {
 	setTimeout(function() {
-		pintarBotonesPost();
-		$("#cargando").hide();
+		pintarBotonesPost();		
 		$("#posts").find(".post").first().removeAttr("style");
 	}, 1000);
 };
