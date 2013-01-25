@@ -1,40 +1,41 @@
 <%= div_for post do %>
-<% @user = User.find(post.user_id) -%>
-<article class="postContent">
-
-	<div class="mediano-muneco">
-		<div class="arrow-left"></div>
-		<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
-	</div>
-
-	<div class="mainPostContent">
-		<%if current_user[:id] == post.user_id%>
-		<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
-		:data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
-		<% else %>
-		<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
-		<% end %>
-
-		<%= link_to "@#{@user.name}" , "/post/user/#{@user.name}", :class => "linkRemote user" %>,
-		<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
-
-		<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title, :post_id => post.id } %>
-
-		<div class="postFooter">
-
-			<%if current_user%>
-			<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>
-			<% end %>
-			<span class="tag"<%if post.post_type == "quote"%> style="display: none;" <%end%>> <%= linked_tags_with_commas(Post.find(post.id).tags).html_safe %> </span>
-			&nbsp;
+	<% @user = User.find(post.user_id) -%>
+	<article class="postContent">
+	
+		<div class="mediano-muneco">
+			<div class="arrow-left"></div>
+			<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
 		</div>
-	</div>
-</article>
-
-<footer class="postComments">
-	<%= render :partial => 'comment/index', :object => post, :as => "post" %>
-</footer>
-<input type="hidden" id="created_at_<%= post.id %>" value="<%= post.created_at %>"/>
-
+	
+		<div class="mainPostContent">
+			<%if current_user[:id] == post.user_id%>
+				<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
+				:data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
+			<% else %>
+				<div id="sharePost_<%=post.id%>">
+					<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
+				</div>
+			<% end %>
+	
+			<%= link_to "@#{@user.name}" , "/post/user/#{@user.name}", :class => "linkRemote user" %>,
+			<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
+	
+			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title, :post_id => post.id } %>
+	
+			<div class="postFooter">
+	
+				<%if current_user%>
+						<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>
+				<% end %>
+				<span class="tag"<%if post.post_type == "quote"%> style="display: none;" <%end%>> <%= linked_tags_with_commas(Post.find(post.id).tags).html_safe %> </span>
+				&nbsp;
+			</div>
+		</div>
+	</article>
+	
+	<footer class="postComments">
+		<%= render :partial => 'comment/index', :object => post, :as => "post" %>
+	</footer>
+	<input type="hidden" id="created_at_<%= post.id %>" value="<%= post.created_at %>"/>
 <% end %>
 
