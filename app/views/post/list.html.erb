@@ -5,7 +5,7 @@
     <%= render :partial => "posts", :collection => @posts, :as => "post" %>
 </div>
 <input type="hidden" id="remote" name="remote" value="" />
-<div id="cargandoPag" align="center"">
+<div id="cargandoPag" align="center">
     <%= image_tag("/gfx/pagina.gif", :title => "Cargando", :alt => "Cargando") %>
 </div>
 <%#= link_to "<-- Anterior ", { :page => @post_pages.current.previous, :type => params[:type] } if @post_pages.current.previous %>
