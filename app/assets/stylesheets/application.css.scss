@@ -141,7 +141,9 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   font-size: 10px;  
 }
 #user_session_name, #user_session_password{
+  
   width: 100px;
+  margin-left: 5px;
 }
 .registro, .errorExplanation{
   display: block;
@@ -350,8 +352,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   width: 100%;
 }
 
-#form-new{
-  
+.new_user_session{
+  width: 100%;
 }
 
 .ui-dialog{
@@ -554,7 +556,7 @@ div #form-new{
 }
 
 .mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover{ 
-  color: black;
+  color: black !important;
 }
 
 .voteMenu li{
