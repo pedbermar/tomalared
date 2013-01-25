@@ -28,18 +28,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def activate
-    @user = User.find_using_perishable_token(params[:activation_code], 1.week) || (raise Exception)
 
-    raise Exception if @user.active?
-
-    if @user.activate!
-      UserSession.create(@user, false)
-      @user.send_activation_confirmation!
-      redirect_to account_url
-    else
-      render :action => :new
-    end
+  # up and delete a user
+  def delete_user
+    user_id = params[:id]
+    user = User.find(user_id)
+    user.destroy
+    flash[:notice] = "Usuario Borrado."
+    redirect_to :action => :users
   end
 
   def show
@@ -61,6 +57,8 @@ class UsersController < ApplicationController
     @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:notice] = "Tu cuenta ha sido actualizada!"
+      not_conf = NotificationsConfig.new
+      not_conf.user_id = current_user[:id]
       if params[:user][:photo].blank?
         if @user.cropping?
           @user.photo.reprocess!
@@ -73,24 +71,6 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
- #
-  # user handling
-  #
-
-  # see if the poor user is authorized
-  def authorize
-    #redirect_to :controller => 'admin', :action => 'login' unless logged_in?
-  end
-
-  # certain actions only the big man can perform
-  def admin_user_only
-    #redirect_to :controller => 'admin', :action => 'password' unless is_admin_user?
-  end
-
-  # the big man
-  def is_admin_user?
-    (logged_in? && current_user[:id] == User::ADMIN_USER_ID)
-  end
 
   # user list
   def users
@@ -101,47 +81,18 @@ class UsersController < ApplicationController
     @users = User.find(:all, :order => 'id ASC')
   end
 
-  # ajaxly rename a user
-  def rename_user
-    if request.post?
-      user = User.find(params[:user_id])
-      user.name = params[:user_name]
-      user.save
-      render :text => user.name
+  def activate
+    @user = User.find_using_perishable_token(params[:activation_code], 1.week) || (raise Exception)
+
+    raise Exception if @user.active?
+
+    if @user.activate!
+      UserSession.create(@user, false)
+      @user.send_activation_confirmation!
+      redirect_to account_url
+    else
+      render :action => :new
     end
-  end
-
-  # up and delete a user
-  def delete_user
-    user_id = params[:id]
-    user = User.find(user_id)
-
-    flash[:notice] = begin
-                       user.destroy
-                       Post.chown_posts(user_id,User::ADMIN_USER_ID)
-                       "Usuario Borrado."
-                     rescue CantDestroyAdminUser
-                       "No puede borrar al admin :("
-                     end
-
-    redirect_to :action => :users
-  end
-
-  def updatefoto
-   if request.post?
-					File.open("public/img/#{current_user[:id]}.jpg", "wb") do |file|
-						  file << open(params[:user_pic]).read
-					 end
-       end
-     redirect_to :action => 'show'
-   end
-
-  def updatedatos
-      user = User.find(current_user[:id])
-      user.name = params[:name]
-      user.email = params[:email]
-      user.save
-      redirect_to :action => 'show'
   end
 end
 
