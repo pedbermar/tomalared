@@ -9,6 +9,10 @@ body{
   color: #000;
 }
 
+.post, #footer2, #muneco{
+  background-color:rgba(255,255,255,0.5);
+}
+
 a{
   color: white;  
   font-weight: bold;  
@@ -27,6 +31,12 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
       /* Fuente botones y Fuentes _board */
 #tabs li a, #board-title, #tumblear, .mainPostContent {
   font-size: 13px;
+}
+
+    /*Radius*/
+.busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco{
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
 }
 
 .ui-tabs-anchor{
@@ -360,21 +370,24 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   background-color:rgba(0,0,0,1) !important;
   margin-top: 1%;
   padding: 0px !important;
-  margin: 0px !important;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px; 
+  margin: 0px !important;   
 }
 
 .ui-widget-content{
   border: none;
   background: none;
 }
-.muneco
-{
-  width: 100%; 
-  min-height: 200px;
+#muneco
+{    
+  padding: 3px;
+}
+#muneco-text
+{ 
+  min-height: 200px; 
+  margin: 5px;
   color: #fff;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+  padding: 5px;  
 }
 #save{
   position: relative;
@@ -394,10 +407,6 @@ div #form-new{
   height: auto !important;
 }
 
-#muneco-text
-{
-  margin-left: 15px;
-}
 .mediano-muneco
 {
   width: 20%;  
@@ -430,10 +439,6 @@ div #form-new{
   width: 100%;  
   margin-top: 20px;
   padding-bottom: 5px;
-  background-color:rgba(255,255,255,0.5);
-  
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
 }
 
 #user-edit{
@@ -443,9 +448,7 @@ div #form-new{
   padding: 20px;
   text-align: center;  
   background-color:rgba(255,255,255,0.5);
-  margin: 0;  
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
+  margin: 0;
 }
 
 .user-edit{
@@ -462,6 +465,7 @@ div #form-new{
 
 #main{
     position: relative;
+    margin-top: 20px;
     z-index:50;
 }
 
@@ -593,9 +597,7 @@ div #form-new{
 }
 
 #footer2{
-  background-color:rgba(255,255,255,0.5);
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
+    
   color: black;
 }
 
@@ -673,8 +675,6 @@ div #form-new{
    padding-left: 5px;   
    padding-right: 5px;   
    text-align: center;
-   -moz-border-radius: 7px;
-   -webkit-border-radius: 7px;
 }
 
 .board-white{  
@@ -720,9 +720,7 @@ div #form-new{
    top: 15px;
    width: 100%;
    background-color:rgba(255,255,255,0.5);
-   text-align: left;
-   -moz-border-radius: 7px;
-   -webkit-border-radius: 7px;
+   text-align: left;   
    color: black;
    padding: 2px;
    margin-bottom: 10px;
@@ -732,9 +730,7 @@ div #form-new{
    display: table;
    width: 100%;
    background-color:rgba(255,255,255,0.8);
-   text-align: center;
-   -moz-border-radius: 7px;
-   -webkit-border-radius: 7px;
+   text-align: center;   
    color: black;
    padding: 10px;
 }
@@ -747,12 +743,11 @@ div #form-new{
    display: block;   
    background-color:rgba(255,255,255,0.5);
    text-align: center;
-   -moz-border-radius: 7px;
-   -webkit-border-radius: 7px;
    color: black;
    padding: 10px;
    margin-top: 10px;
 }
+
 .search-titulo{
   font-size: 16px;
 }

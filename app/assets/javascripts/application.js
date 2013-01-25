@@ -50,6 +50,6 @@ $(document).ready(function() {
 	
 	$( "#tumblear" ).click(function() 
 	{
-		$( "#form-new" ).dialog( "destroy" );
+		$( "#form-new" ).dialog( "close" );
 	});
 });
