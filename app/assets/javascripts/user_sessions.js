@@ -15,8 +15,7 @@ function pintarBotonesHeader() {
     $("#open-publicar").button({
     icons : {
       primary : "ui-icon-pencil"
-    },
-    text : false
+    }    
   });
 };
 
