@@ -10,6 +10,7 @@
 
 <nav>
 	<ul id="board-notifi">
+		<%= subscribe_to "/u/#{current_user[:id]}"%>
 		<li>
 
 			<% comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>
