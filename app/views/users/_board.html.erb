@@ -10,8 +10,8 @@
 
 <nav>
 	<ul id="board-notifi">
-		<%= subscribe_to "/u/#{current_user[:id]}"%>
 		<li>
+
 			<% comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>
 			<%if comm.count != 0%>
 			<%= link_to "(#{comm.count})C", "/post/notifications/5"%>
@@ -27,6 +27,43 @@
 			<%= link_to "#", "/post/notifications/3"%>
 			<%end%>
 		</li>
+			<%comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>
+	    	<%if comm.count != 0%>
+	        	<%= link_to "(#{comm.count})C", "/post/notifications/5"%>
+	        <%else%>
+	        	<%= link_to "C", "/post/notifications/5"%>
+	        <%end%>
+	    </li>
+	    <li>
+	    	<%tags = Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1)%>
+	       	<%if tags.count != 0%>
+	       		<%= link_to "(#{tags.count})#", "/post/notifications/3"%>
+	      	<%else%>
+	       		<%= link_to "#", "/post/notifications/3"%>
+	       	<%end%>
+	    </li>
+	        
+	    <li>
+	    	<%users = Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1)%>
+	        <%if users.count != 0%>
+	        	<%= link_to "(#{users.count})@", "/post/notifications/1"%>
+	        <%else%>
+	        	<%= link_to "@", "/post/notifications/1"%>
+	        <%end%>
+	    </li>
+			<%= link_to "Todas", "/notifications"%>		
+	    </ul>
+        
+		<div id="board-mention" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>
+            Conversaciones:
+        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>	        
+            <div class="board-munecos" style="background: url('<%= User.find(mention_board.from).photo.url(:medium) %>') no-repeat center; background-size: 100%;">
+				<%= link_to "@#{User.find(mention_board.from).name}", "/post/mentions/#{mention_board.from}", :class => "linkRemote"%>	            
+	    	</div>
+	    <% end %>
+    </div>
+
+>>>>>>> f78c3d091543a22be0fc41505ee1f57bb7e040a9
 
 		<li>
 			<% users = Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1)%>
