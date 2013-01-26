@@ -9,13 +9,15 @@ class Notifications
     field :unread, :type => Integer
   def self.send(to, from, type, resource_id)
     unless to == from
-      note = Notifications.new
-      note.user_id = to
-      note.note_type = type
-      note.from = from
-      note.resource_id = resource_id
-      note.unread = 1
-      note.save
+      @note = Notifications.new
+      @note.user_id = to
+      @note.note_type = type
+      @note.from = from
+      @note.resource_id = resource_id
+      @note.unread = 1
+      @note.save
+      PrivatePub.publish_to("/u/#{to}", "alert('TOMALARED.NET');")  
+
     end
   end
 end
