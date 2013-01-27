@@ -99,7 +99,7 @@
 			</li>
 
 			<% if current_user.tags.count != 0 %>
-			<div id="tusgrupos" class="tags-cloud-groups" style="width:200px; height:120px;position:relative; overflow: hidden;">
+			<div id="tusgrupos" class="tags-cloud-groups nube-tags" style="width:200px; height:120px;position:relative; overflow: hidden;">
 				<% current_user.tags[0..9].each do |tag_board| -%>
 				<ul>
 					<li>
@@ -110,7 +110,7 @@
 			</div>
 			<% end %>
 
-			<div id="tendencias" <% if current_user.tags.count != 0 %>class="tags-cloud-populars"<% else %>class="tags-cloud-groups"<% end %> style="width:200px; height:120px;position:relative; overflow: hidden;">
+			<div id="tendencias" <% if current_user.tags.count != 0 %>class="tags-cloud-populars nube-tags"<% else %>class="tags-cloud-groups nube-tags"<% end %> style="width:200px; height:120px;position:relative; overflow: hidden;">
 				<% Tag.find_most_popular(10).each do |tag_board| -%>
 				<ul>
 					<li>

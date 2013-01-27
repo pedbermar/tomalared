@@ -43,8 +43,8 @@ function actualizado(data) {
 	if (postsData.length > 0) {
 		var posts = $("#posts").find(".post");
 		if (posts.length > 0) {
-			for ( var i = 0; i < postsData.length; i++) {
-				for ( var j = 0; j < posts.length; j++) {
+			for (var i = 0; i < postsData.length; i++) {
+				for (var j = 0; j < posts.length; j++) {
 					var divData = postsData.get(i);
 					var div = posts.get(j);
 					var idData = $(divData).attr("id");
@@ -52,17 +52,13 @@ function actualizado(data) {
 					if (idData.split("_")[1] < idPost.split("_")[1]) {
 						$("#" + idPost).after(divData);
 						postsData.splice(i, 1);
-					} else if (idData.split("_")[1] > idPost.split("_")[1]
-							&& j == 0) {
+					} else if (idData.split("_")[1] > idPost.split("_")[1] && j == 0) {
 						$("#" + idPost).before(divData);
 						postsData.splice(i, 1);
 					} else if (idData.split("_")[1] = idPost.split("_")[1]) {
-						$("#" + idPost).find(".titulo").html(
-								$(divData).find(".titulo").html());
-						$("#" + idPost).find(".new-foto").html(
-								$(divData).find(".new-foto").html());
-						$("#" + idPost).find(".comments-old").html(
-								$(divData).find(".comments-old").html());
+						$("#" + idPost).find(".titulo").html($(divData).find(".titulo").html());
+						$("#" + idPost).find(".new-foto").html($(divData).find(".new-foto").html());
+						$("#" + idPost).find(".comments-old").html($(divData).find(".comments-old").html());
 						postsData.splice(i, 1);
 					}
 					if ($(data).find("#" + idPost).length == 0) {
@@ -83,87 +79,75 @@ function actualizado(data) {
 
 function vueltaPost() {
 	setTimeout(function() {
-		pintarBotonesPost();		
+		pintarBotonesPost();
 		$("#posts").find(".post").first().removeAttr("style");
 	}, 1000);
 };
 
 function exitoPost() {
-	$("#posts").find(".post").first().effect("highlight", {}, "fast",
-			vueltaPost());
+	$("#posts").find(".post").first().effect("highlight", {}, "fast", vueltaPost());
 }
 
-$(document)
-		.ready(
-				function() {
-					$("#save").submitWithAjax();
-					$("#tumblear").button();
-					$("#new-radio").buttonset();
-					$("#cargandoPag").dialog({
-						autoOpen : false,
-						modal : true,
-						minHeight : 66,
-						minWidth : 66,
-						maxWidth : 66,
-						draggable : false,
-						resizable : false,
-						dialogClass : "cargandoPagPost"
-					});
-					$("#post_content").charCount({
-						warning: 0,
-						counterText: 'Quote < 140 > Post: '
-					});
-					$("#tumblear")
-							.click(
-									function() {
-										if ($("#post_content").val().length == 0) {
-											alert("El mensaje está vacío ¿seguro no quieres decir nada?");
-											return false;
-										}
-									});
-					$("input:radio").click(function() {
-						if ($(this).val() == "quote") {
-							$("#tags").hide();
-						} else {
-							$("#tags").show();
-						}
-						if ($(this).val() == "post") {
-							$("#post_title").show();
-						} else {
-							$("#post_title").hide();
-						}
-						if ($(this).val() == "image") {
-							$("#archivo").show();
-						} else {
-							$("#archivo").hide();
-						}
-					});
-					$(".linkRemote").on(
-							"click",
-							function() {
-								if ($("#remote").length > 0) {
-									$("#cargandoPag").dialog("open");
-									$("#cabeceraMuneco").hide();
-									$("#formulario").hide();
-									$("#posts").hide();
-									var url = $(location).attr('protocol')
-											+ "//" + $(location).attr('host')
-											+ $(this).attr('href');
-									$("#remote").val(url);
-									$("#posts").html("");
-									$.getScript(url + "?remote=true");
-									return false;
-								}
-							});
-					$(".linkRemote2").on(
-							"click",
-							function() {
-								var url = $(location).attr('protocol') + "//"
-										+ $(location).attr('host')
-										+ $(this).attr('href');
-								$.getScript(url + "?remote=true");
-								return false;
-							});
-					pintarBotonesPost();
-					setTimeout(actualizando, 15000);
-				});
+
+$(document).ready(function() {
+	$("#save").submitWithAjax();
+	$("#tumblear").button();
+	$("#new-radio").buttonset();
+	$("#cargandoPag").dialog({
+		autoOpen : false,
+		modal : true,
+		minHeight : 66,
+		minWidth : 66,
+		maxWidth : 66,
+		draggable : false,
+		resizable : false,
+		dialogClass : "cargandoPagPost"
+	});
+	$("#post_content").charCount({
+		warning : 0,
+		counterText : 'Quote < 140 > Post: '
+	});
+	$("#tumblear").click(function() {
+		if ($("#post_content").val().length == 0) {
+			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
+			return false;
+		}
+	});
+	$("input:radio").click(function() {
+		if ($(this).val() == "quote") {
+			$("#tags").hide();
+		} else {
+			$("#tags").show();
+		}
+		if ($(this).val() == "post") {
+			$("#post_title").show();
+		} else {
+			$("#post_title").hide();
+		}
+		if ($(this).val() == "image") {
+			$("#archivo").show();
+		} else {
+			$("#archivo").hide();
+		}
+	});
+	$(".linkRemote").live("click", function() {
+		if ($("#remote").length > 0) {
+			$("#cargandoPag").dialog("open");
+			$("#cabeceraMuneco").hide();
+			$("#formulario").hide();
+			$("#posts").hide();
+			var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
+			$("#remote").val(url);
+			$("#posts").html("");
+			$.getScript(url + "?remote=true");
+			return false;
+		}
+	});
+	$(".linkRemote2").live("click", function() {
+		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
+		$.getScript(url + "?remote=true");
+		return false;
+	});
+	pintarBotonesPost();
+	setTimeout(actualizando, 15000);
+}); 
