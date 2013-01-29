@@ -378,25 +378,12 @@ class PostController < ApplicationController
     end
   end
 
-  def note
-    @po = Post.new
-    note = Notifications.find(:all, :conditions => { :user_id => current_user[:id], :note_type => params[:note_type]}, :order => 'id DESC')
-
-    @posts = Array.new
-    note.each do |m|
-      @posts << Post.find(m.post_id)
-      m.unread = 0
-      m.save
-    end
-    @posts = @posts.uniq_by{|x| x.id}
-    render :list
-  end
-
   # grab the post and destroy it.  simple enough.
   def delete
     @post = Post.find(params[:id])
     if @post
       if @post.destroy
+        Notifications.where(:resource_type => Notifications::POST, :resurce_type => @post.id).delete
         flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
