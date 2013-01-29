@@ -35,8 +35,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
     /*Radius*/
 .busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco{
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
+  border-radius: 7px;
 }
 
 .ui-tabs-anchor{

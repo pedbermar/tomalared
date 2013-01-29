@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require private_pub
 
 function resetForm($form) {
 	$form.find('input:text, input:password, input:file, select, textarea').val(
