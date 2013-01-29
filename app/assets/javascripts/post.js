@@ -95,7 +95,6 @@ $(document).ready(function() {
 	$("#new-radio").buttonset();
 	$("#cargandoPag").dialog({
 		autoOpen : false,
-		modal : true,
 		minHeight : 66,
 		minWidth : 66,
 		maxWidth : 66,
@@ -130,7 +129,7 @@ $(document).ready(function() {
 			$("#archivo").hide();
 		}
 	});
-	$(".linkRemote").live("click", function() {
+	$(document).on("click", ".linkRemote", function(event) {
 		if ($("#remote").length > 0) {
 			$("#cargandoPag").dialog("open");
 			$("#cabeceraMuneco").hide();
@@ -143,11 +142,11 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-	$(".linkRemote2").live("click", function() {
+	$(document).on("click", ".linkRemote2", function(event) {
 		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
 		$.getScript(url + "?remote=true");
 		return false;
 	});
 	pintarBotonesPost();
-	setTimeout(actualizando, 15000);
+	//setTimeout(actualizando, 15000);
 }); 

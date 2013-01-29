@@ -22,7 +22,7 @@ $(function() {
 		sizemax : 20,
 		power : .3
 	});
-	$("div.nube-tags a").live("click", function() {
+	$("div.nube-tags").on("click", "a", function(event) {
 		if ($("#remote").length > 0) {
 			$("#cargandoPag").dialog("open");
 			$("#cabeceraMuneco").hide();
