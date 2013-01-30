@@ -58,7 +58,10 @@ function actualizado(data) {
 					} else if (idData.split("_")[1] = idPost.split("_")[1]) {
 						$("#" + idPost).find(".titulo").html($(divData).find(".titulo").html());
 						$("#" + idPost).find(".new-foto").html($(divData).find(".new-foto").html());
-						$("#" + idPost).find(".comments-old").html($(divData).find(".comments-old").html());
+						$("#" + idPost).find(".postComments").html($(divData).find(".postComments").html());
+						$("#" + idPost).find("span.tiempo").html($(divData).find("span.tiempo").html());
+						if($(divData).find("div.sharePost").length > 0)
+							$("#" + idPost).find("div.sharePost").html($(divData).find("div.sharePost").html());
 						postsData.splice(i, 1);
 					}
 					if ($(data).find("#" + idPost).length == 0) {
@@ -80,6 +83,8 @@ function actualizado(data) {
 function vueltaPost() {
 	setTimeout(function() {
 		pintarBotonesPost();
+		pintarBotonesComment();
+		pintarBotonesVote();
 		$("#posts").find(".post").first().removeAttr("style");
 	}, 1000);
 };
