@@ -3,6 +3,7 @@
 </div>
 <div id="posts">
     <%= render :partial => "posts", :collection => @posts, :as => "post" %>
+    <div id="infinite-scroll"></div>
 </div>
 <input type="hidden" id="remote" name="remote" value="" />
 <%#= link_to "<-- Anterior ", { :page => @post_pages.current.previous, :type => params[:type] } if @post_pages.current.previous %>

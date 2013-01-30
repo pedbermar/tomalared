@@ -60,7 +60,7 @@ function actualizado(data) {
 						$("#" + idPost).find(".new-foto").html($(divData).find(".new-foto").html());
 						$("#" + idPost).find(".postComments").html($(divData).find(".postComments").html());
 						$("#" + idPost).find("span.tiempo").html($(divData).find("span.tiempo").html());
-						if($(divData).find("div.sharePost").length > 0)
+						if ($(divData).find("div.sharePost").length > 0)
 							$("#" + idPost).find("div.sharePost").html($(divData).find("div.sharePost").html());
 						postsData.splice(i, 1);
 					}
@@ -73,6 +73,8 @@ function actualizado(data) {
 		} else {
 			$("#posts").html(data);
 		}
+	} else {
+		$('#infinite-scroll').detach();
 	}
 	$("#posts").show();
 	pintarBotonesPost();
@@ -111,27 +113,28 @@ $(document).ready(function() {
 		warning : 0,
 		counterText : 'Quote < 140 > Post: '
 	});
+	$('div#posts').endlessScroll({
+		fireOnce : true,
+		fireDelay : 500,
+		ceaseFire : function() {
+			return $('#infinite-scroll').length ? false : true;
+		},
+		callback : function() {
+			$.ajax({
+				url : $("#remote").val(),
+				data : {
+					last : $("div.post:last input.created_at").val(),
+					soloposts : true,
+					remote : true
+				},
+				dataType : 'script'
+			});
+		}
+	});
 	$("#tumblear").click(function() {
 		if ($("#post_content").val().length == 0) {
 			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
 			return false;
-		}
-	});
-	$("input:radio").click(function() {
-		if ($(this).val() == "quote") {
-			$("#tags").hide();
-		} else {
-			$("#tags").show();
-		}
-		if ($(this).val() == "post") {
-			$("#post_title").show();
-		} else {
-			$("#post_title").hide();
-		}
-		if ($(this).val() == "image") {
-			$("#archivo").show();
-		} else {
-			$("#archivo").hide();
 		}
 	});
 	$(document).on("click", ".linkRemote", function(event) {
@@ -153,5 +156,5 @@ $(document).ready(function() {
 		return false;
 	});
 	pintarBotonesPost();
-	setTimeout(actualizando, 15000);
-}); 
+	//setTimeout(actualizando, 15000);
+});

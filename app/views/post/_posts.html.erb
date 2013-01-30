@@ -27,7 +27,6 @@
 			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title, :post_id => post.id } %>
 	
 			<div class="postFooter">
-	
 				<%if current_user%>
 						<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>
 				<% end %>
@@ -40,6 +39,5 @@
 	<footer class="postComments">
 		<%= render :partial => 'comment/index', :object => post, :as => "post" %>
 	</footer>
-	<input type="hidden" id="created_at_<%= post.id %>" value="<%= post.created_at %>"/>
+	<input type="hidden" id="created_at_<%= post.id %>" class="created_at" value="<%= post.created_at %>"/>
 <% end %>
-

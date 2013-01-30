@@ -248,19 +248,37 @@ class PostController < ApplicationController
     @soloposts = params[:soloposts]?true:false
     if @pagina == "list"
       if params[:id]
-        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
+        @posts = Post.find(:all, 
+                           :conditions => {:id => params[:id]}, 
+                           :order => 'id DESC')
         @uno_solo = true
       else
         if params[:type]
-          @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
-        else
+          if params[:last]
             @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                               :conditions => ["post_type = ?  AND  pt.tag_id => ? AND posts.created_at > ?", params[:type], current_user.tags, params[:last]], 
+                               :order => 'id DESC')
+          else
+            @posts = Post.find(:all,
+                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                               :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, 
+                               :order => 'id DESC')
+          end
+          @posts = @posts.uniq_by{|x| x.id}
+        else
+          if params[:last]
+            @posts = Post.find(:all,
+                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                               :conditions => ["pt.tag_id = ? AND posts.created_at > ?", current_user.tags, params[:last]], 
+                               :order => 'id DESC')
+          else
+            @posts = Post.find(:all,
+                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                               :conditions => {'pt.tag_id' => current_user.tags}, 
+                               :order => 'id DESC')
+          end
+          @posts = @posts.uniq_by{|x| x.id}
         end
       end
       if !@soloposts
@@ -272,20 +290,39 @@ class PostController < ApplicationController
       # if more than one tag is specified, get the posts containing all the
       # passed tags.  otherwise get all the posts with just the one tag.
       if params[:type]
-        @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                           :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, params[:type]],
-                           :order => 'posts.created_at DESC',
-                           :include => [:tags, :user])
+        if params[:last]
+          @posts = Post.find(:all, 
+                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                             :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ? AND posts.created_at > ?', @tagName, params[:type], params[:last]],
+                             :order => 'posts.created_at DESC',
+                             :include => [:tags, :user])
+        else
+          @posts = Post.find(:all, 
+                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                             :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, params[:type]],
+                             :order => 'posts.created_at DESC',
+                             :include => [:tags, :user])
+        end
       else
-        @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                           :conditions => ['pt.tag_id = tags.id AND tags.name = ?', @tagName],
-                           :order => 'posts.created_at DESC',
-                           :include => [:tags, :user])
+        if params[:last]
+          @posts = Post.find(:all, 
+                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                             :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.created_at > ?', @tagName, params[:last]],
+                             :order => 'posts.created_at DESC',
+                             :include => [:tags, :user])
+        else
+          @posts = Post.find(:all, 
+                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                             :conditions => ['pt.tag_id = tags.id AND tags.name = ?', @tagName],
+                             :order => 'posts.created_at DESC',
+                             :include => [:tags, :user])
+        end
       end
       
       if !@soloposts
         #foto aleatoria de la cabezera de list por tags
-        @tag_foto = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+        @tag_foto = Post.find(:all, 
+                              :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
                               :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, "image"],
                               :order => 'rand()',
                               :limit => 1,
@@ -310,14 +347,19 @@ class PostController < ApplicationController
       else
         @user = User.find(current_user[:id])
       end
-      @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
-      @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
-      @post_share.each do |ps|
-        p = Post.find(ps.post_id)
-        p.created_at = ps.created_at
-        @posts << p
+      if params[:last]
+        @posts = Post.find(:all,
+                           :joins => 'LEFT OUTER JOIN shares sh ON posts.user_id = sh.user_id',
+                           :conditions => ["posts.user_id = ? AND posts.created_at > ?", @user.id, params[:last]], 
+                           :order => 'posts.created_at DESC', 
+                           :limit => '10')
+      else
+        @posts = Post.find(:all,
+                           :joins => 'LEFT OUTER JOIN shares sh ON posts.user_id = sh.user_id',
+                           :conditions => ["posts.user_id = ?", @user.id], 
+                           :order => 'posts.created_at DESC', 
+                           :limit => '10')
       end
-      @posts= @posts.sort_by {|post| post.created_at}.reverse
       
       if !@soloposts
         if params[:id]
@@ -355,16 +397,31 @@ class PostController < ApplicationController
         @uno_solo = true
       else
         if params[:type]
-          @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
-        else
+          if params[:last]
             @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                               :conditions => ["post_type = ? AND pt.tag_id = ? AND posts.created_at > ?", params[:type], current_user.tags, params[:last]],
+                               :order => 'posts.created_at DESC')
+          else
+            @posts = Post.find(:all,
+                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                               :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags },
+                               :order => 'posts.created_at DESC')
+          end
+        else
+          if params[:last]
+            @posts = Post.find(:all,
+                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                               :conditions => ["pt.tag_id = ? AND posts.created_at > ?", current_user.tags, params[:last]],
+                               :order => 'posts.created_at DESC')
+          else
+            @posts = Post.find(:all,
+                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                               :conditions => {'pt.tag_id' => current_user.tags},
+                               :order => 'posts.created_at DESC')
+          end
         end
+        @posts = @posts.uniq_by{|x| x.id}
       end
       if !@soloposts
         @page_name = "Todos los Posts"
