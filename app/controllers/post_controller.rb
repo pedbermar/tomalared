@@ -246,40 +246,26 @@ class PostController < ApplicationController
     @post = Post.new
     @pagina = params[:pagina]
     @soloposts = params[:soloposts]?true:false
+    last = params[:last].blank? ? Time.now + 1.second : Time.parse(params[:last])
     if @pagina == "list"
       if params[:id]
         @posts = Post.find(:all, 
                            :conditions => {:id => params[:id]}, 
-                           :order => 'id DESC')
+                           :order => 'posts.created_at DESC')
         @uno_solo = true
       else
         if params[:type]
-          if params[:last]
-            @posts = Post.find(:all,
-                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                               :conditions => ["post_type = ?  AND  pt.tag_id => ? AND posts.created_at > ?", params[:type], current_user.tags, params[:last]], 
-                               :order => 'id DESC')
-          else
-            @posts = Post.find(:all,
-                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                               :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, 
-                               :order => 'id DESC')
-          end
-          @posts = @posts.uniq_by{|x| x.id}
+          @posts = Post.find(:all,
+                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                             :conditions => ["posts.post_type = ?  AND  pt.tag_id IN (?) AND posts.created_at < ?", params[:type], current_user.tags, last], 
+                             :order => 'posts.created_at DESC')
         else
-          if params[:last]
-            @posts = Post.find(:all,
-                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                               :conditions => ["pt.tag_id = ? AND posts.created_at > ?", current_user.tags, params[:last]], 
-                               :order => 'id DESC')
-          else
-            @posts = Post.find(:all,
-                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                               :conditions => {'pt.tag_id' => current_user.tags}, 
-                               :order => 'id DESC')
-          end
-          @posts = @posts.uniq_by{|x| x.id}
+          @posts = Post.find(:all,
+                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                             :conditions => ["pt.tag_id IN (?) AND posts.created_at < ?", current_user.tags, last], 
+                             :order => 'posts.created_at DESC')
         end
+        @posts = @posts.uniq_by{|x| x.id}
       end
       if !@soloposts
         @page_name = "Todos los Posts"
@@ -290,33 +276,17 @@ class PostController < ApplicationController
       # if more than one tag is specified, get the posts containing all the
       # passed tags.  otherwise get all the posts with just the one tag.
       if params[:type]
-        if params[:last]
-          @posts = Post.find(:all, 
-                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                             :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ? AND posts.created_at > ?', @tagName, params[:type], params[:last]],
-                             :order => 'posts.created_at DESC',
-                             :include => [:tags, :user])
-        else
-          @posts = Post.find(:all, 
-                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                             :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, params[:type]],
-                             :order => 'posts.created_at DESC',
-                             :include => [:tags, :user])
-        end
+        @posts = Post.find(:all, 
+                           :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                           :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ? AND posts.created_at < ?', @tagName, params[:type], last],
+                           :order => 'posts.created_at DESC',
+                           :include => [:tags, :user])
       else
-        if params[:last]
-          @posts = Post.find(:all, 
-                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                             :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.created_at > ?', @tagName, params[:last]],
-                             :order => 'posts.created_at DESC',
-                             :include => [:tags, :user])
-        else
-          @posts = Post.find(:all, 
-                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                             :conditions => ['pt.tag_id = tags.id AND tags.name = ?', @tagName],
-                             :order => 'posts.created_at DESC',
-                             :include => [:tags, :user])
-        end
+        @posts = Post.find(:all, 
+                           :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                           :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.created_at < ?', @tagName, last],
+                           :order => 'posts.created_at DESC',
+                           :include => [:tags, :user])
       end
       
       if !@soloposts
@@ -350,7 +320,7 @@ class PostController < ApplicationController
       if params[:last]
         @posts = Post.find(:all,
                            :joins => 'LEFT OUTER JOIN shares sh ON posts.id = sh.post_id',
-                           :conditions => ["(posts.user_id = ? OR sh.user_id = ?) AND posts.created_at > ?", @user.id, @user.id, params[:last]], 
+                           :conditions => ["(posts.user_id = ? OR sh.user_id = ?) AND posts.created_at < ?", @user.id, @user.id, params[:last]], 
                            :order => 'posts.created_at DESC', 
                            :limit => '10')
       else
@@ -397,29 +367,15 @@ class PostController < ApplicationController
         @uno_solo = true
       else
         if params[:type]
-          if params[:last]
-            @posts = Post.find(:all,
-                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                               :conditions => ["post_type = ? AND pt.tag_id = ? AND posts.created_at > ?", params[:type], current_user.tags, params[:last]],
-                               :order => 'posts.created_at DESC')
-          else
-            @posts = Post.find(:all,
-                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                               :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags },
-                               :order => 'posts.created_at DESC')
-          end
+          @posts = Post.find(:all,
+                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                             :conditions => ["post_type = ? AND pt.tag_id IN (?) AND posts.created_at < ?", params[:type], current_user.tags, last],
+                             :order => 'posts.created_at DESC')
         else
-          if params[:last]
-            @posts = Post.find(:all,
-                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                               :conditions => ["pt.tag_id = ? AND posts.created_at > ?", current_user.tags, params[:last]],
-                               :order => 'posts.created_at DESC')
-          else
-            @posts = Post.find(:all,
-                               :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                               :conditions => {'pt.tag_id' => current_user.tags},
-                               :order => 'posts.created_at DESC')
-          end
+          @posts = Post.find(:all,
+                             :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
+                             :conditions => ["pt.tag_id IN (?) AND posts.created_at < ?", current_user.tags, last],
+                             :order => 'posts.created_at DESC')
         end
         @posts = @posts.uniq_by{|x| x.id}
       end
