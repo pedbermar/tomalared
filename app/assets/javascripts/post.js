@@ -156,5 +156,5 @@ $(document).ready(function() {
 		return false;
 	});
 	pintarBotonesPost();
-	//setTimeout(actualizando, 15000);
+	setTimeout(actualizando, 15000);
 });

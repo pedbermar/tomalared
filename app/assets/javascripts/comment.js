@@ -8,17 +8,17 @@ function pintarBotonesComment() {
 	$(".comentar").button();
 }
 
-function vueltaComment() {
+function vueltaComment(post_id) {
 	setTimeout(function() {
 		pintarBotonesComment();
 		pintarBotonesVote(); 
-		$(".comments-old").find(".comment").first().removeAttr("style");
+		$("#post_" + post_id + " div.comment").first().removeAttr("style");
 	}, 1000);
 };
 
-function exitoComment() {
-	$(".comments-old").find(".comment").last().effect("highlight", {}, "fast",
-			vueltaComment());
+function exitoComment(post_id) {
+	$("#post_" + post_id + " div.comment").last().effect("highlight", {}, "fast",
+			vueltaComment(post_id));
 }
 
 $(document).ready(function() {

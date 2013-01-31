@@ -349,14 +349,14 @@ class PostController < ApplicationController
       end
       if params[:last]
         @posts = Post.find(:all,
-                           :joins => 'LEFT OUTER JOIN shares sh ON posts.id = sh.post_id AND posts.user_id = sh.user_id',
-                           :conditions => ["posts.user_id = ? AND posts.created_at > ?", @user.id, params[:last]], 
+                           :joins => 'LEFT OUTER JOIN shares sh ON posts.id = sh.post_id',
+                           :conditions => ["(posts.user_id = ? OR sh.user_id = ?) AND posts.created_at > ?", @user.id, @user.id, params[:last]], 
                            :order => 'posts.created_at DESC', 
                            :limit => '10')
       else
         @posts = Post.find(:all,
-                           :joins => 'LEFT OUTER JOIN shares sh ON posts.id = sh.post_id AND posts.user_id = sh.user_id',
-                           :conditions => ["posts.user_id = ?", @user.id], 
+                           :joins => 'LEFT OUTER JOIN shares sh ON posts.id = sh.post_id',
+                           :conditions => ["(posts.user_id = ? OR sh.user_id = ?)", @user.id, @user.id], 
                            :order => 'posts.created_at DESC', 
                            :limit => '10')
       end
