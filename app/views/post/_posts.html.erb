@@ -13,17 +13,19 @@
 				:data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
 			<% else %>
 					<div id="sharePost_<%=post.id%>">
-						<%if @pagina == "user" and @user != current_user %>
-						Compartido atravez de 
-						<% end %>	
+						
 						<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
 					</div>
 					
 			<% end %>
 	
-			<%= link_to "@#{@user.name}" , "/post/user/#{@user.name}", :class => "linkRemote user" %>,
+			<%= link_to "#{@user.profile}" , "/post/user/#{@user.name}", :class => "linkRemote user" %> <span class="users">@<%=@user.name %></span>,
+			<%unless  @user.id == Post.find(post.id)%>
+				<%if @pagina == 'user' %>
+					compartido a traves de <%= User.find(Post.find(post.id).user_id).profile%>	
+				<%end%>
+			<%end%>
 			<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
-	
 			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title, :post_id => post.id } %>
 	
 			<div class="postFooter">

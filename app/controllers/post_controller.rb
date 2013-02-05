@@ -314,7 +314,10 @@ class PostController < ApplicationController
       @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
       @post_share.each do |ps|
         p = Post.find(ps.post_id)
-        p.created_at = ps.created_at
+        p2 = Post.new
+        p2 = p
+        p2.user_id = @user.id
+        p2.created_at = ps.created_at
         @posts << p
       end
       @posts= @posts.sort_by {|post| post.created_at}.reverse
