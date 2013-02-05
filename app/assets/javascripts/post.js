@@ -34,6 +34,8 @@ function personalizarPag(muneco, data, formulario) {
 		$("#formulario").show();
 	}
 	actualizado(data);
+	if ($("#infinite-scroll").length == 0)
+		$("#posts").after("<div id=\"infinite-scroll\"><\/div>")
 	if ($("#cargandoPag").dialog("isOpen"))
 		$("#cargandoPag").dialog("close");
 }
@@ -71,10 +73,8 @@ function actualizado(data) {
 				}
 			}
 		} else {
-			$("#posts").html(data);
+			$("#posts").html(postsData);
 		}
-	} else {
-		$('#infinite-scroll').detach();
 	}
 	$("#posts").show();
 	pintarBotonesPost();
@@ -112,24 +112,6 @@ $(document).ready(function() {
 	$("#post_content").charCount({
 		warning : 0,
 		counterText : 'Quote < 140 > Post: '
-	});
-	$('div#posts').endlessScroll({
-		fireOnce : true,
-		fireDelay : 500,
-		ceaseFire : function() {
-			return $('#infinite-scroll').length ? false : true;
-		},
-		callback : function() {
-			$.ajax({
-				url : $("#remote").val(),
-				data : {
-					last : $("div.post:last input.created_at").val(),
-					soloposts : true,
-					remote : true
-				},
-				dataType : 'script'
-			});
-		}
 	});
 	$("#tumblear").click(function() {
 		if ($("#post_content").val().length == 0) {

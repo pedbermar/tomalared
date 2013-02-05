@@ -1,7 +1,18 @@
-<% if !@soloposts %>
-    personalizarPag("<%= escape_javascript( render :partial => "muneco" ) %>", "<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>", "<% if current_user and !params[:id] %><%= escape_javascript( render :partial => "newex" ) %><% end %>");
-<% elsif @soloposts %>
-    actualizado("<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
+<% unless @posts.blank? %>
+	<% if params[:last] %>
+		$("div.post:last").after("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+		pintarBotonesPost();
+		pintarBotonesComment();
+		pintarBotonesVote();
+	<% else %>
+		<% if !@soloposts %>
+		    personalizarPag("<%= escape_javascript( render :partial => "muneco" ) %>", "<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>", "<% if current_user and !params[:id] %><%= escape_javascript( render :partial => "newex" ) %><% end %>");
+		<% elsif @soloposts %>
+		    actualizado("<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
+		<% end %>
+	<% end %>
+<% else %>
+	$('#infinite-scroll').detach();
 <% end %>
 
 

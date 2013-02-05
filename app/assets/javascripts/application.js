@@ -55,4 +55,22 @@ $(document).ready(function() {
 	$("#tumblear").click(function() {
 		$("#form-new").dialog("close");
 	});
+	
+	$(document).endlessScroll({
+		fireOnce : true,
+		ceaseFire : function() {
+			return $('#infinite-scroll').length ? false : true;
+		},
+		callback : function() {
+			$.ajax({
+				url : $("#remote").val() == ""? window.location.href : $("#remote").val(),
+				data : {
+					last : $("div.post:last input.created_at").val(),
+					soloposts : true,
+					remote : true
+				},
+				dataType : 'script'
+			});
+		}
+	});
 });
