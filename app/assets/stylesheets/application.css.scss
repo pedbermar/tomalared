@@ -843,3 +843,12 @@ div #form-new{
       text-decoration:none;
       font-weight:bold !important;
   }
+  
+.ui-widget-content {
+  left: -3px;
+  width: 100%;
+}
+
+.ui-widget {
+  font-family: monospace;
+}
