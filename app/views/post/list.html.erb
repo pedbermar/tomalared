@@ -4,6 +4,7 @@
 <div id="posts">
     <%= render :partial => "posts", :collection => @posts, :as => "post" %>
 </div>
+<div id="infinite-scroll"></div>
 <input type="hidden" id="remote" name="remote" value="" />
 <div id="cargandoPag" align="center">
     <%= image_tag("/gfx/pagina.gif", :title => "Cargando", :alt => "Cargando") %>

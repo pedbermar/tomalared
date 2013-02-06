@@ -34,6 +34,8 @@ function personalizarPag(muneco, data, formulario) {
 		$("#formulario").show();
 	}
 	actualizado(data);
+	if ($("#infinite-scroll").length == 0)
+		$("#posts").after("<div id=\"infinite-scroll\"><\/div>")
 	if ($("#cargandoPag").dialog("isOpen"))
 		$("#cargandoPag").dialog("close");
 }
@@ -68,7 +70,7 @@ function actualizado(data) {
 				}
 			}
 		} else {
-			$("#posts").html(data);
+			$("#posts").html(postsData);
 		}
 	}
 	$("#posts").show();
