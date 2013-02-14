@@ -42,7 +42,7 @@ $(function() {
        'open'          : '.open',
        'box'           : '.box',
        'arrow'         : '.arrow',
-       'arrow_border'  : '.arrow_border',
+       'arrow_border'  : '.arrow-border',
        'close'         : '.close'
       });
    });   

@@ -6,6 +6,8 @@
       border:solid 1px #BBBBBB;
       position:absolute;
   	  background:#FFF;
+  	  height: 200px;
+  	  z-index: 999;  	  
     }
 
       .box a.close, .box {
@@ -34,6 +36,21 @@
       	border-right: 11px solid transparent;
       	border-bottom: 11px solid #BBBBBB;
       	position:absolute;
-      	top:-12px;
+      	left:45%;
+      	top:-10px;
       	z-index:1000;
       }
+
+	.popbox-photo{
+		float: left;		
+	}
+	.popbox-cajita{
+		height: 54px;
+	}
+	
+	.popbox-scroll{
+		height: 200px;
+		width: 100%;
+  	  	overflow: scroll;
+  	  	overflow-x:hidden;  	  	
+  	 }

@@ -42,13 +42,15 @@
     		 	<div class='box'>
 					<div class='arrow'></div>
       				<div class='arrow-border'></div>
-				<% comm = Notifications.where(:user_id => current_user[:id])[0..3]%>
-					<%comm.each do |c|%>
-						<div class>
-							<% u=User.find(c.from)%>
-							<div><%= image_tag(u.photo.url(:small)) %><%= u.profile%></div>
-	    				<div>
-	    			<%end%>
+      				<div class='popbox-scroll'>
+						<% comm = Notifications.where(:user_id => current_user[:id])[0..3]%>
+						<%comm.each do |c|%>
+							<div class="popbox-cajita">
+								<% u=User.find(c.from)%>
+								<%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div><%= u.profile%></div>
+		    				</div>
+		    			<%end%>
+	    			</div>
     		    </div>
   			</div>
 		</div>
