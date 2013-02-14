@@ -36,7 +36,7 @@
       	border-right: 11px solid transparent;
       	border-bottom: 11px solid #BBBBBB;
       	position:absolute;
-      	left:45%;
+      	left:0px;
       	top:-10px;
       	z-index:1000;
       }
