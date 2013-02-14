@@ -36,3 +36,13 @@ $(function() {
 		}
 	});
 }); 
+
+   $(document).ready(function(){
+     $('.popbox').popbox({
+       'open'          : '.open',
+       'box'           : '.box',
+       'arrow'         : '.arrow',
+       'arrow_border'  : '.arrow_border',
+       'close'         : '.close'
+      });
+   });   

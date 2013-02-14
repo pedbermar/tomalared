@@ -9,30 +9,6 @@
 <nav>
 	<ul id="board-notifi">
 		
-		<div class='popbox'>
-  			<a class='open' href='#'>Click Here!</a>
- 			 <div class='collapse'>
-    		 	<div class='box'>
-					<div class='arrow'></div>
-      				<div class='arrow-border'></div>
-				<% comm = Notifications.where(:user_id => current_user[:id], :note_type => 5)[0..3]%>
-					<%comm.each do |c|%>
-						<li>
-						<% u=User.find(c.from)%>
-	    				<%= image_tag(u.photo.url(:small)) %><%= u.profile%>
-	    				</li>
-	    			<%end%>
-					      
-    		    </div>
-  			</div>
-		</div>
-
-<script type='text/javascript'>
-$(document).ready(function(){
-     $('.popbox').popbox();
-   });
-</script>
-		
 		<%= subscribe_to "/u/#{current_user[:id]}"%>
 		<li>
 			<% comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>
@@ -59,7 +35,24 @@ $(document).ready(function(){
 	        	<%= link_to "@", "/post/notifications/1"%>
 	        <%end%>
 	    </li>
-			<%= link_to "Todas", "/notifications"%>		
+	    
+		<div class='popbox'>
+  			<a class='open' href='#'>Todas</a>
+ 			 <div class='collapse'>
+    		 	<div class='box'>
+					<div class='arrow'></div>
+      				<div class='arrow-border'></div>
+				<% comm = Notifications.where(:user_id => current_user[:id])[0..3]%>
+					<%comm.each do |c|%>
+						<div class>
+							<% u=User.find(c.from)%>
+							<div><%= image_tag(u.photo.url(:small)) %><%= u.profile%></div>
+	    				<div>
+	    			<%end%>
+    		    </div>
+  			</div>
+		</div>
+		
 	    </ul>
         
 		<div id="board-mention" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>

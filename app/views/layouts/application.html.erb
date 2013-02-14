@@ -46,13 +46,11 @@ if @navegador == 'MSIE' -%>
         <%= stylesheet_link_tag    "ui"  %>
         <%= stylesheet_link_tag    "application" %>
         
-        <%= javascript_include_tag "application" %>  
-        <%= javascript_include_tag "private_pub" %>      
+        <%= javascript_include_tag "application" %>        
         <%= csrf_meta_tags %>
 
     </head>
     <body>
-
 	    	<header class="row topbar">			        
 			            <%= render :partial => 'user_sessions/login' %>			        
 			</header>

@@ -1,34 +1,21 @@
-.popbox {
-  margin:0px auto;
-  text-align:center;
-  position:relative;
-}
 
   .collapse { position:relative; }
 
-  .open {
-    background:#FFF;
-    border:solid 1px #FFF;
-    padding:8px;
-  }
-
-    .box {
-      display:block;
-      display:none;
-      background:#FFF;
+    .box, .box {
+      display:none;      
       border:solid 1px #BBBBBB;
       position:absolute;
-      text-align:left;
+  	  background:#FFF;
     }
 
-      .box a.close {
+      .box a.close, .box {
        color:red;
        font-size:12px;
        font-family:arial;
-       text-decoration:underline;
+       text-decoration:underline;       
       }
 
-      .arrow {
+      .arrow, .arrow {
       	width: 0;
       	height: 0;
       	border-left: 11px solid transparent;
@@ -40,7 +27,7 @@
       	z-index:1001;
       }
 
-      .arrow-border {
+      .arrow-border, .arrow-border {
       	width: 0;
       	height: 0;
       	border-left: 11px solid transparent;
