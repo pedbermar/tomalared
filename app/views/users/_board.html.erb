@@ -92,12 +92,16 @@
 	      				<div class='arrow-border arrow-border-todas'></div>
 	      				<div class='popbox-scroll'>
 							<% comm = Notifications.where(:user_id => current_user[:id])[0..3]%>
-							<%comm.each do |c|%>
+							<%if comm.count != 0%>			        		
+				        		<% comm.each do |c| %>
 								<div class="popbox-cajita">
 									<% u=User.find(c.from)%>
 									<%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div><%= u.profile%></div>
 			    				</div>
 			    			<%end%>
+					        <%else%>
+					        	No hay notificaciones de este tipo
+					        <%end%>
 		    			</div>
 	    		    </div>
 	  			</div>
