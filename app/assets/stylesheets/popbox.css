@@ -1,20 +1,22 @@
 
   .collapse { position:relative; }
 
-    .box, .box {
+    .box {
       display:none;      
       border:solid 1px #BBBBBB;
       position:absolute;
   	  background:#FFF;
-  	  height: 200px;
+  	  min-height: 10px;
+  	  max-height: 200px;  	  
+  	  width: 208px;
   	  z-index: 999;  	  
     }
 
-      .box a.close, .box {
-       color:red;
+      .box a.close {
+       color:r black;
        font-size:12px;
        font-family:arial;
-       text-decoration:underline;       
+       text-decoration: none;
       }
 
       .arrow, .arrow {
@@ -49,8 +51,8 @@
 	}
 	
 	.popbox-scroll{
-		height: 200px;
+		max-height: 200px;
 		width: 100%;
-  	  	overflow: scroll;
+  	  	overflow-y: auto;
   	  	overflow-x:hidden;  	  	
   	 }

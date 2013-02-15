@@ -38,11 +38,36 @@ $(function() {
 }); 
 
    $(document).ready(function(){
-     $('.popbox').popbox({
-       'open'          : '.open',
-       'box'           : '.box',
-       'arrow'         : '.arrow',
-       'arrow_border'  : '.arrow-border',
-       'close'         : '.close'
+     $('.popbox-todas').popbox({
+       'open'          : '.open-todas',
+       'box'           : '.box-todas',
+       'arrow'         : '.arrow-todas',
+       'arrow_border'  : '.arrow-border-todas',
+       'close'         : '.close-todas'
       });
+      
+      $('.popbox-metions').popbox({
+       'open'          : '.open-metions',
+       'box'           : '.box-metions',
+       'arrow'         : '.arrow-metions',
+       'arrow_border'  : '.arrow-border-metions',
+       'close'         : '.close-metions'
+      });
+      
+      $('.popbox-groups').popbox({
+       'open'          : '.open-groups',
+       'box'           : '.box-groups',
+       'arrow'         : '.arrow-groups',
+       'arrow_border'  : '.arrow-border-groups',
+       'close'         : '.close-groups'
+      });
+      
+      $('.popbox-comments').popbox({
+       'open'          : '.open-comments',
+       'box'           : '.box-comments',
+       'arrow'         : '.arrow-comments',
+       'arrow_border'  : '.arrow-border-comments',
+       'close'         : '.close-comments'
+      });
+
    });   
