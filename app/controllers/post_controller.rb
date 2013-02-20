@@ -246,22 +246,32 @@ class PostController < ApplicationController
     @post = Post.new
     @pagina = params[:pagina]
     @soloposts = params[:soloposts]?true:false
+    last = params[:last].blank? ? Time.now + 1.second : Time.parse(params[:last])
+    if params[:direccion] == "next"
+      direccion = "posts.created_at < ?"
+    elsif params[:direccion] == "prev"
+      direccion = "posts.created_at > ?"
+    else
+      direccion = "posts.created_at < ?"
+    end
     if @pagina == "list"
       if params[:id]
-        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
+        @posts = Post.find(:all, 
+                           :conditions => {:id => params[:id]})
         @uno_solo = true
       else
         if params[:type]
           @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+                             :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                             :conditions => ["posts.post_type = ?  AND  pt.tag_id IN (?) AND " + direccion, params[:type], current_user.tags, last], 
+                             :order => "posts.created_at DESC")
         else
-            @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+          @posts = Post.find(:all,
+                             :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                             :conditions => ["pt.tag_id IN (?) AND " + direccion, current_user.tags, last], 
+                             :order => "posts.created_at DESC")
         end
+        @posts = @posts.uniq_by{|x| x.id}
       end
       if !@soloposts
         @page_name = "Todos los Posts"
@@ -272,22 +282,25 @@ class PostController < ApplicationController
       # if more than one tag is specified, get the posts containing all the
       # passed tags.  otherwise get all the posts with just the one tag.
       if params[:type]
-        @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                           :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, params[:type]],
-                           :order => 'posts.created_at DESC',
+        @posts = Post.find(:all, 
+                           :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                           :conditions => ["pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ? AND " + direccion, @tagName, params[:type], last],
+                           :order => "posts.created_at DESC",
                            :include => [:tags, :user])
       else
-        @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                           :conditions => ['pt.tag_id = tags.id AND tags.name = ?', @tagName],
-                           :order => 'posts.created_at DESC',
+        @posts = Post.find(:all, 
+                           :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                           :conditions => ["pt.tag_id = tags.id AND tags.name = ? AND " + direccion, @tagName, last],
+                           :order => "posts.created_at DESC",
                            :include => [:tags, :user])
       end
       
       if !@soloposts
         #foto aleatoria de la cabezera de list por tags
-        @tag_foto = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                              :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, "image"],
-                              :order => 'rand()',
+        @tag_foto = Post.find(:all, 
+                              :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                              :conditions => ["pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?", @tagName, "image"],
+                              :order => "rand()",
                               :limit => 1,
                               :include => [:tags, :user])
     
@@ -297,7 +310,7 @@ class PostController < ApplicationController
   
         @post.content = "##{params[:id]} "
     
-        @users_tag =  Tag.find_by_sql(['SELECT u.*, tu.tag_id FROM tags_users as tu, users as u WHERE u.id = tu.user_id and tu.tag_id = ?', @tag])
+        @users_tag =  Tag.find_by_sql(["SELECT u.*, tu.tag_id FROM tags_users as tu, users as u WHERE u.id = tu.user_id and tu.tag_id = ?", @tag])
         @page_name = "Post del Tag #{params[:id]}"
       end
     elsif @pagina == "user"
@@ -310,17 +323,11 @@ class PostController < ApplicationController
       else
         @user = User.find(current_user[:id])
       end
-      @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
-      @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
-      @post_share.each do |ps|
-        p = Post.find(ps.post_id)
-        p2 = Post.new
-        p2 = p
-        p2.user_id = @user.id
-        p2.created_at = ps.created_at
-        @posts << p
-      end
-      @posts= @posts.sort_by {|post| post.created_at}.reverse
+      @posts = Post.find(:all,
+                         :joins => "LEFT OUTER JOIN shares sh ON posts.id = sh.post_id",
+                         :conditions => ["(posts.user_id = ? OR sh.user_id = ?) AND " + direccion, @user.id, @user.id, last], 
+                         :order => "posts.created_at DESC", 
+                         :limit => "10")
       
       if !@soloposts
         if params[:id]
@@ -328,7 +335,7 @@ class PostController < ApplicationController
         end
         @page_name = "Post de #{@user.name}"
       end
-    elsif params[:pagina] == 'mentions'
+    elsif params[:pagina] == "mentions"
       con = Notifications.where(:user_id => current_user[:id], :from => params[:id], :note_type => Notifications::USER)
       con = con + Notifications.where(:user_id => params[:id], :from => current_user[:id], :note_type => Notifications::USER)
       cons = Array.new
@@ -336,8 +343,7 @@ class PostController < ApplicationController
         cons << c.resource_id
       end
       @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
-      
-    elsif params[:pagina] == 'notifications'
+    elsif params[:pagina] == "notifications"
       comm= Notifications.where(:user_id => current_user[:id], :note_type => params[:id])
       cons = Array.new
       comm.each do |c|        
@@ -354,20 +360,21 @@ class PostController < ApplicationController
       end      
     else
       if params[:id]
-        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
+        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => "id DESC")
         @uno_solo = true
       else
         if params[:type]
           @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+                             :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                             :conditions => ["post_type = ? AND pt.tag_id IN (?) AND " + direccion, params[:type], current_user.tags, last],
+                             :order => "posts.created_at DESC")
         else
-            @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+          @posts = Post.find(:all,
+                             :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                             :conditions => ["pt.tag_id IN (?) AND " + direccion, current_user.tags, last],
+                             :order => "posts.created_at DESC")
         end
+        @posts = @posts.uniq_by{|x| x.id}
       end
       if !@soloposts
         @page_name = "Todos los Posts"
@@ -389,10 +396,10 @@ class PostController < ApplicationController
         Notifications.where(:resource_type => Notifications::POST, :resurce_type => @post.id).delete
         flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
-        flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
+        flash[:notice] = "Ha habido un problema al borrar el mensaje."
       end
     else
-      flash[:notice] = 'No se encuentra el mensaje.'
+      flash[:notice] = "No se encuentra el mensaje."
     end
     respond_to do |format|
       format.html { redirect_to post_path }
@@ -441,4 +448,3 @@ class PostController < ApplicationController
     return type
   end
 end
-

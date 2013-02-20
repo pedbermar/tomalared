@@ -13,6 +13,33 @@ function pintarBotonesPost() {
 	});
 }
 
+function endlessPost() {
+	$(document).endlessScroll({
+		fireOnce : false,
+		fireDelay : 500,
+		ceaseFireOnEmpty : false,
+		loader : "<img src=\"/gfx/loading.gif\">",
+		callback : function(fireSequence, pageSequence, scrollDirection) {
+			var last = $("div.post:last input.created_at").val();
+			if (scrollDirection == "prev") {
+				last = $("div.post:first input.created_at").val();
+			}
+			$.ajax({
+				url : $("#remote").val() == "" ? window.location.href : $("#remote").val(),
+				data : {
+					last : last,
+					soloposts : true,
+					remote : true,
+					direccion : scrollDirection,
+					veces : fireSequence,
+					pag : pageSequence
+				},
+				dataType : 'script'
+			});
+		}
+	});
+}
+
 function actualizando() {
 	if ($("#remote").length > 0) {
 		var url = $(location).attr('href');
@@ -80,6 +107,7 @@ function actualizado(data) {
 	pintarBotonesPost();
 	pintarBotonesComment();
 	pintarBotonesVote();
+	endlessPost();
 }
 
 function vueltaPost() {
@@ -139,26 +167,7 @@ $(document).ready(function() {
 		$.getScript(url + "?remote=true");
 		return false;
 	});
-
-	$(document).endlessScroll({
-	    fireOnce: false,
-	    fireDelay: false,
-		loader : "<div class=\"loading\"><img src=\"/gfx/loading.gif\"><div>",
-  		ceaseFire : function() {
-			return $('#infinite-scroll').length ? false : true;
-		},
-		callback : function() {
-			$.ajax({
-				url : $("#remote").val() == "" ? window.location.href : $("#remote").val(),
-				data : {
-					last : $("div.post:last input.created_at").val(),
-					soloposts : true,
-					remote : true
-				},
-				dataType : 'script'
-			});
-		}
-	});
 	pintarBotonesPost();
+	endlessPost();
 	//setTimeout(actualizando, 15000);
-});
+}); 

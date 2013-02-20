@@ -1,7 +1,7 @@
 <div id="cabeceraMuneco">
     <%= render :partial => "muneco" %>
 </div>
-<div id="posts">
+<div id="posts" class="endless_scroll_inner_wrap">
     <%= render :partial => "posts", :collection => @posts, :as => "post" %>
 </div>
 <div id="infinite-scroll"></div>

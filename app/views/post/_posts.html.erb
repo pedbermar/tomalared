@@ -1,4 +1,4 @@
-<%= div_for post do %>
+<%= div_for(post, :class => "endless_scroll_content") do %>
 	<% @user = User.find(post.user_id) -%>
 	<article class="postContent">
 	
@@ -42,6 +42,6 @@
 	<footer class="postComments">
 		<%= render :partial => 'comment/index', :object => post, :as => "post" %>
 	</footer>
-	<input type="hidden" id="created_at_<%= post.id %>" value="<%= post.created_at %>"/>
+	<input type="hidden" id="created_at_<%= post.id %>" class="created_at" value="<%= post.created_at %>"/>
 <% end %>
 

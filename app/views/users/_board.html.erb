@@ -11,7 +11,6 @@
 		<%= subscribe_to "/u/#{current_user[:id]}" %>
 		<script language="JavaScript">
 			PrivatePub.subscribe("/u/<%=current_user[:id] %>", function(data, channel) {
-				alert(data);
 				var elemento = "#notif" + data.type;
 				if(data.type == 5){
 					var simb = "C";

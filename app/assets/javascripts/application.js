@@ -16,10 +16,8 @@
 //= require private_pub
 
 function resetForm($form) {
-	$form.find('input:text, input:password, input:file, select, textarea').val(
-			'');
-	$form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr(
-			'selected');
+	$form.find('input:text, input:password, input:file, select, textarea').val('');
+	$form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
 }
 
 jQuery.ajaxSetup({
@@ -29,7 +27,7 @@ jQuery.ajaxSetup({
 })
 
 jQuery.fn.submitWithAjax = function() {
-	this.submit(function() {		
+	this.submit(function() {
 		$.post(this.action, $(this).serialize(), function() {
 		}, "script");
 		return false;
@@ -40,34 +38,20 @@ jQuery.fn.submitWithAjax = function() {
 $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
-	
-	$( "#form-new" ).dialog({ autoOpen: false,resizable: false, height:180, width: 600, closeOnEscape: true });
-	
-	$( "#open-publicar" ).click(function() 
-	{
-		$( "#form-new" ).dialog( "open" );
+
+	$("#form-new").dialog({
+		autoOpen : false,
+		resizable : false,
+		height : 180,
+		width : 600,
+		closeOnEscape : true
 	});
-	
-	$( "#tumblear" ).click(function() 
-	{
-		$( "#form-new" ).dialog( "close" );
+
+	$("#open-publicar").click(function() {
+		$("#form-new").dialog("open");
 	});
-	
-	$(document).endlessScroll({
-		fireOnce : true,
-		ceaseFire : function() {
-			return $('#infinite-scroll').length ? false : true;
-		},
-		callback : function() {
-			$.ajax({
-				url : $("#remote").val() == ""? window.location.href : $("#remote").val(),
-				data : {
-					last : $("div.post:last input.created_at").val(),
-					soloposts : true,
-					remote : true
-				},
-				dataType : 'script'
-			});
-		}
+
+	$("#tumblear").click(function() {
+		$("#form-new").dialog("close");
 	});
 });
