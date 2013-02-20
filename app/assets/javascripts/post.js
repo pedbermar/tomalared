@@ -60,7 +60,10 @@ function actualizado(data) {
 					} else if (idData.split("_")[1] = idPost.split("_")[1]) {
 						$("#" + idPost).find(".titulo").html($(divData).find(".titulo").html());
 						$("#" + idPost).find(".new-foto").html($(divData).find(".new-foto").html());
-						$("#" + idPost).find(".comments-old").html($(divData).find(".comments-old").html());
+						$("#" + idPost).find(".postComments").html($(divData).find(".postComments").html());
+						$("#" + idPost).find("span.tiempo").html($(divData).find("span.tiempo").html());
+						if ($(divData).find("div.sharePost").length > 0)
+							$("#" + idPost).find("div.sharePost").html($(divData).find("div.sharePost").html());
 						postsData.splice(i, 1);
 					}
 					if ($(data).find("#" + idPost).length == 0) {
@@ -82,6 +85,8 @@ function actualizado(data) {
 function vueltaPost() {
 	setTimeout(function() {
 		pintarBotonesPost();
+		pintarBotonesComment();
+		pintarBotonesVote();
 		$("#posts").find(".post").first().removeAttr("style");
 	}, 1000);
 };
@@ -97,7 +102,6 @@ $(document).ready(function() {
 	$("#new-radio").buttonset();
 	$("#cargandoPag").dialog({
 		autoOpen : false,
-		modal : true,
 		minHeight : 66,
 		minWidth : 66,
 		maxWidth : 66,
@@ -115,24 +119,8 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-	$("input:radio").click(function() {
-		if ($(this).val() == "quote") {
-			$("#tags").hide();
-		} else {
-			$("#tags").show();
-		}
-		if ($(this).val() == "post") {
-			$("#post_title").show();
-		} else {
-			$("#post_title").hide();
-		}
-		if ($(this).val() == "image") {
-			$("#archivo").show();
-		} else {
-			$("#archivo").hide();
-		}
-	});
-	$(".linkRemote").live("click", function() {
+	$(document).on("click", ".linkRemote", function(event) {
+		$("#notice").hide();
 		if ($("#remote").length > 0) {
 			$("#cargandoPag").dialog("open");
 			$("#cabeceraMuneco").hide();
@@ -145,11 +133,12 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-	$(".linkRemote2").live("click", function() {
+	$(document).on("click", ".linkRemote2", function(event) {
+		$("#notice").hide();
 		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
 		$.getScript(url + "?remote=true");
 		return false;
 	});
 	pintarBotonesPost();
-	setTimeout(actualizando, 15000);
-}); 
+	//setTimeout(actualizando, 15000);
+});
