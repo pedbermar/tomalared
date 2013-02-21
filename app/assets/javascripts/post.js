@@ -169,5 +169,4 @@ $(document).ready(function() {
 	});
 	pintarBotonesPost();
 	endlessPost();
-	//setTimeout(actualizando, 15000);
 }); 
