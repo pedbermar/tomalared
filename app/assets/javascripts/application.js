@@ -10,10 +10,33 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// 		.JS LLAMADOS POR RAILS
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require private_pub
+//
+// 		NUESTOS .JS 
+//= require vote
+//= require users
+//= require user_sessions
+//= require search
+//= require post
+//= require comment
+//= require charCount
+//
+//		LIBRERIAS DE JQUERY
+//= require libs/plugins
+//= require libs/lightbox
+//= require libs/modernizr-2.0.6.min
+//= require libs/popbox
+//= require libs/gumby
+//= require libs/gumby.min
+//= require libs/jquery-ui
+//= require libs/jquery.endless-scroll
+//= require libs/jquery.color
+//= require libs/jquery.Jcrop
+//= require libs/jquery.mousewheel.min
+//= require libs/jquery.tagsphere.min
 
 function resetForm($form) {
 	$form.find('input:text, input:password, input:file, select, textarea').val('');
