@@ -2,13 +2,13 @@
 { 
   		position:relative; 
   		z-index: 999;
-  		top: -2px;
-  		left: -1px; 		
+  		top: -3px;
+  		left: 0px; 		
 }
 
 .collapse-mentions
 {
-	left: 69px;	
+	left: 70px;	
 }
 .collapse-comments{
 	left: -70px;
@@ -17,18 +17,19 @@
   display:block;
   display:none;
   background:#FFF;
-  border:solid 1px black;
-  box-shadow:0px 0px 15px #999;
+  border:solid 1px #BBBBBB;
+  box-shadow:0px 0px 15px black;
   position:absolute;
-  width: 208px;
-  }
+  width: 210px;
+  color: black;
+  }  
 
 .arrow {
   	width: 0;
   	height: 0;
   	border-left: 11px solid transparent;
   	border-right: 11px solid transparent;
-  	border-bottom: 11px solid #FFF;
+  	border-bottom: 11px solid #FaFaF4;
   	position:absolute;
   	left:20px;
   	top:-10px;
@@ -40,19 +41,19 @@
   	height: 0;
   	border-left: 11px solid  transparent;
   	border-right: 12px solid  transparent;
-  	border-bottom: 11px solid black;
-  	position:absolute;
+  	border-bottom: 11px solid #BBBBBB;
+  	position:absolute;  	
   	top:-10px;
 	z-index:1000;
 }
   
 .arrow-comments, .arrow-border-comments
 {
-  	left: 162px !important;  	
+  	left: 164px !important;  	
 }
 .arrow-border-mentions, .arrow-mentions
 {
-	left: 25px !important;
+	left: 24px !important;
 }
 
 	.popbox-photo{
@@ -71,8 +72,21 @@
   	  	vertical-align:middle;	
   	 }
 div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions{
-	width: 33% !important;
+	width: 67px !important;
 	float: left;
+	border:solid 1px #327E04;
+	margin-left:1px;
+  	box-shadow:0px 0px 15px black;
+  	color: white;
+  	background: #459E00;  	
+}
+
+div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover{
+  	background:#67B021;
+}
+
+.open{
+  	color: white !important;
 }
 
 .popbox-title
@@ -84,5 +98,5 @@ div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions
 
 .popbox-footer
 {
-	border-top: solid 1px #BBBBBB
+	border-top: solid 1px #BBBBBB;	
 }

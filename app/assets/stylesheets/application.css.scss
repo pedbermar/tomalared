@@ -20,7 +20,7 @@ a{
         /* Enlaces */
 a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-white a, #board-block a, .text-quote a ,.text-link a, #board-notifi a, .user, .tag a, .tags-follow a
 {
-  color: #459E00 !important;
+  color: #459E00;
 }
 
       /* Fondos blancos */
@@ -68,6 +68,11 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   max-height: 140px;
 }
 
+.ui-tabs-nav
+{
+  border:solid 1px #BBBBBB;
+  box-shadow:0px 0px 15px black;
+}
 .topbar{
   position :fixed;
   z-index: 991;
@@ -694,15 +699,8 @@ div #form-new{
 }
 
 #board-notifi {  
-    margin-bottom: 5px;
-}
-
-#board-notifi a{  
-    text-shadow: -1px 0px #fff, 0px 1px #fff, 1px 0px #fff, 0px -1px #fff;
-}
-
-#board-notifi a:hover{
-    text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+    margin-bottom: 5px;    
+    background: none !important;
 }
 
 .user, .tag a{  

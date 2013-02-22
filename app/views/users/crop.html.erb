@@ -3,7 +3,10 @@ $(function() {
   $('#target-photo').Jcrop({
     onChange: update_crop,
     onSelect: update_crop,
-    aspectRatio: 1
+    aspectRatio: 1,
+    bgOpacity: 0.5,
+    bgColor: 'white',
+    addClass: 'jcrop-light'    
   });
 
 

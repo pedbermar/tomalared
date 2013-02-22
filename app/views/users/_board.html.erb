@@ -44,7 +44,7 @@
 		
 		<%users = Notifications.where(:user_id => current_user[:id], :note_type => 1)%>
 		<div class='popbox popbox-mentions'>
-  			<a class="open open-mentions" href="#" id="notif1"><span></span>@</a>
+  			<a class="open open-mentions" href="#" id="notif1">@</a>
  			 <div class='collapse collapse-mentions'>
     		 	<div class='box box-mentions'>
 					<div class='arrow arrow-mentions'></div>
@@ -66,7 +66,7 @@
 					        <%end%>			            
 	    			</div>
 	    			<div class="popbox-footer">
-	    				<a href="#">Antiguas</a>
+	    				<a href="#" class="popbox-a">Antiguas</a>
 	    			</div>
     		    </div>
   			</div>
@@ -74,7 +74,7 @@
 		
 		<% tags = Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1)%>
 		<div class='popbox popbox-groups'>
-  			<a class='open open-groups' href='#' id="notif3"><span></span>#</a>
+  			<a class='open open-groups' href='#' id="notif3">#</a>
  			 <div class='collapse'>
     		 	<div class='box box-groups'>
 					<div class='arrow arrow-groups'></div>
@@ -96,7 +96,7 @@
 				        <%end%>
 	    			</div>
 	     			<div class="popbox-footer">
-	    				<a href="#">Antiguas</a>
+	    				<a href="#" class="popbox-a">Antiguas</a>
 	    			</div>
     		    </div>
   			</div>
@@ -104,7 +104,7 @@
 		
 		<% comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>		
 		<div class='popbox popbox-comments'>
-  			<a class='open  open-comments' href='#' id="notif5"><span></span>C</a>
+  			<a class='open  open-comments' href='#' id="notif5">C</a>
  			 <div class='collapse collapse-comments'>
     		 	<div class='box box-comments'>
 					<div class='arrow arrow-comments'></div>
@@ -126,7 +126,7 @@
 				        <%end%>
 	    			</div>
 		  			<div class="popbox-footer">
-	    				<a href="#">Antiguas</a>
+	    				<a href="#" class="popbox-a">Antiguas</a>
 	    			</div>
     		    </div>
   			</div>
