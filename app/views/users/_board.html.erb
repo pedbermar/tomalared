@@ -1,12 +1,13 @@
-<header class="board-white">
-	<a href="/post/user" class=" linkRemote"><%= current_user.profile%> <span class="user">@<%= current_user.name%></span></a>
-</header>
-
-<article id="marcofoto">
-	<%= link_to image_tag(current_user.photo.url(:medium) , :alt => "Tu imagen", :onError=> "this.src='/img/default.jpg';"), '/post/user', :class => "linkRemote" %>
-</article>
-
 <nav>
+	
+	<header class="board-white">
+		<a href="/post/user" class=" linkRemote"><%= current_user.profile%> <span class="user">@<%= current_user.name%></span></a>
+	</header>
+
+	<article id="marcofoto">
+		<%= link_to image_tag(current_user.photo.url(:medium) , :alt => "Tu imagen", :onError=> "this.src='/img/default.jpg';"), '/post/user', :class => "linkRemote" %>
+	</article>
+	
 	<div id="board-notifi">
 		<%= subscribe_to "/u/#{current_user[:id]}" %>
 		<script language="JavaScript">
@@ -40,28 +41,37 @@
 				}
 			});
 		</script>
-		<% comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>		
-		<div class='popbox popbox-comments'>
-  			<a class='open open3-comments' href='#' id="notif5"><span></span>C</a>
- 			 <div class='collapse'>
-    		 	<div class='box box-comments'>
-					<div class='arrow arrow-comments'></div>
-      				<div class='arrow-border arrow-border-comments'></div>
-      				<div class='popbox-scroll'>
-						<%if comm.count != 0%>			        		
-			        		<% comm.each do |c| %>
-							<div class="popbox-cajita">
-								<% u=User.find(c.from)%>
-								<%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div><%= u.profile%></div>
-		    				</div>
-		    			<%end%>
-				        <%else%>
-				        	No hay notificaciones de este tipo
-				        <%end%>
+		
+		<%users = Notifications.where(:user_id => current_user[:id], :note_type => 1)%>
+		<div class='popbox popbox-mentions'>
+  			<a class="open open-mentions" href="#" id="notif1"><span></span>@</a>
+ 			 <div class='collapse collapse-mentions'>
+    		 	<div class='box box-mentions'>
+					<div class='arrow arrow-mentions'></div>
+      				<div class='arrow-border arrow-border-mentions'></div>
+					<div class="popbox-title">
+	    				Menciones
+	    			</div>	
+      				<div class='popbox-scroll'>      
+							<%if users.count != 0%>
+							        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}.each do |mention_board| -%>	        
+							            <div class="board-munecos" style="background: url('<%= User.find(mention_board.from).photo.url(:medium) %>') no-repeat center; background-size: 100%;">
+											<%= link_to "@#{User.find(mention_board.from).name}", "/post/mentions/#{mention_board.from}", :class => "linkRemote"%>	            
+								    	</div>
+								    <% end %>
+									    			
+					        <%else%>
+					        	<br/>
+					        	No haz tenido<br/> conversaciones 
+					        <%end%>			            
+	    			</div>
+	    			<div class="popbox-footer">
+	    				<a href="#">Antiguas</a>
 	    			</div>
     		    </div>
   			</div>
-		</div> 
+		</div>
+		
 		<% tags = Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1)%>
 		<div class='popbox popbox-groups'>
   			<a class='open open-groups' href='#' id="notif3"><span></span>#</a>
@@ -69,6 +79,9 @@
     		 	<div class='box box-groups'>
 					<div class='arrow arrow-groups'></div>
       				<div class='arrow-border arrow-border-groups'></div>
+      				<div class="popbox-title">
+	    				Post de Grupos
+	    			</div>
       				<div class='popbox-scroll'>
 						<%if tags.count != 0%>			        		
 			        		<% tags.each do |c| %>
@@ -78,42 +91,28 @@
 		    				</div>
 		    			<%end%>
 				        <%else%>
-				        	No hay notificaciones de este tipo
+				        	<br/>
+				        	No hay notificaciones<br/> de este tipo
 				        <%end%>
+	    			</div>
+	     			<div class="popbox-footer">
+	    				<a href="#">Antiguas</a>
 	    			</div>
     		    </div>
   			</div>
 		</div> 
-		<%users = Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1)%>
-		<div class='popbox popbox-metions'>
-  			<a class="open open-metions" href="#" id="notif1"><span></span>@</a>
- 			 <div class='collapse'>
-    		 	<div class='box box-metions'>
-					<div class='arrow arrow-metions'></div>
-      				<div class='arrow-border arrow-border-metions'></div>
-      				<div class='popbox-scroll'>
-						<%if users.count != 0%>				        		
-			        		<%users.each do |c|%>
-							<div class="popbox-cajita">
-								<% u=User.find(c.from)%>
-								<%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div><%= u.profile%></div>
-		    				</div>
-		    			<%end%>
-				        <%else%>
-				        	No hay notificaciones de este tipo
-				        <%end%>
+		
+		<% comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>		
+		<div class='popbox popbox-comments'>
+  			<a class='open  open-comments' href='#' id="notif5"><span></span>C</a>
+ 			 <div class='collapse collapse-comments'>
+    		 	<div class='box box-comments'>
+					<div class='arrow arrow-comments'></div>
+      				<div class='arrow-border arrow-border-comments'></div>
+      				<div class="popbox-title">
+	    				Comentarios
 	    			</div>
-    		    </div>
-  			</div>
-		</div>
-	    <% comm = Notifications.where(:user_id => current_user[:id])[0..3]%>
-		<div class='popbox popbox-todas'>
-  			<a class='open open-todas' href='#' id="notifTodas"><span></span>Todas</a>
- 			 <div class='collapse'>
-    		 	<div class='box box-todas'>
-					<div class='arrow arrow-todas'></div>
-      				<div class='arrow-border arrow-border-todas'></div>
-      				<div class='popbox-scroll'>
+      				<div class='popbox-scroll'>      					      					
 						<%if comm.count != 0%>			        		
 			        		<% comm.each do |c| %>
 							<div class="popbox-cajita">
@@ -122,21 +121,19 @@
 		    				</div>
 		    			<%end%>
 				        <%else%>
-				        	No hay notificaciones de este tipo
+				        	<br/>
+				        	No hay notificaciones<br/> de este tipo
 				        <%end%>
+	    			</div>
+		  			<div class="popbox-footer">
+	    				<a href="#">Antiguas</a>
 	    			</div>
     		    </div>
   			</div>
-		</div>
+		</div> 
+		<br />
 	</div>
-	<div id="board-mention" <% if Notifications.where(:user_id => current_user[:id], :note_type => 1).empty? %>style="display:none;"<% end %>>
-        Conversaciones:
-        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}[0..3].each do |mention_board| -%>	        
-            <div class="board-munecos" style="background: url('<%= User.find(mention_board.from).photo.url(:medium) %>') no-repeat center; background-size: 100%;">
-				<%= link_to "@#{User.find(mention_board.from).name}", "/post/mentions/#{mention_board.from}", :class => "linkRemote"%>	            
-	    	</div>
-	    <% end %>
-    </div>
+
 	<div id="tabs-board">
 		<ul>
 			<% if current_user.tags.count != 0 %>

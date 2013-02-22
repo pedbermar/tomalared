@@ -19,19 +19,12 @@ $(document).ready(function() {
 		sizemax : 20,
 		power : .3
 	});
-	$('.popbox-todas').popbox({
-		'open' : '.open-todas',
-		'box' : '.box-todas',
-		'arrow' : '.arrow-todas',
-		'arrow_border' : '.arrow-border-todas',
-		'close' : '.close-todas'
-	});
-	$('.popbox-metions').popbox({
-		'open' : '.open-metions',
-		'box' : '.box-metions',
-		'arrow' : '.arrow-metions',
-		'arrow_border' : '.arrow-border-metions',
-		'close' : '.close-metions'
+	$('.popbox-mentions').popbox({
+		'open' : '.open-mentions',
+		'box' : '.box-mentions',
+		'arrow' : '.arrow-mentions',
+		'arrow_border' : '.arrow-border-mentions',
+		'close' : '.close-mentions'
 	});
 	$('.popbox-groups').popbox({
 		'open' : '.open-groups',

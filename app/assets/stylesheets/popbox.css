@@ -1,47 +1,59 @@
+.collapse 
+{ 
+  		position:relative; 
+  		z-index: 999;
+  		top: -2px;
+  		left: -1px; 		
+}
 
-  .collapse { position:relative; }
+.collapse-mentions
+{
+	left: 69px;	
+}
+.collapse-comments{
+	left: -70px;
+}
+.box {
+  display:block;
+  display:none;
+  background:#FFF;
+  border:solid 1px black;
+  box-shadow:0px 0px 15px #999;
+  position:absolute;
+  width: 208px;
+  }
 
-    .box {
-      display:none;      
-      border:solid 1px #BBBBBB;
-      position:absolute;
-  	  background:#FFF;
-  	  min-height: 10px;
-  	  max-height: 200px;  	  
-  	  width: 208px;
-  	  z-index: 999;  	  
-    }
+.arrow {
+  	width: 0;
+  	height: 0;
+  	border-left: 11px solid transparent;
+  	border-right: 11px solid transparent;
+  	border-bottom: 11px solid #FFF;
+  	position:absolute;
+  	left:20px;
+  	top:-10px;
+  	z-index:1001;
+  }
 
-      .box a.close {
-       color:r black;
-       font-size:12px;
-       font-family:arial;
-       text-decoration: none;
-      }
-
-      .arrow, .arrow {
-      	width: 0;
-      	height: 0;
-      	border-left: 11px solid transparent;
-      	border-right: 11px solid transparent;
-      	border-bottom: 11px solid #FFF;
-      	position:absolute;
-      	left:1px;
-      	top:-10px;
-      	z-index:1001;
-      }
-
-      .arrow-border, .arrow-border {
-      	width: 0;
-      	height: 0;
-      	border-left: 11px solid transparent;
-      	border-right: 11px solid transparent;
-      	border-bottom: 11px solid #BBBBBB;
-      	position:absolute;
-      	left:0px;
-      	top:-10px;
-      	z-index:1000;
-      }
+.arrow-border {
+  	width: 0;
+  	height: 0;
+  	border-left: 11px solid  transparent;
+  	border-right: 12px solid  transparent;
+  	border-bottom: 11px solid black;
+  	position:absolute;
+  	top:-10px;
+	z-index:1000;
+}
+  
+.arrow-comments, .arrow-border-comments
+{
+  	left: 162px !important;  	
+}
+.arrow-border-mentions, .arrow-mentions
+{
+	left: 25px !important;
+}
 
 	.popbox-photo{
 		float: left;		
@@ -51,8 +63,26 @@
 	}
 	
 	.popbox-scroll{
-		max-height: 200px;
+		height: 138px;
 		width: 100%;
   	  	overflow-y: auto;
-  	  	overflow-x:hidden;  	  	
+  	  	overflow-x:hidden; 
+  	  	font-size: 10px; 	  
+  	  	vertical-align:middle;	
   	 }
+div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions{
+	width: 33% !important;
+	float: left;
+}
+
+.popbox-title
+{
+	border-bottom: solid 1px #BBBBBB;
+	font-size: 13px;
+	font-weight:bold;	
+}
+
+.popbox-footer
+{
+	border-top: solid 1px #BBBBBB
+}
