@@ -87,7 +87,7 @@
 			        		<% tags.each do |c| %>
 							<div class="popbox-cajita">
 								<% u=User.find(c.from)%>
-								<%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div><%= u.profile%></div>
+								<a href="/post/user/<%=u.name %>"><%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div class="popbox-user"><%= u.profile%></div></a>
 		    				</div>
 		    			<%end%>
 				        <%else%>
@@ -117,7 +117,7 @@
 			        		<% comm.each do |c| %>
 							<div class="popbox-cajita">
 								<% u=User.find(c.from)%>
-								<%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div><%= u.profile%></div>
+								<a href="/post/user/<%=u.name %>"><%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div class="popbox-user"><%= u.profile%></div></a>
 		    				</div>
 		    			<%end%>
 				        <%else%>

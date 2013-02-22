@@ -8,15 +8,24 @@
 
 .collapse-mentions
 {
-	left: 68px;	
+	left: 69px;	
 }
+
 .collapse-comments{
-	left: -72px;
+	left: -69px;
 }
+
 .collapse-groups{
-	left: -2px;
+	left: 0px;
 }
-.box {
+
+.popbox-user{
+	display: table;
+	padding: 10px;
+}
+
+.box 
+{
   display:block;
   display:none;
   background:#FFF;
@@ -25,9 +34,10 @@
   position:absolute;
   width: 206px;
   color: black;
-  }  
+}  
 
-.arrow {
+.arrow 
+{
   	width: 0;
   	height: 0;
   	border-left: 11px solid transparent;
@@ -37,9 +47,10 @@
   	left:20px;
   	top:-10px;
   	z-index:1001;
-  }
+}
 
-.arrow-border {
+.arrow-border 
+{
   	width: 0;
   	height: 0;
   	border-left: 11px solid  transparent;
@@ -52,44 +63,58 @@
   
 .arrow-comments, .arrow-border-comments
 {
-  	left: 162px !important;  	
+  	left: 161px !important;  	
+}
+.arrow-border-groups, .arrow-groups
+{
+	left: 91px !important;
 }
 .arrow-border-mentions, .arrow-mentions
 {
 	left: 22px !important;
 }
 
-	.popbox-photo{
-		float: left;		
-	}
-	.popbox-cajita{
-		height: 50px;
-	}
+.popbox-photo
+{
+	float: left;		
+}
+
+.popbox-cajita
+{
+	width: 100%;
+	height: 50px;
+	float: left;
+}
 	
-	.popbox-scroll{
-		height: 138px;
-		width: 100%;
-  	  	overflow-y: auto;
-  	  	overflow-x:hidden; 
-  	  	font-size: 10px; 	  
-  	  	vertical-align:middle;	
-  	 }
-div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions{
-	width: 67px !important;
+.popbox-scroll{
+	height: 138px;
+	width: 100%;
+  	overflow-y: auto;
+  	overflow-x:hidden; 
+  	font-size: 10px; 	  
+  	vertical-align:middle;	
+}
+
+div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions
+{
+	width: 31.5% !important;
 	float: left;
 	border:solid 1px #327E04;
+	box-shadow:0px 0px 15px black;
 	margin-left:1px;
-  	box-shadow:0px 0px 15px black;
   	color: white;
   	background: #459E00;  	
 }
 
-div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover{
+div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover
+{
   	background:#67B021;
 }
 
-.open{
-  	color: white !important;
+.open
+{
+	display:block;
+	color: white !important;
 }
 
 .popbox-title
