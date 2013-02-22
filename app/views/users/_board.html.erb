@@ -150,7 +150,7 @@
 				<% current_user.tags[0..9].each do |tag_board| -%>
 				<ul>
 					<li>
-						<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote", :rel => tag_board.posts.count, :title => tag_board.name %>
+						<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote tags-a", :rel => tag_board.posts.count, :title => tag_board.name %>
 					</li>
 				</ul>
 				<% end %>

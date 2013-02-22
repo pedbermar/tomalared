@@ -23,7 +23,7 @@
 	   			<br/>
 	    		<%= text_parse(comment.body).html_safe %>	    		
     		</div>
-    		 	<footer class="postCommentsVote">
+    		 <footer class="postCommentsVote">
 	    		<%if current_user%>
 	    			<%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id} %>
    				<% end %>  

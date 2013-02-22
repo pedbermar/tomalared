@@ -1,9 +1,9 @@
 .collapse 
 { 
-  		position:relative; 
-  		z-index: 999;
-  		top: -3px;
-  		left: 0px; 		
+	position:relative; 
+	z-index: 999;
+	top: -3px;
+	left: 0px; 		
 }
 
 .collapse-mentions
@@ -26,14 +26,14 @@
 
 .box 
 {
-  display:block;
-  display:none;
-  background:#FFF;
-  border:solid 1px #BBBBBB;
-  box-shadow:0px 0px 15px black;
-  position:absolute;
-  width: 206px;
-  color: black;
+	display:block;
+	display:none;
+	background:#FFF;
+	border:solid 1px #BBBBBB;
+	box-shadow:0px 0px 15px black;
+	position:absolute;
+	width: 206px;
+	color: black;
 }  
 
 .arrow 
@@ -86,7 +86,8 @@
 	float: left;
 }
 	
-.popbox-scroll{
+.popbox-scroll
+{
 	height: 138px;
 	width: 100%;
   	overflow-y: auto;

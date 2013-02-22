@@ -30,32 +30,40 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 }
 
       /* Fondos blancos */
-#board-notifi li, #board-notifi,.mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea{
+#board-notifi li, #board-notifi,.mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea
+{
   background: #FAFAF4 url(images/ui-bg_highlight-hard_100_fafaf4_1x100.png) 50% 50% repeat-x !important;
 }
 
       /* Fuente botones y Fuentes _board */
-#tabs li a, #board-title, #tumblear, .mainPostContent {
+#tabs li a, #board-title, #tumblear, .mainPostContent 
+{
   font-size: 13px;
 }
 
     /*Radius*/
-.busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco{
+.busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco
+{
   border-radius: 7px;
 }
 
-.ui-tabs-anchor{
+.ui-tabs-anchor
+{
   font-size: 12px;
 }
-.ui-tabs-nav{
+
+.ui-tabs-nav
+{
   overflow: hidden !important;
 }
 
-.logo{
+.logo
+{
   width:300px;
 }
 
-.titulo{
+.titulo
+{
   font-size: 28px;
   color: #aff675;
   margin-left: 15px;
@@ -64,12 +72,14 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   text-shadow: -1px 0px green, 0px 1px green, 1px 0px green, 0px -1px green;
 }
 
-.titulo:hover{
+.titulo:hover
+{
   color: #459E00 !important;  
   text-shadow: -1px 0px green, 0px 1px green, 1px 0px green, 0px -1px green;
 }
 
-.board-foto{
+.board-foto
+{
   max-width: 100%;
   max-height: 140px;
 }
@@ -79,7 +89,9 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   border:solid 1px #BBBBBB;
   box-shadow:0px 0px 15px black;
 }
-.topbar{
+
+.topbar
+{
   position :fixed;
   z-index: 991;
   background-color: black;
@@ -89,28 +101,34 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   min-width: 100%;
 }
 
-#nav0 li{
+#nav0 li
+{
   display: inline;
 }
 
-#search, #nav0{
+#search, #nav0
+{
   margin-top: 10px;
 }
 
-.usersboard{
+.usersboard
+{
   color: black !important;
   
 }
 
-.usersboard:hover{
+.usersboard:hover
+{
   color: gray !important;
 }
 
-#board-notifi li{
+#board-notifi li
+{
   display: inline;  
 }
 
-#error, .notice-li{
+#error, .notice-li
+{
   text-align: center;
   border: 1px red;
   border-style:solid;
@@ -120,7 +138,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin: 5px;
 }
 
-#notice{
+#notice
+{
   text-align: center;
   border: 1px green;
   border-style:solid;
@@ -130,19 +149,21 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin: 5px;
 }
 
-
-.notice-block{
+.notice-block
+{
   width: 300px;
   position: relative;
   float: left;
   left: 10%;
 }
 
-.notice-title{ 
+.notice-title
+{ 
     font-size: 14px;
 }
 
-.notice-login{
+.notice-login
+{
   text-align: center;
   border: 1px red;
   border-style:solid;
@@ -153,26 +174,29 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   font-size: 10px;
 }
 
-.notice-li{
+.notice-li
+{
   width: 300px;
   text-align: justify;
   float: left;
   padding: 5px;
   font-size: 10px;  
 }
-#user_session_name, #user_session_password{
-  
+
+#user_session_name, #user_session_password
+{
   width: 100px;
   margin-left: 5px;
 }
-.registro, .errorExplanation{
+
+.registro, .errorExplanation
+{
   display: block;
   width: 400px;
   position: relative;
   float: left;  
   left: 10%;
 }
-
 
 .comment-muneco
 {
@@ -186,11 +210,14 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-left: 7px;;
 }
 
-.comment-muneco-photo{
+.comment-muneco-photo
+{
   width: 50px;
   height: 50px;  
 }
-.mainNotiContent{
+
+.mainNotiContent
+{
   position: relative;
   top: 2px;  
   width: 88%;
@@ -211,10 +238,10 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-left: 7px;;
 }
 
-.noti-muneco-photo{
+.noti-muneco-photo
+{
   width: 50px;
 }
-
 
 .board-munecos
 {
@@ -227,21 +254,31 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   padding-top: 30px;
   padding-bottom: 0px;
   overflow: hidden;
-  font-size: 10px;
+  font-size: 10px;  
+}
+
+.board-munecos a
+{
+  color: #fff !important;
+  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+}
+  
+.board-munecos a:hover
+{
+  color: #459E00 !important;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 }
 
-.board-munecos a:hover{
- color: black !important;
-}
-#board-mention{
+#board-mention
+{
   display: table;  
   font-weight:bold;
   width: 100%;
   margin-top: 4px;
-  }
+ }
 
-.search-muneco{
+.search-muneco
+{
   width: 97px;
   min-height: 80px;
   margin: 2px;
@@ -254,55 +291,62 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   height: 42px; 
 }
 
-.borrarPost, .borrarComentario, .iconUnshare, .iconsMas, .iconsMenos, .iconShare, .iconsMasComentario, .iconsMenosComentario,
-.iconsMenosComentarioDisable, .iconsMasComentarioDisable, .iconsMasDisable, .iconsMenosDisable{
+.borrarPost, .borrarComentario, .iconUnshare, .iconsMas, .iconsMenos, .iconShare, .iconsMasComentario, .iconsMenosComentario, .iconsMenosComentarioDisable, .iconsMasComentarioDisable, .iconsMasDisable, .iconsMenosDisable
+{
   float: right;
   width: 15px;
   height: 15px;
 }
 
-.mainComentContent .iconsMas, .mainComentContent .iconsMenos,.mainComentContent .iconsMasDisable,.mainComentContent .iconsMenosDisable {
+.mainComentContent .iconsMas, .mainComentContent .iconsMenos,.mainComentContent .iconsMasDisable,.mainComentContent .iconsMenosDisable 
+{
   position: relative;  
   top: -8px;
 }
 
-.mainPostContent .iconsMas, .mainPostContent .iconsMenos,.mainPostContent .iconsMasDisable,.mainPostContent .iconsMenosDisable {
+.mainPostContent .iconsMas, .mainPostContent .iconsMenos,.mainPostContent .iconsMasDisable,.mainPostContent .iconsMenosDisable 
+{
   position: relative;  
   top: 5px;
   left: 3px;
 }
 
-
-.icons2{
+.icons2
+{
   position: relative;  
   top: 8px;  
   text-align: center;
 }
 
-
-.iconsMasComentario, .iconsMenosComentario, .iconsMenosComentarioDisable, .iconsMasComentarioDisable{
+.iconsMasComentario, .iconsMenosComentario, .iconsMenosComentarioDisable, .iconsMasComentarioDisable
+{
   top: -8px;
 }
 
-.icons{
+.icons
+{
   position: relative;
   top: -4px;
   margin-right: 4px;
 }
-.icon-exit, .icon-home {
+
+.icon-exit, .icon-home 
+{
   width: 23px;
   height: 23px;
   padding: 2px;
   top: 0px;
 }
 
-#open-publicar{
+#open-publicar
+{
   height: 29px;
   font-size: 13px;
   top: -10px;
 }
   
-#archivo{
+#archivo
+{
   left: 6px;
   top: 1px;
   display: none;  
@@ -311,16 +355,19 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   text-align: center;
 }
 
-#img{
+#img
+{
   margin-left: 10px;
   width: 450px;
 }
 
-.cargandoPagPost .ui-dialog-titlebar {
+.cargandoPagPost .ui-dialog-titlebar 
+{
  display: none;
 }
 
-.cargandoPagPost {
+.cargandoPagPost 
+{
   width: 66px;
   height: 66px;
   border: 0;  
@@ -333,7 +380,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-right: 10px;
 }
 
-#board-block {
+#board-block 
+{
   text-align: justify;
   padding-bottom: 2px;
   padding-left: 10px;
@@ -341,18 +389,21 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   
 }
 
-#board-block li{
+#board-block li
+{
   height: 14px;  
   margin: 5px;  
 }
  
-#board-title{
+#board-title
+{
   font-weight:bold;
   text-align: center;  
   padding-bottom: 2px;  
 }
 
-.textarea{
+.textarea
+{
   margin: 6px;
   float: right;
   width: 393px;;  
@@ -361,36 +412,48 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   padding-top: 11px;   
 }
 
-#tumblear{
+#tumblear
+{
   float:right;
   margin-right: 1%;
 }
 
-#posts{
+#posts
+{
   display: table;
   width: 100%;
 }
 
-.new_user_session{
+.new_user_session
+{
   width: 100%;
 }
 
-.ui-dialog{
+.ui-dialog
+{
   display: table;  
-  background-color:rgba(0,0,0,1) !important;
+  background-color:rgba(0,0,0,0.8) !important;
   margin-top: 1%;
   padding: 0px !important;
-  margin: 0px !important;   
+  margin: 0px !important; 
 }
 
-.ui-widget-content{
+.counter
+{
+  color: white;  
+}
+
+.ui-widget-content
+{
   border: none;
   background: none;
 }
+
 #muneco
 {    
   padding: 3px;
 }
+
 #muneco-text
 { 
   min-height: 200px; 
@@ -399,19 +462,25 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
   padding: 5px;  
 }
-#save{
+
+#save
+{
   position: relative;
   top: -20px;
   display: table;  
   width: 95%;
   margin-left: 0px; 
 }
-.postCommentsVote{
+
+.postCommentsVote
+{
   position: relative;
   left: 1px;
   font-size: 10px;
 }
-div #form-new{
+
+div #form-new
+{
   width: 100% !important;
   min-height: 0px !important;
   height: auto !important;
@@ -419,11 +488,12 @@ div #form-new{
 
 .mediano-muneco
 {
+  position: relative;
   width: 20%;  
   height: 140px;
   margin: 1%;
   float: left;
-  top: 0px;  
+  top: -3px;  
 }
 
 .mediano-muneco2
@@ -432,26 +502,32 @@ div #form-new{
   height: 140px;
   margin: 1%;
   float: left;
-  top: 0px;  
+  position: relative;
+  top: 4px;  
 }
 
-.mediano-muneco-post{
+.mediano-muneco-post
+{
   position:relative;
   top: -20px;
 }
 
-#posts{
+#posts
+{
   display: table;
   width: 100%;
 }
-.post{
+
+.post
+{
   display: table;
   width: 100%;  
   margin-top: 20px;
   padding-bottom: 5px;
 }
 
-#user-edit{
+#user-edit
+{
   position:relative;
   display: block;  
   top: 10px;
@@ -461,7 +537,8 @@ div #form-new{
   margin: 0;
 }
 
-.user-edit{
+.user-edit
+{
   display: block;  
   padding: 5px;
   text-align: center;
@@ -469,23 +546,26 @@ div #form-new{
   float: right;
   margin: 1%;
   width: 46%;  
-  }
+}
 
 
-#main{
+#main
+{
     position: relative;
     margin-top: 20px;
     z-index:50;
 }
 
-.postComments {
+.postComments 
+{
   float: right;
   width: 78%;
   display:block;
   margin-top: 2px;  
 }
 
-.postFooter{
+.postFooter
+{
   position: relative;
   bottom: 0px;
   left: 1px;
@@ -495,22 +575,26 @@ div #form-new{
   vertical-align: text-bottom;
 }
 
-.postFooter a{
+.postFooter a
+{
   text-shadow: none; 
   color: black;
 }
 
-.maincontent{
+.maincontent
+{
     position: relative;
     top: 45px;    
 }
 
-.comment {  
+.comment 
+{  
   display: table; 
   width: 100%;  
 }
 
-.mainPostContent{
+.mainPostContent
+{
   width: 73%;
   margin: 1%;
   padding: 1%;
@@ -522,43 +606,42 @@ div #form-new{
   border: solid 1px #BBBBBB;
 }
 
-.mainComentContent{  
-  width: 83%;
-  margin-top: 5px;
-  margin-right: 7px;
-  padding: 1%;
-  min-height: 23px;  
-  float: right;
-  font-size: 10px;
-}
-
-.formComentContent{
+.formComentContent, .mainComentContent
+{
   width: 82%;
   margin-top: 5px;
   margin-right: 13px;
-  padding: 1%;
-  height: 23px;  
+  padding: 1%;  
   float: right;
   font-size: 10px;
   border: solid 1px #BBBBBB;
 }
 
-.mainPostContent #text{
+.formComentContent
+{
+  height: 23px;
+}  
+
+.mainPostContent #text
+{
   margin: 1%;
   text-align: justify;
 }
-.mainComentContent #text{
-  margin: 1%;
+.mainComentContent #text
+{
   font-size:10px;
   text-align: justify;
 }
-#text{
+#text
+{
   display: table;
   color: black;
   height: 23px;
+  width: 90%;
 }
 
-.text-quote{
+.text-quote
+{
   display: table;
   color: black;
   font-size: 18px;
@@ -569,35 +652,41 @@ div #form-new{
   height: 23px;
 }
 
-.mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover{ 
+.mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover
+{ 
   color: black !important;
 }
 
-.voteMenu li{
+.voteMenu li
+{
   display: inline;
   float: right;
   height: 0px;  
 }
 
-.commentHeader{
+.commentHeader
+{
   font-size: 10px;
 }
 
-#mainboard{
+#mainboard
+{
   position: fixed;  
   top: 60px;
   width: 100%;
   z-index:1;    
 }
 
-.comentar{
+.comentar
+{
   font-size: 10px;
   float: right;  
   margin-top: 1%;
   margin-right: 3%;
 }
 
-#footer{
+#footer
+{
   position: relative;  
   padding: 5px;
   top: 60px;
@@ -607,36 +696,42 @@ div #form-new{
   margin-bottom: 100px;
 }
 
-#footer2{
-    
+#footer2
+{ 
   color: black;
 }
 
-.youtube{
+.youtube
+{
   width: 96%;
   margin: 2%;
   height: 320px;   
 }
 
-.imagen{
+.imagen
+{
   width: 94%;  
   margin: 3%;
 }
-.post-image img{
+.post-image img
+{
   width: 100%;
 }
 
-.searcher{
+.searcher
+{
   color: white; 
   text-align: center;
 }
 
-#resultado-busqueda{
+#resultado-busqueda
+{
   color: red;
   font-size: 12px;
 }
 
-.arrow-left { 
+.arrow-left 
+{ 
   position: relative;
   float:right;
   top: 6px;
@@ -648,11 +743,13 @@ div #form-new{
   border-right:12px solid white; 
 }
 
-#save .arrow-left {
+#save .arrow-left 
+{
   top: 12px !important;
 }
  
-.arrow-left1 { 
+.arrow-left1 
+{ 
   position: relative;
   float:right;
   top: 5px;
@@ -665,7 +762,8 @@ div #form-new{
   border-right: 7px solid white; 
 }
 
-.arrow-left-comment { 
+.arrow-left-comment 
+{ 
   position: relative;
   float:right;
   top: 23px;
@@ -677,13 +775,15 @@ div #form-new{
   border-right: 10px solid white; 
 }
 
-.board-background{
+.board-background
+{
    background-color:rgba(255,255,255,0.5);
    padding: 5px;      
    text-align: center;
 }
 
-.board-white{  
+.board-white
+{  
   margin-bottom: 6px;
   margin-top: 6px;
   padding: 5px;
@@ -691,92 +791,110 @@ div #form-new{
 }
 
 
-#board-block a,{ 
+#board-block a
+{ 
   font-size: 12px;
   font-weight: normal;
 }
 
-.board-white a{ 
+.board-white a
+{ 
   font-size: 14px;    
 }
 
-.board-white a:hover, #board-block a:hover, .text-quote a:hover ,.text-link a:hover{ 
+.board-white a:hover, #board-block a:hover, .text-quote a:hover ,.text-link a:hover
+{ 
   color: black;
   text-shadow: none;
 }
 
-#board-notifi {  
+#board-notifi 
+{  
     margin-bottom: 5px;    
     background: none !important;
 }
 
-.user, .tag a{  
+.user, .tag a
+{  
   font-weight:bold !important;
 }
 
-.tag:hover, .user:hover{
+.tag:hover, .user:hover
+{
   color: black !important;
 }
 
-.notification-list{
-   position: relative;
-   display: table;
-   top: 15px;
-   width: 100%;
-   background-color:rgba(255,255,255,0.5);
-   text-align: left;   
-   color: black;
-   padding: 2px;
-   margin-bottom: 10px;
+.notification-list
+{
+  position: relative;
+  display: table;
+  top: 15px;
+  width: 100%;
+  background-color:rgba(255,255,255,0.5);
+  text-align: left;   
+  color: black;
+  padding: 2px;
+  margin-bottom: 10px;
 }
 
-#login{
-   display: table;
-   width: 100%;
-   background-color:rgba(255,255,255,0.5);
-   text-align: center;   
-   color: black;
-   padding: 10px;
+#login
+{
+  display: table;
+  width: 100%;
+  background-color:rgba(255,255,255,0.5);
+  text-align: center;   
+  color: black;
+  padding: 10px;
 }
 
-#login label{
+#login label
+{
   font-size: 12px;
 }
 
-.busqueda{
-   display: block;   
-   background-color:rgba(255,255,255,0.5);
-   text-align: center;
-   color: black;
-   padding: 10px;
-   margin-top: 10px;
+.busqueda
+{
+  display: block;   
+  background-color:rgba(255,255,255,0.5);
+  text-align: center;
+  color: black;
+  padding: 10px;
+  margin-top: 10px;
 }
 
-.search-titulo{
+.search-titulo
+{
   font-size: 16px;
 }
 
-.user-edit input[type='text'], .user-edit input[type='password'] {
+.user-edit input[type='text'], .user-edit input[type='password'] 
+{
   width: 250px;
 }
-.user-edit input[type='file']{
+.user-edit input[type='file']
+{
   width: 300px;  
   font-size: 10px;
   text-align: center;
 }
 
-.tags-unfollow a{
+.tags-unfollow a
+{
  color: red !important; 
 }
 
-.tags-follow a:hover, .tags-unfollow a:hover{
+.tags-follow a:hover, .tags-unfollow a:hover
+{
   color: gray !important;   
 }
-.tags-orden a {
+
+.tags-orden a 
+{
     text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 } 
 
-.tags-orden{
+.tags-orden
+{
    width: 99px;
    float: left; 
    margin: 3px;
@@ -786,16 +904,22 @@ div #form-new{
    text-align: center;
 }
 
-.tags-orden:hover{
+.tags-orden:hover
+{
    border: 1px solid green;
    background: #baf8ba;
 }
-.tags-block{
-    
+
+.tags-block
+{   
    display: table; 
    text-align: justify;
 }
 
+#tusgrupos a:hover, #tendencias a:hover
+{
+  color: #459E00 !important;
+}
 
 /* Autocomplete
 ----------------------------------*/
@@ -807,24 +931,31 @@ div #form-new{
 
 /* Menu
 ----------------------------------*/
-.ui-menu {
+.ui-menu 
+{
         list-style:none;
         padding: 2px;
         margin: 0;
         display:block; 
         background: black;
 }
-.ui-menu .ui-menu {
+
+.ui-menu .ui-menu 
+{
         margin-top: -3px;        
 }
-.ui-menu .ui-menu-item {
+
+.ui-menu .ui-menu-item 
+{
         margin:0;
         padding: 0;
         width: 100%;   
         border-style: solid;
         border-width: 1px;     
 }
-.ui-menu .ui-menu-item a {
+
+.ui-menu .ui-menu-item a 
+{
         text-decoration:none;
         display:block;
         padding:.2em .4em;
@@ -836,30 +967,34 @@ div #form-new{
         vertical-align: middle;
         height: 30px;               
 }
-.ui-menu .ui-menu-item a.ui-state-hover,
-.ui-menu .ui-menu-item a.ui-state-active {
+.ui-menu .ui-menu-item a.ui-state-hover,.ui-menu .ui-menu-item a.ui-state-active 
+{
         margin: -1px;
 }
 
-.ui-dialog-titlebar{
-    height: 5px;    
+.ui-dialog-titlebar
+{
+      height: 5px;    
 }
 
 .point a
-  {
+{
       text-decoration:none;
       font-weight:bold !important;
-  }
+}
   
-.board-background .ui-widget-content {
+.board-background .ui-widget-content 
+{
   left: -2px;
   width: 100%;
 }
-.topbar .ui-widget-content {
+.topbar .ui-widget-content 
+{
   left: -3px;  
   position:fixed;
 }
 
-.ui-widget {
+.ui-widget 
+{
   font-family: monospace;
 }
