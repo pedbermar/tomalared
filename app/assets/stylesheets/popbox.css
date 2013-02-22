@@ -8,10 +8,13 @@
 
 .collapse-mentions
 {
-	left: 70px;	
+	left: 68px;	
 }
 .collapse-comments{
-	left: -70px;
+	left: -72px;
+}
+.collapse-groups{
+	left: -2px;
 }
 .box {
   display:block;
@@ -20,7 +23,7 @@
   border:solid 1px #BBBBBB;
   box-shadow:0px 0px 15px black;
   position:absolute;
-  width: 210px;
+  width: 206px;
   color: black;
   }  
 
@@ -49,11 +52,11 @@
   
 .arrow-comments, .arrow-border-comments
 {
-  	left: 164px !important;  	
+  	left: 162px !important;  	
 }
 .arrow-border-mentions, .arrow-mentions
 {
-	left: 24px !important;
+	left: 22px !important;
 }
 
 	.popbox-photo{
