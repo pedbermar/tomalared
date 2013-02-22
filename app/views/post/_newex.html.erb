@@ -2,22 +2,17 @@
 <button id="open-publicar">Publicar</button>
 	<div id="form-new">
 		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
-	 
-	        <div class="mediano-muneco2"> 
-	    		<div class="arrow-left"></div>
-	    		<%= link_to image_tag( current_user.photo.url(:medium)  , :alt => "Tu imagen"), "/post/user/#{current_user.name}", :class => "linkRemote mediano-muneco-post" %> 		
-	    	</div>
-
-	            <%= text_area 'post','content' , :class => 'textarea', :placeholder => 'Escribe!'%>            
-	            <div id="archivo">
-	                <%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>
-	            </div>	            
-	            <%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
-	            <%= submit_tag 'Publicar', :id => "tumblear" %>
-	            <%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
-	       
-	
-			
+			<div class="mediano-muneco2"> 
+				<div class="arrow-left"></div>
+				<%= link_to image_tag( current_user.photo.url(:medium)  , :alt => "Tu imagen"), "/post/user/#{current_user.name}", :class => "linkRemote mediano-muneco-post" %> 		
+			</div>
+			<%= text_area 'post','content' , :class => 'textarea', :placeholder => 'Escribe!'%>
+			<div id="archivo">
+				<%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>
+			</div>
+			<%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
+			<%= submit_tag 'Publicar', :id => "tumblear" %>
+			<%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
 		<% end %>
 	</div>
 	

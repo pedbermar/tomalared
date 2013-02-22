@@ -71,6 +71,7 @@ $(document).ready(function() {
 	});
 
 	$("#open-publicar").click(function() {
+		iniConPost();
 		$("#form-new").dialog("open");
 	});
 

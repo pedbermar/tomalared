@@ -8,8 +8,15 @@ function pintarBotonesComment() {
 	$(".comentar").button();
 }
 
+function iniConComment(){
+	$("#body").charCount({
+		warning: 20
+	});
+}
+
 function vueltaComment() {
 	setTimeout(function() {
+		iniConComment();
 		pintarBotonesComment();
 		pintarBotonesVote(); 
 		$(".comments-old").find(".comment").first().removeAttr("style");
@@ -23,9 +30,6 @@ function exitoComment() {
 
 $(document).ready(function() {
 	$(".comentar").button();
-	$("#body").charCount({
-		warning: 20
-	});
 	$(".comentar").click(function() {
 		var texto = $(this).parent().find("textarea.comment-new").val();
 		if (texto.length == 0) {
@@ -33,6 +37,7 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	iniConComment();
 	pintarBotonesComment();
 	pintarBotonesVote(); 
 });

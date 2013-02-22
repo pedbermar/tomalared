@@ -40,6 +40,13 @@ function endlessPost() {
 	});
 }
 
+function iniConPost(){
+	$("#post_content").charCount({
+		warning : 0,
+		counterText : 'Quote < 140 > Post: '
+	});
+}
+
 function actualizando() {
 	if ($("#remote").length > 0) {
 		var url = $(location).attr('href');
@@ -123,7 +130,6 @@ function exitoPost() {
 	$("#posts").find(".post").first().effect("highlight", {}, "fast", vueltaPost());
 }
 
-
 $(document).ready(function() {
 	$("#save").submitWithAjax();
 	$("#tumblear").button();
@@ -136,10 +142,6 @@ $(document).ready(function() {
 		draggable : false,
 		resizable : false,
 		dialogClass : "cargandoPagPost"
-	});
-	$("#post_content").charCount({
-		warning : 0,
-		counterText : 'Quote < 140 > Post: '
 	});
 	$("#tumblear").click(function() {
 		if ($("#post_content").val().length == 0) {
