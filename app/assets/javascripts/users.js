@@ -54,4 +54,18 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	$(".popbox-scroll").on("click", "div.board-munecos", function(event) {
+		$("#notice").hide();
+		if ($("#remote").length > 0) {
+			$("#cargandoPag").dialog("open");
+			$("#cabeceraMuneco").hide();
+			$("#formulario").hide();
+			$("#posts").hide();
+			var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).child("a").attr('href');
+			$("#remote").val(url);
+			$("#posts").html("");
+			$.getScript(url + "?remote=true");
+			return false;
+		}
+	});
 });
