@@ -190,7 +190,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-left: 5px;
 }
 
-#user_url, #user_bio, #user_profile, #user_email, #user_password, #user_password_confirmation
+#user_url, #user_bio, #user_profile, #user_email, #user_password, #user_password_confirmation, #user_name
 {
   width: 200px;  
   font-size: 12px;
@@ -203,6 +203,12 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   float: left;  
 }
 
+.registro2
+{
+  margin: 0 auto;
+  display: block;
+  width: 210px;  
+}
 .comment-muneco
 {
   position: relative;

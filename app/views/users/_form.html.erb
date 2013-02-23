@@ -3,15 +3,11 @@
 <% else %>
 	<div class="registro2">
 <% end %>  
-  <%= form.text_field :name, :placeholder => 'Nombre de usuario' %><br/>
-  
-  <%= form.text_field :profile , :placeholder => 'Profile' %><br/>
-  
-  <%= form.text_field :email, :placeholder => 'Email' %><br/>
-
-  <%= form.password_field :password, :placeholder => 'Password' %><br/>
-
-  <%= form.password_field :password_confirmation, :placeholder => 'Password' %><br/>
+  <%= form.text_field :name, :placeholder => 'Nombre de usuario' %>  
+  <%= form.text_field :profile , :placeholder => 'Profile' %>  
+  <%= form.text_field :email, :placeholder => 'Email' %>
+  <%= form.password_field :password, :placeholder => 'Password' %>
+  <%= form.password_field :password_confirmation, :placeholder => 'Password' %>
   
   <%= form.submit "Crear" %>
 </div>
