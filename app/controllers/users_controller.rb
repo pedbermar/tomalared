@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       @usernew.send_activation_instructions! 
       if params[:user][:photo].blank?
         flash[:notice] = "Tu cuenta ha sido creada. Por favor mira tu e-mail para ver las instrucciones de activacion!"
-        redirect_to @user
+        render :action => :new
       else
         render :action => 'crop'
       end

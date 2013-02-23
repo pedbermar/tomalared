@@ -30,9 +30,11 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 }
 
       /* Fondos blancos */
-#board-notifi li, #board-notifi,.mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea
+.mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea
 {
   background: #FAFAF4 url(images/ui-bg_highlight-hard_100_fafaf4_1x100.png) 50% 50% repeat-x !important;
+  border:solid 1px #BBBBBB;
+  box-shadow:0px 0px 15px black;
 }
 
       /* Fuente botones y Fuentes _board */
@@ -49,7 +51,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 .ui-tabs-anchor
 {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .ui-tabs-nav
@@ -153,8 +155,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 {
   width: 300px;
   position: relative;
-  float: left;
-  left: 10%;
+  float: left;  
 }
 
 .notice-title
@@ -189,13 +190,17 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-left: 5px;
 }
 
+#user_url, #user_bio, #user_profile, #user_email, #user_password, #user_password_confirmation
+{
+  width: 200px;  
+  font-size: 12px;
+}
 .registro, .errorExplanation
 {
   display: block;
   width: 400px;
   position: relative;
   float: left;  
-  left: 10%;
 }
 
 .comment-muneco
@@ -406,7 +411,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 {
   margin: 6px;
   float: right;
-  width: 393px;;  
+  width: 392px;;  
   height: 92px;    
   padding: 6px;
   padding-top: 11px;   
@@ -537,16 +542,31 @@ div #form-new
   margin: 0;
 }
 
+
 .user-edit
+{  
+  display: block;  
+  padding: 5px;
+  text-align: center;
+  margin: 0px;
+  float: left;  
+  width: 45%;  
+  padding-top: 25px;
+  overflow: hidden;  
+}
+
+.user-edit-2
 {
   display: block;  
   padding: 5px;
   text-align: center;
   margin: 0px;
-  float: right;
-  margin: 1%;
-  width: 46%;  
+  float: right;  
+  width: 45%;  
+  padding-top: 25px;
+  overflow: hidden;  
 }
+
 
 
 #main
@@ -673,6 +693,7 @@ div #form-new
 {
   position: fixed;  
   top: 60px;
+  left: -27px;
   width: 100%;
   z-index:1;    
 }
@@ -740,7 +761,8 @@ div #form-new
   height: 0; 
   border-top: 12px solid transparent;
   border-bottom: 12px solid transparent; 
-  border-right:12px solid white; 
+  border-right:12px solid #fafaf4;  
+  z-index:1000;
 }
 
 #save .arrow-left 
@@ -758,8 +780,8 @@ div #form-new
   height: 0; 
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent; 
-  
-  border-right: 7px solid white; 
+  border-right: 7px solid #fafaf4;   
+  z-index:1000;
 }
 
 .arrow-left-comment 
@@ -772,7 +794,8 @@ div #form-new
   height: 0; 
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; 
-  border-right: 10px solid white; 
+  border-right: 10px solid #fafaf4;
+  z-index:1000;   
 }
 
 .board-background
@@ -867,11 +890,11 @@ div #form-new
   font-size: 16px;
 }
 
-.user-edit input[type='text'], .user-edit input[type='password'] 
+.user-edit input[type='text'], .user-edit input[type='password'],.user-edit-2 input[type='text'], .user-edit-2 input[type='password']
 {
   width: 250px;
 }
-.user-edit input[type='file']
+.user-edit input[type='file'], .user-edit-2 input[type='file']
 {
   width: 300px;  
   font-size: 10px;
