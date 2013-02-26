@@ -3,7 +3,8 @@
 	<%@notifications.each do |n|%>
 		<% @user = User.find(n.from) -%>
 		<%if n.from != current_user[:id]%>
-								<%= image_tag(@user.photo.url(:small), :class => 'popbox-photo') %><div class="popbox-user"></div></a>
+								<%= image_tag(@user.photo.url(:small), :class => 'popbox-photo') %><div class="popbox-user">
+								
 						    	<%if n.note_type == 1%>
 									
 									<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}", :class => "linkRemote"%>
@@ -41,6 +42,7 @@
 									<%end%>
 									
 								<%end%>
-			<%end%>
+							</div>								
+				<%end%>
 		<%end%>
 <%end%>

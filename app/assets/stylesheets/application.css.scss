@@ -17,7 +17,6 @@ body
 #posts
 {
   background-color: rgba(255, 255, 255, 0.8);
-  height: 3000px;
 }
 
 img
@@ -55,8 +54,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   border-color: blue !important;
   outline: none !important;
   float:right;
-  font-size: 20px;
-  top: -3px;
+  font-size: 13px;
+  top: 0px;
 }
     /*Radius*/
 .busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco, #posts

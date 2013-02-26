@@ -8,7 +8,7 @@
 
 .collapse-mentions
 {
-	left: 69px;	
+	left: 68px;	
 }
 
 .collapse-comments{
@@ -21,7 +21,10 @@
 
 .popbox-user{
 	display: table;
-	padding: 10px;
+	font-size:9px;
+	height: 54px;
+	padding: 0.5em;	
+	text-align: justify;
 }
 
 .box 
@@ -31,7 +34,7 @@
 	background:#FFF;
 	border:solid 1px #BBBBBB;	
 	position:absolute;
-	width: 206px;
+	width: 210px;
 	color: black;
 }  
 
@@ -87,7 +90,7 @@
 	
 .popbox-scroll
 {
-	height: 138px;
+	height: 135px;
 	width: 100%;
   	overflow-y: auto;
   	overflow-x:hidden; 
