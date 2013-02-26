@@ -29,8 +29,7 @@
 	display:block;
 	display:none;
 	background:#FFF;
-	border:solid 1px #BBBBBB;
-	box-shadow:0px 0px 15px black;
+	border:solid 1px #BBBBBB;	
 	position:absolute;
 	width: 206px;
 	color: black;
@@ -100,8 +99,7 @@ div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions
 {
 	width: 31.5% !important;
 	float: left;
-	border:solid 1px #327E04;
-	box-shadow:0px 0px 15px black;
+	border:solid 1px #327E04;	
 	margin-left:1px;
   	color: white;
   	background: #459E00;  	

@@ -10,15 +10,19 @@ body
   color: #000;
 }
 
-.post, #footer2, #muneco
+#muneco-text
 {
-  background-color:rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+#posts
+{
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 3000px;
 }
 
 img
 {
   border: solid 1px #BBBBBB;  
-  box-shadow:0px 0px 15px black;
 }
 a{
   color: white;  
@@ -34,8 +38,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 .mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea
 {
   background: #FAFAF4 url(images/ui-bg_highlight-hard_100_fafaf4_1x100.png) 50% 50% repeat-x !important;
-  border:solid 1px #BBBBBB;
-  box-shadow:0px 0px 15px black;
+  border:solid 1px #BBBBBB;  
 }
 
       /* Fuente botones y Fuentes _board */
@@ -45,7 +48,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 }
 
     /*Radius*/
-.busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco
+.busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco, #posts
 {
   border-radius: 7px;
 }
@@ -89,17 +92,14 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 .ui-tabs-nav
 {
-  border:solid 1px #BBBBBB;
-  box-shadow:0px 0px 15px black;
+  border:solid 1px #BBBBBB;  
 }
 
 .topbar
 {
   position :fixed;
   z-index: 991;
-  background-color: black;
-  -moz-box-shadow:    0px 0px 6px 2px #283327;
-  -webkit-box-shadow: 0px 0px 6px 2px #283327;
+  background-color: black;  
   box-shadow:         0px 0px 6px 2px #283327;
   min-width: 100%;
 }
@@ -430,12 +430,6 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-right: 1%;
 }
 
-#posts
-{
-  display: table;
-  width: 100%;
-}
-
 .new_user_session
 {
   width: 100%;
@@ -545,7 +539,7 @@ div #form-new
   top: 10px;
   padding: 20px;
   text-align: center;  
-  background-color:rgba(255,255,255,0.5);
+  background-color:rgba(255,255,255,0.8);
   margin: 0;
 }
 
@@ -772,6 +766,20 @@ div #form-new
   z-index:1000;
 }
 
+.arrow-left-border 
+{ 
+  position: relative;
+  float:right;
+  top: 6px;
+  left: 19%;
+  width: 0; 
+  height: 0; 
+  border-top: 12px solid transparent;
+  border-bottom: 13px solid transparent; 
+  border-right:12px solid #BBBBBB;  
+  z-index:999;
+}
+
 #save .arrow-left 
 {
   top: 12px !important;
@@ -805,11 +813,26 @@ div #form-new
   z-index:1000;   
 }
 
+.arrow-left-comment-border 
+{ 
+  position: relative;
+  float:right;
+  top: 23px;
+  left: 40%;
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 11px solid transparent; 
+  border-right: 10px solid #BBBBBB;
+  z-index:999;   
+}
+
 .board-background
 {
-   background-color:rgba(255,255,255,0.5);
+   background-color:rgba(255,255,255,0.8);
    padding: 5px;      
    text-align: center;
+   width: 220px !important;
 }
 
 .board-white
@@ -860,7 +883,7 @@ div #form-new
   display: table;
   top: 15px;
   width: 100%;
-  background-color:rgba(255,255,255,0.5);
+  background-color:rgba(255,255,255,0.8);
   text-align: left;   
   color: black;
   padding: 2px;
@@ -871,7 +894,7 @@ div #form-new
 {
   display: table;
   width: 100%;
-  background-color:rgba(255,255,255,0.5);
+  background-color:rgba(255,255,255,0.8);
   text-align: center;   
   color: black;
   padding: 10px;
@@ -885,7 +908,7 @@ div #form-new
 .busqueda
 {
   display: block;   
-  background-color:rgba(255,255,255,0.5);
+  background-color:rgba(255,255,255,0.8);
   text-align: center;
   color: black;
   padding: 10px;
@@ -954,7 +977,7 @@ div #form-new
 /* Autocomplete
 ----------------------------------*/
 .ui-autocomplete { position: absolute; cursor: default; }       
-.ui-autocomplete-loading { background: white url('/gfx/ajax-loader.gif') center center no-repeat; }
+.ui-autocomplete-loading { background: white url('/gfx/ajax-loader.gif') center center no-repeat; text-shadow: none; border: none;}
 
 /* workarounds */
 * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
