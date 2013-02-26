@@ -12,7 +12,7 @@ body
 
 #muneco-text, #footer2
 {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
 img
@@ -473,7 +473,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin: 5px;
   color: #fff;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
-  padding: 5px;  
+  padding: 5px;
+  border: solid 1px #BBBBBB;  
 }
 
 #save
@@ -542,8 +543,8 @@ div #form-new
 #user-edit
 {
   position:relative;
-  display: block;  
-  padding: 20px;
+  display: block; 
+  padding: 10px;
   text-align: center;
   margin: 0;
 }
@@ -554,19 +555,26 @@ div #form-new
   display: block;  
   padding: 5px;
   text-align: center;
+  padding-top: 10px;
   margin: 0px;
   float: left;  
   width: 45%;  
-  padding-top: 25px;
   overflow: hidden;  
 }
 
+.user-text p
+{
+  font-weight: normal;
+  font-size: 10px;  
+  text-align: justify;  
+}
 .user-edit-2
 {
   display: block;  
   padding: 5px;
   text-align: center;
   margin: 0px;
+  margin-top: 3px;
   float: right;  
   width: 45%;  
   padding-top: 25px;
@@ -581,6 +589,7 @@ div #form-new
     margin-top: 20px;
     z-index:50;
     background-color: rgba(255, 255, 255, 0.8);
+    min-height: 30px;
 }
 
 .postComments 
@@ -718,10 +727,16 @@ div #form-new
   position: relative;  
   padding: 5px;
   top: 60px;
-  font-size: 12px;
+  font-size: 9px;
   text-align: center;  
   color: white; 
   margin-bottom: 100px;
+  z-index: 999;
+}
+
+a #footer
+{
+  color: green !important;
 }
 
 #footer2

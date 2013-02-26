@@ -37,8 +37,8 @@
   </div>
   
   <div id="cuenta">
-	<div class="user-edit">	  
-		<%= form_for @user do |f| %>
+  	<div class="user-edit-2">
+  			<%= form_for @user do |f| %>
 		  <%#= f.error_messages %>
 		    <%= f.label :email %>
 		    <%= f.text_field :email %>
@@ -48,10 +48,22 @@
 			<br />  <br />
 			<%= f.label :confirmar_contraseña %>
 		    <%= f.text_field :password_confirmation %>
-	<br />  <br />
+			<br />  <br />
 		 <%= f.submit "Cambiar" %>
 		
 		<% end %>
+	</div>
+	<div class="user-edit user-text">	  
+	Politica de datos:<br/><br/>
+		<p>
+			Todos los datos que facilites en esta pestaña, seran completamente privados y desde TOMALARED.NET te aseguramos que no seran cedidos de ninguna manera a terceros.
+		</p>
+		<p>
+			Tu email solo se usara para la activacion de tu cuenta y la recuperacion de tu clave.
+		</p>
+		<p>
+			Tu contraseña esta cifrada desde el momento en que la envias por primeravez a nuestro servidor, para que ni nosotros la sepamos y recuerda, nunca te la pediremos bajo ningun motivo. Si algunavez te la piden diciendo que somos nostros informanos.		
+		</p>
   		</div>
   </div>
   
