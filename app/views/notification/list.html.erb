@@ -11,6 +11,7 @@
 	
 				    	<div class="noti-muneco">
 				    		<div class="arrow-left1"></div>
+				    		<div class="arrow-left1-border"></div>
 						    <%= link_to image_tag( @user.photo.url(:small)  , :alt => "Imagen de #{@user.name}", :class => "linkRemote noti-muneco-photo", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}" %>
 				    	</div>
 					    
