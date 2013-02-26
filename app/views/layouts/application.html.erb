@@ -61,6 +61,13 @@ if @navegador == 'MSIE' -%>
 			<% else -%>
 				<section id="main" class="twelve columns">
 			<% end -%>
+				<% if !current_user%>
+					<% if @user_session.errors.any?%>	
+						<div id="error">
+							<%= render "shared/error_messages_login", :target => @user_session %>
+						</div>																		
+					<%end%>
+				<%end%>					
 				<% if flash[:notice] %>
 					<div id="notice">
 						<%= flash[:notice] %>

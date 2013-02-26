@@ -8,7 +8,7 @@
   <div id="perfil">
  	<div class="user-edit-2">
 	<%= form_for @user, :html => { :multipart => true } do |form|%>
-		Escoja un foto
+		Escoja una foto
 	
 		<%= image_tag @user.photo.url(:medium) %>	      
       	  <%= form.file_field :photo %>

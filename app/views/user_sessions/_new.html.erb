@@ -2,9 +2,8 @@
 		<%= f.text_field :name, :placeholder => 'Username' %>
 		<%= f.password_field :password, :placeholder => 'Password' %>
 		<%= f.submit "Login" %>		
-		<%= f.check_box :remember_me %> Remember me		<br>
-		<%= render "shared/error_messages_login", :target => @user_session %>
-		<%= link_to 'Olvidaste tu contraseña?', password_resets_path %>
+		<%= f.check_box :remember_me %> Recordarme	|
+		<%= link_to 'Olvidaste tu contraseña?', password_resets_path %><br>		
 <% end %>
 	
 

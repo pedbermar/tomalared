@@ -10,7 +10,7 @@ body
   color: #000;
 }
 
-#muneco-text
+#muneco-text, #footer2
 {
   background-color: rgba(255, 255, 255, 0.8);
 }
@@ -47,6 +47,17 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   font-size: 13px;
 }
 
+
+#q
+{
+  position: relative;
+  border: solid -1px !important;
+  border-color: blue !important;
+  outline: none !important;
+  float:right;
+  font-size: 20px;
+  top: -3px;
+}
     /*Radius*/
 .busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco, #posts
 {
@@ -102,6 +113,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   background-color: black;  
   box-shadow:         0px 0px 6px 2px #283327;
   min-width: 100%;
+  font-size: 12px;
+  height: 48px;
 }
 
 #nav0 li
@@ -164,18 +177,6 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
     font-size: 14px;
 }
 
-.notice-login
-{
-  text-align: center;
-  border: 1px red;
-  border-style:solid;
-  border-width: 2px;
-  background: #F78181;
-  color: white;  
-  padding-left: 5px;
-  font-size: 10px;
-}
-
 .notice-li
 {
   width: 300px;
@@ -189,6 +190,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 {
   width: 100px;
   margin-left: 5px;
+  font-size: 12px;
+  float: left;
 }
 
 #user_url, #user_bio, #user_profile, #user_email, #user_password, #user_password_confirmation, #user_name
@@ -432,6 +435,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 .new_user_session
 {
+  padding-top: 7px;
   width: 100%;
 }
 
@@ -743,7 +747,7 @@ div #form-new
 .searcher
 {
   color: white; 
-  text-align: center;
+  text-align: left
 }
 
 #resultado-busqueda
@@ -867,6 +871,7 @@ div #form-new
     background: none !important;
 }
 
+
 .user, .tag a
 {  
   font-weight:bold !important;
@@ -974,10 +979,11 @@ div #form-new
   color: #459E00 !important;
 }
 
+
 /* Autocomplete
 ----------------------------------*/
 .ui-autocomplete { position: absolute; cursor: default; }       
-.ui-autocomplete-loading { background: white url('/gfx/ajax-loader.gif') center center no-repeat; text-shadow: none; border: none;}
+.ui-autocomplete-loading { background: white url('/gfx/ajax-loader.gif') center center no-repeat; text-shadow: none; border: none !important;}
 
 /* workarounds */
 * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
