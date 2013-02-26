@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         render :action => 'crop'
       end
     else
-      flash[:notice] = "Hubo un problema creando tu usuario."
+      flash[:error] = "Hubo un problema creando tu usuario."
       render :action => :new
     end
   end

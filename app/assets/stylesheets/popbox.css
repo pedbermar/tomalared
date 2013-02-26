@@ -8,22 +8,23 @@
 
 .collapse-mentions
 {
-	left: 68px;	
-}
-
-.collapse-comments{
-	left: -69px;
+	left: 71px;	
 }
 
 .collapse-groups{
-	left: 0px;
+	left: 2px;
+}
+
+.collapse-comments{
+	left: -67px;
 }
 
 .popbox-user{
 	display: table;
 	font-size:9px;
-	height: 54px;
-	padding: 0.5em;	
+	height: 56px;
+	padding-left: 0.5em;
+	padding-right: 0.5em;	
 	text-align: justify;
 }
 
@@ -78,7 +79,8 @@
 
 .popbox-photo
 {
-	float: left;		
+	float: left;	
+	width: 54px;	
 }
 
 .popbox-cajita
