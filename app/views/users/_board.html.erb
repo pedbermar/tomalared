@@ -42,7 +42,6 @@
 			});
 		</script>
 		
-		<%users = Notifications.where(:user_id => current_user[:id], :note_type => 1)%>
 		<div class='popbox popbox-mentions'>
   			<a class="open open-mentions" href="#" id="notif1">@</a>
  			 <div class='collapse collapse-mentions'>
@@ -52,18 +51,9 @@
 					<div class="popbox-title">
 	    				Menciones
 	    			</div>	
-      				<div class='popbox-scroll'>      
-							<%if users.count != 0%>
-							        <% Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id).uniq_by {|x| x.from}.each do |mention_board| -%>	        
-							            <div class="board-munecos" style="background: url('<%= User.find(mention_board.from).photo.url(:medium) %>') no-repeat center; background-size: 100%;">
-											<%= link_to "@#{User.find(mention_board.from).name}", "/post/mentions/#{mention_board.from}", :class => "linkRemote"%>	            
-								    	</div>
-								    <% end %>
-									    			
-					        <%else%>
-					        	<br/>
-					        	No haz tenido<br/> conversaciones 
-					        <%end%>			            
+      				<div class='popbox-scroll'>      				
+							        <% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>	        
+								    <%= render :partial => "notification/list", :collection => @notifications%>		            
 	    			</div>
 	    			<div class="popbox-footer">
 	    				<a href="#" class="popbox-a">Antiguas</a>
@@ -72,7 +62,6 @@
   			</div>
 		</div>
 		
-		<% tags = Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1)%>
 		<div class='popbox popbox-groups'>
   			<a class='open open-groups' href='#' id="notif3">#</a>
  			 <div class='collapse collapse-groups'>
@@ -83,17 +72,11 @@
 	    				Post de Grupos
 	    			</div>
       				<div class='popbox-scroll'>
-						<%if tags.count != 0%>			        		
-			        		<% tags.each do |c| %>
 							<div class="popbox-cajita">
-								<% u=User.find(c.from)%>
-								<a href="/post/user/<%=u.name %>" class="linkRemote"><%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div class="popbox-user"><%= u.profile%></div></a>
-		    				</div>
-		    			<%end%>
-				        <%else%>
-				        	<br/>
-				        	No hay notificaciones<br/> de este tipo
-				        <%end%>
+						<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 3).desc(:id)[0..10].uniq_by {|x| x.from} -%>	        
+								    <%= render :partial => "notification/list", :collection => @notifications%>
+						    </div>
+
 	    			</div>
 	     			<div class="popbox-footer">
 	    				<a href="#" class="popbox-a">Antiguas</a>
@@ -102,7 +85,7 @@
   			</div>
 		</div> 
 		
-		<% comm = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)%>		
+		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)[0..10]%>		
 		<div class='popbox popbox-comments'>
   			<a class='open  open-comments' href='#' id="notif5">C</a>
  			 <div class='collapse collapse-comments'>
@@ -113,17 +96,11 @@
 	    				Comentarios
 	    			</div>
       				<div class='popbox-scroll'>      					      					
-						<%if comm.count != 0%>			        		
-			        		<% comm.each do |c| %>
+						
 							<div class="popbox-cajita">
-								<% u=User.find(c.from)%>
-								<a href="/post/user/<%=u.name %>" class="linkRemote"><%= image_tag(u.photo.url(:small), :class => 'popbox-photo') %><div class="popbox-user"><%= u.profile%></div></a>
-		    				</div>
-		    			<%end%>
-				        <%else%>
-				        	<br/>
-				        	No hay notificaciones<br/> de este tipo
-				        <%end%>
+								<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 5).desc(:id)[0..10].uniq_by {|x| x.from} -%>	        
+								    <%= render :partial => "notification/list", :collection => @notifications%>	
+							</div>
 	    			</div>
 		  			<div class="popbox-footer">
 	    				<a href="#" class="popbox-a">Antiguas</a>
