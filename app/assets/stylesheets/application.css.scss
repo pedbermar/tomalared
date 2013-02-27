@@ -52,8 +52,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 #q
 {
   position: relative;
-  border: solid -1px !important;
-  border-color: blue !important;
+  border: solid -1px !important;  
   outline: none !important;
   float:right;
   font-size: 13px;
@@ -1144,4 +1143,21 @@ div #form-new
 .ui-widget 
 {
   font-family: monospace;
+}
+
+::-webkit-scrollbar 
+{ 
+  width: 6px;
+  border-left: 1px solid #BBBBBB;
+}
+
+
+::-webkit-scrollbar-thumb 
+{    
+  background: rgba(0,0,0,.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive 
+{
+  background: rgba(0,0,0,.3);
 }
