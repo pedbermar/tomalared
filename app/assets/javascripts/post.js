@@ -16,9 +16,10 @@ function pintarBotonesPost() {
 function endlessPost() {
 	$(document).endlessScroll({
 		fireOnce : false,
-		fireDelay : 500,
+		fireDelay : 1000,
 		ceaseFireOnEmpty : false,
 		intervalFrequency : 2000,
+		inflowPixels : 0,
 		loader : "<img src=\"/gfx/loading.gif\">",
 		callback : function(fireSequence, pageSequence, scrollDirection) {
 			var last = $("div.post:last input.created_at").val();
@@ -42,13 +43,7 @@ function endlessPost() {
 }
 
 function actualizando() {
-	if ($("#remote").length > 0) {
-		var url = $(location).attr('href');
-		if ($("#remote").val() != "") {
-			url = $("#remote").val()
-		}
-		$.getScript(url + "?remote=true&soloposts=true");
-	}
+	
 	setTimeout(actualizando, 15000);
 }
 
