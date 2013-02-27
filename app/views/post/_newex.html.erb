@@ -4,7 +4,7 @@
 		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
 			<div class="mediano-muneco2"> 
 				<div class="arrow-left"></div>
-				<%= link_to image_tag( current_user.photo.url(:medium)  , :alt => "Tu imagen"), "/post/user/#{current_user.name}", :class => "linkRemote mediano-muneco-post" %> 		
+				<%= link_to image_tag( current_user.photo.url(:medium)  , :alt => "Tu imagen"), "/post/user/#{current_user.name}", :class => "linkRemote mediano-muneco-newex" %> 		
 			</div>
 			<%= text_area 'post','content' , :class => 'textarea', :placeholder => 'Escribe!'%>
 			<div id="archivo">

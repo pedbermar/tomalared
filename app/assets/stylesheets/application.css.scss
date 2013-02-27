@@ -198,6 +198,31 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   width: 200px;  
   font-size: 12px;
 }
+
+.condiciones
+{
+  display: none;
+  border: 1px solid #BBBBBB;
+  background: #FAFAF4;       
+}
+
+.condiciones p
+{
+  font-weight: normal;
+  font-size: 12px;   
+  text-align:justify;  
+  padding: 10px;
+}
+
+.cerrar-condiciones
+{
+  float: right;
+  border: 1px solid #BBBBBB;
+  background: black;  
+  margin: 4px;
+  padding: 2px;
+}
+
 .registro, .errorExplanation
 {
   display: block;
@@ -453,7 +478,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 .counter
 {
-  color: white;  
+  color: gray;  
 }
 
 .ui-widget-content
@@ -524,6 +549,12 @@ div #form-new
 {
   position:relative;
   top: -22px;
+}
+
+.mediano-muneco-newex
+{
+  position:relative;
+  top: -20px;
 }
 
 #posts
@@ -1009,6 +1040,10 @@ a #footer
    text-align: justify;
 }
 
+#tusgrupos, #tendencias
+{
+  background: #fafaf4;
+}
 #tusgrupos a:hover, #tendencias a:hover
 {
   color: #459E00 !important;
@@ -1081,7 +1116,6 @@ a #footer
 {
   left: -2px;
   width: 100%;
-  background: #fafaf4;
 }
 
 .topbar .ui-widget-content 

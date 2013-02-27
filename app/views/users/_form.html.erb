@@ -8,7 +8,7 @@
   <%= form.text_field :email, :placeholder => 'Email' %>
   <%= form.password_field :password, :placeholder => 'Password' %>
   <%= form.password_field :password_confirmation, :placeholder => 'Password' %>
-  <%= check_box_tag 'accept' %>Acepto las <a href="#"  class="condicion">condiciones</a>
+  <%= check_box_tag 'accept'%>Acepto las <a href="#"  class="condicion">condiciones</a>
 
 </div>
 <%= render "shared/error_messages", :target => @usernew %>
@@ -76,11 +76,3 @@
   }
 
 </style>
-<script>
-$( ".cerrar-condiciones" ).click(function() {
-  $( ".condiciones" ).hide( "drop", { direction: "down" }, "slow" );
-});
-$( ".condicion" ).click(function() {
-  $( ".condiciones" ).show( "fold", 1000 );
-});
-</script>

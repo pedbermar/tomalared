@@ -68,4 +68,11 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+
+	$( ".cerrar-condiciones" ).click(function() {
+		$( ".condiciones" ).hide( "drop", { direction: "down" }, "slow" );
+	});
+	$( ".condicion" ).click(function() {
+	  	$( ".condiciones" ).show( "fold", 1000 );
+	});
 });
