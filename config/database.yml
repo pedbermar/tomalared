@@ -16,7 +16,7 @@ development:
   database: 
   pool: 5
   username: 
-  password:
+  password: 
 
 #test:
 #  adapter: mysql2

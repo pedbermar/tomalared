@@ -49,15 +49,14 @@
 					<div class='arrow arrow-mentions'></div>
       				<div class='arrow-border arrow-border-mentions'></div>
 					<div class="popbox-title">
-	    				Menciones
+	    				<%= t :titulo_notificaciones_menciones %>
 	    			</div>	
       				<div class='popbox-scroll'>      				
 							        <% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>	        
 								    <%= render :partial => "notification/list", :collection => @notifications%>		            
 	    			</div>
 	    			<div class="popbox-footer">
-	    						<%= link_to "Todas ", "/notifications", :class => "popbox-a"  %>
-
+	    						<%= link_to "#{t :todas}", "/notifications", :class => "popbox-a" %>
 	    			</div>
     		    </div>
   			</div>
@@ -70,7 +69,7 @@
 					<div class='arrow arrow-groups'></div>
       				<div class='arrow-border arrow-border-groups'></div>
       				<div class="popbox-title">
-	    				Post de Grupos
+	    				<%= t :titulo_notificaciones_grupos %>
 	    			</div>
       				<div class='popbox-scroll'>
 							<div class="popbox-cajita">
@@ -80,7 +79,7 @@
 
 	    			</div>
 	     			<div class="popbox-footer">
-						<%= link_to "Todas ", "/notifications", :class => "popbox-a"  %>
+						<%= link_to "#{t :todas}", "/notifications", :class => "popbox-a"  %>
 	    			</div>
     		    </div>
   			</div>
@@ -94,17 +93,16 @@
 					<div class='arrow arrow-comments'></div>
       				<div class='arrow-border arrow-border-comments'></div>
       				<div class="popbox-title">
-	    				Comentarios
+	    				<%= t :titulo_notificaciones_comentarios %>
 	    			</div>
       				<div class='popbox-scroll'>      					      					
-						
 							<div class="popbox-cajita">
 								<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 5).desc(:id)[0..10].uniq_by {|x| x.from} -%>	        
 								    <%= render :partial => "notification/list", :collection => @notifications%>	
 							</div>
 	    			</div>
 		  			<div class="popbox-footer">
-						<%= link_to "Todas ", "/notifications", :class => "popbox-a"  %>
+						<%= link_to "#{t :todas}", "/notifications", :class => "popbox-a"  %>
 	    			</div>
     		    </div>
   			</div>
@@ -116,11 +114,11 @@
 		<ul>
 			<% if current_user.tags.count != 0 %>
 			<li>
-				<a href="#tusgrupos">Tus grupos</a>
+				<a href="#tusgrupos"><%= t :tus_grupos %></a>
 			</li>
 			<% end %>
 			<li>
-				<a href="#tendencias">Tendencias</a>
+				<a href="#tendencias"><%= t :tendencias %></a>
 			</li>
 
 			<% if current_user.tags.count != 0 %>
