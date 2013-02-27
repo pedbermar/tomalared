@@ -40,7 +40,6 @@ gem 'rdoc'
 gem 'metainspector'
 gem 'json'
 gem 'kaminari'
-gem 'dotiw'
 gem 'will_paginate', '~> 3.0.0'
 gem "authlogic"
 gem 'rack-ssl', :require => 'rack/ssl'

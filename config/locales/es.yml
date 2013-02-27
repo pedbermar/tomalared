@@ -1,8 +1,8 @@
 # Sample localization file for spanish. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points
 
-
 es:
+  hace: hace
   date:
     abbr_day_names:
     - dom
