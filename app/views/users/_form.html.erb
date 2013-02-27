@@ -8,8 +8,79 @@
   <%= form.text_field :email, :placeholder => 'Email' %>
   <%= form.password_field :password, :placeholder => 'Password' %>
   <%= form.password_field :password_confirmation, :placeholder => 'Password' %>
-  
-  <%= form.submit "Crear" %>
+  <%= check_box_tag 'accept' %>Acepto las <a href="#"  class="condicion">condiciones</a>
+
 </div>
 <%= render "shared/error_messages", :target => @usernew %>
 
+<div style="clear:both">
+<div class="condiciones">
+	<a href="#" class="cerrar-condiciones">Cerrar</a>
+	<h5>Condiciones del servicio</h5>
+	<p>
+		El acceso, uso y navegación por esta Web están permitidos tan solo en el caso que se acepten los siguientes requisitos y condiciones,
+		por lo tanto la Web no debe usarse ni visitarse si no se admiten dichas condiciones. Se considerará a todos los efectos legales que el
+		uso de la Web presupone la aceptación de las condiciones de uso. TOMALARED.NET se reserva el derecho de modificar las presentes condiciones en cualquier momento.
+	</p>
+	
+	<p>
+		1. -El usuario se compromete a realizar un uso de los servicios y contenido de la presente web que sea conforme con la legalidad vigente, 
+		tanto de España como del país en el que se encuentre, conforme a la buena fe. Queda prohibido cualquier uso de la web que suponga o pueda 
+		suponer cualquier forma de violación de terceros sobre su intimidad, su honor, la propia imagen, el secreto de las comunicaciones, propiedad 
+		intelectual o industrial, datos personales, etc. La presente website constituye en si misma una propiedad intelectual, bajo licencia GPL.
+	</p>
+	
+	<p>
+		2. -En especial queda prohibido insertar, publicar, mostrar contenidos que atenten contra la moral y el orden publico, considerándose como tales, 
+		sin carácter limitativo, los de contenidos ilegales, obscenos, racistas, difamatorios, etc., así como también introducir virus 
+		o programas informáticos que se propaguen o que puedan producir daños o alternaciones en los terminales o programas de los usuarios o de la propia web, 
+		o el uso del website para el envío masivo de correos electrónicos. TOMALARED.NET no asume ninguna responsabilidad por el uso indebido, malicioso o erróneo 
+		de esta web o sus servicios.
+	</p>
+	
+	<p>
+		3. -Los datos contenidos la página Web pueden ser incorrectos dado que los datos volcados en la Web son responsabilidad del que los sube. TOMALARED.NET no se hace responsable de los daños 
+		directos o indirectos que puedan causar los usuarios con sus publicaciones.
+	</p>
+	 
+	<p>	
+		4. -TOMALARED.NET no garantiza el uso de la web ni que los servidores de acceso estén libres de virus informáticos y otros componentes nocivos.
+	</p>
+	
+	<p>
+		5. -Estas condiciones de uso están sometidas a la legislación española.
+	</p>	
+</div>
+  <%= form.submit "Crear" %>  
+<style>
+   .condiciones
+  {
+	display: none;
+	border: 1px solid #BBBBBB;
+	background: #FAFAF4;	 	   
+  }
+  .condiciones p
+  {
+	font-weight: normal;
+	font-size: 12px; 	 
+	text-align:justify;  
+	padding: 10px;
+  }
+  .cerrar-condiciones
+  {
+  	float: right;
+	border: 1px solid #BBBBBB;
+	background: black;	
+	margin: 4px;
+	padding: 2px;
+  }
+
+</style>
+<script>
+$( ".cerrar-condiciones" ).click(function() {
+  $( ".condiciones" ).hide( "drop", { direction: "down" }, "slow" );
+});
+$( ".condicion" ).click(function() {
+  $( ".condiciones" ).show( "fold", 1000 );
+});
+</script>

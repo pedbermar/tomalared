@@ -1,77 +1,85 @@
 <section id="user-edit" >
-<div id="tabs">
-  <ul>
-    <li><a href="#perfil"><span>Perfil</span></a></li>
-    <li><a href="#cuenta"><span>Cuenta</span></a></li>
-    <li><a href="#notificaciones"><span>Notificaciones</span></a></li>
-
-  <div id="perfil">
- 	<div class="user-edit-2">
-	<%= form_for @user, :html => { :multipart => true } do |form|%>
-		Escoja una foto
+	<div id="tabs">
+	  <ul>
+	    <li><a href="#perfil"><span>Perfil</span></a></li>
+	    <li><a href="#cuenta"><span>Cuenta</span></a></li>
+	    <li><a href="#sobre"><span>Sobre tomalared.net</span></a></li>
 	
-		<%= image_tag @user.photo.url(:medium) %>	      
-      	  <%= form.file_field :photo %>
+		  <div id="perfil">
+		 	<div class="user-edit-2">
+			<%= form_for @user, :html => { :multipart => true } do |form|%>
+				Escoja una foto
+			
+				<%= image_tag @user.photo.url(:medium) %>	      
+		      	  <%= form.file_field :photo %>
+						
+					 <%= form.submit "Submit" %>
+			</div>
 				
-			 <%= form.submit "Submit" %>
-	</div>
+				<% end %>
+				<div class="user-edit">	  
+				<%= form_for @user do |f| %>
+				  <%#= f.error_messages %>
+				    <%= f.label :nombre_del_perfil %>
+				    <%= f.text_field :profile %>
+			   		<br />  <br />
+				    <%= f.label :bio %>
+				    <%= f.text_field :bio %>
+					<br />  <br />
+				    <%= f.label :website %>
+				    <%= f.text_field :url %>
+					<br />  <br />
+				  <%= f.submit "Cambiar" %>
+				<% end %>
+				
 		
-		<% end %>
-		<div class="user-edit">	  
-		<%= form_for @user do |f| %>
-		  <%#= f.error_messages %>
-		    <%= f.label :nombre_del_perfil %>
-		    <%= f.text_field :profile %>
-	   		<br />  <br />
-		    <%= f.label :bio %>
-		    <%= f.text_field :bio %>
-			<br />  <br />
-		    <%= f.label :website %>
-		    <%= f.text_field :url %>
-			<br />  <br />
-		  <%= f.submit "Cambiar" %>
-		<% end %>
+		  		</div>
+		  </div>
+		  
+		  <div id="cuenta">
+		  	<div class="user-edit-2">
+		  			<%= form_for @user do |f| %>
+				  <%#= f.error_messages %>
+				    <%= f.label :email %>
+				    <%= f.text_field :email %>
+					<br />  <br />
+				    <%= f.label :contraseña %>
+				    <%= f.text_field :password %>
+					<br />  <br />
+					<%= f.label :confirmar_contraseña %>
+				    <%= f.text_field :password_confirmation %>
+					<br />  <br />
+				 <%= f.submit "Cambiar" %>
+				
+				<% end %>
+			</div>
+			<div class="user-edit user-text">	  
+				Politica de datos:<br/><br/>
+					<p>
+						Todos los datos que facilites en esta pestaña, seran completamente privados y desde TOMALARED.NET te aseguramos que no seran cedidos de ninguna manera a terceros.
+					</p>
+					<p>
+						Tu email solo se usara para la activacion de tu cuenta y la recuperacion de tu clave.
+					</p>
+					<p>
+						Tu contraseña esta cifrada desde el momento en que la envias por primeravez a nuestro servidor, para que ni nosotros la sepamos y recuerda, nunca te la pediremos bajo ningun motivo. Si algunavez te la piden diciendo que somos nostros informanos.		
+					</p>
+		  	</div>
+		  </div>
+		  
 		
-
-  		</div>
-  </div>
-  
-  <div id="cuenta">
-  	<div class="user-edit-2">
-  			<%= form_for @user do |f| %>
-		  <%#= f.error_messages %>
-		    <%= f.label :email %>
-		    <%= f.text_field :email %>
-			<br />  <br />
-		    <%= f.label :contraseña %>
-		    <%= f.text_field :password %>
-			<br />  <br />
-			<%= f.label :confirmar_contraseña %>
-		    <%= f.text_field :password_confirmation %>
-			<br />  <br />
-		 <%= f.submit "Cambiar" %>
-		
-		<% end %>
-	</div>
-	<div class="user-edit user-text">	  
-	Politica de datos:<br/><br/>
-		<p>
-			Todos los datos que facilites en esta pestaña, seran completamente privados y desde TOMALARED.NET te aseguramos que no seran cedidos de ninguna manera a terceros.
-		</p>
-		<p>
-			Tu email solo se usara para la activacion de tu cuenta y la recuperacion de tu clave.
-		</p>
-		<p>
-			Tu contraseña esta cifrada desde el momento en que la envias por primeravez a nuestro servidor, para que ni nosotros la sepamos y recuerda, nunca te la pediremos bajo ningun motivo. Si algunavez te la piden diciendo que somos nostros informanos.		
-		</p>
-  		</div>
-  </div>
-  
-
-  <div id="notificaciones">
-
-  </div>
-
-  </ul>
+		  <div id="sobre">
+			<div class="user-text">
+				<br/><br/>	  
+				Tomalared es:<br/><br/>
+					<p>
+						Una herramienta social para compartir ideas, propuestas, imagenes, links, videos, y todo lo que se pueda compartir en la red. Todo el material que se cuelge tiene que ser de lincencia abierta, si es una creacion personal pasara automaticamente a ser considerado de licencia abierta. 
+					</p>
+					<p>
+						Somos un grupo de programadores, que a decido unir fuerzas para llevar este proyecto de software libre adelante. Para el disfrute de todo el mundo.
+					</p>
+		  	</div>				
+		  </div>		  
+	  </ul>
   </div>
 </section>
