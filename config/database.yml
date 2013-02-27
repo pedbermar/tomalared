@@ -13,10 +13,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: profile-1
+  database: 
   pool: 5
-  username: root
-  password: "miguelit0"
+  username: 
+  password: 
 
 #test:
 #  adapter: mysql2
