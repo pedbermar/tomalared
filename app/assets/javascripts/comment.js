@@ -8,15 +8,8 @@ function pintarBotonesComment() {
 	$(".comentar").button();
 }
 
-function iniConComment(){
-	$("#body").charCount({
-		warning: 20
-	});
-}
-
 function vueltaComment() {
 	setTimeout(function() {
-		iniConComment();
 		pintarBotonesComment();
 		pintarBotonesVote(); 
 		$(".comments-old").find(".comment").first().removeAttr("style");
@@ -37,7 +30,9 @@ $(document).ready(function() {
 			return false;
 		}
 	});
-	iniConComment();
+	$(".formComentContent").charcount({
+		position: 'after'
+	});
 	pintarBotonesComment();
 	pintarBotonesVote(); 
 });

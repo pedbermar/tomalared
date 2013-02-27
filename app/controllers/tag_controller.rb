@@ -70,5 +70,24 @@ class TagController < ApplicationController
     end
 
   end
+  
+  def list
+    if params[:id]
+      @arr = Tag.find(:all, 
+                         :conditions => {:id => params[:id]}, 
+                         :order => 'id ASC')
+    else
+      @arr = Tag.find(:all, :order => 'id ASC')
+    end
+    if params[:json]
+      @obj = Array.new
+      @arr.each do |o|
+        @obj << o.profile
+      end
+      respond_to do |format|
+        format.json { render json: @obj }
+      end
+    end
+  end
 end
 

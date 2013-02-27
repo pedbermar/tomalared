@@ -244,6 +244,7 @@ class PostController < ApplicationController
   def list(options = Hash.new)
     @po = Post.new
     @post = Post.new
+    @destinatario = ""
     @pagina = params[:pagina]
     @soloposts = params[:soloposts]?true:false
     last = params[:last].blank? ? Time.now + 1.second : Time.parse(params[:last])
@@ -279,6 +280,7 @@ class PostController < ApplicationController
     elsif @pagina == "tag"
       @tagName = params[:id]
       @tag = Tag.find_by_name(@tagName)
+      @destinatario = "#" + @tagName
       # if more than one tag is specified, get the posts containing all the
       # passed tags.  otherwise get all the posts with just the one tag.
       if params[:type]
@@ -322,6 +324,9 @@ class PostController < ApplicationController
         end
       else
         @user = User.find(current_user[:id])
+      end
+      if @user.id != current_user[:id]
+        @destinatario = "@" + @user.name
       end
       @posts = Post.find(:all,
                          :joins => "LEFT OUTER JOIN shares sh ON posts.id = sh.post_id",

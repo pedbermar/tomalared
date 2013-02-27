@@ -43,6 +43,11 @@ function resetForm($form) {
 	$form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
 }
 
+function esNumero(num){
+	var regExp = new RegExp('^\\d+$');
+	return regExp.test(num);
+}
+
 jQuery.ajaxSetup({
 	'beforeSend' : function(xhr) {
 		xhr.setRequestHeader("Accept", "text/javascript")
@@ -71,7 +76,7 @@ $(document).ready(function() {
 	});
 
 	$("#open-publicar").click(function() {
-		iniConPost();
+		$("#post_content").val($("#destinatario").val()).trigger('update');
 		$("#form-new").dialog("open");
 	});
 

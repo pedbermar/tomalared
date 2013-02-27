@@ -40,13 +40,6 @@ function endlessPost() {
 	});
 }
 
-function iniConPost(){
-	$("#post_content").charCount({
-		warning : 0,
-		counterText : 'Quote < 140 > Post: '
-	});
-}
-
 function actualizando() {
 	if ($("#remote").length > 0) {
 		var url = $(location).attr('href');
@@ -168,6 +161,10 @@ $(document).ready(function() {
 		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
 		$.getScript(url + "?remote=true");
 		return false;
+	});
+	$("#post_content").charcount({
+		position: 'after',
+		maxLength: 150
 	});
 	pintarBotonesPost();
 	endlessPost();

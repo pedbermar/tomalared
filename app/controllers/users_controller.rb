@@ -78,7 +78,22 @@ class UsersController < ApplicationController
   end
   
   def list
-    @users = User.find(:all, :order => 'id ASC')
+    if params[:id]
+      @users = User.find(:all, 
+                         :conditions => {:id => params[:id]}, 
+                         :order => 'id ASC')
+    else
+      @users = User.find(:all, :order => 'id ASC')
+    end
+    if params[:json]
+      @name = Array.new
+      @users.each do |user|
+        @name << user.profile
+      end
+      respond_to do |format|
+        format.json { render json: @name }
+      end
+    end
   end
 
   def activate

@@ -74,6 +74,9 @@ Fra::Application.routes.draw do
   
   match '/notif/list' => 'notification#list'
   match '/users/crop' => 'users#crop'
+  
+  match '/users/:id' => 'users#list'
+  match '/tags/:id' => 'tags#list'
   #resources
   resources :tags
   resources :comments
