@@ -2,6 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  tomalared_net: takethenetwork.net
+  publicar: Publish
+  
   hace: ago
   todas: All
   tendencias: Tendencies
@@ -9,6 +12,10 @@ en:
   titulo_notificaciones_menciones: Mentions
   titulo_notificaciones_grupos: Post of groups
   titulo_notificaciones_comentarios: Comments
+  
+  comentar:
+    placeholder: Comment....
+    submit: Comment
   
   date:
     abbr_day_names:
