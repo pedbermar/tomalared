@@ -27,24 +27,17 @@ function update_crop(coords) {
 
 });
 </script>
-<div id="user-edit" style="display: table; width: 100%;">
-		<div class="user-edit" style="display: table; width: 100%; text-align: center;padding: 10px;">
-			<div style="display: table; width: 100%;">
-				<h5>Recorta la foto</h5>
-				<div style="float: left;">
-		   		<img src="<%=@user.photo.url(:large)%>" id="target-photo" />
-		   		</div>
-		   	</div>
-		   
-	      <br/>
-		    <%= form_for @user do |form| %>
-		  		<% for attribute in [:crop_w, :crop_h, :crop_x, :crop_y] %>
-		  			<%= form.hidden_field attribute, :id => attribute %>
-		  		<% end %>
-		  		<p><%= form.submit "Recortar" %></p>
-			<% end %>
-		</div>	
-</div>
+	<div id="photo-recorte">	
+		<h5>Recorta la foto</h5>			
+		<img src="<%=@user.photo.url(:large)%>" id="target-photo" />		   		
+	  	<br/>
+	    <%= form_for @user do |form| %>
+	  		<% for attribute in [:crop_w, :crop_h, :crop_x, :crop_y] %>
+	  			<%= form.hidden_field attribute, :id => attribute %>
+	  		<% end %>
+	  		<p><%= form.submit "Recortar" %></p>
+		<% end %>
+	</div>
 
 
 
