@@ -9,7 +9,7 @@ o trabajo en grupo.
 Actualmente estamos en la primera version, que no incluye comunicacion en 
 tiempo real (chat), compartir archivos o mapas, asi como otras funcionalidades 
 que se encuentran en el diseño original. Por esto, la implementacion se ira 
-liberando gradualmente en el tiempo ;).
+liberando gradualmente en el tiempo.
 
 Animamos a todos los desarrolladores que quieran participar a que nos contacten 
 en tomalared.net por @r, @g, y @s. Las tecnologías que estamos usando son:

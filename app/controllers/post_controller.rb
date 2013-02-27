@@ -331,7 +331,7 @@ class PostController < ApplicationController
       @posts = Post.find(:all,
                          :joins => "LEFT OUTER JOIN shares sh ON posts.id = sh.post_id",
                          :conditions => ["(posts.user_id = ? OR sh.user_id = ?) AND " + direccion, @user.id, @user.id, last], 
-                         :order => "posts.created_at DESC", 
+                         :order => "sh.created_at DESC, posts.created_at DESC", 
                          :limit => "10")
       
       if !@soloposts
