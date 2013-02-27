@@ -1,6 +1,38 @@
-==Welcome to TAKETHENETWORK
-We are an open source project to build a free social network.
+tomalared
+	es un proyecto de software libre para crear una red social libre, 
+	pseudo-descentralizada, potencialmente autogestionable, que permita
+	a la gente comparir cualquier tipo de cosa que se genera en la red, 
+	asi como comunicarse en tiempo real, ademas de usar la red como plataforma 
+	para desarrollar en linea y a distancia, (#)interacciones entre (@)personas 
+	o trabajo en grupo 
+	
+	Actualmente estamos en la primera version, que no incluye comunicacion en 
+	tiempo real (chat), compartir archivos o mapas, asi como otras funcionalidades 
+	que se encuentran en el diseño original. Por esto, la implementacion se ira 
+	liberando gradualmente en el tiempo ;)
+	
+	Animamos a todos los desarrolladores que quieran participar a que nos contacten 
+	en tomalared.net por @r, @g, y @s. Las tecnologías que estamos usando son:
+	Ruby on Rails, HTML5, CSS3, Jquery y MySQL y MongoDB para las bases de datos. 
+	
+	La infraestructura sobre la que corre la aplicacion, no esta en el ámbito de este 
+	documento pero elaboraremos documentacion sobre el diseño de la misma, la 
+	instalacion de los  y configuracion de los servidores y de la red. 
+	 
+    TOMALARED.NET - The free social network project.
+    Copyright (C) 2013  tomalared.net
 
+    Este programa es software libre: usted puede redistribuirlo y/o modificarlo 
+    bajo los términos de la Licencia Pública General GNU publicada 
+    por la Fundación para el Software Libre, ya sea la versión 3 
+    de la Licencia, o (a su elección) cualquier versión posterior.
 
-==Bienvenido a TOMALARED
-Somos un proyecto de software libre, para construir una red social libre.
+    Este programa se distribuye con la esperanza de que sea útil, pero 
+    SIN GARANTÍA ALGUNA; ni siquiera la garantía implícita 
+    MERCANTIL o de APTITUD PARA UN PROPÓSITO DETERMINADO. 
+    Consulte los detalles de la Licencia Pública General GNU para obtener 
+    una información más detallada. 
+
+    Debería haber recibido una copia de la Licencia Pública General GNU 
+    junto a este programa. 
+    En caso contrario, consulte <http://www.gnu.org/licenses/>.

@@ -38,6 +38,8 @@
 		    <br />
 		    <%end%>
 		    <span><%= pluralize(@user.posts.count, "Posts") %> | <%= pluralize(@user.tags.count, "Groups") %></span>
+		    <br />
+		    <%= distance_of_time_in_words(Time.now, Time.at(@user.created_at), false,  :highest_measure_only => true, :locale => "es")%>
 		    </div>
 	</div>
 <% end %>
