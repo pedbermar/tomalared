@@ -7,9 +7,9 @@
 	    		<%= link_to image_tag( current_user.photo.url(:small)  , :alt => "Imagen de #{current_user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{current_user.name}", :class => "linkRemote comment-muneco-photo" %>
 		    </div>
 		    
-			<%= text_area_tag  'body', nil, :class=> 'formComentContent', :placeholder => 'Comenta...' %>
+			<%= text_area_tag  'body', nil, :class=> 'formComentContent', :placeholder => "#{t 'comentar.placeholder'}" %>
 		    <%= hidden_field_tag  'post_id', nil, :value => post.id %>
-			<%= submit_tag "Comentar", :class => "comentar"%>
+			<%= submit_tag "#{t 'comentar.submit'}", :class => "comentar"%>
 		
 	<% end %>
 </div>
