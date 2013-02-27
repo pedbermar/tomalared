@@ -1,4 +1,4 @@
-#tomalared
+## tomalared
 es un proyecto de software libre para crear una red social libre, 
 pseudo-descentralizada, potencialmente autogestionable, que permita
 a la gente comparir cualquier tipo de cosa que se genera en la red, 
