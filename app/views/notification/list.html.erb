@@ -52,7 +52,9 @@
 				<%= link_to "#{User.find(post.user_id).profile}", "/post/user/#{post.user_id}"%>
 				<%end%>
 				<%end%>
-				<%= distance_of_time_in_words(Time.now, Time.at(n.updated_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
+				<span class="timeCount">
+					<%= distance_of_time_in_words(Time.now, Time.at(n.updated_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
+				</span>
 			</div>
 	</article>
 </div>

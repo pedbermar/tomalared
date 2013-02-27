@@ -4,7 +4,7 @@
 	
 		<div class="mediano-muneco">
 			<div class="arrow-left"></div>
-			<div class="arrow-left-border"></div>
+			<div class="arrow-left-border"></div>			
 			<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
 		</div>
 	
@@ -20,13 +20,15 @@
 					
 			<% end %>
 	
-			<%= link_to "#{@user.profile}" , "/post/user/#{@user.name}", :class => "linkRemote user" %> <span class="users">@<%=@user.name %></span>,
+			<%= link_to "#{@user.profile} | @#{@user.name}", "/post/user/#{@user.name}", :class => "linkRemote user" %>,
 			<%unless  @user.id == Post.find(post.id).user_id %>
 				<%if @pagina == 'user' %>
 					compartido a traves de <%= User.find(Post.find(post.id).user_id).profile%>	
 				<%end%>
 			<%end%>
-			<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
+			<span class="timeCount">
+				<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
+			</span>
 			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title, :post_id => post.id } %>
 	
 			<div class="postFooter">
