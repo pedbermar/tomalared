@@ -3,6 +3,13 @@
 
 es:
   hace: hace
+  todas: Todas
+  tendencias: Tendencias
+  tus_grupos: Tus grupos
+  titulo_notificaciones_menciones: Menciones
+  titulo_notificaciones_grupos: Post de grupos
+  titulo_notificaciones_comentarios: Comentarios
+  
   date:
     abbr_day_names:
     - dom
