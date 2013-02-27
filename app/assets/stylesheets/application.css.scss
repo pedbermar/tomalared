@@ -478,13 +478,11 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 .ui-dialog
 {
   display: table;  
-  background-color:rgba(0,0,0,0.8) !important;
-  margin-top: 1%;
-  padding: 0px !important;
-  margin: 0px !important; 
+  background-color:rgba(0,0,0,0.8) !important;  
+  padding: 0px;
+  margin: 0px; 
   position: fixed;
-  margin: 0 auto;
-  left: 10%;
+  left: 0%;
   top: 10%;
 }
 
@@ -541,7 +539,7 @@ div #form-new
 {
   position: relative;
   width: 20%;  
-  height: 140px;
+  height: 108px;
   margin: 1%;
   float: left;
   top: -3px;  
@@ -707,22 +705,21 @@ div #form-new
 }
 #text
 {
-  display: table;
-  color: black;
-  height: 23px;
+  padding-top: 5px;  
+  display: table;  
   width: 90%;
+  font-size: 10px;
+  margin: 1%;
 }
 
 .text-quote
 {
-  display: table;
-  color: black;
-  font-size: 18px;
-  color: black;
+  width: 90%;
+  display: table;    
   margin: 1%;
   font-size: 12px;
   text-align: justify;
-  height: 23px;
+  padding-top: 5px;
 }
 
 .mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover
