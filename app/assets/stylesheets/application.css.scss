@@ -10,7 +10,7 @@ body
   color: #000;
 }
 
-#muneco-text, #footer2
+#muneco-text, #footer
 {
   background-color: rgba(255, 255, 255, 0.8) !important;
 }
@@ -60,7 +60,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   top: 0px;
 }
     /*Radius*/
-.busqueda, .ui-dialog, .post, #user-edit, #footer2, .board-background, .notification-list, #login, #muneco, #main
+.busqueda, .ui-dialog, .post, #user-edit, #footer, .board-background, .notification-list, #login, #muneco, #main
 {
   border-radius: 7px;
 }
@@ -482,6 +482,10 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-top: 1%;
   padding: 0px !important;
   margin: 0px !important; 
+  position: fixed;
+  margin: 0 auto;
+  left: 10%;
+  top: 10%;
 }
 
 .counter
@@ -650,12 +654,6 @@ div #form-new
   vertical-align: text-bottom;
 }
 
-.postFooter a
-{
-  text-shadow: none; 
-  color: black;
-}
-
 .maincontent
 {
     position: relative;
@@ -765,23 +763,37 @@ div #form-new
 {
   position: relative;  
   padding: 5px;
-  top: 60px;
+  top: 60px;  
   font-size: 11px;
   text-align: center;  
-  color: white; 
-  margin-bottom: 100px;
-  z-index: 999;
+  color: black; 
+  z-index: 2;
+  margin-bottom: 125px;
 }
 
-a #footer
+#footer a
 {
-  color: green !important;
+  color: green;
 }
 
-#footer2
-{ 
-  color: black;
+#footer a:hover
+{
+  color:  black;
 }
+
+.endless_scroll_loader
+{
+  width: 300px;  
+  margin-left: 50%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.endless_scroll_loader img
+{
+  border: none !important;
+}
+
 
 .youtube
 {
@@ -1048,7 +1060,7 @@ a #footer
    text-align: justify;
 }
 
-#tusgrupos, #tendencias
+#tusgrupos, #tendencias, #sobre
 {
   background: #fafaf4;
 }

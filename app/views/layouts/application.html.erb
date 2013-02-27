@@ -81,7 +81,22 @@ if @navegador == 'MSIE' -%>
 					<%= yield %>
 				</section>
 			</div>
+		
+			<footer class="row">
+				<div id="footer"  class="<% if current_user -%>nine columns<% else -%>twelve columns<% end -%>">
+					<% if current_user %>
+					Hola <%= current_user[:name] %>, 
+					b<% else %>B<% end %>ienvenido al ciberespacio, el nuevo hogar de la mente.
+						<br/>
+						TOMALARED.NET &nbsp;v0.1 (alpha)
+					<br/>
+					Powered By: 
+					<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> ~
+					<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> 
+			  	</div>
+			</footer>		
 		</div>
+		
 		<% if current_user %>
 			<div class="container" id="mainboard">
 				<div class="row" id="trasfondo">
@@ -90,26 +105,8 @@ if @navegador == 'MSIE' -%>
 						</aside>
 				</div>  
 			</div>
-   		<% end %>
-		<div class="container">
-			<footer id="footer" class="row">
-				<% if current_user -%>
-					<div class="nine columns" id="footer2">
-				<% else -%>
-					<div class="twelve columns" id="login">
-				<% end -%>
-					<% if current_user %>
-					Hola <%= current_user[:name] %>, 
-					b<% else %>B<% end %>ienvenido al ciberespacio, el nuevo hogar de la mente.
-					<br/>
-					TOMALARED.NET &nbsp;v0.1 (alpha)
-					<br/>
-					Powered By: 
-					<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> ~
-					<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> 
-			  	</div>
-			</footer>
-		</div>
+   		<% end %>	
+   			
 	</body>
 </html>
 <% end -%>
