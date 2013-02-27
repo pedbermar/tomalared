@@ -2,7 +2,7 @@
 	<%= link_to "tomalared.net", '/', :class => "linkRemote titulo" %>
 </div>
 <% if current_user -%>
-	<section class="six columns searcher">	
+	<section class="five columns searcher">	
 	   <%= form_tag('/search', :id => 'search', :method=> 'get') do %>   		
 		   	<%= search_field_tag 'q', '',:placeholder =>  '¡Busca!' %>
 	   		<span id="resultado-busqueda"></span>

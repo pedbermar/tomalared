@@ -80,7 +80,9 @@
 .popbox-photo
 {
 	float: left;	
-	width: 54px;	
+	width: 56px;
+	border: none;	
+	border-right: 1px solid #BBBBBB;
 }
 
 .popbox-cajita

@@ -114,7 +114,6 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   box-shadow:         0px 0px 6px 2px #283327;
   min-width: 100%;
   font-size: 12px;
-  height: 48px;
 }
 
 #nav0 li
@@ -125,6 +124,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 #search, #nav0
 {
   margin-top: 10px;
+  text-align: center;
+  margin-left: 15%;
 }
 
 .usersboard
@@ -689,7 +690,7 @@ div #form-new
 
 .formComentContent
 {
-  height: 23px;
+  height: 26px;
 }  
 
 .mainPostContent #text
@@ -900,7 +901,7 @@ div #form-new
   position: relative;
   float:right;
   top: 23px;
-  left: 40%;
+  left: 41%;
   width: 0; 
   height: 0; 
   border-top: 10px solid transparent;
@@ -1160,4 +1161,9 @@ div #form-new
 ::-webkit-scrollbar-thumb:window-inactive 
 {
   background: rgba(0,0,0,.3);
+}
+
+.charcount-display{
+  color: gray;
+  margin-left: 1%;
 }
