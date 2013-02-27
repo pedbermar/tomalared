@@ -1,4 +1,4 @@
-
+#tomalared
 es un proyecto de software libre para crear una red social libre, 
 pseudo-descentralizada, potencialmente autogestionable, que permita
 a la gente comparir cualquier tipo de cosa que se genera en la red, 
@@ -17,7 +17,7 @@ Ruby on Rails, HTML5, CSS3, Jquery y MySQL y MongoDB para las bases de datos.
 	
 La infraestructura sobre la que corre la aplicacion, no esta en el ámbito de este 
 documento pero elaboraremos documentacion sobre el diseño de la misma, la 
-instalacion de los  y configuracion de los servidores y de la red. 
+instalacion y configuracion de los servidores y de la red. 
 	 
     TOMALARED.NET - The free social network project.
     Copyright (C) 2013  tomalared.net
