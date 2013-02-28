@@ -13,10 +13,22 @@ es:
   titulo_notificaciones_grupos: Post de grupos
   titulo_notificaciones_comentarios: Comentarios
   
+  post: 
+    publicar: Publicar
+    escribe: Escribe!
+  
   comentar:
     placeholder: Comenta....
     submit: Comentar
   
+  seguidor: seguidor
+  grupo: grupo
+  post: post
+  en_red: en red
+  
+  follow: follow
+  unfollow: unfollow
+    
   date:
     abbr_day_names:
     - dom

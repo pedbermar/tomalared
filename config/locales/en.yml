@@ -13,10 +13,22 @@ en:
   titulo_notificaciones_grupos: Post of groups
   titulo_notificaciones_comentarios: Comments
   
+  post: 
+    publicar: Publicar
+    escribe: Escribe!
+    
   comentar:
     placeholder: Comment....
     submit: Comment
+
+  seguidor: follower
+  grupo: group
+  post: post
+  en_red: connected
   
+  follow: follow
+  unfollow: unfollow
+    
   date:
     abbr_day_names:
     - Sun

@@ -149,7 +149,7 @@
 							if(remaining < 0) {
 								display.addClass(settings.classPrefix + '-overage');
 							}	
-							display.text(remaining >= 0 ? remaining + ' ' + $.charcount.util.pluralize(remaining, 'character') + ' remaining' : Math.abs(remaining) + ' too many characters');
+							display.text(remaining >= 0 ? remaining + ' ' + $.charcount.util.pluralize(remaining, 'letra') : Math.abs(remaining) + ', texto largo');
 						} 
 					}
 				}).trigger('charcount');
