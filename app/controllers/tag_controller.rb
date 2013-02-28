@@ -80,13 +80,8 @@ class TagController < ApplicationController
       @arr = Tag.find(:all, :order => 'id ASC')
     end
     if params[:json]
-      @obj = Array.new
-      @arr.each do |o|
-        @obj << o.profile
-      end
-      respond_to do |format|
-        format.json { render json: @obj }
-      end
+      list = @arr.map {| o | Hash[ name: o.name ]}
+      render json: list
     end
   end
 end

@@ -43,7 +43,52 @@ function endlessPost() {
 }
 
 function actualizando() {
-	
+	var data = "";
+	if($(".post").length > 0){
+		data += "{ posts: [";
+		$(".post").each(function(index){
+			var id = $(this).attr("id").split("_")[1];
+			if(index == 0)
+				data += "{";
+			else
+				data += ",{";
+			data += "id: '" + id + "'"; 
+			var fecha = "" + $(this).find("#created_at_" + id).val().replace(/:/g, ".");
+			data += ", fecha: '" + fecha + "'";
+			if($(this).find(".comment").length > 0){
+				data += ", comments: [";
+				$(this).find(".comment").each(function (index2){
+					var idcm = $(this).attr("id").split("_")[1];
+					if(index2 == 0)
+						data += "{";
+					else
+						data += ",{";
+					data += "id: '" + idcm + "'"; 
+					var fechacm = "" + $(this).find("#cmcreate_at_" + idcm).val().replace(/:/g, ".");
+					data += ", fecha: '" + fechacm + "'";
+				data += "}";
+				});
+				data += "]";
+			} else {
+				data += ", 'comments': []";
+			}
+			data += "}";
+		});
+		data += "]}";
+	}
+	$.getJSON("/desde", { data: eval(data) }, function(data){
+		var i = 0;
+		while(data[i] != undefined){
+			$("#post_" + data[i]['id'] + " span#tiempoPost").html(data[i]['texto']);
+			var comments = data[i]['comments'];
+			var j = 0;
+			while(comments[j] != undefined){
+				$("#comment_" + comments[j]['id'] + " span#tiempoComment").html(comments[j]['texto']);
+				j++;
+			}
+			i++;
+		}
+	});
 	setTimeout(actualizando, 15000);
 }
 
@@ -169,4 +214,5 @@ $(document).ready(function() {
 	});
 	pintarBotonesPost();
 	endlessPost();
+	setTimeout(actualizando, 15000);
 });

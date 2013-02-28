@@ -20,7 +20,7 @@
 			<%= link_to "#{@post_user.profile} | @#{@post_user.name}", "/post/user/#{@post_user.name}", :class => "linkRemote user" %>,
 
 			<span class="timeCount">
-				<%= t :hace %> <%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %>				
+				<%= t :hace %> <span id="tiempoPost"><%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %></span>:				
 			</span>
 			</br>
 			

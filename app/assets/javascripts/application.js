@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require private_pub
 //
-// 		NUESTOS .JS 
+// 		NUESTOS .JS
 //= require vote
 //= require users
 //= require user_sessions
@@ -43,7 +43,7 @@ function resetForm($form) {
 	$form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
 }
 
-function esNumero(num){
+function esNumero(num) {
 	var regExp = new RegExp('^\\d+$');
 	return regExp.test(num);
 }
@@ -76,7 +76,7 @@ $(document).ready(function() {
 	});
 
 	$("#open-publicar").click(function() {
-		if($("#destinatario").val() != "")
+		if ($("#destinatario").val() != "")
 			$("#post_content").val($("#destinatario").val()).trigger('update');
 		else
 			$("#post_content").trigger('charcount');

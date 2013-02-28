@@ -75,6 +75,8 @@ Fra::Application.routes.draw do
   match '/notif/list' => 'notification#list'
   match '/users/crop/' => 'users#crop'
   
+  match '/desde' => 'application#calcular_fecha'
+  
   #resources
   resources :tags
   resources :comments

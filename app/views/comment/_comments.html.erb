@@ -18,8 +18,10 @@
 	   		 
 	   		<div id="text">	    		
 	   			<%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user" %>, 
-	   			<%= distance_of_time_in_words(Time.now, Time.at(comment.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago:
-	   			<br/>
+	   			<span class="timeCount">
+					<%= t :hace %> <span id="tiempoComment"><%= hace_tanto_tiempo(Time.at(comment.created_at),Time.now).html_safe %></span>:				
+				</span>
+				<br/>
 	    		<%= text_parse(comment.body).html_safe %>	    		
     		</div>
     		
@@ -30,4 +32,5 @@
 			</footer>    
     	</span> 
 	</article>
+	<input type="hidden" id="cmcreate_at_<%=comment.id%>" class="cmcreate_at" value="<%=comment.created_at%>" />
 <% end %>
