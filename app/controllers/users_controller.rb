@@ -9,22 +9,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user_session = UserSession.new    
-    @usernew = User.new(params[:user])
-    # Saving without session maintenance to skip
-    # auto-login which can't happen here because
-    # the User has not yet been activated
-    if @usernew.save_without_session_maintenance 
-      @usernew.send_activation_instructions! 
-      if params[:user][:photo].blank?
+      @user_session = UserSession.new    
+      @usernew = User.new(params[:user])
+    if params[:accept]      
+      # Saving without session maintenance to skip
+      # auto-login which can't happen here because
+      # the User has not yet been activated
+      if @usernew.save_without_session_maintenance 
+        @usernew.send_activation_instructions! 
         flash[:notice] = "Tu cuenta ha sido creada. Por favor mira tu e-mail para ver las instrucciones de activacion!"
         render :action => :new
       else
-        render :action => 'crop'
+        flash[:error] = "Hubo un problema creando tu usuario."
+        render :action => :new
       end
     else
-      flash[:error] = "Hubo un problema creando tu usuario."
-      render :action => :new
+        flash[:error] = "Debe aceptar las condiciones."
+        render :action => :new
     end
   end
 
