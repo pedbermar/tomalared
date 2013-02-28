@@ -20,7 +20,15 @@ en:
   comentar:
     placeholder: Comment....
     submit: Comment
+
+  seguidor: follower
+  grupo: group
+  post: post
+  en_red: connected
   
+  follow: follow
+  unfollow: unfollow
+    
   date:
     abbr_day_names:
     - Sun

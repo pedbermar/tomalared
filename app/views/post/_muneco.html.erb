@@ -3,19 +3,19 @@
 		<div id="muneco-text" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
 		    <font size="5">#<%= @tag.name %> | </font> 
 		    <% if current_user.tags.exists?(@tag.id) %>
-		    	<%= link_to "unfollow", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?", :remote => true, :class => "linkRemote2" %>
+		    	<%= link_to "#{ t 'unfollow'}", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?", :remote => true, :class => "linkRemote2" %>
 		    <% else %>
-		    	<%= link_to "follow", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?", :remote => true, :class => "linkRemote2" %>
+		    	<%= link_to "#{ t 'follow'}", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?", :remote => true, :class => "linkRemote2" %>
 		    <% end %>
 		    
 		    <br>
 		    <%if @tag.posts%>
-			    <span><%= @tag.posts.count%> Posts</span>
+			    <span><%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %></span>
 			    <br>
 		    <%end%>
 		    
 		    <%if @tag.users%>
-		    	<span><%= @tag.users.count%> Seguidores: </span>
+		    	<span><%= pluralize(@tag.users.count, "#{ t 'seguidor'}").html_safe %>: </span>
 			<% end -%>
 		    
 		    <% @tag.users.each do |user_tag| -%>
@@ -37,9 +37,9 @@
 		    <%= link_to @user.url, @user.url, :target => "_blank"%>
 		    <br />
 		    <%end%>
-		    <span><%= pluralize(@user.posts.count, "Posts") %> | <%= pluralize(@user.tags.count, "Groups") %></span>
+		    <span><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %> | <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %></span>
 		    <br />
-		    <%= distance_of_time_in_words(Time.now, Time.at(@user.created_at), false,  :highest_measure_only => true, :locale => "es")%>
+		    <%= hace_tanto_tiempo( Time.at(@user.created_at), Time.now)%> <%= t 'en_red'%>
 		    </div>
 	</div>
 <% end %>
