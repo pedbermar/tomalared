@@ -12,7 +12,7 @@ que se encuentran en el diseño original. Por esto, la implementacion se ira
 liberando gradualmente en el tiempo.
 
 Animamos a todos los desarrolladores que quieran participar a que nos contacten 
-en tomalared.net por @r, @g, y @s. Las tecnologías que estamos usando son:
+en {tomalared.net}[https://tomalared.net] por @r, @g, y @s. Las tecnologías que estamos usando son:
 Ruby on Rails, HTML5, CSS3, Jquery y MySQL y MongoDB para las bases de datos. 
 	
 La infraestructura sobre la que corre la aplicacion, no esta en el ámbito de este 
