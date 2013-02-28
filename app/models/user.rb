@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :tags
   has_many :comments, :order => "created_at DESC", :through => :posts
   has_many :likes
+  has_many :shares
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   has_attached_file :photo, :styles => { :small => "50x50", :medium => "210x210", :large => "500x500"}, :processors => [:cropper]
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
