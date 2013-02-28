@@ -1,17 +1,17 @@
 <% if current_user %>
-<button id="open-publicar"><%= t :publicar %></button>
+<button id="open-publicar"><%= t 'post.publicar' %></button>
 	<div id="form-new">
 		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
 			<div class="mediano-muneco2"> 
 				<div class="arrow-left"></div>
 				<%= link_to image_tag( current_user.photo.url(:medium)  , :alt => "Tu imagen"), "/post/user/#{current_user.name}", :class => "linkRemote mediano-muneco-newex" %> 		
 			</div>
-			<%= text_area 'post','content' , :class => 'textarea', :placeholder => 'Escribe!'%>
+			<%= text_area 'post','content' , :class => 'textarea', :placeholder => "#{t 'post.escribe'}"%>
 			<div id="archivo">
 				<%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>
 			</div>
 			<%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
-			<%= submit_tag 'Publicar', :id => "tumblear" %>
+			<%= submit_tag "#{t 'post.publicar'}", :id => "tumblear" %>
 			<%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
 		<% end %>
 	</div>

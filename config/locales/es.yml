@@ -13,6 +13,10 @@ es:
   titulo_notificaciones_grupos: Post de grupos
   titulo_notificaciones_comentarios: Comentarios
   
+  post: 
+    publicar: Publicar
+    escribe: Escribe!
+  
   comentar:
     placeholder: Comenta....
     submit: Comentar
