@@ -23,6 +23,8 @@
 				<%= t :hace %> <%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %>				
 			</span>
 			</br>
+			
+			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @post_user.name, :title => post.title, :post_id => post.id } %>
 			<%if @user%>
 			<span class="timeCount">			
 				<%if post.user_id != @user.id%>
@@ -31,8 +33,6 @@
 			</span>
 			</br>
 			<%end%>
-			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @post_user.name, :title => post.title, :post_id => post.id } %>
-	
 			<div class="postFooter">	
 				<%if current_user%>
 						<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>

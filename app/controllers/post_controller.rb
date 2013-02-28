@@ -178,8 +178,8 @@ class PostController < ApplicationController
           open(direcion, "wb") do |file|
             file << open(img_path).read
           end
-          img_url = "http://localhost:3000/post/#{capturanombre}.jpg"
-          post.content = desc + "\n" + img_path + "\n" + doc.url + "\n" + doc.host
+          img_url = "/post/#{capturanombre}.jpg"
+          post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
         else
           post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
