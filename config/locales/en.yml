@@ -6,6 +6,9 @@ en:
   basado: Power by
   tomalared_net: takethenetwork.net
   publicar: Publish
+  entrar: Login
+  recuerdame: Remenmer me
+  olvidaste_clave: Forgot password?
   hola: Hi
   bienvenido: Welcome to Cyberspace, the new home of Mind.
   hace: ago
@@ -15,6 +18,17 @@ en:
   titulo_notificaciones_menciones: Mentions
   titulo_notificaciones_grupos: Post of groups
   titulo_notificaciones_comentarios: Comments
+  cerrar: Close
+  acepto:  I agreed
+  condiciones: conditions
+  
+  condiciones_servicio: Terms of Service
+  condiciones_servicio1: Access, use and browsing of this website is permitted only if the user accepts the following terms and conditions, so the website can not be used or visited unless those conditions are accepted. It will consider all legal purposes the Web usage implies acceptance of the Terms of Use. TOMALARED.NET reserves the right of amend these conditions at any time.
+  condiciones_servicio2: 1.The user undertakes to make use of the services and contents of this web that is consistent with current legislation, both Spain and the country in which they are placed, according to good faith. Any use of the web that involves or could involve any form of violation of third parties about your privacy, honor, self-image, secrecy of communications, intellectual property, personal data, etc.. This website is in itself an intellectual property under the GPL.
+  condiciones_servicio3: 2.On insert special prohibited, publish, display information offending against morality, considered as such, without limitation, the content is illegal, obscene, racist, defamatory, etc., As well as introducing viruses or computer programs that propagate or may cause damage or alterations in the terminal or user programs or the web itself, or use the web to send bulk emails. TOMALARED.NET assumes no responsibility for the misuse, malicious or misuse of this website or its services.
+  condiciones_servicio4: 3.The data contained on the site may be incorrect because the data dumped in the Web user's responsibility that goes. TOMALARED.NET not responsible for any direct or indirect that may cause users to their publications.
+  condiciones_servicio5: 4.TOMALARED.NET not guarantee that access servers are free of viruses or other harmful components.
+  condiciones_servicio6: 5.These terms of use are subject to Spanish law.
   
   posts:
     placeholder: 'White!!'
@@ -23,12 +37,26 @@ en:
     placeholder: Comment....
     submit: Comment
     
+  notificaciones:
+    publicacion: publication
+    publicado: published
+    te_ha: mentioned you in a post
+    ha: been
+    ha_comentado: commented
+    una: one
+    tuya: yours
+    suya: hers
+    la: the
+    de: of 
+    en: in   
+    
   perfil:
     perfil: Profile
     cuenta: Acount
     sobre: About takethenetwork.net
     escoja_foto: Choose photo
-    profile: Name of profile
+    name: Nick
+    profile: profile name    
     bio: Biography
     web: Website
     email: Email
@@ -41,7 +69,6 @@ en:
     tomalared_es: takethenetwork.net is
     tomalared_es1: A social tool for sharing ideas, suggestions, images, links, videos, and everything that can be shared over the network. All the material has to be hang lincencia open, if it is a personal creation will automatically be considered open license.
     tomalared_es2: We are a group of programmers, who decided to join forces to bring this open source project forward. For the enjoyment of everyone. 
-
          
   seguidor: follower
   grupo: group

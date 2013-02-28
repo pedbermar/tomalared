@@ -1,9 +1,9 @@
 <%= form_for @user_session, :as => :user_session, :url => { :controller => "user_sessions", :action => "create" } do |f| %>
-		<%= f.text_field :name, :placeholder => 'Username' %>
-		<%= f.password_field :password, :placeholder => 'Password' %>
-		<%= f.submit "Login" %>		
-		<%= f.check_box :remember_me %> Recordarme	|
-		<%= link_to 'Olvidaste tu contraseña?', password_resets_path %><br>		
+		<%= f.text_field :name, :placeholder =>  t('perfil.name')%>
+		<%= f.password_field :password, :placeholder => t('perfil.clave') %>
+		<%= f.submit t('entrar') %>		
+		<%= f.check_box :remember_me %> <%= t('recuerdame')%>	|
+		<%= link_to t('olvidaste_clave'), password_resets_path %><br>		
 <% end %>
 	
 

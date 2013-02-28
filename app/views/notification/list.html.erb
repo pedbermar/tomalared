@@ -18,12 +18,12 @@
 						<div id="text">
 							<%if n.note_type == 1%>
 								<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}"%>
-								te ha mencionado en una <%= link_to "publicacion", "/post/list/#{n.resource_id}"%>
+								<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.resource_id}"%>
 							<%end%>
 			
 							<%if n.note_type == 3%>
 								<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}"%>
-								ha  <%= link_to "publicado", "/post/list/#{n.resource_id}"%> en
+								<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.resource_id}"%> <%= t'notificaciones.en' %>
 				
 								<%Post.find(n.resource_id).tags.each do |t|%>
 									<%= link_to "##{t.name} ", "/post/tag/#{t.name}"%>
@@ -33,22 +33,22 @@
 							<%if n.note_type == 5%>
 								<% from = User.find(n.from)%>
 								<%= link_to "#{from.profile}", "/post/user/#{n.from}"%>
-								ha comentado
+								<%= t'notificaciones.ha_comentado' %>
 				
 								<% post = Post.find(n.resource_id)%>
 								<%if post.user_id == current_user[:id]%>
-									una <%= link_to "publicacion", "/post/list/#{n.resource_id}"%>
-									tuya
+									<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{n.resource_id}"%>
+									<%= t'notificaciones.tuya' %>
 								<%elsif post.user_id == n.from%>
-									una <%= link_to "publicacion", "/post/list/#{n.resource_id}"%>
-									suya
+									<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{n.resource_id}"%>
+									<%= t'notificaciones.suya' %>
 								<%else%>
-									la <%= link_to "publicacion", "/post/list/#{n.resource_id}"%> de
+									<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{n.resource_id}"%> <%= t'notificaciones.de' %>
 									<%= link_to "#{User.find(post.user_id).profile}", "/post/user/#{post.user_id}"%>
 								<%end%>
 							<%end%>
 							<span class="timeCount">
-								<%= t :hace %> <%= hace_tanto_tiempo(Time.at(n.updated_at), Time.now).html_safe %>:								
+								<%= t :hace %> <%= hace_tanto_tiempo(Time.at(n.updated_at), Time.now).html_safe %>						
 							</span>
 						</div>
 				</article>

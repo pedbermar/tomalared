@@ -8,14 +8,14 @@
 						    	<%if n.note_type == 1%>
 									
 									<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}", :class => "linkRemote"%>
-									te ha mencionado en una <%= link_to "publicacion", "/post/list/#{n.resource_id}", :class => "linkRemote"%>
+									<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.resource_id}", :class => "linkRemote"%>
 									
 								<%end%>
 								
 								<%if n.note_type == 3%>
 									
 									<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}", :class => "linkRemote"%>
-									ha  <%= link_to "publicado", "/post/list/#{n.resource_id}", :class => "linkRemote"%> en
+									<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.resource_id}", :class => "linkRemote"%> <%= t'notificaciones.en' %> 
 									<%Post.find(n.resource_id).tags.each do |t|%>
 										<%= link_to "##{t.name} ", "/post/tag/#{t.name}", :class => "linkRemote"%>
 									<%end%>
@@ -26,18 +26,17 @@
 									
 									<%from = User.find(n.from)%>
 									<%= link_to "#{from.profile}", "/post/user/#{n.from}", :class => "linkRemote"%>
-									ha comentado
-									
+									<%= t'notificaciones.ha_comentado' %>									
 									
 									<%post = Post.find(n.resource_id)%> 
 									<%if post.user_id == current_user[:id]%>
-										una <%= link_to "publicacion", "/post/list/#{n.resource_id}", :class => "linkRemote"%>
-										tuya	
+										<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{n.resource_id}", :class => "linkRemote"%>
+										<%= t'notificaciones.tuya' %>	
 									<%elsif post.user_id == n.from%>
-									    una <%= link_to "publicacion", "/post/list/#{n.resource_id}", :class => "linkRemote"%>
-									 	suya
+									    <%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{n.resource_id}", :class => "linkRemote"%>
+									 	<%= t'notificaciones.suya' %>
 									<%else%>
-										la <%= link_to "publicacion", "/post/list/#{n.resource_id}", :class => "linkRemote"%> de 
+										<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{n.resource_id}", :class => "linkRemote"%> <%= t'notificaciones.de' %> 
 						                <%= link_to "#{User.find(post.user_id).profile}", "/post/user/#{post.user_id}", :class => "linkRemote"%>
 									<%end%>
 									
