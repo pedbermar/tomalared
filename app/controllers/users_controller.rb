@@ -87,13 +87,8 @@ class UsersController < ApplicationController
       @users = User.find(:all, :order => 'id ASC')
     end
     if params[:json]
-      @name = Array.new
-      @users.each do |user|
-        @name << user.profile
-      end
-      respond_to do |format|
-        format.json { render json: @name }
-      end
+      list = @users.map {| u | Hash[ name: u.name ]}
+      render json: list
     end
   end
 
