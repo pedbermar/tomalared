@@ -3,7 +3,7 @@
 	<%@notifications.each do |n|%>
 		<% @user = User.find(n.from) -%>
 		<%if n.from != current_user[:id]%>
-								<%= image_tag(@user.photo.url(:small), :class => 'popbox-photo') %><div class="popbox-user">
+								<%= image_tag(@user.photo.url(:small), :class => 'popbox-photo', :onError=> "this.src='/img/default.jpg';") %><div class="popbox-user">
 								
 						    	<%if n.note_type == 1%>
 									

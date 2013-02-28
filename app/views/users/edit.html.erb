@@ -10,7 +10,7 @@
 			<%= form_for @user, :html => { :multipart => true } do |form|%>
 				<%= t 'perfil.escoja_foto' %>
 			
-				<%= image_tag @user.photo.url(:medium) %>	      
+				<%= image_tag @user.photo.url(:medium), :onError=> "this.src='/img/default.jpg';" %>	      
 		      	  <%= form.file_field :photo %>
 						
 					 <%= form.submit "Submit" %>
