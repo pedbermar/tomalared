@@ -73,9 +73,9 @@ Fra::Application.routes.draw do
   match 'password_resets/create'=> 'password_resets#create'
   
   match '/notif/list' => 'notification#list'
-  match '/users/crop' => 'users#crop'
+  match '/users/crop/' => 'users#crop'
   
-  match '/users/:id' => 'users#list'
+  #match '/users/:id' => 'users#list'
   match '/tags/:id' => 'tags#list'
   #resources
   resources :tags
