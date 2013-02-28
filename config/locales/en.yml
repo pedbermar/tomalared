@@ -13,14 +13,13 @@ en:
   titulo_notificaciones_grupos: Post of groups
   titulo_notificaciones_comentarios: Comments
   
-  post: 
-    publicar: Publish
-    escribe: White!
-    
+  posts:
+    placeholder: 'White!!'
+  
   comentar:
     placeholder: Comment....
     submit: Comment
-
+     
   seguidor: follower
   grupo: group
   post: post

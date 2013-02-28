@@ -5,13 +5,10 @@
 			<div class="mediano-muneco2"> 
 				<div class="arrow-left"></div>
 				<%= link_to image_tag( current_user.photo.url(:medium)  , :alt => "Tu imagen"), "/post/user/#{current_user.name}", :class => "linkRemote mediano-muneco-newex" %> 		
-			</div>
-			<%= text_area 'post','content' , :class => 'textarea', :placeholder => "#{t 'post.escribe'}"%>
-			<div id="archivo">
-				<%= file_field_tag 'img', :accept => 'image/png,image/gif,image/jpeg' %>
-			</div>
-			<%= text_field_tag 'tags', @tags, :class => 'new-tag', :placeholder => '*Introduce los tags separados por espacios, sin almoadilla', :style => "display:none" %>
-			<%= submit_tag "#{t 'post.publicar'}", :id => "tumblear" %>
+			</div>			
+			<%= text_area 'post','content' , :class => 'textarea', :placeholder => "#{t'posts.placeholder'}" %>
+			
+			<%= submit_tag "#{t'publicar'}", :id => "tumblear" %>
 			<%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
 		<% end %>
 	</div>
