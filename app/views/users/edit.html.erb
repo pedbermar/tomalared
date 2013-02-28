@@ -1,14 +1,14 @@
 <section id="user-edit" >
 	<div id="tabs">
 	  <ul>
-	    <li><a href="#perfil"><span>Perfil</span></a></li>
-	    <li><a href="#cuenta"><span>Cuenta</span></a></li>
-	    <li><a href="#sobre"><span>Sobre tomalared.net</span></a></li>
+	    <li><a href="#perfil"><%= t 'perfil.perfil' %></a></li>
+	    <li><a href="#cuenta"><%= t 'perfil.cuenta' %></a></li>
+	    <li><a href="#sobre"><%= t 'perfil.sobre' %></a></li>
 	
 		  <div id="perfil">
 		 	<div class="user-edit-2">
 			<%= form_for @user, :html => { :multipart => true } do |form|%>
-				Escoja una foto
+				<%= t 'perfil.escoja_foto' %>
 			
 				<%= image_tag @user.photo.url(:medium) %>	      
 		      	  <%= form.file_field :photo %>
@@ -20,13 +20,13 @@
 				<div class="user-edit">	  
 				<%= form_for @user do |f| %>
 				  <%#= f.error_messages %>
-				    <%= f.label :nombre_del_perfil %>
+				    <%= f.label :profile, "#{t'perfil.profile'}" %>
 				    <%= f.text_field :profile %>
 			   		<br />  <br />
-				    <%= f.label :bio %>
+				    <%= f.label :bio, "#{t'perfil.bio'}" %>
 				    <%= f.text_field :bio %>
 					<br />  <br />
-				    <%= f.label :website %>
+				    <%= f.label :url, "#{t'perfil.web'}" %>
 				    <%= f.text_field :url %>
 					<br />  <br />
 				  <%= f.submit "Cambiar" %>
@@ -40,13 +40,13 @@
 		  	<div class="user-edit-2">
 		  			<%= form_for @user do |f| %>
 				  <%#= f.error_messages %>
-				    <%= f.label :email %>
+				    <%= f.label :email, "#{t'perfil.email'}" %>
 				    <%= f.text_field :email %>
 					<br />  <br />
-				    <%= f.label :contraseña %>
+				    <%= f.label :password, "#{t'perfil.clave'}" %>
 				    <%= f.password_field :password %>
 					<br />  <br />
-					<%= f.label :confirmar_contraseña %>
+					<%= f.label :password_confirmation, "#{t'perfil.repite_clave'}" %>
 				    <%= f.password_field :password_confirmation %>
 					<br />  <br />
 				 <%= f.submit "Cambiar" %>
@@ -54,15 +54,15 @@
 				<% end %>
 			</div>
 			<div class="user-edit user-text">	  
-				Politica de datos:<br/><br/>
+				<%= t 'perfil.politica_datos' %><br/><br/>
 					<p>
-						Todos los datos que facilites en esta pestaña, seran completamente privados y desde TOMALARED.NET te aseguramos que no seran cedidos de ninguna manera a terceros.
+						<%= t 'perfil.politica_datos1' %>
 					</p>
 					<p>
-						Tu email solo se usara para la activacion de tu cuenta y la recuperacion de tu clave.
+						<%= t 'perfil.politica_datos2' %>
 					</p>
 					<p>
-						Tu contraseña esta cifrada desde el momento en que la envias por primeravez a nuestro servidor, para que ni nosotros la sepamos y recuerda, nunca te la pediremos bajo ningun motivo. Si algunavez te la piden diciendo que somos nostros informanos.		
+						<%= t 'perfil.politica_datos3' %>		
 					</p>
 		  	</div>
 		  </div>
@@ -71,12 +71,12 @@
 		  <div id="sobre">
 			<div class="user-text">
 				<br/><br/>	  
-				Tomalared es:<br/><br/>
+				<%= t 'perfil.tomalared_es' %><br/><br/>
 					<p>
-						Una herramienta social para compartir ideas, propuestas, imagenes, links, videos, y todo lo que se pueda compartir en la red. Todo el material que se cuelge tiene que ser de lincencia abierta, si es una creacion personal pasara automaticamente a ser considerado de licencia abierta. 
+						<%= t 'perfil.tomalared_es1' %> 
 					</p>
 					<p>
-						Somos un grupo de programadores, que a decido unir fuerzas para llevar este proyecto de software libre adelante. Para el disfrute de todo el mundo.
+						<%= t 'perfil.tomalared_es2' %>
 					</p>
 		  	</div>				
 		  </div>		  

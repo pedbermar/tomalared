@@ -85,14 +85,14 @@ if @navegador == 'MSIE' -%>
 			<footer class="row">
 				<div id="footer"  class="<% if current_user -%>nine columns<% else -%>twelve columns<% end -%>">
 					<% if current_user %>
-					Hola <%= current_user[:name] %>, 
-					b<% else %>B<% end %>ienvenido al ciberespacio, el nuevo hogar de la mente.
+					<%= t 'hola' %> <%= current_user[:name] %>. 
+					<% end %><%= t 'bienvenido' %> 
 						<br/>
-						TOMALARED.NET &nbsp;v0.1 (alpha)
+						<%= t 'version' %>
 					<br/>
-					Powered By: 
-					<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> ~
-					<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> 
+					<%= t 'basado' %>
+					<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~  
+					<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> 					
 			  	</div>
 			</footer>		
 		</div>

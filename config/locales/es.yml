@@ -2,9 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points
 
 es:
-  tomalared_net: tomalared.net
+  version: TOMALRED.NET  v0.1 (alpha)
+  basado: Basado en
+  tomalared_net: tomalared.net  
   publicar: Publicar
-      
+  hola: Hola    
+  bienvenido: Bienvenido al ciberespacio, el nuevo hogar de la mente.
   hace: hace
   todas: Todas
   tendencias: Tendencias
@@ -19,7 +22,26 @@ es:
   comentar:
     placeholder: Comenta....
     submit: Comentar     
-  
+    
+  perfil:
+    perfil: Perfil
+    cuenta: Cuenta
+    sobre: Sobre tomalared.net
+    escoja_foto: Escoja foto
+    profile: Nombre del perfil
+    bio: Biografia
+    web: Website
+    email: Email
+    clave: Contraseña
+    repite_clave: Confirmar contraseña
+    politica_datos: Politica de datos
+    politica_datos1: Todos los datos que facilites en esta pestaña, seran completamente privados y desde TOMALARED.NET te aseguramos que no seran cedidos de ninguna manera a terceros.
+    politica_datos2: Tu email solo se usara para la activacion de tu cuenta y la recuperacion de tu clave.
+    politica_datos3: Tu contraseña esta cifrada desde el momento en que la envias por primeravez a nuestro servidor, para que ni nosotros la sepamos y recuerda, nunca te la pediremos bajo ningun motivo. Si algunavez te la piden diciendo que somos nostros informanos.
+    tomalared_es: tomalared.net es
+    tomalared_es1: Una herramienta social para compartir ideas, propuestas, imagenes, links, videos, y todo lo que se pueda compartir en la red. Todo el material que se cuelge tiene que ser de lincencia abierta, si es una creacion personal pasara automaticamente a ser considerado de licencia abierta.
+    tomalared_es2: Somos un grupo de programadores, que a decidido unir fuerzas para llevar este proyecto de software libre adelante. Para el disfrute de todo el mundo.
+    
   seguidor: seguidor
   grupo: grupo
   post: post

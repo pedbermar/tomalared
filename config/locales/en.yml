@@ -2,9 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  version: TOMALRED.NET  v0.1 (alpha)
+  basado: Power by
   tomalared_net: takethenetwork.net
   publicar: Publish
-  
+  hola: Hi
+  bienvenido: Welcome to Cyberspace, the new home of Mind.
   hace: ago
   todas: All
   tendencias: Tendencies
@@ -19,7 +22,27 @@ en:
   comentar:
     placeholder: Comment....
     submit: Comment
-     
+    
+  perfil:
+    perfil: Profile
+    cuenta: Acount
+    sobre: About takethenetwork.net
+    escoja_foto: Choose photo
+    profile: Name of profile
+    bio: Biography
+    web: Website
+    email: Email
+    clave: Password
+    repite_clave: Password confirmation
+    politica_datos: Data Privacy
+    politica_datos1: All data give in on this tab will be completely private and from TOMALARED.NET we assure you will not be shared in any way to third.
+    politica_datos2: Your email will only be used for activation of your account and your password recovery.
+    politica_datos3: Your password is encrypted from the time you send it to our server for firsttime, lest us know and remember, never ask you for any reason the. If they ask you algunavez are saying about Us us know.
+    tomalared_es: takethenetwork.net is
+    tomalared_es1: A social tool for sharing ideas, suggestions, images, links, videos, and everything that can be shared over the network. All the material has to be hang lincencia open, if it is a personal creation will automatically be considered open license.
+    tomalared_es2: We are a group of programmers, who decided to join forces to bring this open source project forward. For the enjoyment of everyone. 
+
+         
   seguidor: follower
   grupo: group
   post: post
