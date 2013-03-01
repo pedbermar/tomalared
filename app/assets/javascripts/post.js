@@ -55,18 +55,22 @@ function actualizando() {
 			data += "id: '" + id + "'"; 
 			var fecha = "" + $(this).find("#created_at_" + id).val().replace(/:/g, ".");
 			data += ", fecha: '" + fecha + "'";
+			var control = "" + $(this).find(".controlTiempo").val();
+			data += ", control: '" + control + "'";
 			if($(this).find(".comment").length > 0){
 				data += ", comments: [";
 				$(this).find(".comment").each(function (index2){
-					var idcm = $(this).attr("id").split("_")[1];
-					if(index2 == 0)
-						data += "{";
-					else
-						data += ",{";
-					data += "id: '" + idcm + "'"; 
-					var fechacm = "" + $(this).find("#cmcreate_at_" + idcm).val().replace(/:/g, ".");
-					data += ", fecha: '" + fechacm + "'";
-				data += "}";
+					if($(this).find(".controlTiempo").val() == "S"){
+						var idcm = $(this).attr("id").split("_")[1];
+						if(index2 == 0)
+							data += "{";
+						else
+							data += ",{";
+						data += "id: '" + idcm + "'"; 
+						var fechacm = "" + $(this).find("#cmcreate_at_" + idcm).val().replace(/:/g, ".");
+						data += ", fecha: '" + fechacm + "'";
+						data += "}";
+					}
 				});
 				data += "]";
 			} else {

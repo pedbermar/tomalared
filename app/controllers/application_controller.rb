@@ -15,15 +15,11 @@ class ApplicationController < ActionController::Base
       if cs
         cs.each do | c |
           obj2 = c[1]
-          puts obj2['id']
-          puts obj2['fecha'].gsub(/[.]/, ":")
           comment = Hash[ id: obj2['id'], texto: hace_tanto_tiempo(Time.parse(obj2['fecha'].gsub(/[.]/, ":")),Time.now)]
           comments[i] = comment
           i = i + 1
         end
       end
-      puts obj['id']
-      puts obj['fecha'].gsub(/[.]/, ":")
       post = Hash[ id: obj['id'], texto: hace_tanto_tiempo(Time.parse(obj['fecha'].gsub(/[.]/, ":")),Time.now), comments: comments ]
       @posts[j] = post
       j = j + 1
