@@ -1182,3 +1182,22 @@ div #form-new
   color: gray;
   margin-left: 1%;
 }
+
+.numNotif{
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
+  border-radius: 999px;
+  behavior: url(PIE.htc);
+
+  width: 3px;
+  height: 3px;
+  padding: 1px;
+
+  background: #ff6600;
+  border: 1px solid #ff3300;
+  color: #ff3300;
+  text-align: center;
+
+  vertical-align:super;
+  font: 1px;
+}

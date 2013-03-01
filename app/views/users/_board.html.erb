@@ -1,5 +1,5 @@
 <nav>
-	
+
 	<header class="board-white">
 		<a href="/post/user" class=" linkRemote"><%= current_user.profile%> <span class="user">@<%= current_user.name%></span></a>
 	</header>
@@ -7,106 +7,80 @@
 	<article id="marcofoto">
 		<%= link_to image_tag(current_user.photo.url(:medium) , :alt => "Tu imagen", :onError=> "this.src='/img/default.jpg';"), '/post/user', :class => "linkRemote" %>
 	</article>
-	
+
 	<div id="board-notifi">
 		<%= subscribe_to "/u/#{current_user[:id]}" %>
 		<script language="JavaScript">
-			PrivatePub.subscribe("/u/<%=current_user[:id] %>", function(data, channel) {
-				var elemento = "#notif" + data.type;
-				if(data.type == 5){
-					var simb = "C";
-				}else if(data.type == 3){
-					var simb = "#";
-				}else if(data.type == 1){
-					var simb = "@";
-				}
-				var i = 0;
-				if(data.unread == 1)
-					i = 1;
-				else
-					i = -1;
-				if(($(elemento).html()).indexOf("(") == -1){
-					$(elemento).html("(1)" + simb);
-				}else{
-					var str = $(elemento).html();
-					var num = parseInt(str.substring(1,(str.indexOf(")") - 1))) + i;
-					$(elemento).html("(" + num + ")" + simb);
-				}
-				if(($("#notifTodas").html()).indexOf("(") == -1){
-					$("#notifTodas").html("(1)Todas");
-				}else{
-					var str = $("#notifTodas").html();
-					var num = parseInt(str.substring(1,(str.indexOf(")") - 1))) + i;
-					$("#notifTodas").html("(" + num + ")Todas");
+			PrivatePub.subscribe("/u/<%= current_user[:id] %>", function(data, channel) {
+				if(data.type == "NOTIF"){
+					llegadaNotificacion(data.note, data.html);
 				}
 			});
 		</script>
-		
-		<div class='popbox popbox-mentions'>
-  			<a class="open open-mentions" href="#" id="notif1">@</a>
- 			 <div class='collapse collapse-mentions'>
-    		 	<div class='box box-mentions'>
-					<div class='arrow arrow-mentions'></div>
-      				<div class='arrow-border arrow-border-mentions'></div>
-					<div class="popbox-title">
-	    				<%= t :titulo_notificaciones_menciones %>
-	    			</div>	
-      				<div class='popbox-scroll'>      				
-							        <% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>	        
-								    <%= render :partial => "notification/list", :collection => @notifications%>		            
-	    			</div>
-	    			<div class="popbox-footer">
-	    						<%= link_to "#{t :todas}", "/notifications", :class => "popbox-a" %>
-	    			</div>
-    		    </div>
-  			</div>
-		</div>
-		
-		<div class='popbox popbox-groups'>
-  			<a class='open open-groups' href='#' id="notif3">#</a>
- 			 <div class='collapse collapse-groups'>
-    		 	<div class='box box-groups'>
-					<div class='arrow arrow-groups'></div>
-      				<div class='arrow-border arrow-border-groups'></div>
-      				<div class="popbox-title">
-	    				<%= t :titulo_notificaciones_grupos %>
-	    			</div>
-      				<div class='popbox-scroll'>
-							<div class="popbox-cajita">
-						<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 3).desc(:id)[0..10].uniq_by {|x| x.from} -%>	        
-								    <%= render :partial => "notification/list", :collection => @notifications%>
-						    </div>
 
-	    			</div>
-	     			<div class="popbox-footer">
+		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>
+		<div class='popbox popbox-mentions'>
+			<a class="open open-mentions" href="#" id="notif1">@<span class="numNotif"><%=@notifications.count%></span></a>
+			<div class='collapse collapse-mentions'>
+				<div class='box box-mentions'>
+					<div class='arrow arrow-mentions'></div>
+					<div class='arrow-border arrow-border-mentions'></div>
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_menciones %>
+					</div>
+					<div class='popbox-scroll' id="popbox-notif1">
+						<%= render :partial => "notification/list", :collection => @notifications%>
+					</div>
+					<div class="popbox-footer">
+						<%= link_to "#{t :todas}", "/notifications", :class => "popbox-a" %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>
+		<div class='popbox popbox-groups'>
+			<a class='open open-groups' href='#' id="notif3">#<span class="numNotif"><%=@notifications.count%></span></a>
+			<div class='collapse collapse-groups'>
+				<div class='box box-groups'>
+					<div class='arrow arrow-groups'></div>
+					<div class='arrow-border arrow-border-groups'></div>
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_grupos %>
+					</div>
+					<div class='popbox-scroll'>
+						<div class="popbox-cajita" id="popbox-notif3">
+							<%= render :partial => "notification/list", :collection => @notifications%>
+						</div>
+					</div>
+					<div class="popbox-footer">
 						<%= link_to "#{t :todas}", "/notifications", :class => "popbox-a"  %>
-	    			</div>
-    		    </div>
-  			</div>
-		</div> 
-		
-		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1)[0..10]%>		
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>
 		<div class='popbox popbox-comments'>
-  			<a class='open  open-comments' href='#' id="notif5">C</a>
- 			 <div class='collapse collapse-comments'>
-    		 	<div class='box box-comments'>
+			<a class='open  open-comments' href='#' id="notif5">C<span class="numNotif"><%=@notifications.count%></span></a>
+			<div class='collapse collapse-comments'>
+				<div class='box box-comments'>
 					<div class='arrow arrow-comments'></div>
-      				<div class='arrow-border arrow-border-comments'></div>
-      				<div class="popbox-title">
-	    				<%= t :titulo_notificaciones_comentarios %>
-	    			</div>
-      				<div class='popbox-scroll'>      					      					
-							<div class="popbox-cajita">
-								<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 5).desc(:id)[0..10].uniq_by {|x| x.from} -%>	        
-								    <%= render :partial => "notification/list", :collection => @notifications%>	
-							</div>
-	    			</div>
-		  			<div class="popbox-footer">
+					<div class='arrow-border arrow-border-comments'></div>
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_comentarios %>
+					</div>
+					<div class='popbox-scroll'>
+						<div class="popbox-cajita" id="popbox-notif5">
+							<%= render :partial => "notification/list", :collection => @notifications%>
+						</div>
+					</div>
+					<div class="popbox-footer">
 						<%= link_to "#{t :todas}", "/notifications", :class => "popbox-a"  %>
-	    			</div>
-    		    </div>
-  			</div>
-		</div> 
+					</div>
+				</div>
+			</div>
+		</div>
 		<br />
 	</div>
 

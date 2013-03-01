@@ -22,6 +22,7 @@
 //= require search
 //= require post
 //= require comment
+//= require notification
 //= require charCount
 //
 //		LIBRERIAS DE JQUERY

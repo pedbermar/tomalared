@@ -16,7 +16,9 @@ class Notifications
       @note.resource_id = resource_id
       @note.unread = 1
       @note.save
-      PrivatePub.publish_to "/u/#{to}", { :note => @note }
+      @notifications = Array.new
+      @notifications << @note
+      PrivatePub.publish_to "/u/#{to}", { :type => "NOTIF", :note => @note }
     end
   end
 end
