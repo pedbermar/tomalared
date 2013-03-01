@@ -1010,9 +1010,7 @@ div #form-new
 
 .busqueda
 {
-  display: block;   
-  background-color:rgba(255,255,255,0.8);
-  text-align: center;
+  display: block;
   color: black;
   padding: 10px;
   margin-top: 10px;
@@ -1021,6 +1019,7 @@ div #form-new
 .search-titulo
 {
   font-size: 16px;
+  text-align: center;
 }
 
 .user-edit input[type='text'], .user-edit input[type='password'],.user-edit-2 input[type='text'], .user-edit-2 input[type='password']
@@ -1045,8 +1044,8 @@ div #form-new
 }
 
 .tags-orden a 
-{
-    text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+{  
+  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
 } 
 
 .tags-orden
@@ -1058,6 +1057,7 @@ div #form-new
    overflow: hidden;
    padding: 3px;
    text-align: center;
+   background: #fafaf3;
 }
 
 .tags-orden:hover
@@ -1070,6 +1070,10 @@ div #form-new
 {   
    display: table; 
    text-align: justify;
+}
+.search-muneco
+{
+  height: 99px;
 }
 
 #tusgrupos, #tendencias, #sobre
@@ -1148,6 +1152,7 @@ div #form-new
 {
   left: -2px;
   width: 100%;
+  margin-top: 10px;
 }
 
 .topbar .ui-widget-content 

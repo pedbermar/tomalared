@@ -21,6 +21,22 @@ es:
   cerrar: Cerrar
   acepto: Acepto las
   condiciones: condiciones
+  cambiar: Cambiar
+  crear: Crear
+  registrate: Regístrate
+  buscar: Busca!!!!!
+  editar_perfil: Editar perfil
+  salir: Cerrar sesion
+  resultado_busqueda: Resultado de la busqueda
+  usuario_mayus: Usuario
+  grupo_mayus: Grupo
+  post_mayus: Post
+  seguidor: seguidor
+  grupo: grupo
+  post: post
+  en_red: en red  
+  follow: follow
+  unfollow: unfollow
   
   condiciones_servicio: Condiciones del servicio
   condiciones_servicio1: El acceso, uso y navegación por esta Web están permitidos tan solo en el caso que se acepten los siguientes requisitos y condiciones, por lo tanto la Web no debe usarse ni visitarse si no se admiten dichas condiciones. Se considerará a todos los efectos legales que el uso de la Web presupone la aceptación de las condiciones de uso. TOMALARED.NET se reserva el derecho de modificar las presentes condiciones en cualquier momento.
@@ -70,15 +86,7 @@ es:
     tomalared_es: tomalared.net es
     tomalared_es1: Una herramienta social para compartir ideas, propuestas, imagenes, links, videos, y todo lo que se pueda compartir en la red. Todo el material que se cuelge tiene que ser de lincencia abierta, si es una creacion personal pasara automaticamente a ser considerado de licencia abierta.
     tomalared_es2: Somos un grupo de programadores, que a decidido unir fuerzas para llevar este proyecto de software libre adelante. Para el disfrute de todo el mundo.
-    
-  seguidor: seguidor
-  grupo: grupo
-  post: post
-  en_red: en red
-  
-  follow: follow
-  unfollow: unfollow
-    
+     
   date:
     abbr_day_names:
     - dom

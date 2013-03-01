@@ -1,5 +1,5 @@
 <div id="reg">
-	<h4>Reg&iacute;strate</h4>
+	<h4><%= t 'registrate' %></h4>
 	<%= form_for(@usernew) do |f| %>
 		<%= render :partial => "users/form", :object => f, :locals => { :user => @usernew } %>		
 	<% end %>

@@ -21,7 +21,23 @@ en:
   cerrar: Close
   acepto:  I agreed
   condiciones: conditions
-  
+  cambiar: Change
+  crear: Create
+  registrate: Register
+  buscar: Search!!!!!
+  editar_perfil: Edit profile
+  salir: Logout
+  resultado_busqueda: Your search for
+  usuario_mayus: User
+  grupo_mayus: Group
+  post_mayus: Post
+  seguidor: follower
+  grupo: group
+  post: post
+  en_red: connected
+  follow: follow
+  unfollow: unfollow
+    
   condiciones_servicio: Terms of Service
   condiciones_servicio1: Access, use and browsing of this website is permitted only if the user accepts the following terms and conditions, so the website can not be used or visited unless those conditions are accepted. It will consider all legal purposes the Web usage implies acceptance of the Terms of Use. TOMALARED.NET reserves the right of amend these conditions at any time.
   condiciones_servicio2: 1.The user undertakes to make use of the services and contents of this web that is consistent with current legislation, both Spain and the country in which they are placed, according to good faith. Any use of the web that involves or could involve any form of violation of third parties about your privacy, honor, self-image, secrecy of communications, intellectual property, personal data, etc.. This website is in itself an intellectual property under the GPL.
@@ -70,15 +86,7 @@ en:
     tomalared_es: takethenetwork.net is
     tomalared_es1: A social tool for sharing ideas, suggestions, images, links, videos, and everything that can be shared over the network. All the material has to be hang lincencia open, if it is a personal creation will automatically be considered open license.
     tomalared_es2: We are a group of programmers, who decided to join forces to bring this open source project forward. For the enjoyment of everyone. 
-         
-  seguidor: follower
-  grupo: group
-  post: post
-  en_red: connected
-  
-  follow: follow
-  unfollow: unfollow
-    
+
   date:
     abbr_day_names:
     - Sun
