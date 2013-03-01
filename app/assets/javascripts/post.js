@@ -60,13 +60,13 @@ function actualizando() {
 			var control = "" + $(this).find(".controlTiempo").val();
 			post += ", control: '" + control + "'";
 			var comments = "";
-			var hayComments = "N";
+			var numComment = 0;
 			if($(this).find(".comment").length > 0){
 				comments += ", comments: [";
 				$(this).find(".comment").each(function (index2){
 					if($(this).find(".controlTiempo").val() == "S"){
 						var idcm = $(this).attr("id").split("_")[1];
-						if(index2 == 0)
+						if(numComment == 0)
 							comments += "{";
 						else
 							comments += ",{";
@@ -74,7 +74,7 @@ function actualizando() {
 						var fechacm = "" + $(this).find("#cmcreate_at_" + idcm).val().replace(/:/g, ".");
 						comments += ", fecha: '" + fechacm + "'";
 						comments += "}";
-						hayComments = "S";
+						numComment++;
 					}
 				});
 				comments += "]";
@@ -82,7 +82,7 @@ function actualizando() {
 				comments += ", 'comments': []";
 			}
 			post += comments + "}";
-			if(control == "S" || hayComments == "S"){
+			if(control == "S" || numComment > 0){
 				numPost++;
 				data += post;
 			}
