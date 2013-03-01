@@ -111,6 +111,7 @@ class ApplicationController < ActionController::Base
 	control = "S"
 	if distance_in_minutes > 1439
 		control = "N"
+	end
     return "<span class=\"tiempo\">" + result + "<input type=\"hidden\" class=\"controlTiempo\" value=\"" + control + "\" /></span>"
   end
 end
