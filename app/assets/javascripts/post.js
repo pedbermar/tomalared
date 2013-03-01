@@ -47,36 +47,43 @@ function actualizando() {
 	if($(".post").length > 0){
 		data += "{ posts: [";
 		$(".post").each(function(index){
+			var post = ""
 			var id = $(this).attr("id").split("_")[1];
 			if(index == 0)
-				data += "{";
+				post += "{";
 			else
-				data += ",{";
-			data += "id: '" + id + "'"; 
+				post += ",{";
+			post += "id: '" + id + "'"; 
 			var fecha = "" + $(this).find("#created_at_" + id).val().replace(/:/g, ".");
-			data += ", fecha: '" + fecha + "'";
+			post += ", fecha: '" + fecha + "'";
 			var control = "" + $(this).find(".controlTiempo").val();
-			data += ", control: '" + control + "'";
+			post += ", control: '" + control + "'";
+			var comments = "";
+			var hayComments = "N";
 			if($(this).find(".comment").length > 0){
-				data += ", comments: [";
+				comments += ", comments: [";
 				$(this).find(".comment").each(function (index2){
 					if($(this).find(".controlTiempo").val() == "S"){
 						var idcm = $(this).attr("id").split("_")[1];
 						if(index2 == 0)
-							data += "{";
+							comments += "{";
 						else
-							data += ",{";
-						data += "id: '" + idcm + "'"; 
+							comments += ",{";
+						comments += "id: '" + idcm + "'"; 
 						var fechacm = "" + $(this).find("#cmcreate_at_" + idcm).val().replace(/:/g, ".");
-						data += ", fecha: '" + fechacm + "'";
-						data += "}";
+						comments += ", fecha: '" + fechacm + "'";
+						comments += "}";
+						hayComments = "S";
 					}
 				});
-				data += "]";
+				comments += "]";
 			} else {
-				data += ", 'comments': []";
+				comments += ", 'comments': []";
 			}
-			data += "}";
+			post += comments + "}";
+			if(control == "S" || hayComments == "S"){
+				data += post;
+			}
 		});
 		data += "]}";
 	}
