@@ -19,7 +19,7 @@
 	   		<div id="text">	    		
 	   			<%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user" %>, 
 	   			<span class="timeCount">
-					<%= t :hace %> <span id="tiempoComment"><%= hace_tanto_tiempo(Time.at(comment.created_at),Time.now).html_safe %></span>:				
+					<%= t :hace %> <%= hace_tanto_tiempo(Time.at(comment.created_at),Time.now).html_safe %>:				
 				</span>
 				<br/>
 	    		<%= text_parse(comment.body).html_safe %>	    		

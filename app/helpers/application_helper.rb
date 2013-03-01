@@ -20,22 +20,22 @@ module ApplicationHelper
       when 0..1
         return (distance_in_minutes==0) ? say[:less_minute] : say[:one_minute] unless include_seconds
         case distance_in_seconds
-          when 0..4   then "#{say[:less_seconds].sub(/\?/, '5')} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
-          when 5..9   then "#{say[:less_seconds].sub(/\?/, '10')} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
-          when 10..19 then "#{say[:less_seconds].sub(/\?/, '20')} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
-          when 20..39 then "#{say[:half_minute]} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
-          when 40..59 then "#{say[:less_minute]} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
-          else             "#{say[:one_minute]} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
+          when 0..4   then "<span class=\"tiempo\">#{say[:less_seconds].sub(/\?/, '5')}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
+          when 5..9   then "<span class=\"tiempo\">#{say[:less_seconds].sub(/\?/, '10')}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
+          when 10..19 then "<span class=\"tiempo\">#{say[:less_seconds].sub(/\?/, '20')}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
+          when 20..39 then "<span class=\"tiempo\">#{say[:half_minute]}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
+          when 40..59 then "<span class=\"tiempo\">#{say[:less_minute]}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
+          else             "<span class=\"tiempo\">#{say[:one_minute]}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
         end
-      when 2..44           then "#{distance_in_minutes} #{say[:minutes]} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
-      when 45..89          then "#{say[:one_hour]} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
-      when 90..1439        then "#{(distance_in_minutes.to_f / 60.0).round} #{say[:hours]} <input type=\"hidden\" class=\"controlTiempo\" value=\"S\" />"
-      when 1440..2879      then "#{say[:one_day]} <input type=\"hidden\" class=\"controlTiempo\" value=\"N\" />"
-      when 2880..43199     then "#{(distance_in_minutes / 1440).round} #{say[:days]} <input type=\"hidden\" class=\"controlTiempo\" value=\"N\" />"
-      when 43200..86399    then "#{say[:one_month]} <input type=\"hidden\" class=\"controlTiempo\" value=\"N\" />"
-      when 86400..525959   then "#{(distance_in_minutes / 43200).round} #{say[:months]} <input type=\"hidden\" class=\"controlTiempo\" value=\"N\" />"
-      when 525960..1051919 then "#{say[:one_year]} <input type=\"hidden\" class=\"controlTiempo\" value=\"N\" />"
-      else                      "#{(distance_in_minutes / 525960).round} #{say[:years]} <input type=\"hidden\" class=\"controlTiempo\" value=\"N\" />"
+      when 2..44           then "<span class=\"tiempo\">#{distance_in_minutes} #{say[:minutes]}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
+      when 45..89          then "<span class=\"tiempo\">#{say[:one_hour]}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
+      when 90..1439        then "<span class=\"tiempo\">#{(distance_in_minutes.to_f / 60.0).round} #{say[:hours]}<input type=\"hidden\" class=\"controlTiempo\" value=\"S\" /></span>"
+      when 1440..2879      then "<span class=\"tiempo\">#{say[:one_day]}<input type=\"hidden\" class=\"controlTiempo\" value=\"N\" /></span>"
+      when 2880..43199     then "<span class=\"tiempo\">#{(distance_in_minutes / 1440).round} #{say[:days]}<input type=\"hidden\" class=\"controlTiempo\" value=\"N\" /></span>"
+      when 43200..86399    then "<span class=\"tiempo\">#{say[:one_month]}<input type=\"hidden\" class=\"controlTiempo\" value=\"N\" /></span>"
+      when 86400..525959   then "<span class=\"tiempo\">#{(distance_in_minutes / 43200).round} #{say[:months]}<input type=\"hidden\" class=\"controlTiempo\" value=\"N\" /></span>"
+      when 525960..1051919 then "<span class=\"tiempo\">#{say[:one_year]}<input type=\"hidden\" class=\"controlTiempo\" value=\"N\" /></span>"
+      else                      "<span class=\"tiempo\">#{(distance_in_minutes / 525960).round} #{say[:years]}<input type=\"hidden\" class=\"controlTiempo\" value=\"N\" /></span>"
      end
   end
 end
