@@ -7,22 +7,24 @@ class ApplicationController < ActionController::Base
     j = 0
     @posts = Hash.new
     data = params['data']
-    data.each do | o |
-      i = 0
-      comments = Hash.new
-      obj = o[1]
-      cs = obj['comments']
-      if cs
-        cs.each do | c |
-          obj2 = c[1]
-          comment = Hash[ id: obj2['id'], texto: hace_tanto_tiempo(Time.parse(obj2['fecha'].gsub(/[.]/, ":")),Time.now)]
-          comments[i] = comment
-          i = i + 1
+    if data
+      data.each do | o |
+        i = 0
+        comments = Hash.new
+        obj = o[1]
+        cs = obj['comments']
+        if cs
+          cs.each do | c |
+            obj2 = c[1]
+            comment = Hash[ id: obj2['id'], texto: hace_tanto_tiempo(Time.parse(obj2['fecha'].gsub(/[.]/, ":")),Time.now)]
+            comments[i] = comment
+            i = i + 1
+          end
         end
+        post = Hash[ id: obj['id'], texto: hace_tanto_tiempo(Time.parse(obj['fecha'].gsub(/[.]/, ":")),Time.now), comments: comments ]
+        @posts[j] = post
+        j = j + 1
       end
-      post = Hash[ id: obj['id'], texto: hace_tanto_tiempo(Time.parse(obj['fecha'].gsub(/[.]/, ":")),Time.now), comments: comments ]
-      @posts[j] = post
-      j = j + 1
     end
     render json: @posts
   end
