@@ -39,7 +39,7 @@
 		    <%end%>
 		    <span><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %> | <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %></span>
 		    <br />
-		    <%= hace_tanto_tiempo( Time.at(@user.created_at), Time.now)%> <%= t 'en_red'%>
+		    <%= hace_tanto_tiempo( Time.at(@user.created_at), Time.now).html_safe%> <%= t 'en_red'%>
 		    </div>
 	</div>
 <% end %>

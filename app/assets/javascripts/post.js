@@ -44,12 +44,13 @@ function endlessPost() {
 
 function actualizando() {
 	var data = "";
+	var numPost = 0;
 	if($(".post").length > 0){
 		data += "{ posts: [";
 		$(".post").each(function(index){
 			var post = ""
 			var id = $(this).attr("id").split("_")[1];
-			if(index == 0)
+			if(numPost == 0)
 				post += "{";
 			else
 				post += ",{";
@@ -82,6 +83,7 @@ function actualizando() {
 			}
 			post += comments + "}";
 			if(control == "S" || hayComments == "S"){
+				numPost++;
 				data += post;
 			}
 		});
@@ -90,11 +92,11 @@ function actualizando() {
 	$.getJSON("/desde", { data: eval(data) }, function(data){
 		var i = 0;
 		while(data[i] != undefined){
-			$("#post_" + data[i]['id'] + " span#tiempo").html(data[i]['texto']);
+			$("#post_" + data[i]['id'] + " span.tiempo").html(data[i]['texto']);
 			var comments = data[i]['comments'];
 			var j = 0;
 			while(comments[j] != undefined){
-				$("#comment_" + comments[j]['id'] + " span#tiempo").html(comments[j]['texto']);
+				$("#comment_" + comments[j]['id'] + " span.tiempo").html(comments[j]['texto']);
 				j++;
 			}
 			i++;

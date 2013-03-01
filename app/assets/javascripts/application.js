@@ -76,11 +76,13 @@ $(document).ready(function() {
 	});
 
 	$("#open-publicar").click(function() {
+		$("#post_content").val("");
 		if ($("#destinatario").val() != "")
 			$("#post_content").val($("#destinatario").val()).trigger('update');
 		else
 			$("#post_content").trigger('charcount');
 		$("#form-new").dialog("open");
+		$("#post_content").focus();
 	});
 
 	$("#tumblear").click(function() {
