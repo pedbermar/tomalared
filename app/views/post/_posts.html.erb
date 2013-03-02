@@ -22,12 +22,19 @@
 					</div>					
 			<% end %>
 			<%if @user%>
-				<%= link_to "#{@user.profile}", "/post/user/#{@user.name}", :class => "linkRemote user" %>
-			<% else %>
+				<%if @post_user.id != @user.id%>
+					<%= link_to "#{@user.profile}", "/post/user/#{@user.name}", :class => "linkRemote user" %>
+			
+			
+				a traves de 
 				<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user" %>
-			<% end %>
-			a traves de 
+				<% else %>
+					<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user" %>
+				<% end %>
+			<%else%>
 			<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user" %>
+			
+			<% end %>
 			<span class="timeCount">
 				<%= t :hace %> <%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %>:				
 			</span>
