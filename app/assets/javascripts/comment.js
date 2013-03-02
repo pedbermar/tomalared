@@ -18,7 +18,7 @@ function inicioComment(idPost) {
 function vueltaComment(idPost) {
 	pintarBotonesComment();
 	pintarBotonesVote();
-	$("#post_" + idPost + " .formComentContent").trigger('charcount');
+	$("#post_" + idPost + " .formComentContent").val("").trigger('charcount');
 	setTimeout(function() {
 		$(".comments-old").find(".comment").first().removeAttr("style");
 	}, 1000);

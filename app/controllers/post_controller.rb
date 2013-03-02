@@ -247,18 +247,22 @@ class PostController < ApplicationController
     @destinatario = ""
     @pagina = params[:pagina]
     @soloposts = params[:soloposts]?true:false
-    last = params[:last].blank? ? Time.now + 1.second : Time.parse(params[:last])
+    last = params[:last].blank? ? 1 : params[:last]
     if params[:direccion] == "next"
-      direccion = "posts.created_at < ?"
+      direccion = "posts.id < ?"
     elsif params[:direccion] == "prev"
-      direccion = "posts.created_at > ?"
+      direccion = "posts.id > ?"
     else
-      direccion = "posts.created_at < ?"
+      direccion = "1=?"
     end
     if @pagina == "list"
       if params[:id]
-        @posts = Post.find(:all, 
-                           :conditions => {:id => params[:id]})
+        if !params[:last]
+          @posts = Post.find(:all, 
+                             :conditions => {:id => params[:id]})
+        else
+          @posts = Array.new
+        end
         @uno_solo = true
       else
         if params[:type]
@@ -331,7 +335,7 @@ class PostController < ApplicationController
       @posts = Post.find(:all,
                          :joins => "LEFT OUTER JOIN shares sh ON posts.id = sh.post_id",
                          :conditions => ["(posts.user_id = ? OR sh.user_id = ?) AND " + direccion, @user.id, @user.id, last], 
-                         :order => "sh.created_at DESC, posts.created_at DESC", 
+                         :order => "posts.created_at DESC", 
                          :limit => "10")
       
       if !@soloposts
@@ -398,7 +402,7 @@ class PostController < ApplicationController
     @post = Post.find(params[:id])
     if @post
       if @post.destroy
-        Notifications.where(:resource_type => Notifications::POST, :resurce_type => @post.id).delete
+        Notifications.where(:resurce_type => @post.id).delete
         flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
         flash[:notice] = "Ha habido un problema al borrar el mensaje."
