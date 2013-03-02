@@ -1016,6 +1016,12 @@ div #form-new
   margin-top: 10px;
 }
 
+.busqueda h5
+{
+  text-align: center;
+  font-weight:bold;
+}
+
 .search-titulo
 {
   font-size: 16px;
@@ -1043,9 +1049,13 @@ div #form-new
   color: gray !important;   
 }
 
-.tags-orden a 
+.tags-orden a  
 {  
+  display: block;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+  margin:0px;
+  padding-top: 3px;
+  width: 97;  
 } 
 
 .tags-orden
@@ -1057,13 +1067,34 @@ div #form-new
    overflow: hidden;
    padding: 3px;
    text-align: center;
-   background: #fafaf3;
+   background: #fafaf4;
 }
 
 .tags-orden:hover
 {
    border: 1px solid green;
    background: #baf8ba;
+}
+
+.tags-photo
+{
+  overflow: hidden;
+  border: 1px solid #BBBBBB;  
+  width: 93px;  
+  height: 93px;
+  text-align: center;
+  margin: auto;  
+}
+
+.tags-photo-img
+{ 
+  margin-top: -50%;
+  margin-left: -50%; 
+  min-width: 200%;
+  min-height: 200%;
+  width: auto;
+  height: auto;    
+  border: none;
 }
 
 .tags-block
@@ -1073,7 +1104,8 @@ div #form-new
 }
 .search-muneco
 {
-  height: 99px;
+  width: 93px;
+  height: 93px;
 }
 
 #tusgrupos, #tendencias, #sobre

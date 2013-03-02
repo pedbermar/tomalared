@@ -1,14 +1,12 @@
 <div class="tags-block">
 	<% @tags.each do |t| -%>
 		<div class="tags-orden">
-			<%= link_to "##{t.name}",:controller => 'post', :action => 'list', :pagina => "tag", :id => t.name %><br/>
-			<% if current_user.tags.exists?(t.id) %>
+			<%= link_to "##{t.name}", :controller => 'post', :action => 'list', :pagina => "tag", :id => t.name, :class => 'linkRemote tags-photo' %>	    	<div class="tags-photo">	    		<%= link_to image_tag( tag_photo(t.name) , :onError=> "this.src='/img/tag.png';", :class => "linkRemote tags-photo-img"),:controller => 'post', :action => 'list', :pagina => "tag", :id => t.name %>	    	</div>
+	    	<% if current_user.tags.exists?(t.id) %>
 						<span class="tags-unfollow" ><%= link_to "#{t'unfollow'}", {:controller => 'tag', :action=> 'unfollow_tag', :id => t.id}, :confirm => 'Quieres dejar el grupo?', :class => 'linkRemote' %></span>
 			<% else %>
 						<span class="tags-follow" ><%= link_to "#{t'follow'}", {:controller => 'tag', :action=> 'follow_tag', :id => t.id}, :confirm => 'Quieres unirte al grupo?', :class => 'linkRemote' %></span>
 			<% end %>
-		</div>
+		</div>		
 	<% end -%>
-</div>
-
-
+</div> 
