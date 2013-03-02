@@ -12,7 +12,7 @@ function llegadaNotificacion(notif, html) {
 	if(contador == ""){
 		contador = i;
 	}else{
-		contador = contador + i;
+		contador = parseInt(contador) + parseInt(i);
 	}
 	$(elemento).find("span.numNotif").html(contador);
 }

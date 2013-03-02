@@ -105,10 +105,10 @@ class ApplicationController < ActionController::Base
     when 525960..1051919 then result = "#{say[:one_year]}"
     else                      result = "#{(distance_in_minutes / 525960).round} #{say[:years]}"
     end
-	control = "S"
-	if distance_in_minutes > 1439
-		control = "N"
-	end
+  	control = "S"
+  	if distance_in_minutes > 1439
+  		control = "N"
+  	end
     return "<span class=\"tiempo\">" + result + "<input type=\"hidden\" class=\"controlTiempo\" value=\"" + control + "\" /></span>"
   end
 end

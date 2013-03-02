@@ -4,9 +4,3 @@
 <div id="posts" class="endless_scroll_inner_wrap">
     <%= render :partial => "posts", :collection => @posts, :as => "post" %>
 </div>
-<div id="infinite-scroll"></div>
-<input type="hidden" id="remote" name="remote" value="" />
-<input type="hidden" id="destinatario" value="<%=@destinatario%>"/>
-<div id="cargandoPag" align="center">
-    <%= image_tag("/gfx/pagina.gif", :title => "Cargando", :alt => "Cargando", :id=> 'loarding') %>
-</div>

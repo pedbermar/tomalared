@@ -1,1 +1,7 @@
-$("#popbox-notif<%=params[:type]%>").before(<%= render :partial => "notification/list", :collection => @notifications %>);
+<% if params[:id] %>
+	$("#popbox-notif<%=params[:type]%>").before("<%= escape_javascript(render :partial => "notification/list", :collection => @notifications) %>");
+<% else %>
+	$("#popbox-notif<%=params[:type]%>").html("<%= escape_javascript(render :partial => "notification/list", :collection => @notifications) %>");
+<% end %>
+if ($("#cargandoPag").dialog("isOpen"))
+	$("#cargandoPag").dialog("close");

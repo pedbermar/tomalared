@@ -22,9 +22,9 @@ function endlessPost() {
 		inflowPixels : 0,
 		loader : "<img src=\"/gfx/loading.gif\">",
 		callback : function(fireSequence, pageSequence, scrollDirection) {
-			var last = $("div.post:last input.created_at").val();
+			var last = ($("div.post:last").attr("id")).split("_")[1];
 			if (scrollDirection == "prev") {
-				last = $("div.post:first input.created_at").val();
+				last = ($("div.post:first").attr("id")).split("_")[1];
 			}
 			$.ajax({
 				url : $("#remote").val() == "" ? window.location.href : $("#remote").val(),
@@ -105,18 +105,8 @@ function actualizando() {
 	setTimeout(actualizando, 15000);
 }
 
-function personalizarPag(muneco, data, formulario) {
-	if (muneco != "") {
-		$("#cabeceraMuneco").html(muneco);
-		$("#cabeceraMuneco").show();
-	}
-	if (formulario != "") {
-		$("#formulario").html(formulario);
-		$("#formulario").show();
-	}
-	actualizado(data);
-	if ($("#infinite-scroll").length == 0)
-		$("#posts").after("<div id=\"infinite-scroll\"><\/div>")
+function personalizarPag(data) {
+	$("#main").html(data);
 	if ($("#cargandoPag").dialog("isOpen"))
 		$("#cargandoPag").dialog("close");
 }
@@ -204,13 +194,10 @@ $(document).ready(function() {
 	$(document).on("click", ".linkRemote", function(event) {
 		$("#notice").hide();
 		if ($("#remote").length > 0) {
+			$('html, body').animate({ scrollTop: 0 }, 0);
 			$("#cargandoPag").dialog("open");
-			$("#cabeceraMuneco").hide();
-			$("#formulario").hide();
-			$("#posts").hide();
 			var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
 			$("#remote").val(url);
-			$("#posts").html("");
 			$.getScript(url + "?remote=true");
 			return false;
 		}

@@ -13,6 +13,13 @@ class NotificationController < ApplicationController
     end
   end
   
+  def root
+    @notifications = Notifications.where(:user_id => current_user[:id]).asc(:created_at).reverse[0..20]
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   def update_config
     @config = NotificationsConfig.where(:user_id => current_user[:id])
     if @config.update_attributes(params[:config])

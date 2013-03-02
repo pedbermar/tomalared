@@ -5,15 +5,13 @@
 		<% else %>
 			$("div.post:last").after("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
 		<% end %>
-		pintarBotonesPost();
-		pintarBotonesComment();
-		pintarBotonesVote();
 	<% else %>
-		<% if !@soloposts %>
-			$("#destinatario").val("<%=@destinatario %> ");
-		    personalizarPag("<%= escape_javascript( render :partial => "muneco" ) %>", "<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>", "<% if current_user and !params[:id] %><%= escape_javascript( render :partial => "newex" ) %><% end %>");
-		<% elsif @soloposts %>
-		    actualizado("<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
-		<% end %>
+		$("#destinatario").val("<%=@destinatario %> ");
+		$("#main").html("<div id=\"cabeceraMuneco\"><%= escape_javascript( render :partial => "muneco" ) %></div><div id=\"posts\" class=\"endless_scroll_inner_wrap\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
 	<% end %>
 <% end %>
+pintarBotonesPost();
+pintarBotonesComment();
+pintarBotonesVote();
+if ($("#cargandoPag").dialog("isOpen"))
+	$("#cargandoPag").dialog("close");
