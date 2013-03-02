@@ -2,7 +2,7 @@
 	<% @users.each do |u| -%>
 		<div class="tags-orden">
 		    	<div class="search-muneco">
-		    		<%= link_to image_tag( u.photo.url(:medium)  , :alt => "Imagen de #{u.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{u.name}" %>
+		    		<%= link_to image_tag( u.photo.url(:medium), :alt => "Imagen de #{u.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{u.name}" %>
 		    	</div>
 	    	<%= link_to "@#{u.name}",:controller => 'post', :action => 'list', :pagina => "user", :id => u.name %>
 		</div>		
