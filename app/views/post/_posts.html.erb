@@ -4,8 +4,12 @@
 
 		<div class="mediano-muneco">
 			<div class="arrow-left"></div>
-			<div class="arrow-left-border"></div>			
-			<%= link_to image_tag( @post_user.photo.url(:medium)  , :alt => "Imagen de #{@post_user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@post_user.name}", :class => "linkRemote mediano-muneco-post" %>
+			<div class="arrow-left-border"></div>	
+			<%if @user%>	
+				<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
+			<%else%>	
+				<%= link_to image_tag( @post_user.photo.url(:medium)  , :alt => "Imagen de #{@post_user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@post_user.name}", :class => "linkRemote mediano-muneco-post" %>
+			<%end%>
 		</div>
 	
 		<div class="mainPostContent">
@@ -17,22 +21,18 @@
 						<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
 					</div>					
 			<% end %>
-			<%= link_to "#{@post_user.profile} | @#{@post_user.name}", "/post/user/#{@post_user.name}", :class => "linkRemote user" %>,
-
+			<%if @user%>
+				<%= link_to "#{@user.profile}", "/post/user/#{@user.name}", :class => "linkRemote user" %>
+			<% else %>
+				<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user" %>
+			<% end %>
+			a traves de 
+			<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user" %>
 			<span class="timeCount">
 				<%= t :hace %> <%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %>:				
 			</span>
 			</br>
-			
 			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @post_user.name, :title => post.title, :post_id => post.id } %>
-			<%if @user%>
-			<span class="timeCount">			
-				<%if post.user_id != @user.id%>
-					compartido por @<%= User.find(@user.id).name%>
-			    <%end%>
-			</span>
-			</br>
-			<%end%>
 			<div class="postFooter">	
 				<%if current_user%>
 						<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>
