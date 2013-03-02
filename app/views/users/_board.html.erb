@@ -20,7 +20,7 @@
 
 		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>
 		<div class='popbox popbox-mentions'>
-			<a class="open open-mentions" href="#" id="notif1">@<span class="numNotif"><%=@notifications.count%></span></a>
+			<a class="open open-mentions" href="#" id="notif1">@<span class="numNotif" <% if @notifications.count = 0 %>style="display:none"<%end%>><%=@notifications.count%></span></a>
 			<div class='collapse collapse-mentions'>
 				<div class='box box-mentions'>
 					<div class='arrow arrow-mentions'></div>
@@ -40,7 +40,7 @@
 
 		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 3, :unread => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>
 		<div class='popbox popbox-groups'>
-			<a class='open open-groups' href='#' id="notif3">#<span class="numNotif"><%=@notifications.count%></span></a>
+			<a class='open open-groups' href='#' id="notif3">#<span class="numNotif" <% if @notifications.count = 0 %>style="display:none"<%end%>><%=@notifications.count%></span></a>
 			<div class='collapse collapse-groups'>
 				<div class='box box-groups'>
 					<div class='arrow arrow-groups'></div>
@@ -62,7 +62,7 @@
 
 		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 5, :unread => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>
 		<div class='popbox popbox-comments'>
-			<a class='open  open-comments' href='#' id="notif5">C<span class="numNotif"><%=@notifications.count%></span></a>
+			<a class='open  open-comments' href='#' id="notif5">C<span class="numNotif" <% if @notifications.count = 0 %>style="display:none"<%end%>><%=@notifications.count%></span></a>
 			<div class='collapse collapse-comments'>
 				<div class='box box-comments'>
 					<div class='arrow arrow-comments'></div>
