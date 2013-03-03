@@ -13,7 +13,7 @@ class NotificationController < ApplicationController
     end
   end
   
-  def root
+  def index
     @notifications = Notifications.where(:user_id => current_user[:id]).asc(:created_at).reverse[0..20]
     respond_to do |format|
       format.js

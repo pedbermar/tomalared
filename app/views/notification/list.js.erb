@@ -3,5 +3,6 @@
 <% else %>
 	$("#popbox-notif<%=params[:type]%>").html("<%= escape_javascript(render :partial => "notification/list", :collection => @notifications) %>");
 <% end %>
+$("#posts").show();
 if ($("#cargandoPag").dialog("isOpen"))
 	$("#cargandoPag").dialog("close");

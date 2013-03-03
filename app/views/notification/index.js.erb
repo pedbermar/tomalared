@@ -1,0 +1,3 @@
+$("#main").html("<%= escape_javascript(render :partial => "notification/index", :collection => @notifications) %>");
+if ($("#cargandoPag").dialog("isOpen"))
+	$("#cargandoPag").dialog("close");
