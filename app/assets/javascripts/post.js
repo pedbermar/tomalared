@@ -176,15 +176,6 @@ $(document).ready(function() {
 	$("#save").submitWithAjax();
 	$("#tumblear").button();
 	$("#new-radio").buttonset();
-	$("#cargandoPag").dialog({
-		autoOpen : false,
-		minHeight : 66,
-		minWidth : 66,
-		maxWidth : 66,
-		draggable : false,
-		resizable : false,
-		dialogClass : "cargandoPagPost"
-	});
 	$("#tumblear").click(function() {
 		if ($("#post_content").val().length == 0) {
 			alert("El mensaje está vacío ¿seguro no quieres decir nada?");

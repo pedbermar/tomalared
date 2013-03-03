@@ -67,6 +67,16 @@ jQuery.fn.submitWithAjax = function() {
 $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
+	
+	$("#cargandoPag").dialog({
+		autoOpen : false,
+		minHeight : 66,
+		minWidth : 66,
+		maxWidth : 66,
+		draggable : false,
+		resizable : false,
+		dialogClass : "cargandoPagPost"
+	});
 
 	$("#form-new").dialog({
 		autoOpen : false,
