@@ -18,7 +18,7 @@
 			});
 		</script>
 
-		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>
+		<% @notifications = Notifications.where(:user_id => current_user[:id], :note_type => 1, :unread => 1).desc(:id)[0..10].uniq_by {|x| x.from} -%>
 		<div class='popbox popbox-mentions'>
 			<a class="open open-mentions" href="#" id="notif1">@<span class="numNotif" <% if @notifications.count == 0 %>style="display:none"<%end%>><%=@notifications.count%></span></a>
 			<div class='collapse collapse-mentions'>
