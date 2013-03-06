@@ -144,6 +144,9 @@ en:
     - :day
   datetime:
     distance_in_words:
+      about_x_minutes:
+        one: about 1 minute
+        other: about ? minutes
       about_x_hours:
         one: about 1 hour
         other: about ? hours
