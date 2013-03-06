@@ -1,11 +1,11 @@
 class Post < ActiveRecord::Base
   
   
-  has_many :comments, :order => "created_at"
+  has_many :comments, :order => "created_at", :dependent => :destroy
   has_and_belongs_to_many :tags
-  belongs_to :user, :dependent => :delete
-  has_many :likes
-  has_many :shares
+  belongs_to :user
+  has_many :likes 
+  has_many :shares, :dependent => :destroy
   
   
 

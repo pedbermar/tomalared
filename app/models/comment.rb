@@ -2,8 +2,8 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :body, :post_id, :post, :user_id
 
-  belongs_to :users, :dependent => :delete
-  belongs_to :post, :dependent => :delete
+  belongs_to :users
+  belongs_to :post
   
   DB_TEXT_MAX_LENGTH= 2000
 

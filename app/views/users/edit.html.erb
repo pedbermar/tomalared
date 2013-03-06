@@ -3,7 +3,7 @@
 	  <ul>
 	    <li><a href="#perfil"><%= t 'perfil.perfil' %></a></li>
 	    <li><a href="#cuenta"><%= t 'perfil.cuenta' %></a></li>
-	    <li><a href="#sobre"><%= t 'perfil.sobre' %></a></li>
+	    <li><a href="#sobre"><%= t 'perfil.sobre' %></a></li>	    
 	
 		  <div id="perfil">
 		 	<div class="user-edit-2">
@@ -35,8 +35,7 @@
 		  
 		  <div id="cuenta">
 		  	<div class="user-edit-2">
-		  		<%= form_for @user do |f| %>
-					<%#= f.error_messages %>
+		  		<%= form_for @user do |f| %>					
 				    <%= f.label :email, "#{t'perfil.email'}" %>
 				    <%= f.text_field :email %>
 					<br />  <br />
@@ -47,7 +46,7 @@
 				    <%= f.password_field :password_confirmation %>
 					<br />  <br />
 				 	<%= f.submit "#{t'cambiar'}" %>				
-				<% end %>
+				<% end %>				
 			</div>			
 			<div class="user-edit user-text">	  
 				<%= t'perfil.politica_datos' %>
@@ -61,8 +60,24 @@
 					<p>
 						<%= t 'perfil.politica_datos3' %>		
 					</p>
+
+					
 		  	</div>
-		  </div>		  
+		  		<div style="clear:both"></div>
+		  		<a href="#"  class="condicion"> <%= t 'perfil.borrar' %> </a>
+				<div class="condiciones">
+					<a href="#" class="cerrar-condiciones"> <%= t 'cerrar' %></a>
+					<h5><%= t 'perfil.seguroBorrar' %></h5>		
+					<%= form_tag :controller => 'users', :action => 'delete_user', :method => 'delete' do %>
+						
+						<%= label_tag :email, "#{t'perfil.email'}" %>
+					    <%= text_field_tag :email %>						
+					    <br />  <br />
+						<%= submit_tag "#{t'perfil.borrar'}" %>
+						<br />  <br />				
+					<% end %>											
+				</div>
+	 </div>		  
 		
 		  <div id="sobre">
 			<div class="user-text">				
@@ -76,7 +91,8 @@
 					<%= t 'perfil.tomalared_es2' %>
 				</p>
 		  	</div>				
-		  </div>		  
+		  </div>	  		  
+
 	  </ul>
   </div>
 </section>

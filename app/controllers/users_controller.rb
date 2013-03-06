@@ -32,11 +32,18 @@ class UsersController < ApplicationController
 
   # up and delete a user
   def delete_user
-    user_id = params[:id]
-    user = User.find(user_id)
-    user.destroy
-    flash[:notice] = "Usuario Borrado."
-    redirect_to :action => :users
+    if params[:email] == current_user[:email]  
+      user = User.find(current_user[:id])
+      Notifications.where(:from => current_user[:id]).delete
+      Notifications.where(:user_id => current_user[:id]).delete
+      user.destroy
+      flash[:notice] = "Usuario Borrado."
+      redirect_to '/'
+    else
+      flash[:error] = "Tienes que introducir tu email para verificar que quieres borrar la cuenta."
+      redirect_to '/home#cuenta'
+    end
+    
   end
 
   def show
