@@ -86,6 +86,8 @@ es:
     tomalared_es: tomalared.net es
     tomalared_es1: Una herramienta social para compartir ideas, propuestas, imagenes, links, videos, y todo lo que se pueda compartir en la red. Todo el material que se cuelge tiene que ser de lincencia abierta, si es una creacion personal pasara automaticamente a ser considerado de licencia abierta.
     tomalared_es2: Somos un grupo de programadores, que a decidido unir fuerzas para llevar este proyecto de software libre adelante. Para el disfrute de todo el mundo.
+    borrar: Borrar cuenta
+    seguroBorrar: ¿Seguro que quieres borrar la cuenta?
      
   date:
     abbr_day_names:

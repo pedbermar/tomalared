@@ -69,7 +69,7 @@ en:
     
   perfil:
     perfil: Profile
-    cuenta: Acount
+    cuenta: Account
     sobre: About takethenetwork.net
     escoja_foto: Choose photo
     name: Nick
@@ -85,7 +85,9 @@ en:
     politica_datos3: Your password is encrypted from the time you send it to our server for firsttime, lest us know and remember, never ask you for any reason the. If they ask you algunavez are saying about Us us know.
     tomalared_es: takethenetwork.net is
     tomalared_es1: A social tool for sharing ideas, suggestions, images, links, videos, and everything that can be shared over the network. All the material has to be hang lincencia open, if it is a personal creation will automatically be considered open license.
-    tomalared_es2: We are a group of programmers, who decided to join forces to bring this open source project forward. For the enjoyment of everyone. 
+    tomalared_es2: We are a group of programmers, who decided to join forces to bring this open source project forward. For the enjoyment of everyone.
+    borrar: Delete account 
+    seguroBorrar: Are you sure you want to delete the account?
 
   date:
     abbr_day_names:
