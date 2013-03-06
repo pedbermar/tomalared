@@ -2,19 +2,19 @@
 	<%= link_to "#{t'tomalared_net'}", '/', :class => "linkRemote titulo" %>
 </div>
 <% if current_user -%>
-	<section class="five columns searcher">	
+	<section class="four columns searcher">	
 	   <%= form_tag('/search', :id => 'search', :method=> 'get') do %>   		
 		   	<%= search_field_tag 'q', '',:placeholder =>  "#{t'buscar'}" %>
 	   		<span id="resultado-busqueda"></span>
 	   <% end %>
 	</section>
 	
-	<nav class="three columns">
-		<ul id="nav0">
-			<li><%= render :partial => "post/newex" %></li>
-    		<li><%= link_to '','/home', :class => "icon-home", :title => "#{t'editar_perfil'}" %></li>				  
-			<li><%= link_to '', '/logout', :class => "icon-exit", :title => "#{t'salir'}" %></li>			
-		</ul>
+	<nav class="four columns">
+		<div id="nav0">
+			<%= render :partial => "post/newex" %></li>
+    		<%= link_to '','/home', :class => "icon-home", :title => "#{t'editar_perfil'}" %>				  
+			<%= link_to '', '/logout', :class => "icon-exit", :title => "#{t'salir'}" %>		
+		</div>
 	</nav>
 <% else -%>
 	<section class="seven columns searcher">	
