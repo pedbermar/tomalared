@@ -43,8 +43,7 @@ class TagController < ApplicationController
     @tag_foto.each do |tag_foto|
       @foto_tag = tag_foto.content
     end
-    @users_tag =  Tag.find_by_sql(['SELECT u.*, tu.tag_id FROM tags_users as tu, users as u WHERE u.id = tu.user_id and tu.tag_id = ?', @tag])
-
+    @users_tag =  Tag.users
     respond_to do |format|
       format.js
     end

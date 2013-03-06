@@ -35,8 +35,8 @@
 			<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user" %>
 			
 			<% end %>
-			<span class="timeCount">
-				<%= t :hace %> <%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %>:				
+			<span class="timeCount"></br>
+				<%= t :hace %> <%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %>		
 			</span>
 			</br>
 			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @post_user.name, :title => post.title, :post_id => post.id } %>

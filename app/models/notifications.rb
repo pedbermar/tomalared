@@ -1,5 +1,6 @@
 class Notifications
   #attr_accessible :user_id, :type, :form, :to, :unread
+  
   include Mongoid::Document
   include Mongoid::Timestamps::Updated
     field :user_id, :type => Integer
@@ -7,6 +8,7 @@ class Notifications
     field :from, :type => Integer
     field :resource_id, :type => Integer
     field :unread, :type => Integer
+      
   def self.send(to, from, type, resource_id)
     unless to == from
       @note = Notifications.new
