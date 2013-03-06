@@ -17,6 +17,7 @@ Fra::Application.routes.draw do
   match '/updatefoto' => 'users#updatefoto'
   match '/updatedatos'=> 'users#updatedatos'
   match '/update' => 'users#update'
+  match '/delete_user' => 'users#delete_user'
 
 	#Grupos
   #Listados
@@ -31,8 +32,7 @@ Fra::Application.routes.draw do
   match '/network/note/:note_type'   => 'post#note'
 
   #Funciones
-  match '/save'  => 'post#save'
-  match '/edit'  => 'post#edit'
+  match '/save'  => 'post#save'  
   match '/delete'     => 'post#delete'
   match '/delete_tag' => 'post#delete_tag'
   match '/post/save' => 'post#save'
