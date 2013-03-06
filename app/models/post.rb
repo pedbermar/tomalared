@@ -1,12 +1,13 @@
-class MultiPostFindExpectsArray < StandardError; end
-
 class Post < ActiveRecord::Base
-
-  has_many :comments, :order => "created_at", :dependent => :destroy
+  
+  
+  has_many :comments, :order => "created_at"
   has_and_belongs_to_many :tags
-  belongs_to :user
+  belongs_to :user, :dependent => :delete
   has_many :likes
   has_many :shares
+  
+  
 
   attr_accessible :title, :post_type, :content, :user_id, :tags
 

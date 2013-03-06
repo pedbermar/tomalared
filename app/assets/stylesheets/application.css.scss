@@ -118,7 +118,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 #nav0 li
 {
-  display: inline;
+  display: inline !important;
 }
 
 #search, #nav0
@@ -462,7 +462,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 {
   margin: 6px;
   float: right;
-  width: 392px;;  
+  width: 375px;;  
   height: 92px;    
   padding: 6px;
   padding-top: 11px;   
