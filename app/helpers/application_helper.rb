@@ -4,18 +4,28 @@ module ApplicationHelper
   # Traducción de distance_of_time_in_words
   
     include_seconds = true    
-    language = 'es'
-  
+      
     from_time = from_time.to_time if from_time.respond_to?(:to_time)
     to_time = to_time.to_time if to_time.respond_to?(:to_time)
     distance_in_minutes = (((to_time - from_time).abs)/60).round
     distance_in_seconds = ((to_time - from_time).abs).round
   
-  case language
-    when 'ca' then say = {:less_seconds => 'menys de ? segons', :half_minute => 'mig minut', :less_minute => 'menys d\'un minut', :minutes => 'minuts', :one_minute => 'un minut', :hours => 'hores', :one_hour => 'una hora', :days => 'dies', :one_day => '1 dia', :months => 'mesos', :one_month => 'un mes', :years => 'anys', :one_year => 'un any'}
-    when 'es' then say = {:less_seconds => 'menos de ? segundos', :half_minute => 'medio minuto', :less_minute => 'menos de un minuto', :minutes => 'minutos', :one_minute => 'un minuto', :hours => 'horas', :one_hour => 'una hora', :days => 'd&iacute;as', :one_day => 'un d&iacute;a',:months => 'meses', :one_month => 'un mes', :years => 'a&ntilde;os', :one_year => 'un a&ntilde;o'}
-    when 'en' then say = {:less_seconds => 'less than ? seconds', :half_minute => 'half a minute', :less_minute => 'lesss than a minute', :minutes => 'minutes', :one_minute => '1 minute', :hours => 'hours', :one_hour => 'about 1 hour', :days => 'days', :one_day => '1 day',:months => 'months', :one_month => 'about 1 month', :years => 'year', :one_year => 'about 1 year'}
-  end
+    say = {
+            :less_seconds => t('datetime.distance_in_words.less_than_x_seconds.other'), 
+            :half_minute => t('datetime.distance_in_words.half_a_minute'), 
+            :less_minute => t('datetime.distance_in_words.less_than_x_minutes.one'), 
+            :minutes => t('datetime.prompts.minute'), 
+            :one_minute => t('datetime.distance_in_words.x_minutes.one'), 
+            :hours => t('datetime.prompts.hour'), 
+            :one_hour => t('datetime.distance_in_words.about_x_hours.one'), 
+            :days => t('datetime.prompts.day'), 
+            :one_day => t('datetime.distance_in_words.about_x_days.one'),
+            :months => t('datetime.prompts.month'), 
+            :one_month => t('datetime.distance_in_words.about_x_months.one'), 
+            :years => t('datetime.prompts.year'), 
+            :one_year => t('datetime.distance_in_words.about_x_years.one'),
+           }
+  
     case distance_in_minutes
       when 0..1
         return (distance_in_minutes==0) ? say[:less_minute] : say[:one_minute] unless include_seconds

@@ -33,7 +33,7 @@
 							<%if n.note_type == 5%>
 								<% from = User.find(n.from)%>
 								<%= link_to "#{from.profile}", "/post/user/#{n.from}"%>
-								<%= t'notificaciones.ha_comentado' %>
+								<%= t'notificaciones.ha' %>	<%= t'notificaciones.comentado' %>
 				
 								<% post = Post.find(n.resource_id)%>
 								<%if post.user_id == current_user[:id]%>
@@ -48,7 +48,7 @@
 								<%end%>
 							<%end%>
 							<span class="timeCount">
-								<%= t 'hace' %> <%= hace_tanto_tiempo(Time.at(n.updated_at), Time.now).html_safe %>						
+								<%= hace_tanto_tiempo(Time.at(n.updated_at), Time.now).html_safe %>						
 							</span>
 						</div>
 				</article>

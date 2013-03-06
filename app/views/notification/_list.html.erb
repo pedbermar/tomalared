@@ -25,7 +25,7 @@
 									
 									<%from = User.find(n.from)%>
 									<%= link_to "#{from.profile}", "/post/user/#{n.from}", :class => "linkRemote"%>
-									<%= t'notificaciones.ha_comentado' %>									
+									<%= t'notificaciones.ha' %>	<%= t'notificaciones.comentado' %>									
 									
 									<%post = Post.find(n.resource_id)%> 
 									<%if post.user_id == current_user[:id]%>

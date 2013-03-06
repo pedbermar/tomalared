@@ -11,7 +11,7 @@ en:
   olvidaste_clave: Forgot password?
   hola: Hi
   bienvenido: Welcome to Cyberspace, the new home of Mind.
-  hace: ago
+  hace: ""
   todas: All
   tendencias: Tendencies
   tus_grupos: Your groups
@@ -47,7 +47,7 @@ en:
   condiciones_servicio6: 5.These terms of use are subject to Spanish law.
   
   posts:
-    placeholder: 'White!!'
+    placeholder: Write!!
   
   comentar:
     placeholder: Comment....
@@ -56,12 +56,12 @@ en:
   notificaciones:
     publicacion: publication
     publicado: published
-    te_ha: mentioned you in a 
-    ha: been
-    ha_comentado: commented
+    te_ha: has mentioned you in a 
+    ha: has
+    comentado: commented
     una: one
     tuya: yours
-    suya: hers
+    suya: her
     la: the
     de: of 
     en: in   
@@ -80,7 +80,7 @@ en:
     clave: Password
     repite_clave: Password confirmation
     politica_datos: Data Privacy
-    politica_datos1: All data give in on this tab will be completely private and from TOMALARED.NET we assure you will not be shared in any way to third.
+    politica_datos1: All data given on this tab will be completely private and from TOMALARED.NET we assure you will not be shared in any way to third.
     politica_datos2: Your email will only be used for activation of your account and your password recovery.
     politica_datos3: Your password is encrypted from the time you send it to our server for firsttime, lest us know and remember, never ask you for any reason the. If they ask you algunavez are saying about Us us know.
     tomalared_es: takethenetwork.net is
@@ -146,26 +146,29 @@ en:
     distance_in_words:
       about_x_hours:
         one: about 1 hour
-        other: about %{count} hours
+        other: about ? hours
+      about_x_days:
+        one: about 1 day
+        other: about ? days
       about_x_months:
         one: about 1 month
-        other: about %{count} months
+        other: about ? months
       about_x_years:
         one: about 1 year
-        other: about %{count} years
+        other: about ? years
       almost_x_years:
         one: almost 1 year
-        other: almost %{count} years
-      half_a_minute: half a minute
+        other: almost ? years
+      half_a_minute: half a minute ago
       less_than_x_minutes:
-        one: less than a minute
-        other: less than %{count} minutes
+        one: less than a minute ago
+        other: less than ? minutes ago
       less_than_x_seconds:
-        one: less than 1 second
-        other: less than %{count} seconds
+        one: less than 1 second ago
+        other: less than ? seconds ago
       over_x_years:
         one: over 1 year
-        other: over %{count} years
+        other: over ? years
       x_days:
         one: 1 day
         other: ! '%{count} days'
@@ -179,12 +182,12 @@ en:
         one: 1 second
         other: ! '%{count} seconds'
     prompts:
-      day: Day
-      hour: Hour
-      minute: Minute
-      month: Month
-      second: Seconds
-      year: Year
+      day: days
+      hour: hours
+      minute: minutes
+      month: months
+      second: seconds
+      year: years
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:

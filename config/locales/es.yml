@@ -58,7 +58,7 @@ es:
     publicado: publicado
     te_ha: te ha mencionado en una
     ha: ha
-    ha_comentado: ha comentado
+    comentado: comentado
     una: una
     tuya: tuya
     suya: suya
@@ -142,30 +142,86 @@ es:
     - :day
     - :month
     - :year
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    - 
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
+    formats:
+      default: ! '%d/%m/%Y'
+      long: ! '%d de %B de %Y'
+      short: ! '%d de %b'
+    month_names:
+    - 
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    order:
+    - :day
+    - :month
+    - :year
   datetime:
     distance_in_words:
       about_x_hours:
         one: alrededor de 1 hora
-        other: alrededor de %{count} horas
+        other: alrededor de ? horas
+      about_x_days:
+        one: alrededor de 1 dia
+        other: alrededor de ? dias
       about_x_months:
         one: alrededor de 1 mes
-        other: alrededor de %{count} meses
+        other: alrededor de ? meses
       about_x_years:
         one: alrededor de 1 año
-        other: alrededor de %{count} años
+        other: alrededor de ? años
       almost_x_years:
-        one: casi 1 año
-        other: casi %{count} años
-      half_a_minute: medio minuto
+        one: hace casi 1 año
+        other: hace casi ? años
+      half_a_minute: hace medio minuto
       less_than_x_minutes:
-        one: menos de 1 minuto
-        other: menos de %{count} minutos
+        one: hace menos de 1 minuto
+        other: hace menos de ? minutos
       less_than_x_seconds:
-        one: menos de 1 segundo
-        other: menos de %{count} segundos
+        one: hace menos de 1 segundo
+        other: hace menos de ? segundos
       over_x_years:
         one: más de 1 año
-        other: más de %{count} años
+        other: más de ? años
       x_days:
         one: 1 día
         other: ! '%{count} días'
@@ -179,12 +235,12 @@ es:
         one: 1 segundo
         other: ! '%{count} segundos'
     prompts:
-      day: Día
-      hour: Hora
+      day: día
+      hour: hora
       minute: Minutos
-      month: Mes
-      second: Segundos
-      year: Año
+      month: mes
+      second: segundos
+      year: año
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:
