@@ -13,14 +13,21 @@
 		</div>
 	
 		<div class="mainPostContent">
-			<%if current_user[:id] == post.user_id%>
-				<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
-				:data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
-			<% else %>
-					<div id="sharePost_<%=post.id%>">						
-						<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
-					</div>					
-			<% end %>
+			<span class="iconos">
+				<%if current_user[:id] == post.user_id%>
+					<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
+					:data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
+				<% else %>
+						<div id="sharePost_<%=post.id%>">						
+							<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
+						</div>					
+				<% end %>
+				
+				<%if current_user%>
+							<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>
+				<% end %>
+			</span>
+			
 			<%if @user%>
 				<%if @post_user.id != @user.id%>
 					<%= link_to "#{@user.profile}", "/post/user/#{@user.name}", :class => "linkRemote user" %>
@@ -40,13 +47,11 @@
 			</span>
 			</br>
 			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @post_user.name, :title => post.title, :post_id => post.id } %>
-			<div class="postFooter">	
-				<%if current_user%>
-						<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>
-				<% end %>
-				<span class="tag"<%if post.post_type == "quote"%> style="display: none;" <%end%>> <%= linked_tags_with_commas(Post.find(post.id).tags).html_safe %></span>&nbsp;
-				
-			</div>
+			<%if post.tags.first && post.post_type != 'quote' %>
+				<div class="postFooter">
+					<span class="tag" > <%= linked_tags_with_commas(Post.find(post.id).tags).html_safe %></span>&nbsp;				
+				</div>
+			<%end%>
 		</div>
 	</article>
 	
