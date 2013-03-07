@@ -34,9 +34,9 @@ es:
   seguidor: seguidor
   grupo: grupo
   post: post
-  en_red: en red  
-  follow: follow
-  unfollow: unfollow
+  en_red: en la red  
+  follow: Seguir
+  unfollow: Dejar de seguir
   
   condiciones_servicio: Condiciones del servicio
   condiciones_servicio1: El acceso, uso y navegación por esta Web están permitidos tan solo en el caso que se acepten los siguientes requisitos y condiciones, por lo tanto la Web no debe usarse ni visitarse si no se admiten dichas condiciones. Se considerará a todos los efectos legales que el uso de la Web presupone la aceptación de las condiciones de uso. TOMALARED.NET se reserva el derecho de modificar las presentes condiciones en cualquier momento.
@@ -47,8 +47,10 @@ es:
   condiciones_servicio6: 5.Estas condiciones de uso están sometidas a la legislación española.
   
   posts:
-    placeholder: 'Escribe!!'
-  
+    placeholder: Escribe!!
+    submit: Comentar
+    share: a traves de
+    
   comentar:
     placeholder: Comenta....
     submit: Comentar   

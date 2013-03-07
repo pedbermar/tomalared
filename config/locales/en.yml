@@ -52,6 +52,7 @@ en:
   comentar:
     placeholder: Comment....
     submit: Comment
+    share: through
     
   notificaciones:
     publicacion: publication
