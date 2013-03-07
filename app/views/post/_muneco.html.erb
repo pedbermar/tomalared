@@ -16,6 +16,7 @@
 		    
 		    <%if @tag.users%>
 		    	<span><%= pluralize(@tag.users.count, "#{ t 'seguidor'}").html_safe %>: </span>
+		
 			<% end -%>
 		    
 		    <% @tag.users.each do |user_tag| -%>
@@ -39,6 +40,11 @@
 		    <%end%>
 		    <span><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %> | <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %></span>
 		    <br />
+		    <% @user_tags = @user.tags.uniq_by{|x| x.id}[0..10]%>
+		     <% @user_tags.each do |t| %>
+		    	<%= link_to "##{t.name}", "/post/tag/#{t.name}", :class => "linkRemote" %>	 
+		    <% end -%>
+		      <br />
 		    <%= hace_tanto_tiempo( Time.at(@user.created_at), Time.now).html_safe%> <%= t 'en_red'%>
 		    </div>
 	</div>
