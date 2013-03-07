@@ -43,7 +43,7 @@ class TagController < ApplicationController
     @tag_foto.each do |tag_foto|
       @foto_tag = tag_foto.content
     end
-    @users_tag =  Tag.users
+    @users_tag =  Tag.find(@tag).users
     respond_to do |format|
       format.js
     end
