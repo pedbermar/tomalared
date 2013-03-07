@@ -112,7 +112,7 @@ function personalizarPag(data) {
 }
 
 function llegadaPost(notif) {
-	$.getScript("/post/list/" + notif.resource_id + "?notif=true&remote=true");
+	$.getScript("/post/list/" + notif.post_id + "?notif=true&remote=true");
 }
 
 function vueltaPost(idPost) {

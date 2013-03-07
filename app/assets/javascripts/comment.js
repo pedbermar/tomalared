@@ -20,9 +20,9 @@ function inicioComment(idPost) {
 
 function llegadaComment(notif, id) {
 	if($("#post_" + notif.resource_id).length > 0){
-		$.getScript("/comment/list/" + id + "?notif=true&remote=true");
+		$.getScript("/comment/list/" + id + "?post=" + notif.resource_id + "&notif=true&remote=true");
 	} else {
-		$.getScript("/post/list/" + notif.resource_id + "?post=" + notif.resource_id + "&notif=true&remote=true");
+		$.getScript("/post/list/" + notif.post_id + "?notif=true&remote=true");
 	}
 }
 

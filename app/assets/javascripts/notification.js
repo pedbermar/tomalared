@@ -3,7 +3,7 @@ function llegadaNotificacion(notif) {
 	var i = 0;
 	if (notif.unread == 1){
 		i = 1;
-		$.getScript("/notif/list?remote=true&id=" + notif.resource_id + "&type=" + notif.note_type);
+		$.getScript("/notif/list?remote=true&id=" + notif.post_id + "&type=" + notif.note_type);
 	} else {
 		i = -1;
 		$("#notifications_" + notif._id).remove();
