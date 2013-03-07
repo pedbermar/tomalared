@@ -270,9 +270,9 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   top: 2px;  
   width: 87%;  
   margin-right: 7px;
-  padding-bottom: 5px;   
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   float: right;
   font-size: 10px;
   text-align: justify;
@@ -364,9 +364,10 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   width:20%;
   float: right;  
 }
-.icons
+.icons, .icons2
 {
-  margin-right: 4px;
+  margin-top: 2px;
+  margin-right: 5px;
 }
 .ui-icon-trash
 {
@@ -699,6 +700,7 @@ div #form-new
   float: right;
   font-size: 10px;
   border: solid 1px #BBBBBB;
+  min-height: 39px;
 }
 
 .formComentContent
@@ -1214,10 +1216,17 @@ div #form-new
 
 .charcount-display{
   color: gray;
-  margin-left: 1%;
+  margin-left: 14%;
 }
 
-.numNotif{
+#save .charcount-display
+{
+  color: gray;
+  margin-left: 4%;
+}
+
+.numNotif
+{
   -webkit-border-radius: 999px;
   -moz-border-radius: 999px;
   border-radius: 999px;
