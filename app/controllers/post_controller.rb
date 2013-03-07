@@ -215,13 +215,13 @@ class PostController < ApplicationController
         end      
         mentions.each do |u|
           user = User.find_by_name(u)
-          Notifications.send(user.id, current_user[:id], Notifications::USER, @post.id)
+          Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
         end
         # Notificaciones para las usuarios que siguen los GRUPOS
         @post.tags.each do |t|
-          subs = Subscriptions.where(:resource_id => t.id, :resource_type => Subscriptions::S_TAG)
+          subs = Subscriptions.where(:post_id => t.id, :resource_type => Subscriptions::S_TAG)
           subs.each do |sub|
-            Notifications.send(sub.user_id, current_user[:id], Notifications::TAG_POST, @post.id)
+            Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id)
           end
         end
         Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
@@ -345,18 +345,18 @@ class PostController < ApplicationController
         @page_name = "Post de #{@user.name}"
       end
     elsif params[:pagina] == "mentions"
-      con = Notifications.where(:user_id => current_user[:id], :from => params[:id], :note_type => Notifications::USER)
-      con = con + Notifications.where(:user_id => params[:id], :from => current_user[:id], :note_type => Notifications::USER)
+      con = Notification.where(:user_id => current_user[:id], :from => params[:id], :note_type => Notifications::USER)
+      con = con + Notification.where(:user_id => params[:id], :from => current_user[:id], :note_type => Notifications::USER)
       cons = Array.new
       con.each do |c|
-        cons << c.resource_id
+        cons << c.post_id
       end
       @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
     elsif params[:pagina] == "notifications"
-      comm= Notifications.where(:user_id => current_user[:id], :note_type => params[:id])
+      comm= Notification.where(:user_id => current_user[:id], :note_type => params[:id])
       cons = Array.new
       comm.each do |c|        
-        cons << c.resource_id
+        cons << c.post_id
       end
       if cons
         @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
@@ -400,9 +400,8 @@ class PostController < ApplicationController
   # grab the post and destroy it.  simple enough.
   def delete
     @post = Post.find(params[:id])
-    if @post
-      if @post.destroy
-        Notifications.where(:resurce_type => @post.id).delete
+    if @post           
+      if @post.destroy        
         flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
         flash[:notice] = "Ha habido un problema al borrar el mensaje."

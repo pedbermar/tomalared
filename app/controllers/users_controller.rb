@@ -33,9 +33,7 @@ class UsersController < ApplicationController
   # up and delete a user
   def delete_user
     if params[:email] == current_user[:email]  
-      user = User.find(current_user[:id])
-      Notifications.where(:from => current_user[:id]).delete
-      Notifications.where(:user_id => current_user[:id]).delete
+      user = User.find(current_user[:id])      
       user.destroy
       flash[:notice] = "Usuario Borrado."
       redirect_to '/'

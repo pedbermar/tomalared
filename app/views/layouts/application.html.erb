@@ -1,3 +1,4 @@
+<% I18n.locale = ((lang = request.env['HTTP_ACCEPT_LANGUAGE']) && lang[/^[a-z]{2}/])%>
 <!DOCTYPE html>
 <%	navegadores = ['Firefox','Chrome','Mobile','MSIE'] 
 	navegadores.each do |n| 
