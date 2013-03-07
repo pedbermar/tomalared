@@ -402,7 +402,7 @@ class PostController < ApplicationController
     @post = Post.find(params[:id])
     if @post
       if @post.destroy
-        Notifications.where(:resurce_type => @post.id).delete
+        Notifications.where(:resurce_id => @post.id).delete
         flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
         flash[:notice] = "Ha habido un problema al borrar el mensaje."
