@@ -1,16 +1,14 @@
-<% unless @posts.blank? %>
-	<% if params[:last] %>
-		<% if params[:direccion] == "prev" %>
-			$("div.post:last").before("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
-		<% else %>
-			$("div.post:last").after("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
-		<% end %>
-	<% else %>
-		$("#destinatario").val("<%=@destinatario %> ");
-		$("#main").html("<div id=\"cabeceraMuneco\"><%= escape_javascript( render :partial => "muneco" ) %></div><div id=\"posts\" class=\"endless_scroll_inner_wrap\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
-	<% end %>
-<% end %>
-pintarBotonesComment();
-pintarBotonesVote();
-if ($("#cargandoPag").dialog("isOpen"))
-	$("#cargandoPag").dialog("close");
+if($("#comment_<%=params[:id]%>").length > 0){
+	if($("#comment_<%=params[:id]%>").prev().length > 0){
+		var elem = $("#comment_<%=params[:id]%>").prev();
+		$("#comment_<%=params[:id]%>").remove();
+		elem.before("<%= escape_javascript( render :partial => 'comment/comments', :collection => @comment, :as => "comment" ) %>");
+	} else {
+		$("#comment_<%=params[:id]%>").remove();
+		$("#post_<%=params[:post]%> .comments-old").append("<%= escape_javascript( render :partial => 'comment/comments', :collection => @comment, :as => "comment" ) %>");
+	}
+}else{
+	$("#post_<%=params[:post]%> .comments-old").append("<%= escape_javascript( render :partial => 'comment/comments', :collection => @comment, :as => "comment" ) %>");
+}
+pintarBotonesComment("#post_<%=params[:post]%> ", "#comment_<%=params[:id]%> ");
+pintarBotonesVote("#post_<%=params[:post]%> ", "#comment_<%=params[:id]%> ");

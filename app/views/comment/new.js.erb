@@ -1,4 +1,4 @@
 $("#post_<%=@comment.post_id %> .comments-old").append("<%= escape_javascript(render(:partial => 'comment/comments', :object => @comment, :as => "comment")) %>");
 /* Reset the comment form */
 resetForm($("#formComment"));
-exitoComment("post_<%=@comment.post_id %> ", "comment_<%=@comment.id %> ");
+exitoComment("#post_<%=@comment.post_id %> ", "#comment_<%=@comment.id %> ");
