@@ -36,7 +36,7 @@ class CommentController < ApplicationController
       end
       mentions.each do |u|
         user = User.find_by_name(u)
-        Notification.send_notification(user.id, current_user[:id], Notification::USER, @comment.id)
+        Notification.send_notification(user.id, current_user[:id], Notification::USER, @comment.post_id)
       end
       # Nos subscribimos al post
       unless Subscriptions.where(:user_id => current_user[:id], :resource_type => Subscriptions::S_POST, :resource_id => @comment.post_id).exists?
