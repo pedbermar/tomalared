@@ -447,6 +447,8 @@ class PostController < ApplicationController
         elsif links.first
           type = "link"
         end
+      else 
+        type = "quote"
       end
     elsif str.size < 150
       type = "quote"
