@@ -19,7 +19,7 @@
 		
 			<% end -%>
 		    
-		    <% @tag.users.each do |user_tag| -%>
+		    <% @tag.users.uniq_by{|x| x.id}[0..10].each do |user_tag| -%>
 		    	<%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
 		    <% end -%>
 
