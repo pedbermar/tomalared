@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   t_has_many :notifications, :dependent => :destroy
   has_and_belongs_to_many :tags
   belongs_to :user
-  has_many :likes, :dependent => :destroy
+  has_many :likes, :foreign_key => 'type_id', :conditions => ['like_type = 1'], :dependent => :destroy
   has_many :shares, :dependent => :destroy
   
   

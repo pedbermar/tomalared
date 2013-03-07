@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
 
   belongs_to :users
   belongs_to :post
-  
+  has_many :likes, :foreign_key => 'type_id',:conditions => ['like_type = 2'], :dependent => :destroy
   DB_TEXT_MAX_LENGTH= 2000
 
   validates_presence_of :body, :post_id, :user_id
