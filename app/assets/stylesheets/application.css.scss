@@ -71,7 +71,10 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 .ui-tabs-nav
 {
+  position: relative;
   overflow: hidden !important;
+  height: 174px;
+  top: 0px
 }
 
 .logo
@@ -701,6 +704,7 @@ div #form-new
   font-size: 10px;
   border: solid 1px #BBBBBB;
   min-height: 39px;
+  background: #FAFAF4; 
 }
 
 .formComentContent
@@ -718,7 +722,7 @@ div #form-new
   font-size:10px;
   text-align: justify;
 }
-#text
+#text, .text-link
 {    
   width: 100%;
   font-size: 10px;  
@@ -732,10 +736,6 @@ div #form-new
   text-align: justify;  
 }
 
-.text-link
-{
-  background: #fafaf4;
-}
 .mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover
 { 
   color: black !important;

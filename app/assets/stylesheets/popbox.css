@@ -32,10 +32,10 @@
 {
 	display:block;
 	display:none;
-	background:#FFF;
+	background:#FAFAF4;
 	border:solid 1px #BBBBBB;	
 	position:absolute;
-	width: 210px;
+	width: 208px;
 	color: black;
 }  
 

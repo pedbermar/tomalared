@@ -19,9 +19,9 @@
 	   			<% end %>
 	   		</span>
 	   		<div id="text">	    		
-	   			<%= link_to "@#{@user_.name}" , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user" %>, 
+	   			<%= link_to @user_.profile , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user", :title =>  "@#{@user_.name}" %>	   			
 	   			<span class="timeCount">
-					<%= t :hace %> <%= hace_tanto_tiempo(Time.at(comment.created_at),Time.now).html_safe %>:				
+					<%= hace_tanto_tiempo(Time.at(comment.created_at),Time.now).html_safe %>				
 				</span>
 				<br/>
 	    		<%= text_parse(comment.body).html_safe %>	    		
