@@ -25,7 +25,7 @@ class CommentController < ApplicationController
      # Notificaciones para los subscriptores del post  
       sub = Subscriptions.where(:resource_id => @comment.post_id, :resource_type => Subscriptions::S_POST)
       sub.each do |s|
-          Notification.send_notification(s.user_id, current_user[:id], Notification::COMMENT, s.resource_id)
+          Notification.send_notification(s.user_id, current_user[:id], Notification::COMMENT, s.resource_id, @comment.id)
       end
       # Notificaciones para las menciones
       mentions = Array.new
@@ -36,7 +36,7 @@ class CommentController < ApplicationController
       end
       mentions.each do |u|
         user = User.find_by_name(u)
-        Notification.send_notification(user.id, current_user[:id], Notification::USER, @comment.post_id)
+        Notification.send_notification(user.id, current_user[:id], Notification::USER, @comment.post_id, @comment.id)
       end
       # Nos subscribimos al post
       unless Subscriptions.where(:user_id => current_user[:id], :resource_type => Subscriptions::S_POST, :resource_id => @comment.post_id).exists?
@@ -50,6 +50,13 @@ class CommentController < ApplicationController
       format.html { redirect_to }
       format.json { head :no_content }
       format.js #added
+    end
+  end
+  
+  def list
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.js
     end
   end
 end

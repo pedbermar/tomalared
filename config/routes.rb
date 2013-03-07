@@ -41,6 +41,7 @@ Fra::Application.routes.draw do
 			#comentarios
   match '/comment/new' => 'comment#new'
   match '/comment/delete/:id' => 'comment#delete'
+  match '/comment/list/:id' => 'comment#list'
 
 	#Likes
   match '/vote' => 'vote#vote'

@@ -1,11 +1,11 @@
-function pintarBotonesPost() {
-	$(".borrarPost").button({
+function pintarBotonesPost(postId) {
+	$(postId + ".borrarPost").button({
 		icons : {
 			primary : "ui-icon-trash"
 		},
 		text : false
 	});
-	$(".editarPost").button({
+	$(postId + ".editarPost").button({
 		icons : {
 			primary : "ui-icon-document"
 		},
@@ -111,64 +111,22 @@ function personalizarPag(data) {
 		$("#cargandoPag").dialog("close");
 }
 
-function actualizado(data) {
-	var postsData = $(data).find(".post");
-	if (postsData.length > 0) {
-		var posts = $("#posts").find(".post");
-		if (posts.length > 0) {
-			for (var i = 0; i < postsData.length; i++) {
-				for (var j = 0; j < posts.length; j++) {
-					var divData = postsData.get(i);
-					var div = posts.get(j);
-					var idData = $(divData).attr("id");
-					var idPost = $(div).attr("id");
-					if (idData.split("_")[1] < idPost.split("_")[1]) {
-						$("#" + idPost).after(divData);
-						inicioComment("#" + idData + " ");
-						postsData.splice(i, 1);
-					} else if (idData.split("_")[1] > idPost.split("_")[1] && j == 0) {
-						$("#" + idPost).before(divData);
-						inicioComment("#" + idData + " ");
-						postsData.splice(i, 1);
-					} else if (idData.split("_")[1] = idPost.split("_")[1]) {
-						$("#" + idPost).find(".titulo").html($(divData).find(".titulo").html());
-						$("#" + idPost).find(".new-foto").html($(divData).find(".new-foto").html());
-						$("#" + idPost).find(".postComments").html($(divData).find(".postComments").html());
-						$("#" + idPost).find("span.tiempo").html($(divData).find("span.tiempo").html());
-						if ($(divData).find("div.sharePost").length > 0)
-							$("#" + idPost).find("div.sharePost").html($(divData).find("div.sharePost").html());
-						postsData.splice(i, 1);
-					}
-					if ($(data).find("#" + idPost).length == 0) {
-						$("#" + idPost).remove();
-						posts.splice(j, 1);
-					}
-				}
-			}
-		} else {
-			$("#posts").html(postsData);
-			inicioComment("");
-		}
-	}
-	$("#posts").show();
-	pintarBotonesPost();
-	pintarBotonesComment();
-	pintarBotonesVote();
-	endlessPost();
+function llegadaPost(notif) {
+	$.getScript("/post/list/" + notif.resource_id + "?notif=true&remote=true");
 }
 
 function vueltaPost(idPost) {
-	pintarBotonesPost();
-	pintarBotonesComment();
-	pintarBotonesVote();
-	inicioComment("#post_" + idPost + " ");
 	setTimeout(function() {
-		$("#posts").find(".post").first().removeAttr("style");
+		$(idPost).removeAttr("style");
 	}, 1000);
 };
 
 function exitoPost(idPost) {
-	$("#posts").find(".post").first().effect("highlight", {}, "fast", vueltaPost(idPost));
+	pintarBotonesPost(idPost);
+	pintarBotonesComment(idPost);
+	pintarBotonesVote(idPost);
+	inicioComment(idPost);
+	$("#post_" + idPost).effect("highlight", {}, "fast", vueltaPost(idPost));
 }
 
 
@@ -203,7 +161,7 @@ $(document).ready(function() {
 		position : 'after',
 		maxLength : 150
 	});
-	pintarBotonesPost();
+	pintarBotonesPost("");
 	endlessPost();
 	setTimeout(actualizando, 15000);
 });

@@ -5,13 +5,34 @@
 		<% else %>
 			$("div.post:last").after("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
 		<% end %>
+		pintarBotonesPost("");
+		pintarBotonesComment("", "");
+		pintarBotonesVote("", "");
+	<% elsif params[:notif] %>
+		if($("#post_<%=params[:id]%>").length > 0){
+			if($("#post_<%=params[:id]%>").prev().length > 0){
+				var elem = $("#post_<%=params[:id]%>").prev();
+				$("#post_<%=params[:id]%>").remove();
+				elem.after("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+			} else {
+				$("#post_<%=params[:id]%>").remove();
+				$(".posts").prepend("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+			}
+		}else{
+			$(".posts").prepend("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+		}
+		pintarBotonesPost("#post_<%=params[:id]%> ");
+		pintarBotonesComment("#post_<%=params[:id]%> ", "");
+		pintarBotonesVote("#post_<%=params[:id]%> ", "");
+		inicioComment("#post_<%=params[:id]%> ");
+		$("#post_<%=params[:id]%>").effect("highlight", {}, "fast", vueltaPost("#post_<%=params[:id]%> "));
 	<% else %>
 		$("#destinatario").val("<%=@destinatario %> ");
 		$("#main").html("<div id=\"cabeceraMuneco\"><%= escape_javascript( render :partial => "muneco" ) %></div><div id=\"posts\" class=\"endless_scroll_inner_wrap\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
+		pintarBotonesPost("");
+		pintarBotonesComment("", "");
+		pintarBotonesVote("", "");
 	<% end %>
 <% end %>
-pintarBotonesPost();
-pintarBotonesComment();
-pintarBotonesVote();
 if ($("#cargandoPag").dialog("isOpen"))
 	$("#cargandoPag").dialog("close");

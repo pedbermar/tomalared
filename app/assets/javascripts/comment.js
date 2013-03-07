@@ -1,37 +1,51 @@
-function pintarBotonesComment() {
-	$(".borrarComentario").button({
+function pintarBotonesComment(postId, commentId) {
+	var elemento = postId;
+	if(commentId != ""){
+		elemento = commentId;
+	}
+	$(elemento + ".borrarComentario").button({
 		icons : {
 			primary : "ui-icon-trash"
 		},
 		text : false
 	});
-	$(".comentar").button();
+	$(postId + ".comentar").button();
 }
 
 function inicioComment(idPost) {
-	var com = ".formComentContent";
-	$(idPost + com).charcount({
+	$(idPost + ".formComentContent").charcount({
 		position : 'after'
 	});
 }
 
-function vueltaComment(idPost) {
-	pintarBotonesComment();
-	pintarBotonesVote();
-	$("#post_" + idPost + " .formComentContent").val("").trigger('charcount');
+function llegadaComment(notif, id) {
+	if($("#post_" + notif.resource_id).length > 0){
+		$.getScript("/comment/list/" + id + "?notif=true&remote=true");
+	} else {
+		$.getScript("/post/list/" + notif.resource_id + "?notif=true&remote=true");
+	}
+}
+
+function vueltaComment(postId, commentId) {
+	var elemento = postId;
+	if(commentId != ""){
+		elemento = commentId;
+	}
 	setTimeout(function() {
-		$(".comments-old").find(".comment").first().removeAttr("style");
+		$(elemento).removeAttr("style");
 	}, 1000);
 };
 
-function exitoComment(idPost) {
-	$(".comments-old").find(".comment").last().effect("highlight", {}, "fast", vueltaComment(idPost));
+function exitoComment(postId, commentId) {
+	pintarBotonesComment(postId, commentId);
+	pintarBotonesVote(postId, commentId);
+	$(commentId + " .formComentContent").val("").trigger('charcount');
+	$(commentId).effect("highlight", {}, "fast", vueltaComment(postId, commentId));
 }
 
 
 $(document).ready(function() {
-	$(".comentar").button();
-	$(".comentar").click(function() {
+	$(document).on("click", ".comentar", function() {
 		var texto = $(this).parent().find("textarea#body").val();
 		if (texto.length == 0) {
 			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
@@ -39,6 +53,6 @@ $(document).ready(function() {
 		}
 	});
 	inicioComment("");
-	pintarBotonesComment();
-	pintarBotonesVote();
+	pintarBotonesComment("", "");
+	pintarBotonesVote("", "");
 }); 

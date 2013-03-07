@@ -1,4 +1,4 @@
-function llegadaNotificacion(notif, html) {
+function llegadaNotificacion(notif) {
 	var elemento = "#notif" + notif.note_type;
 	var i = 0;
 	if (notif.unread == 1){

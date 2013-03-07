@@ -1,76 +1,80 @@
-function pintarBotonesVote() {
-	$(".iconsMas").button({
+function pintarBotonesVote(postId, commentId) {
+	var elemento = postId;
+	if(commentId != ""){
+		elemento = commentId;
+	}
+	$(elemento + ".iconsMas").button({
 		icons : {
 			primary : "ui-icon-arrowthick-1-n"
 		},
 		text : false
 	});
-	$(".iconsMasDisable").button({
+	$(elemento + ".iconsMasDisable").button({
 		icons : {
 			primary : "ui-icon-arrowthick-1-n"
 		},
 		text : false
 	});
-	$('.iconsMasDisable').button("disable");
+	$(elemento + '.iconsMasDisable').button("disable");
 
-	$(".iconsMenos").button({
+	$(elemento + ".iconsMenos").button({
 		icons : {
 			primary : "ui-icon-arrowthick-1-s"
 		},
 		text : false
 	});
-	$(".iconsMenosDisable").button({
+	$(elemento + ".iconsMenosDisable").button({
 		icons : {
 			primary : "ui-icon-arrowthick-1-s"
 		},
 		text : false
 	});
-	$('.iconsMenosDisable').button("disable");
+	$(elemento + '.iconsMenosDisable').button("disable");
 
-	$(".iconShare").button({
+	$(elemento + ".iconShare").button({
 		icons : {
 			primary : "ui-icon-arrowreturnthick-1-e"
 		},
 		text : false
 	});
-	$(".iconUnshare").button({
+	$(elemento + ".iconUnshare").button({
 		icons : {
 			primary : "ui-icon-trash"
 		},
 		text : false
 	});
 
-	$(".iconsMasComentario").button({
+	$(elemento + ".iconsMasComentario").button({
 		icons : {
 			primary : "ui-icon-squaresmall-plus"
 		},
 		text : false
 	});
-	$(".iconsMasComentarioDisable").button({
+	$(elemento + ".iconsMasComentarioDisable").button({
 		icons : {
 			primary : "ui-icon-squaresmall-plus"
 		},
 		text : false
 	});
-	$('.iconsMasComentarioDisable').button("disable");
+	$(elemento + '.iconsMasComentarioDisable').button("disable");
 
-	$(".iconsMenosComentario").button({
+	$(elemento + ".iconsMenosComentario").button({
 		icons : {
 			primary : "ui-icon-squaresmall-minus"
 		},
 		text : false
 	});
-	$(".iconsMenosComentarioDisable").button({
+	$(elemento + ".iconsMenosComentarioDisable").button({
 		icons : {
 			primary : "ui-icon-squaresmall-minus"
 		},
 		text : false
 	});
-	$('.iconsMenosComentarioDisable').button("disable");
+	$(elemento + '.iconsMenosComentarioDisable').button("disable");
 }
 
 
 $(document).ready(function() {
-	pintarBotonesVote();
+	pintarBotonesVote("", "");
 });
 

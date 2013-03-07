@@ -16,7 +16,7 @@ class Notification
   include Tenacity  
     t_belongs_to :post
     
-    def self.send_notification(to, from, type, post_id) 
+    def self.send_notification(to, from, type, post_id, comment_id = nil) 
         unless to == from
           @note = Notification.new
           @note.user_id = to
@@ -29,7 +29,7 @@ class Notification
           
           @notifications = Array.new
           @notifications << @note
-          PrivatePub.publish_to "/u/#{to}", { :type => "NOTIF", :note => @note }
+          PrivatePub.publish_to "/u/#{to}", { :note => @note, :comment_id => comment_id }
         end
      end
 end
