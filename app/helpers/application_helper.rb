@@ -12,14 +12,14 @@ module ApplicationHelper
   
     case distance_in_minutes
     when 0..1
-      return (distance_in_minutes==0) ? say[:less_minute] : say[:one_minute] unless include_seconds
+      return (distance_in_minutes==0) ? t('datetime.distance_in_words.less_than_x_minutes.one') : t('datetime.distance_in_words.about_x_minutes.one') unless include_seconds
       case distance_in_seconds
         when 0..4   then result = "#{t('datetime.distance_in_words.less_than_x_seconds.other').sub(/\?/, '5')}"
         when 5..9   then result = "#{t('datetime.distance_in_words.less_than_x_seconds.other').sub(/\?/, '10')}"
         when 10..19 then result = "#{t('datetime.distance_in_words.less_than_x_seconds.other').sub(/\?/, '20')}"
         when 20..39 then result = "#{t('datetime.distance_in_words.half_a_minute')}"
         when 40..59 then result = "#{t('datetime.distance_in_words.less_than_x_minutes.one')}"
-        else             result = "#{t('datetime.distance_in_words.x_minutes.one')}"
+        else             result = "#{t('datetime.distance_in_words.about_x_minutes.one')}"
       end
       when 2..44           then result = "#{t('datetime.distance_in_words.about_x_minutes.other').sub(/\?/, distance_in_minutes.to_s)}"
       when 45..89          then result = "#{t('datetime.distance_in_words.about_x_hours.one')}"
