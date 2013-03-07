@@ -1,8 +1,8 @@
 class VoteController < ApplicationController
   def vote
-    like = Likes.find(:first, :conditions => {:user_id => current_user[:id], :like_type => params[:like_type], :type_id => params[:type_id]})
+    like = Like.find(:first, :conditions => {:user_id => current_user[:id], :like_type => params[:like_type], :type_id => params[:type_id]})
     if !like
-      like = Likes.new
+      like = Like.new
     end 
     like.user_id = current_user[:id]
     like.like_type = params[:like_type]
@@ -22,7 +22,7 @@ class VoteController < ApplicationController
     if params[:like_type] == 2
       @comment = true
     end
-    @numLikes = Likes.find(:all, :conditions => {:like_type => params[:like_type], :type_id => params[:type_id], :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => params[:like_type], :type_id => params[:type_id], :like => 0, :dontlike => 1 }).count
+    @numLikes = Like.find(:all, :conditions => {:like_type => params[:like_type], :type_id => params[:type_id], :like => 1, :dontlike => 0 }).count - Like.find(:all, :conditions => {:like_type => params[:like_type], :type_id => params[:type_id], :like => 0, :dontlike => 1 }).count
     if params[:remote]
       respond_to do |format|
         format.html { redirect_to :back }
