@@ -350,38 +350,40 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   height: 15px;
 }
 
-.mainComentContent .iconsMas, .mainComentContent .iconsMenos,.mainComentContent .iconsMasDisable,.mainComentContent .iconsMenosDisable 
-{
-  position: relative;  
-  top: -8px;
-}
-
 .mainPostContent .iconsMas, .mainPostContent .iconsMenos,.mainPostContent .iconsMasDisable,.mainPostContent .iconsMenosDisable 
 {
-  position: relative;  
-  top: 5px;
-  left: 3px;
-}
-
-.icons2
-{
-  position: relative;  
-  top: 8px;  
-  text-align: center;
+  left: 1px;
 }
 
 .iconsMasComentario, .iconsMenosComentario, .iconsMenosComentarioDisable, .iconsMasComentarioDisable
 {
   top: -8px;
 }
-
+.iconBorrarComentario, .iconos
+{
+  width:20%;
+  float: right;  
+}
 .icons
 {
-  position: relative;
-  top: -4px;
   margin-right: 4px;
 }
+.ui-icon-trash
+{
+  margin-top: -9px !important;
+  margin-left: -9px !important;
+}
 
+.iconos .ui-icon-trash
+{  
+  margin-left: -8px !important;
+}
+
+.ui-icon-arrowthick-1-n
+{
+  margin-left: -7px !important;
+  margin-top: -8px !important;
+}
 .icon-exit, .icon-home 
 {
   width: 23px;
@@ -715,22 +717,17 @@ div #form-new
   text-align: justify;
 }
 #text
-{
-  padding-top: 5px;  
-  display: table;  
-  width: 90%;
-  font-size: 10px;
-  margin: 1%;
+{    
+  width: 100%;
+  font-size: 10px;  
+  text-align: justify;
 }
 
 .text-quote
-{
-  width: 90%;
-  display: table;    
-  margin: 1%;
+{ 
+  width: 100%;
   font-size: 12px;
-  text-align: justify;
-  padding-top: 5px;
+  text-align: justify;  
 }
 
 .text-link
