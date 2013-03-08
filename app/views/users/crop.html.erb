@@ -1,11 +1,15 @@
 <script type="text/javascript" charset="utf-8">
 $(function() {
+
+	
+
   $('#target-photo').Jcrop({
     onChange: update_crop,
     onSelect: update_crop,
     aspectRatio: 1,
-    bgOpacity: 0.5,
+    bgOpacity: 0.5,    
     bgColor: 'white',
+    bgFade: true,    
     addClass: 'jcrop-light'    
   });
 

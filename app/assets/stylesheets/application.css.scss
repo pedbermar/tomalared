@@ -44,9 +44,14 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 #photo-recorte
 { 
-  margin-left: 15%;
+  margin: 0 auto;  
   display: table;  
   text-align: center;
+}
+
+#photo-recorte img
+{
+  border:1px solid #BBBBBB !important;
 }
 
 #q
