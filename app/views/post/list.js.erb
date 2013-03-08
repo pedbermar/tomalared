@@ -11,23 +11,19 @@
 	<% end %>
 <% elsif params[:notif] %>
 	<% unless @posts.blank? %>
-		if($("#post_<%=params[:id]%>").length > 0){
-			if($("#post_<%=params[:id]%>").prev().length > 0){
-				var elem = $("#post_<%=params[:id]%>").prev();
-				$("#post_<%=params[:id]%>").remove();
+		if($("#post_<%=params[:postId]%>").length > 0){
+			if($("#post_<%=params[:postId]%>").prev().length > 0){
+				var elem = $("#post_<%=params[:postId]%>").prev();
+				$("#post_<%=params[:postId]%>").remove();
 				elem.after("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
 			} else {
-				$("#post_<%=params[:id]%>").remove();
-				$(".posts").prepend("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+				$("#post_<%=params[:postId]%>").remove();
+				$("#posts").prepend("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
 			}
 		}else{
-			$(".posts").prepend("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+			$("#posts").prepend("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
 		}
-		pintarBotonesPost("#post_<%=params[:id]%> ");
-		pintarBotonesComment("#post_<%=params[:id]%> ", "");
-		pintarBotonesVote("#post_<%=params[:id]%> ", "");
-		inicioComment("#post_<%=params[:id]%> ");
-		$("#post_<%=params[:id]%>").effect("highlight", {}, "fast", vueltaPost("#post_<%=params[:id]%> "));
+		exitoPost("#post_<%=params[:postId]%>");
 	<% end %>
 <% else %>
 	$("#destinatario").val("<%=@destinatario %> ");

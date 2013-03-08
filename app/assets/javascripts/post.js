@@ -114,7 +114,7 @@ function personalizarPag(data) {
 }
 
 function llegadaPost(notif) {
-	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).href();
+	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).attr("href");
 	if($("#remote").length > 0)
 		url = $("#remote").val();
 	if(url.indexOf("/post/") != -1)
@@ -128,11 +128,11 @@ function vueltaPost(idPost) {
 };
 
 function exitoPost(idPost) {
-	pintarBotonesPost(idPost);
-	pintarBotonesComment(idPost, "");
-	pintarBotonesVote(idPost, "");
-	inicioComment(idPost);
-	$("#post_" + idPost).effect("highlight", {}, "fast", vueltaPost(idPost));
+	pintarBotonesPost(idPost + " ");
+	pintarBotonesComment(idPost+ " ", "");
+	pintarBotonesVote(idPost+ " ", "");
+	inicioComment(idPost+ " ");
+	$(idPost).effect("highlight", {}, "fast", vueltaPost(idPost));
 }
 
 

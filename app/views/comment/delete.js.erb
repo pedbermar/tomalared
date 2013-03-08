@@ -1,5 +1,5 @@
 <% if flash[:notice] %>
-	$("#main").prepend("<div id=\"notice\">#{flash[:notice]}</div>");
+	$("#main").prepend("<div id=\"notice\"><%=flash[:notice]%></div>");
 	$("#notice").fadeIn("fast", function(){
 		setTimeout(function() {
 			$("#notice").remove();
@@ -7,7 +7,7 @@
 	});
 <% end %>
 <% if flash[:error] %>
-	$("#main").prepend("<div id=\"error\">#{flash[:error]}</div>");
+	$("#main").prepend("<div id=\"error\"><%=flash[:error]%></div>");
 	$("#error").fadeIn("fast", function(){
 		setTimeout(function() {
 			$("#error").remove();

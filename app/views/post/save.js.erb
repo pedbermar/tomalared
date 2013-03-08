@@ -1,5 +1,5 @@
 <% if flash[:notice] %>
-	$("#main").prepend("<div id=\"notice\">#{flash[:notice]}</div>");
+	$("#main").prepend("<div id=\"notice\"><%=flash[:notice]%></div>");
 	$("#notice").fadeIn("fast", function(){
 		setTimeout(function() {
 			$("#notice").remove();
@@ -7,7 +7,7 @@
 	});
 <% end %>
 <% if flash[:error] %>
-	$("#main").prepend("<div id=\"error\">#{flash[:error]}</div>");
+	$("#main").prepend("<div id=\"error\"><%=flash[:error]%></div>");
 	$("#error").fadeIn("fast", function(){
 		setTimeout(function() {
 			$("#error").remove();
@@ -22,11 +22,10 @@ if($("#posts_count").length > 0){
 }
 /* Add the new comment to the bottom of the comments list */
 if($("#posts").length > 0){
-	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).href();
+	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).attr('href');
 	if($("#remote").length > 0)
 		url = $("#remote").val();
 	if(url.indexOf("/post/") != -1){
 		$.getScript(url + "?notif=true&remote=true&postId=<%=@post.id%>");
-		exitoPost("#post_<%=@post.id%> ");
 	}
 }

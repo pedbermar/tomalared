@@ -13,7 +13,7 @@
 		<script language="JavaScript">
 			PrivatePub.subscribe("/u/<%= current_user[:id] %>", function(data, channel) {
 				llegadaNotificacion(data.note);
-				if(data.comment_id == undefine)
+				if(data.comment_id == undefined)
 					llegadaPost(data.note);
 				else
 					llegadaComment(data.note, data.comment_id);
