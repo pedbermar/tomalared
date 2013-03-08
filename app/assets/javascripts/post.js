@@ -22,22 +22,24 @@ function endlessPost() {
 		inflowPixels : 0,
 		loader : "<img src=\"/gfx/loading.gif\">",
 		callback : function(fireSequence, pageSequence, scrollDirection) {
-			var last = ($("div.post:last").attr("id")).split("_")[1];
-			if (scrollDirection == "prev") {
-				last = ($("div.post:first").attr("id")).split("_")[1];
+			if($("div.post").length > 0){
+				var last = ($("div.post:last").attr("id")).split("_")[1];
+				if (scrollDirection == "prev") {
+					last = ($("div.post:first").attr("id")).split("_")[1];
+				}
+				$.ajax({
+					url : $("#remote").val() == "" ? window.location.href : $("#remote").val(),
+					data : {
+						last : last,
+						soloposts : true,
+						remote : true,
+						direccion : scrollDirection,
+						veces : fireSequence,
+						pag : pageSequence
+					},
+					dataType : 'script'
+				});
 			}
-			$.ajax({
-				url : $("#remote").val() == "" ? window.location.href : $("#remote").val(),
-				data : {
-					last : last,
-					soloposts : true,
-					remote : true,
-					direccion : scrollDirection,
-					veces : fireSequence,
-					pag : pageSequence
-				},
-				dataType : 'script'
-			});
 		}
 	});
 }
@@ -123,8 +125,8 @@ function vueltaPost(idPost) {
 
 function exitoPost(idPost) {
 	pintarBotonesPost(idPost);
-	pintarBotonesComment(idPost);
-	pintarBotonesVote(idPost);
+	pintarBotonesComment(idPost, "");
+	pintarBotonesVote(idPost, "");
 	inicioComment(idPost);
 	$("#post_" + idPost).effect("highlight", {}, "fast", vueltaPost(idPost));
 }
