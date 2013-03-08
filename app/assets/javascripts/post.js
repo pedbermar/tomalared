@@ -139,7 +139,10 @@ function exitoPost(idPost) {
 $(document).ready(function() {
 	$("#save").submitWithAjax();
 	$(document).on("click", ".linkRemote", function(event) {
-		$("#notice").hide();
+		if($("#notice").length > 0)
+			$("#notice").remove();
+		if($("#error").length > 0)
+			$("#error").remove();
 		if ($("#remote").length > 0) {
 			$('html, body').animate({ scrollTop: 0 }, 0);
 			$("#cargandoPag").dialog("open");
@@ -150,7 +153,10 @@ $(document).ready(function() {
 		}
 	});
 	$(document).on("click", ".linkRemote2", function(event) {
-		$("#notice").hide();
+		if($("#notice").length > 0)
+			$("#notice").remove();
+		if($("#error").length > 0)
+			$("#error").remove();
 		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
 		$.getScript(url + "?remote=true");
 		return false;
