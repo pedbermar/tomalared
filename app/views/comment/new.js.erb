@@ -1,4 +1,6 @@
-$("#post_<%=@comment.post_id %> .comments-old").append("<%= escape_javascript(render(:partial => 'comment/comments', :object => @comment, :as => "comment")) %>");
 /* Reset the comment form */
 resetForm($("#formComment"));
-exitoComment("#post_<%=@comment.post_id %> ", "#comment_<%=@comment.id %> ");
+if($("#post_<%=@comment.post_id %>").length > 0){
+	$("#post_<%=@comment.post_id %> .comments-old").append("<%= escape_javascript(render(:partial => 'comment/comments', :object => @comment, :as => "comment")) %>");
+	exitoComment("#post_<%=@comment.post_id %> ", "#comment_<%=@comment.id %> ");
+}

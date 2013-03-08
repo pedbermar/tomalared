@@ -134,14 +134,6 @@ function exitoPost(idPost) {
 
 $(document).ready(function() {
 	$("#save").submitWithAjax();
-	$("#tumblear").button();
-	$("#new-radio").buttonset();
-	$("#tumblear").click(function() {
-		if ($("#post_content").val().length == 0) {
-			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
-			return false;
-		}
-	});
 	$(document).on("click", ".linkRemote", function(event) {
 		$("#notice").hide();
 		if ($("#remote").length > 0) {
@@ -161,7 +153,8 @@ $(document).ready(function() {
 	});
 	$("#post_content").charcount({
 		position : 'after',
-		maxLength : 150
+		maxLength : 150,
+		preventOverage : false
 	});
 	pintarBotonesPost("");
 	endlessPost();

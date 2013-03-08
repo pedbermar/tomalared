@@ -1,10 +1,11 @@
-/* Replace the count of comments */
-$("#posts_count").html("<%= pluralize(Post.count, 'posts') %>");
-
-/* Add the new comment to the bottom of the comments list */
-$("#posts").prepend("<%= escape_javascript(render :partial => "post/posts", :object => @post, :as => "post" )%>");
-
 /* Reset the comment form */
 resetForm($("#save"));
-
-exitoPost("#post_<%=@post.id%> ");
+/* Replace the count of comments */
+if($("#posts_count").length > 0){
+	$("#posts_count").html("<%= pluralize(Post.count, 'posts') %>");
+}
+/* Add the new comment to the bottom of the comments list */
+if($("#posts").length > 0){
+	$("#posts").prepend("<%= escape_javascript(render :partial => "post/posts", :object => @post, :as => "post" )%>");
+	exitoPost("#post_<%=@post.id%> ");
+}

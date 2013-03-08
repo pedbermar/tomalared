@@ -67,6 +67,7 @@ jQuery.fn.submitWithAjax = function() {
 $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
+	$("#tumblear").button();
 	
 	$("#cargandoPag").dialog({
 		autoOpen : false,
@@ -97,6 +98,11 @@ $(document).ready(function() {
 	});
 
 	$("#tumblear").click(function() {
-		$("#form-new").dialog("close");
+		if ($("#post_content").val().length == 0) {
+			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
+			return false;
+		}else{
+			$("#form-new").dialog("close");
+		}
 	});
 });
