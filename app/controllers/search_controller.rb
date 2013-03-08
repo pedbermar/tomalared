@@ -18,9 +18,15 @@ class SearchController < ApplicationController
 	    @users = User.search(@q).sort { |x, y| x.name <=> y.name }
 	    @posts = Post.search(@q1).sort_by{ |p| - p.id}
 	else
-		redirect_to :back
+    if !params[:remote]
+		  redirect_to :back
+    end
   end
-
+  if params[:remote]
+      respond_to do |format|
+        format.js
+      end
+  end
  end
  
  

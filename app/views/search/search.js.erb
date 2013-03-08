@@ -1,0 +1,10 @@
+<% if @tags %>
+	$("#main").html("<div class=\"busqueda\"><h5>#{t'resultado_busqueda'}\"#{@q1}\"</h5></div><div class=\"busqueda\"><div class=\"search-titulo\"><%= escape_javascript(pluralize(@tags.count, "#{ t'grupo_mayus'}").html_safe) %></div><div class=\"search-results\"><%= escape_javascript(render :partial => "search/tags") %></div></div>");
+<% end %>
+<% if @users %>
+	$("#main").html("<div class=\"busqueda\"><h5>#{t'resultado_busqueda'}\"#{@q1}\"</h5></div><div class=\"busqueda\"><div class=\"search-titulo\"><%= escape_javascript(pluralize(@users.count, "#{ t'usuario_mayus'}").html_safe) %></div><div class=\"search-results\"><%= escape_javascript(render :partial => "search/users") %></div></div>");
+<% end %>
+<% if @posts %>	
+	$("#main").html("<div class=\"busqueda\"><h5>#{t'resultado_busqueda'}\"#{@q1}\"</h5></div><div class=\"busqueda\"><div class=\"search-titulo\"><%= pluralize(@posts.count, "#{ t'post_mayus'}").html_safe) %></div><div class=\"posts-names\"><%= escape_javascript(render :partial => "post/posts", :collection => @posts, :as => "post") %></div></div>");
+<% end %>
+

@@ -3,7 +3,7 @@
 </div>
 <% if current_user -%>
 	<section class="four columns searcher">	
-	   <%= form_tag('/search', :id => 'search', :method=> 'get') do %>   		
+	   <%= form_tag('/search', :id => 'search', :method=> 'get', :remote => true) do %>   		
 		   	<%= search_field_tag 'q', '',:placeholder =>  "#{t'buscar'}" %>
 	   		<span id="resultado-busqueda"></span>
 	   <% end %>
