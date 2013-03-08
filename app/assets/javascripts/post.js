@@ -114,7 +114,11 @@ function personalizarPag(data) {
 }
 
 function llegadaPost(notif) {
-	$.getScript("/post/list/" + notif.post_id + "?notif=true&remote=true");
+	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).href();
+	if($("#remote").length > 0)
+		url = $("#remote").val();
+	if(url.indexOf("/post/") != -1)
+		$.getScript(url + "?notif=true&remote=true&postId=" + notif.post_id);
 }
 
 function vueltaPost(idPost) {

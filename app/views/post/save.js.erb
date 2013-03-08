@@ -6,6 +6,11 @@ if($("#posts_count").length > 0){
 }
 /* Add the new comment to the bottom of the comments list */
 if($("#posts").length > 0){
-	$("#posts").prepend("<%= escape_javascript(render :partial => "post/posts", :object => @post, :as => "post" )%>");
-	exitoPost("#post_<%=@post.id%> ");
+	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).href();
+	if($("#remote").length > 0)
+		url = $("#remote").val();
+	if(url.indexOf("/post/") != -1){
+		$.getScript(url + "?notif=true&remote=true&postId=<%=@post.id%>");
+		exitoPost("#post_<%=@post.id%> ");
+	}
 }

@@ -248,16 +248,22 @@ class PostController < ApplicationController
     @pagina = params[:pagina]
     @soloposts = params[:soloposts]?true:false
     last = params[:last].blank? ? 1 : params[:last]
+    postId = params[:postId].blank? ? 1 : params[:postId]
     if params[:direccion] == "next"
-      direccion = "posts.id < ?"
+      direccion = " AND posts.id < ?"
     elsif params[:direccion] == "prev"
-      direccion = "posts.id > ?"
+      direccion = " AND posts.id > ?"
     else
-      direccion = "1=?"
+      direccion = " AND 1=?"
+    end
+    if params[:postId]
+      filtroId = " AND posts.id = ?"
+    else
+      filtroId = " AND 1=?"
     end
     if @pagina == "list"
       if params[:id]
-        if !params[:last]
+        if !params[:last] and !params[:postId]
           @posts = Post.find(:all, 
                              :conditions => {:id => params[:id]})
         else
@@ -268,12 +274,12 @@ class PostController < ApplicationController
         if params[:type]
           @posts = Post.find(:all,
                              :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
-                             :conditions => ["posts.post_type = ?  AND  pt.tag_id IN (?) AND " + direccion, params[:type], current_user.tags, last], 
+                             :conditions => ["posts.post_type = ?  AND  pt.tag_id IN (?)" + direccion + filtroId, params[:type], current_user.tags, last, postId], 
                              :order => "posts.created_at DESC")
         else
           @posts = Post.find(:all,
                              :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
-                             :conditions => ["pt.tag_id IN (?) AND " + direccion, current_user.tags, last], 
+                             :conditions => ["pt.tag_id IN (?)" + direccion + filtroId, current_user.tags, last, postId], 
                              :order => "posts.created_at DESC")
         end
         @posts = @posts.uniq_by{|x| x.id}
@@ -290,13 +296,13 @@ class PostController < ApplicationController
       if params[:type]
         @posts = Post.find(:all, 
                            :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
-                           :conditions => ["pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ? AND " + direccion, @tagName, params[:type], last],
+                           :conditions => ["pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?" + direccion + filtroId, @tagName, params[:type], last, postId],
                            :order => "posts.created_at DESC",
                            :include => [:tags, :user])
       else
         @posts = Post.find(:all, 
                            :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
-                           :conditions => ["pt.tag_id = tags.id AND tags.name = ? AND " + direccion, @tagName, last],
+                           :conditions => ["pt.tag_id = tags.id AND tags.name = ?" + direccion + filtroId, @tagName, last, postId],
                            :order => "posts.created_at DESC",
                            :include => [:tags, :user])
       end
@@ -334,7 +340,7 @@ class PostController < ApplicationController
       end
       @posts = Post.find(:all,
                          :joins => "LEFT OUTER JOIN shares sh ON posts.id = sh.post_id",
-                         :conditions => ["(posts.user_id = ? OR sh.user_id = ?) AND " + direccion, @user.id, @user.id, last], 
+                         :conditions => ["(posts.user_id = ? OR sh.user_id = ?)" + direccion + filtroId, @user.id, @user.id, last, postId], 
                          :order => "sh.created_at DESC, posts.created_at DESC", 
                          :limit => "10")
       
@@ -375,12 +381,12 @@ class PostController < ApplicationController
         if params[:type]
           @posts = Post.find(:all,
                              :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
-                             :conditions => ["post_type = ? AND pt.tag_id IN (?) AND " + direccion, params[:type], current_user.tags, last],
+                             :conditions => ["post_type = ? AND pt.tag_id IN (?)" + direccion + filtroId, params[:type], current_user.tags, last, postId],
                              :order => "posts.created_at DESC")
         else
           @posts = Post.find(:all,
                              :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
-                             :conditions => ["pt.tag_id IN (?) AND " + direccion, current_user.tags, last],
+                             :conditions => ["pt.tag_id IN (?)" + direccion + filtroId, current_user.tags, last, postId],
                              :order => "posts.created_at DESC")
         end
         @posts = @posts.uniq_by{|x| x.id}
