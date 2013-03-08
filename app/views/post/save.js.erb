@@ -17,9 +17,21 @@
 /* Reset the comment form */
 resetForm($("#save"));
 /* Replace the count of comments */
-if($("#posts_count").length > 0){
-	$("#posts_count").html("<%= pluralize(Post.count, 'posts') %>");
+<%if @tag.posts%>
+if($("#tagPosts_count").length > 0){
+    $("#tagPosts_count").html("<%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %>");
 }
+<%end%>
+<%if @tag.users%>
+if($("#tagUsers_count").length > 0){
+    $("#tagUsers_count").html("<%= pluralize(@tag.users.count, "#{ t 'seguidor'}").html_safe %>");
+}
+<%end%>
+<%if @user%>
+if($("#user_count").length > 0){
+    $("#user_count").html("<%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %> | <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %>");
+}
+<%end%>
 /* Add the new comment to the bottom of the comments list */
 if($("#posts").length > 0){
 	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).attr('href');

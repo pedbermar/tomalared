@@ -10,13 +10,12 @@
 		    
 		    <br>
 		    <%if @tag.posts%>
-			    <span><%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %></span>
+			    <span id="tagPosts_count"><%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %></span>
 			    <br>
 		    <%end%>
 		    
 		    <%if @tag.users%>
-		    	<span><%= pluralize(@tag.users.count, "#{ t 'seguidor'}").html_safe %>: </span>
-		
+		    	<span id="tagUsers_count"><%= pluralize(@tag.users.count, "#{ t 'seguidor'}").html_safe %>: </span>
 			<% end -%>
 		    
 		    <% @tag.users.uniq_by{|x| x.id}[0..10].each do |user_tag| -%>
@@ -38,7 +37,7 @@
 		    <%= link_to @user.url, @user.url, :target => "_blank"%>
 		    <br />
 		    <%end%>
-		    <span><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %> | <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %></span>
+		    <span id="user_count"><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %> | <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %></span>
 		    <br />
 		    <% @user_tags = @user.tags.uniq_by{|x| x.id}[0..10]%>
 		     <% @user_tags.each do |t| %>
