@@ -37,7 +37,7 @@
 //= require libs/jquery.color
 //= require libs/jquery.Jcrop
 //= require libs/jquery.mousewheel.min
-//= require libs/jquery.tagsphere.min
+//= require libs/jquery.tagsphere
 
 function resetForm($form) {
 	$form.find('input:text, input:password, input:file, select, textarea').val('');

@@ -1,23 +1,25 @@
 $(document).ready(function() {
 	$("#tabs").tabs();
 	$("#tabs-board").tabs();
-	$('.tags-cloud-groups').tagcloud({
-		type : "sphere",
-		centrex : 100,
-		centrey : 60,
-		zoom : 100,
-		sizemin : 10,
-		sizemax : 20,
-		power : .3
+	$('.tags-cloud-groups').tagcloud({		
+		centrex : 10,
+		centrey : 30,
+		zoom : 300,
+		min_zoom : 150,
+		max_zoom : 600,
+		min_font_size: 7, 
+		max_font_size: 32,
+		rotate_factor: 15		
 	});
-	$('.tags-cloud-populars').tagcloud({
-		type : "sphere",
-		centrex : 60,
-		centrey : 60,
-		zoom : 200,
-		sizemin : 10,
-		sizemax : 20,
-		power : .3
+	$('.tags-cloud-populars').tagcloud({		
+		centrex : -20,
+		centrey : 30,
+		zoom : 300,
+		min_zoom : 150,
+		max_zoom : 600,
+		min_font_size: 7, 
+		max_font_size: 32,
+		rotate_factor: 15		 
 	});
 	$('.popbox-mentions').popbox({
 		'open' : '.open-mentions',
