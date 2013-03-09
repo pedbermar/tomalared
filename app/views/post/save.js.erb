@@ -17,15 +17,17 @@
 /* Reset the comment form */
 resetForm($("#save"));
 /* Replace the count of comments */
+<%if @tag%>
 <%if @tag.posts%>
 if($("#tagPosts_count").length > 0){
     $("#tagPosts_count").html("<%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %>");
 }
 <%end%>
-<%if @tag.users%>
+<% if @tag.users%>
 if($("#tagUsers_count").length > 0){
     $("#tagUsers_count").html("<%= pluralize(@tag.users.count, "#{ t 'seguidor'}").html_safe %>");
 }
+<%end%>
 <%end%>
 <%if @user%>
 if($("#user_count").length > 0){

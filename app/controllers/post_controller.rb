@@ -339,11 +339,13 @@ class PostController < ApplicationController
         @destinatario = "@" + @user.name
       end
       @posts = Post.find(:all,
+                         :select => "posts.id, posts.user_id, posts.title, posts.post_type, posts.content, ifnull(sh.created_at, posts.created_at) created_at",
                          :joins => "LEFT OUTER JOIN shares sh ON posts.id = sh.post_id",
                          :conditions => ["(posts.user_id = ? OR sh.user_id = ?)" + direccion + filtroId, @user.id, @user.id, last, postId], 
-                         :order => "sh.created_at DESC, posts.created_at DESC", 
+                         :order => "6 DESC", 
                          :limit => "10")
-      
+      #Post.find_by_sql ["SELECT * FROM vPosts WHERE user_id = ?" + direccion + filtroId + " ORDER BY created_at DESC LIMIT 10", @user.id, last, postId]
+
       if !@soloposts
         if params[:id]
           @post.content = "@#{params[:id]} : "
