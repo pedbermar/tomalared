@@ -87,6 +87,11 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin: 0 auto;
 }
 
+.nube-tags li a{
+  text-decoration:none;
+  color: #459E00;
+}
+
 .logo
 {
   width:300px;
@@ -1134,10 +1139,12 @@ div #form-new
 #tusgrupos, #tendencias, #sobre
 {
   background: #fafaf4;
+  width: 208 !important;
+  height: 148 !important;
 }
 #tusgrupos a:hover, #tendencias a:hover
 {
-  color: #459E00 !important;
+  color: black !important;
 }
 
 

@@ -9,7 +9,7 @@ $(document).ready(function() {
 		max_zoom : 600,
 		min_font_size: 7, 
 		max_font_size: 32,
-		rotate_factor: 15		
+		rotate_factor: 10  		
 	});
 	$('.tags-cloud-populars').tagcloud({		
 		centrex : -20,
@@ -19,7 +19,7 @@ $(document).ready(function() {
 		max_zoom : 600,
 		min_font_size: 7, 
 		max_font_size: 32,
-		rotate_factor: 15		 
+		rotate_factor: 10    
 	});
 	$('.popbox-mentions').popbox({
 		'open' : '.open-mentions',
