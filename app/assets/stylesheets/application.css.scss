@@ -10,7 +10,7 @@ body
   color: #000;
 }
 
-#muneco-text, #footer
+#footer
 {
   background-color: rgba(255, 255, 255, 0.8) !important;
 }
@@ -516,6 +516,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 #muneco
 {    
   padding: 3px;
+  border-bottom: solid 1px #BBBBBB;  
 }
 
 #muneco-text
@@ -524,8 +525,9 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin: 5px;
   color: #fff;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
-  padding: 5px;
-  border: solid 1px #BBBBBB;  
+  padding: 5px;  
+  border: solid 1px #BBBBBB;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 #save

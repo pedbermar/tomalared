@@ -1,6 +1,6 @@
 <% if @tag %>
-	<div id="muneco">
-		<div id="muneco-text" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
+	<div id="muneco" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
+		<div id="muneco-text">
 		    <font size="5">#<%= @tag.name %> | </font> 
 		    <% if current_user.tags.exists?(@tag.id) %>
 		    	<%= link_to "#{ t 'unfollow'}", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?", :remote => true, :class => "linkRemote2" %>
@@ -8,10 +8,9 @@
 		    	<%= link_to "#{ t 'follow'}", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?", :remote => true, :class => "linkRemote2" %>
 		    <% end %>
 		    
-		    <br>
+		    <br/>
 		    <%if @tag.posts%>
-			    <span id="tagPosts_count"><%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %></span>
-			    <br>
+			    <span id="tagPosts_count"><%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %>,</span>				
 		    <%end%>
 		    
 		    <%if @tag.users%>
@@ -25,26 +24,26 @@
 		</div>		    
 	</div>
 <% elsif @user %>
-	<div id="muneco">
-		<div id="muneco-text" style="background: url('<%= @user.photo.url%>') no-repeat center; background-size: 100%;">	     
+	<div id="muneco" style="background: url('<%= @user.photo.url%>') no-repeat center; background-size: 100%;">
+		<div id="muneco-text">	     
 		    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font>    
 		    <br />
 		    <%if @user.bio%>
-		    <%=@user.bio%>
-		    <br />
+		    	<%=@user.bio%>
+		    	<br />
 		    <%end%>
 		    <%if @user.url%>
-		    <%= link_to @user.url, @user.url, :target => "_blank"%>
-		    <br />
+			    <%= link_to @user.url, @user.url, :target => "_blank"%>
+			    <br />
 		    <%end%>
-		    <span id="user_count"><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %> | <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %></span>
 		    <br />
+		    <span id="user_count"><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %>, <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %>:</span>
 		    <% @user_tags = @user.tags.uniq_by{|x| x.id}[0..10]%>
-		     <% @user_tags.each do |t| %>
+			<% @user_tags.each do |t| %>
 		    	<%= link_to "##{t.name}", "/post/tag/#{t.name}", :class => "linkRemote" %>	 
 		    <% end -%>
-		      <br />
+		      <br /><br />
 		    <%= hace_tanto_tiempo( Time.at(@user.created_at), Time.now).html_safe%> <%= t 'en_red'%>
-		    </div>
+		 </div>
 	</div>
 <% end %>
