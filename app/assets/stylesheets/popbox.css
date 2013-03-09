@@ -8,15 +8,15 @@
 
 .collapse-mentions
 {
-	left: 70px;	
+	left: 68px;	
 }
 
 .collapse-groups{
-	left: 1px;
+	left: -1px;
 }
 
 .collapse-comments{
-	left: -68px;
+	left: -70px;
 }
 
 .popbox-user{
@@ -37,6 +37,7 @@
 	position:absolute;
 	width: 208px;
 	color: black;
+    box-sizing: border-box;
 }  
 
 .arrow 
@@ -106,7 +107,7 @@
 
 div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions
 {
-	width: 31.5% !important;
+	width: 66px !important;
 	float: left;
 	border:solid 1px #327E04;	
 	margin-left:1px;

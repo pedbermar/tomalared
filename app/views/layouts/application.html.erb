@@ -57,11 +57,7 @@ if @navegador == 'MSIE' -%>
 		</header>
 		<div class="container">
 			<div class="row maincontent">
-			<% if current_user -%>
-				<section id="main" class="nine columns">
-			<% else -%>
-				<section id="main" class="twelve columns">
-			<% end -%>
+			<section id="main" class="<% if current_user -%>nine columns<% else -%>twelve columns<% end -%>">
 				<% if !current_user%>
 					<% if @user_session.errors.any?%>	
 						<div id="error">
@@ -86,21 +82,8 @@ if @navegador == 'MSIE' -%>
 				<div id="cargandoPag" align="center" style="display: none">
 				    <%= image_tag("/gfx/pagina.gif", :title => "Cargando", :alt => "Cargando", :id=> 'loarding') %>
 				</div>
-			</div>
-		
-			<footer class="row">
-				<div id="footer"  class="<% if current_user -%>nine columns<% else -%>twelve columns<% end -%>">
-					<% if current_user %>
-					<%= t 'hola' %> <%= current_user[:name] %>. 
-					<% end %><%= t 'bienvenido' %> 
-						<br/>
-						<%= t 'version' %>
-					<br/>
-					<%= t 'basado' %>
-					<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~  
-					<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> 					
-			  	</div>
-			</footer>		
+			</div>		
+				
 		</div>
 		
 		<% if current_user %>
@@ -112,6 +95,21 @@ if @navegador == 'MSIE' -%>
 				</div>  
 			</div>
    		<% end %>	
+		<div class="container">	
+	   		<footer class="row">
+					<div id="footer"  class="<% if current_user -%>nine columns<% else -%>twelve columns<% end -%>">
+						<% if current_user %>
+						<%= t 'hola' %> <%= current_user[:name] %>. 
+						<% end %><%= t 'bienvenido' %> 
+							<br/>
+							<%= t 'version' %>
+						<br/>
+						<%= t 'basado' %>
+						<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~  
+						<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> 					
+				  	</div>
+				</footer>	
+		</section>
    			
 	</body>
 </html>

@@ -31,7 +31,6 @@
 //= require libs/modernizr-2.0.6.min
 //= require libs/popbox
 //= require libs/gumby
-//= require libs/gumby.min
 //= require libs/jquery-ui
 //= require libs/jquery.endless-scroll
 //= require libs/jquery.color
@@ -105,4 +104,26 @@ $(document).ready(function() {
 			$("#form-new").dialog("close");
 		}
 	});
+	
+	
+	function CambioTamano() {
+		if ($(window).width()<=780)
+		{
+			$("#mainboard").css({"position":"static", "width" : "auto", "margin" : "0 auto"});
+			$(".board-background").css({"margin-top": "80px", "width" : "auto !important"});			
+			$("#main").css({"margin-top": "70px"});
+		}
+		else
+		{
+			$("#mainboard").css({"position":"fixed", "width" : "100%"});
+			$(".board-background").css({"margin-top": "5px", "width" : "220px"});
+			$("#main").css({"margin-top": "20px"});
+		}
+	}
+	CambioTamano();	
+    $(window).resize(function(){
+		CambioTamano();	
+    });
+
 });
+
