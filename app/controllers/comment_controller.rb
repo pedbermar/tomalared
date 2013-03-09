@@ -22,6 +22,11 @@ class CommentController < ApplicationController
     @comment = Comment.create!(:body => params[:body], :post_id => params[:post_id], :user_id => current_user[:id])
     
     if @comment
+      require 'htmlentities'
+      coder = HTMLEntities.new
+      string = @comment.body
+      @comment.body = coder.encode(string, :basic)
+      
      # Notificaciones para los subscriptores del post  
       sub = Subscriptions.where(:resource_id => @comment.post_id, :resource_type => Subscriptions::S_POST)
       sub.each do |s|

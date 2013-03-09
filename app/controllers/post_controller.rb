@@ -112,6 +112,12 @@ class PostController < ApplicationController
       type = params[:post_type]
       post.content = params[:content] if TYPES[type]
       post.post_type = type_parse(post.content)
+
+      require 'htmlentities'
+      coder = HTMLEntities.new
+      string = post.content
+      post.content = coder.encode(string, :basic)
+      
       content = post.content
 
       # POST_TYPE == IMAGE
@@ -185,7 +191,7 @@ class PostController < ApplicationController
         end
       end
       @post = nil
-      if id
+      if id        
         if post.save
           @post = Post.find(id)
         end
@@ -241,7 +247,7 @@ class PostController < ApplicationController
   end
 
   # ooo, pagination.
-  def list(options = Hash.new)
+  def list(options = Hash.new)    
     @po = Post.new
     @post = Post.new
     @destinatario = ""

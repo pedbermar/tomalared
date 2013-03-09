@@ -27,4 +27,4 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem "jcrop-rails"
 gem 'thin'
 gem 'tenacity'
-
+gem 'htmlentities'
