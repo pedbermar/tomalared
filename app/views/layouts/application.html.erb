@@ -8,28 +8,60 @@
   	end
   	 
 if @navegador == 'MSIE' -%>
-	<html>
-		<head>
-			<meta name="http-equiv" content="Content-type: text/html; charset=utf-8"/>
-			<title>No queremos Internet explorer en esta paguina</title>
+
+
+<html>
+	<head>
+			<meta charset="UTF-8" />
 			<link rel="shortcut icon" href="/gfx/favicon.ico" type="image/x-icon" />
+			<title>TOMALARED.NET :: Error navegador no compatible</title>
+			<link href="/assets/gumby.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+			<link href="/assets/text.css?body=1" media="screen" rel="stylesheet" type="text/css" />				
+			<link href="/assets/style.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+			<link href="/assets/ui.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+			<link href="/assets/application.css?body=1" media="screen" rel="stylesheet" type="text/css" />
 			<META HTTP-EQUIV="REFRESH" CONTENT="30;URL=http://www.mozilla.org/es-ES/firefox/new/"/>
-		</head>
-		<body>
-			<center>
-				Tu navegador no es aceptado en nuestro sistema, por que lo consideramos defectuoso.
-				<br>
-				En breves segundos te redirigiremos por el buen camino.
-				<br>
-				Aunque Firefox es uno hay mas.
-				<br>
-				Descargate cualquier navegador que no sea Intenet Explorer y l&iacute;brate de los virus.
-				<h1>No Participaremos en la Corrupci&oacute;n de tu sistema operativo...</h1>
-				<i>Crearemos una cilivizacion del pensamiento en le ciberespacio.</i>
-				John Perry Barlow
-			</center>
-		</body>
-	</html>
+	</head>
+	
+	  <body>
+			<header class="row topbar">
+				<a href="/" class="linkRemote titulo">tomalared.net</a>
+			</header>
+			<div class="container">
+				<div class="row maincontent">
+					<section id="main" class="twelve columns">
+						<div id="error">
+							Error :: Navegador no compatible
+						</div>
+					Tu navegador no es aceptado en nuestro sistema, por que lo consideramos defectuoso.
+					<br>
+					En breves segundos te redirigiremos por el buen camino.
+					<br>
+					Aunque Firefox es uno hay mas.
+					<br>
+					<a href="http://www.mozilla.org/es-ES/firefox/new/">Descargar Firefox</a>
+					<br> 
+					Descargate cualquier navegador que no sea Intenet Explorer y l&iacute;brate de los virus.
+					<h1>No Participaremos en la Corrupci&oacute;n de tu sistema operativo...</h1>
+					<i>Crearemos una cilivizacion del pensamiento en le ciberespacio.</i>
+					John Perry Barlow
+				</section>
+				</div>
+			
+				<footer class="row">
+					<div id="footer"  class="twelve columns">					
+						Bienvenido al ciberespacio el nuevo hogar de la mente. 
+						<br/>
+						TOMALRED.NET v0.1 (alpha)
+						<br/>
+						Basado en
+						<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~  
+						<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> 					
+				  	</div>
+				</footer>		
+			</div>
+	</body>
+</html>
 <% else -%>
 
 <html>
