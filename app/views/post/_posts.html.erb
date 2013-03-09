@@ -3,8 +3,7 @@
 	<article class="postContent">
 
 		<div class="mediano-muneco">
-			<div class="arrow-left"></div>
-			<div class="arrow-left-border"></div>	
+			<div class="arrow-left"></div>	
 			<%if @user%>	
 				<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
 			<%else%>	

@@ -32,7 +32,6 @@
 			<div class='collapse collapse-mentions'>
 				<div class='box box-mentions'>
 					<div class='arrow arrow-mentions'></div>
-					<div class='arrow-border arrow-border-mentions'></div>
 					<div class="popbox-title">
 						<%= t :titulo_notificaciones_menciones %>
 					</div>
@@ -51,8 +50,7 @@
 			<a class='open open-groups' href='#' id="notif3">#<span class="numNotif" <% if @notifications.count == 0 %>style="display:none"<%end%>><%=@notifications.count%></span></a>
 			<div class='collapse collapse-groups'>
 				<div class='box box-groups'>
-					<div class='arrow arrow-groups'></div>
-					<div class='arrow-border arrow-border-groups'></div>
+					<div class='arrow arrow-groups'></div>					
 					<div class="popbox-title">
 						<%= t :titulo_notificaciones_grupos %>
 					</div>
@@ -73,8 +71,7 @@
 			<a class='open  open-comments' href='#' id="notif5">C<span class="numNotif" <% if @notifications.count == 0 %>style="display:none"<%end%>><%=@notifications.count%></span></a>
 			<div class='collapse collapse-comments'>
 				<div class='box box-comments'>
-					<div class='arrow arrow-comments'></div>
-					<div class='arrow-border arrow-border-comments'></div>
+					<div class='arrow arrow-comments'></div>					
 					<div class="popbox-title">
 						<%= t :titulo_notificaciones_comentarios %>
 					</div>
