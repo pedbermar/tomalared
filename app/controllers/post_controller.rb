@@ -218,16 +218,19 @@ class PostController < ApplicationController
           if t.first == '@'
             mentions << t.gsub(/^@/,"")
           end
-        end      
+        end
+             
         mentions.each do |u|
           user = User.find_by_name(u)
-          Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
+          if user 
+            Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id, Notification::ZERO)
+          end
         end
         # Notificaciones para las usuarios que siguen los GRUPOS
         @post.tags.each do |t|
           subs = Subscriptions.where(:post_id => t.id, :resource_type => Subscriptions::S_TAG)
           subs.each do |sub|
-            Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id)
+            Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id, Notification::ZERO)
           end
         end
         Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
