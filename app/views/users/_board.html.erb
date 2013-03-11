@@ -12,17 +12,12 @@
 		<%= subscribe_to "/u/#{current_user[:id]}" %>
 		<script language="JavaScript">
 			PrivatePub.subscribe("/u/<%= current_user[:id] %>", function(data, channel) {
-				alert("message1");
 				llegadaNotificacion(data.note);
-				alert("message2");
 				if(data.comment_id == undefined){
-					alert("message21");
 					llegadaPost(data.note);
 				}else{
-					alert("message22");
 					llegadaComment(data.note, data.comment_id);
 				}
-				alert("message3");
 			});
 		</script>
 
