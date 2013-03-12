@@ -2,47 +2,6 @@ class PostController < ApplicationController
 
   helper :all
 
-  # list by date - its own method so we can do pagination right
-  def list_by_date
-    datestring = "#{params[:year]}-#{params[:month]}"
-    datestring << "-#{params[:day]}" if params[:day]
-    list :conditions => ['created_at LIKE ?', datestring + '%']
-  end
-
-  # list by post type - its own method so we can do pagination right
-  def list_by_type
-    list :conditions => ['post_type = ?', params[:type]]
-  end
-
-  # list by user id
-  def list_by_uid
-     @user = User.find(params[:id])
-    list :conditions => ['user_id = ?', @user[:id]]
-  end
-
-  # display all the posts associated with a tag
-  def tag
-    tags = params[:tag].split(' ')
-
-    # if more than one tag is specified, get the posts containing all the
-    # passed tags.  otherwise get all the posts with just the one tag.
-    if tags.size > 1
-      @posts = Post.find_by_tags(tags)
-    else
-      post_ids = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id', :include => :tags,
-                           :conditions => ['pt.tag_id = tags.id AND tags.name = ?', tags]).map(&:id)
-      @post_pages, @posts = paginate :posts, :include => [:tags, :user], :order => 'created_at DESC',
-                                     :per_page => TUMBLE['limit'], :conditions => ['posts.id IN (?)', post_ids.join(',')]
-    end
-
-    if @posts.size.nonzero?
-      render :action => 'list'
-    else
-      error "Tag not found."
-    end
-  end
-
-  # show a post, or redirect if we got here through hackery.
   def show
     begin
       if params[:id]
@@ -61,16 +20,6 @@ class PostController < ApplicationController
     @error_msg = x
     render :action => 'error'
   end
-
-  # override template root to your theme's
-  def self.template_root
-    theme_dir
-  end
-  #
-  # post management
-  #
-
-  # we do this a lot.  hrm.
 
   def edit()
     if current_user[:id] != params[:user_id]
@@ -144,8 +93,6 @@ class PostController < ApplicationController
         direcion2 = "/post/#{capturanombre}.jpg"
         post.content = direcion2
       end
-      
-      # POST_TYPE == QUOTE || POST
 
       # POST_TYPE == LINK || VIDEO
       if post.post_type == 'link' || post.post_type == 'video'
@@ -242,11 +189,9 @@ class PostController < ApplicationController
           format.js
         end
       end
-      #redirect_to :back
     end
   end
 
-  # ooo, pagination.
   def list(options = Hash.new)    
     @po = Post.new
     @post = Post.new
