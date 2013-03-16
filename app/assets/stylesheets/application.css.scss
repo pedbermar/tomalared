@@ -741,12 +741,18 @@ div #form-new
   height: 26px;
 }  
 
+.mainPostContent 
+{
+  max-width: 532px;
+  box-sizing: border-box;
+}
+
 .mainPostContent .text
 {
   margin: 1%;
   text-align: justify;
   word-wrap: break-word;
-  width: 100%;
+  width: 99%;
 }
 .mainComentContent .text
 {
@@ -754,7 +760,7 @@ div #form-new
   text-align: justify;
   padding-top: 1px;
   word-wrap: break-word;
-  width: 100%;
+  width: 99%;
 }
 .text, .text-link
 { 
@@ -764,7 +770,7 @@ div #form-new
 
 .text-quote
 { 
-  width: 100%;
+  width: 99%;
   font-size: 12px;
   text-align: justify;  
 }
