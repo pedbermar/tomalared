@@ -32,7 +32,8 @@ end
 
 def text_parse(str)
 	p2 = ""
-      str.split.each do |t|
+  str = str.gsub(/[\n]/, ' <br/> ')     
+      str.split(' ').each do |t|
         t11 = t.gsub(/\s?(^#)?/, "")
 	      p = t.gsub(/^#\w+/) { link_to "##{t11} ", "/post/tag/#{t11}", :class => "linkRemote" }
 

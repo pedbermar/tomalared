@@ -740,17 +740,17 @@ div #form-new
   height: 26px;
 }  
 
-.mainPostContent #text
+.mainPostContent .text
 {
   margin: 1%;
   text-align: justify;
 }
-.mainComentContent #text
+.mainComentContent .text
 {
   font-size:10px;
   text-align: justify;
 }
-#text, .text-link
+.text, .text-link
 {    
   width: 100%;
   font-size: 10px;  
@@ -762,6 +762,10 @@ div #form-new
   width: 100%;
   font-size: 12px;
   text-align: justify;  
+}
+.text-quote, .text
+{
+  
 }
 
 .mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover
