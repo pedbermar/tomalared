@@ -240,12 +240,12 @@ es:
         one: 1 segundo
         other: ! '%{count} segundos'
     prompts:
-      day: día
-      hour: hora
+      day: días
+      hour: horas
       minute: Minutos
       month: mes
       second: segundos
-      year: año
+      year: años
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:
