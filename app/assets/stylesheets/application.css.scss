@@ -398,7 +398,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 }
 .iconos, .iconBorrarComentario
 {
-  display: none;
+  visibility: hidden;
 }
 
 .iconos .ui-icon-trash
@@ -748,15 +748,19 @@ div #form-new
 {
   margin: 1%;
   text-align: justify;
+  word-wrap: break-word;
+  width: 100%;
 }
 .mainComentContent .text
 {
   font-size:10px;
   text-align: justify;
+  padding-top: 1px;
+  word-wrap: break-word;
+  width: 100%;
 }
 .text, .text-link
-{    
-  width: 100%;
+{ 
   font-size: 10px;  
   text-align: justify;
 }

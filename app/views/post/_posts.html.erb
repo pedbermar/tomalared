@@ -15,9 +15,9 @@
 			<span class="iconos">
 				<script>			
 				  $("#post_<%=post.id%> .mainPostContent").mouseover(function() {
-				    $("#post_<%=post.id%> .iconos").show();
+				    $("#post_<%=post.id%> .iconos").css("visibility", "visible" )
 				  }).mouseleave(function(){
-				    $("#post_<%=post.id%> .iconos").hide();
+				    $("#post_<%=post.id%> .iconos").css("visibility", "hidden" )
 				  });
 				</script>
 				<%if current_user[:id] == post.user_id%>
