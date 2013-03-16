@@ -1,6 +1,7 @@
 # Notification types
 
 # 'User channel' notifications types
+ZERO = 0
 USER = 1    # Mencion
 
 # 'Tag channel' notifications types

@@ -9,6 +9,13 @@
 	    
 	    <span class="mainComentContent">
 	    	<span class="iconBorrarComentario">
+	    		<script>			
+				  $("#comment_<%=comment.id%> .mainComentContent").mouseover(function() {
+				    $("#comment_<%=comment.id%> .iconBorrarComentario").css("visibility", "visible" );
+				  }).mouseleave(function(){
+				    $("#comment_<%=comment.id%> .iconBorrarComentario").css("visibility", "hidden" );
+				  });
+				</script>
 		    	<% if  current_user[:id] == comment.user_id %>
 				       <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id},
 				        		 :data => { :confirm => "¿Borrar el comentario?"}, :class => "borrarComentario", :method => :delete, :remote => true %>
@@ -17,7 +24,7 @@
 		    		<%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id} %>
 	   			<% end %>
 	   		</span>
-	   		<div id="text">	    		
+	   		<div class="text">	    		
 	   			<%= link_to @user_.profile , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user", :title =>  "@#{@user_.name}" %>	   			
 	   			<span class="timeCount">
 					<%= hace_tanto_tiempo(Time.at(comment.created_at),Time.now).html_safe %>				

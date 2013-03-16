@@ -22,7 +22,7 @@
 .popbox-user{
 	display: table;
 	font-size:9px;
-	height: 56px;
+	height: 51px;
 	padding-left: 0.5em;
 	padding-right: 0.5em;	
 	text-align: justify;
@@ -69,8 +69,6 @@
 .popbox-photo
 {
 	float: left;	
-	width: 56px;
-	height: 56px;
 	border: none;	
 	border-right: 1px solid #BBBBBB;
 	border-bottom: 1px solid #BBBBBB;

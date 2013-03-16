@@ -396,6 +396,10 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-top: -9px !important;
   margin-left: -9px !important;
 }
+.iconos, .iconBorrarComentario
+{
+  visibility: hidden;
+}
 
 .iconos .ui-icon-trash
 {  
@@ -740,19 +744,23 @@ div #form-new
   height: 26px;
 }  
 
-.mainPostContent #text
+.mainPostContent .text
 {
   margin: 1%;
   text-align: justify;
+  word-wrap: break-word;
+  width: 100%;
 }
-.mainComentContent #text
+.mainComentContent .text
 {
   font-size:10px;
   text-align: justify;
-}
-#text, .text-link
-{    
+  padding-top: 1px;
+  word-wrap: break-word;
   width: 100%;
+}
+.text, .text-link
+{ 
   font-size: 10px;  
   text-align: justify;
 }
