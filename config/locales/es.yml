@@ -242,7 +242,7 @@ es:
     prompts:
       day: días
       hour: horas
-      minute: Minutos
+      minute: minutos
       month: mes
       second: segundos
       year: años
