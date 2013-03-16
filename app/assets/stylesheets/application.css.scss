@@ -396,6 +396,10 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-top: -9px !important;
   margin-left: -9px !important;
 }
+.iconos, .iconBorrarComentario
+{
+  display: none;
+}
 
 .iconos .ui-icon-trash
 {  
@@ -762,10 +766,6 @@ div #form-new
   width: 100%;
   font-size: 12px;
   text-align: justify;  
-}
-.text-quote, .text
-{
-  
 }
 
 .mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover

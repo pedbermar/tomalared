@@ -13,6 +13,13 @@
 	
 		<div class="mainPostContent">
 			<span class="iconos">
+				<script>			
+				  $("#post_<%=post.id%> .mainPostContent").mouseover(function() {
+				    $("#post_<%=post.id%> .iconos").show();
+				  }).mouseleave(function(){
+				    $("#post_<%=post.id%> .iconos").hide();
+				  });
+				</script>
 				<%if current_user[:id] == post.user_id%>
 					<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
 					:data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
