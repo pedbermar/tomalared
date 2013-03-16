@@ -114,8 +114,8 @@ function personalizarPag(data) {
 }
 
 function llegadaPost(notif) {
-	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).attr("href");
-	if($("#remote").length > 0)
+	var url = $(location).attr("href");
+	if($("#remote").length > 0 && $("#remote").val() != "")
 		url = $("#remote").val();
 	if(url.indexOf("/post/") != -1)
 		$.getScript(url + "?notif=true&remote=true&postId=" + notif.post_id);

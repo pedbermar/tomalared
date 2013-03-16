@@ -13,7 +13,7 @@ class Notification
     t_belongs_to :post
     t_belongs_to :comment
     
-    def self.send_notification(to, from, type, post_id, resource_id) 
+    def self.send_notification(to, from, type, post_id, resource_id = nil) 
         unless to == from
           @note = Notification.new
           @note.user_id = to
@@ -26,7 +26,7 @@ class Notification
                     
           @notifications = Array.new
           @notifications << @note
-          PrivatePub.publish_to "/u/#{to}", { :note => @note}
+          PrivatePub.publish_to "/u/#{to}", { :note => @note, :type => "NOTIF" }
         end
      end
 end
