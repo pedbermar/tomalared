@@ -1,9 +1,9 @@
 <div class="imagen">
 	<div class="imagen">
-	    <ul>
-	        <li>
-	        <%=link_to( image_tag("#{content}"), "#{content}", :class=> "post-image", :rel => "lightbox[posts]", :title => "#{link_to ("@#{Post.find(post_id).user.name}"), "/post/user/#{Post.find(post_id).user.name}" } en #{linked_tags_with_commas(Post.find(post_id).tags).html_safe}") %>          
-	        </li>
-	    </ul>
+		<a href="<%=content%>" rel="prettyPhoto[post]" class="ln">
+	  		<img src="<%=content%>" class="post-image" width="387" height="85" usemap="#image_map" border="0" alt="
+	  		 <a herf='/post/user/<%= Post.find(post_id).user.name %>'>@<%= Post.find(post_id).user.name%> </a> 
+	  		 en <%= linked_tags_with_commas(Post.find(post_id).tags).html_safe.gsub(/"/, "'") %>">
+	  	</a>
 	</div>
 </div>

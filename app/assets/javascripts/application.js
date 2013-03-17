@@ -27,7 +27,6 @@
 //
 //		LIBRERIAS DE JQUERY
 //= require libs/plugins
-//= require libs/lightbox
 //= require libs/modernizr-2.0.6.min
 //= require libs/popbox
 //= require libs/gumby
@@ -37,6 +36,7 @@
 //= require libs/jquery.Jcrop
 //= require libs/jquery.mousewheel.min
 //= require libs/jquery.tagsphere
+//= require libs/jquery.prettyPhoto
 
 function resetForm($form) {
 	$form.find('input:text, input:password, input:file, select, textarea').val('');
