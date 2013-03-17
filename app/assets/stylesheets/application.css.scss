@@ -381,7 +381,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 {
   top: -8px;
 }
-.iconBorrarComentario, .iconos
+.iconos
 {
   width:20%;
   float: right;  
@@ -396,7 +396,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   margin-top: -9px !important;
   margin-left: -9px !important;
 }
-.iconos, .iconBorrarComentario
+.ocultarIconos, ocultarIconosCm
 {
   visibility: hidden;
 }

@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :likes, :foreign_key => 'type_id', :conditions => ['like_type = 1'], :dependent => :destroy
   has_many :shares, :dependent => :destroy
+  has_many :users
   
   
 

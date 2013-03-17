@@ -1,19 +1,11 @@
 <ul class="voteMenu">
-	<li>
-		<% if Like.exists?(:user_id => current_user, :like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1) %>
-			<%= link_to '', {:controller => :vote, :action => 'vote', :like_type => 2, :type_id => comment_id, :dontLike => true }, :id => "votoMenosComment_#{comment_id}", :class => "iconsMenosDisable", :remote => true %>
-		<% else %>
-			<%= link_to '', {:controller => :vote, :action => 'vote', :like_type => 2, :type_id => comment_id, :dontLike => true }, :id => "votoMenosComment_#{comment_id}", :class => "iconsMenos", :remote => true %>
-		<% end %>
+	<li class="ocultarIconosCm">
+		<%=existeVotoPropietario(2, comment_id, "Menos", likes) %>
 	</li>
-	<li>
-		<% if Like.exists?(:user_id => current_user, :like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0) %>
-			<%= link_to '', {:controller => :vote, :action => 'vote', :like_type => 2, :type_id => comment_id, :like => true }, :id => "votoMasComment_#{comment_id}", :class => "iconsMasDisable", :remote => true %>
-		<% else %>
-			<%= link_to '', {:controller => :vote, :action => 'vote', :like_type => 2, :type_id => comment_id, :like => true }, :id => "votoMasComment_#{comment_id}", :class => "iconsMas", :remote => true %>
-		<% end %>
+	<li class="ocultarIconosCm">
+		<%=existeVotoPropietario(2, comment_id, "Mas", likes) %>
 	</li>
-	<li id="numVotosComment_<%=comment_id %>" class="icons">
-		<%= Like.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count - Like.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count  %>
+	<li id="numVotosComment_<%=comment_id %>" class="icons ocultarIconosCm">
+		<%=numVotos(likes) %>
 	</li>
 </ul>

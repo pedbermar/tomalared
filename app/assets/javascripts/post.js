@@ -166,6 +166,13 @@ $(document).ready(function() {
 		maxLength : 150,
 		preventOverage : false
 	});
+	$(document).on("mouseover", ".mainPostContent", function() {
+		var id = $(this).parent().parent().attr("id");
+		$("#" + id + " .ocultarIconos").css("visibility", "visible" );
+	}).on("mouseleave", ".mainPostContent", function(){
+		var id = $(this).parent().parent().attr("id");
+		$("#" + id + " .ocultarIconos").css("visibility", "hidden" );
+	});
 	pintarBotonesPost("");
 	endlessPost();
 	setTimeout(actualizando, 15000);

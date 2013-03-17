@@ -1,31 +1,23 @@
-
 <%= div_for comment do %>
-	<% @user_ = User.find(comment.user_id)%>
+	<% @user_ = comment.user%>
     <article class="postContent">    	
-	    	<div class="comment-muneco" >
-	    		<div class="arrow-left-comment"></div>	    		
-	    		<%= link_to image_tag( @user_.photo.url(:small)  , :alt => "Imagen de #{@user_.name}",  :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user_.name}", :class => "linkRemote comment-muneco-photo" %>
-	    	</div>
-	    
+    	<div class="comment-muneco" >
+    		<div class="arrow-left-comment"></div>	    		
+    		<%= link_to image_tag( @user_.photo.url(:small)  , :alt => "Imagen de #{@user_.name}",  :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user_.name}", :class => "linkRemote comment-muneco-photo" %>
+    	</div>
 	    <span class="mainComentContent">
-	    	<span class="iconBorrarComentario">
-	    		<script>			
-				  $("#comment_<%=comment.id%> .mainComentContent").mouseover(function() {
-				    $("#comment_<%=comment.id%> .iconBorrarComentario").css("visibility", "visible" );
-				  }).mouseleave(function(){
-				    $("#comment_<%=comment.id%> .iconBorrarComentario").css("visibility", "hidden" );
-				  });
-				</script>
+	    	<span class="iconos">
 		    	<% if  current_user[:id] == comment.user_id %>
-				       <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id},
-				        		 :data => { :confirm => "¿Borrar el comentario?"}, :class => "borrarComentario", :method => :delete, :remote => true %>
+		    		<span class="ocultarIconosCm">
+					    <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :data => { :confirm => "¿Borrar el comentario?"}, :class => "borrarComentario", :method => :delete, :remote => true %>
+					</span>
 				<% end %>
 		   		<%if current_user%>
-		    		<%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id} %>
+		    		<%= render :partial => 'vote/vote_comment', :locals => {:comment_id => comment.id, :likes => comment.likes} %>
 	   			<% end %>
 	   		</span>
 	   		<div class="text">	    		
-	   			<%= link_to @user_.profile , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user", :title =>  "@#{@user_.name}" %>	   			
+	   			<%= link_to @user_.profile , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user", :title =>  "@#{@user_.name}" %>
 	   			<span class="timeCount">
 					<%= hace_tanto_tiempo(Time.at(comment.created_at),Time.now).html_safe %>				
 				</span>

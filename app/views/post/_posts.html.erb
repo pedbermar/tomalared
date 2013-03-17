@@ -1,5 +1,5 @@
 <%= div_for(post, :class => "endless_scroll_content") do %>
-	<% @post_user = User.find(post.user_id) -%>
+	<% @post_user = post.user -%>
 	<article class="postContent">
 
 		<div class="mediano-muneco">
@@ -13,24 +13,19 @@
 	
 		<div class="mainPostContent">
 			<span class="iconos">
-				<script>			
-				  $("#post_<%=post.id%> .mainPostContent").mouseover(function() {
-				    $("#post_<%=post.id%> .iconos").css("visibility", "visible" )
-				  }).mouseleave(function(){
-				    $("#post_<%=post.id%> .iconos").css("visibility", "hidden" )
-				  });
-				</script>
 				<%if current_user[:id] == post.user_id%>
-					<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
-					:data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
+					<span class="ocultarIconos">
+						<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
+						:data => { :confirm => "¿Seguro que quieres borrar es post?"}, :class => "borrarPost", :method => :delete, :remote => true %>
+					</span>
 				<% else %>
-						<div id="sharePost_<%=post.id%>">						
-							<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
-						</div>					
+					<div id="sharePost_<%=post.id%>" class="ocultarIconos">
+						<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
+					</div>					
 				<% end %>
 				
 				<%if current_user%>
-							<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :post_user_id => post.user_id} %>
+					<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :likes => post.likes} %>
 				<% end %>
 			</span>
 			
@@ -65,7 +60,6 @@
 	</footer>
 	
 	<input type="hidden" id="created_at_<%= post.id %>" class="created_at" value="<%= post.created_at %>"/>
-	
 <% end %>
 <div style="clear:both"></div>
 

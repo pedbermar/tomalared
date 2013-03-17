@@ -52,6 +52,13 @@ $(document).ready(function() {
 			return false;
 		}
 	});
+	$(document).on("mouseover", ".mainComentContent", function() {
+		var id = $(this).parent().parent().attr("id");
+		$("#" + id + " .ocultarIconosCm").css("visibility", "visible" );
+	}).on("mouseleave", ".mainComentContent", function(){
+		var id = $(this).parent().parent().attr("id");
+		$("#" + id + " .ocultarIconosCm").css("visibility", "hidden" );
+	});
 	inicioComment("");
 	pintarBotonesComment("", "");
 	pintarBotonesVote("", "");
