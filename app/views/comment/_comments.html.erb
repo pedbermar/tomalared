@@ -9,7 +9,7 @@
 	    	<span class="iconos">
 		    	<% if  current_user[:id] == comment.user_id %>
 		    		<span class="ocultarIconosCm">
-					    <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :data => { :confirm => "¿Borrar el comentario?"}, :class => "borrarComentario", :method => :delete, :remote => true %>
+					    <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :class => "borrarComentario", :method => :delete, :remote => true %>
 					</span>
 				<% end %>
 		   		<%if current_user%>
