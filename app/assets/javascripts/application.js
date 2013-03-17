@@ -123,7 +123,6 @@ $(document).ready(function() {
 	CambioTamano();	
     $(window).resize(function(){
 		CambioTamano();	
-    });
-
+    });	
 });
 

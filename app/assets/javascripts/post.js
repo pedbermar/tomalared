@@ -11,6 +11,7 @@ function pintarBotonesPost(postId) {
 		},
 		text : false
 	});
+	cajaluz();
 }
 
 function endlessPost() {
@@ -175,10 +176,12 @@ $(document).ready(function() {
 	});
 	pintarBotonesPost("");
 	endlessPost();
-	setTimeout(actualizando, 15000);
-	
-	
-	  $(".ln[rel^='prettyPhoto']").prettyPhoto({
+	setTimeout(actualizando, 15000);		 
+});
+
+
+function cajaluz() {
+ $(".ln[rel^='prettyPhoto']").prettyPhoto({
 	  	markup: '<div class="pp_pic_holder"> \
 						<div class="ppt">&nbsp;</div> \
 						<div class="pp_top"> \
@@ -228,4 +231,4 @@ $(document).ready(function() {
 								<a href="#" class="pp_arrow_next">Next</a> \
 							</div>'
 	  });
-});
+};
