@@ -144,7 +144,7 @@ end
 
   # if we're looking at a tag, give the option to add (or remove) another tag
   def tag_link(t)
-    link_to "##{t}", :controller => 'post', :action => "list", :pagina => "tag", :id => t
+    link_to "##{t}", "/post/tag/#{t}", :class => "linkRemote" 
   end
 
   # add a + or - in front of tags if we're looking at a tag's listing

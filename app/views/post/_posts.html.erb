@@ -5,9 +5,9 @@
 		<div class="mediano-muneco">
 			<div class="arrow-left"></div>	
 			<%if @user%>	
-				<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
+				<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
 			<%else%>	
-				<%= link_to image_tag( @post_user.photo.url(:medium)  , :alt => "Imagen de #{@post_user.name}", :onError=> "this.src='/img/default.jpg';"), "/post/user/#{@post_user.name}", :class => "linkRemote mediano-muneco-post" %>
+				<%= link_to image_tag( @post_user.photo.url(:medium)  , :alt => "Imagen de #{@post_user.name}"), "/post/user/#{@post_user.name}", :class => "linkRemote mediano-muneco-post" %>
 			<%end%>
 		</div>
 	
