@@ -64,7 +64,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   top: 0px;
 }
     /*Radius*/
-.busqueda, .ui-dialog, .post, #user-edit, #footer, .board-background, .notification-list, #login, #muneco, #main, #muneco-text
+.busqueda, .ui-dialog, .post, #user-edit, #footer, .board-background, .notification-list, #login, #muneco, #main, #muneco-user, #muneco-group 
 {
   border-radius: 7px;
 }
@@ -536,9 +536,18 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   border-bottom: solid 1px #BBBBBB;  
 }
 
-#muneco-text
+#muneco-user
 { 
   min-height: 200px; 
+  color: #fff;
+  text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
+  padding: 5px;  
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#muneco-group
+{ 
+  min-height: 72px; 
   color: #fff;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
   padding: 5px;  

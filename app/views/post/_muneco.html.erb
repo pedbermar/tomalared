@@ -1,6 +1,6 @@
 <% if @tag %>
 	<div id="muneco" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
-		<div id="muneco-text">
+		<div id="muneco-group">
 		    <font size="5">#<%= @tag.name %> | </font> 
 		    <% if current_user.tags.exists?(@tag.id) %>
 		    	<%= link_to "#{ t 'unfollow'}", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?", :remote => true, :class => "linkRemote2" %>
@@ -25,7 +25,7 @@
 	</div>
 <% elsif @user %>
 	<div id="muneco" style="background: url('<%= @user.photo.url%>') no-repeat center; background-size: 100%;">
-		<div id="muneco-text">	     
+		<div id="muneco-user">	     
 		    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font>    
 		    <br />
 		    <%if @user.bio%>
