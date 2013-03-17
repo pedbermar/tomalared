@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  include Tenacity
+  
   acts_as_authentic do |c|
     c.login_field :name
     c.validate_email_field = false
@@ -10,6 +12,9 @@ class User < ActiveRecord::Base
   has_many :comments, :order => "created_at DESC", :through => :posts, :dependent => :destroy
   has_many :likes, :dependent => :destroy
   has_many :shares, :dependent => :destroy
+  has_many :posts
+  t_has_many :notifications
+  t_has_many :froms, :class_name => "Notification", :foreign_key => "from_id"
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
   has_attached_file :photo, :styles => { :small => "50x50", :medium => "210x210", :large => "500x500"}, :processors => [:cropper]
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
