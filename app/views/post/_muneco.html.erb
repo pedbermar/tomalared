@@ -3,9 +3,9 @@
 		<div id="muneco-group">
 		    <font size="5">#<%= @tag.name %> | </font> 
 		    <% if current_user.tags.exists?(@tag.id) %>
-		    	<%= link_to "#{ t 'unfollow'}", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?", :remote => true, :class => "linkRemote2" %>
+		    	<%= link_to "#{ t 'unfollow'}", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :remote => true, :class => "linkRemote2" %>
 		    <% else %>
-		    	<%= link_to "#{ t 'follow'}", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?", :remote => true, :class => "linkRemote2" %>
+		    	<%= link_to "#{ t 'follow'}", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :remote => true, :class => "linkRemote2" %>
 		    <% end %>
 		    
 		    <br/>

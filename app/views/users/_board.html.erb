@@ -5,7 +5,7 @@
 	</header>
 
 	<article id="marcofoto">
-		<%= link_to image_tag(current_user.photo.url(:medium) , :alt => "Tu imagen", :onError=> "this.src='/img/default.jpg';"), '/post/user', :class => "linkRemote" %>
+		<%= link_to image_tag(current_user.photo.url(:medium) , :alt => "Tu imagen"), '/post/user', :class => "linkRemote" %>
 	</article>
 
 	<div id="board-notifi">
