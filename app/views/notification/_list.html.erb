@@ -1,47 +1,45 @@
 <% if @notifications%>
 	<%= div_for(@notifications) do |n| %>
-		<% @user = User.find(n.from) -%>
-		<%if n.from != current_user[:id]%>
-								<%= link_to image_tag(@user.photo.url(:small), :class => 'popbox-photo'), "/post/user/#{n.from}", :class => "linkRemote"%>
-								<div class="popbox-user">
-								
-						    	<%if n.note_type == 1%>
-									
-									<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}", :class => "linkRemote"%>
-									<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.post_id}", :class => "linkRemote"%>
-									
-								<%end%>
-								
-								<%if n.note_type == 3%>
-									
-									<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}", :class => "linkRemote"%>
-									<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.post_id}", :class => "linkRemote"%> <%= t'notificaciones.en' %> 
-									<%Post.find(n.post_id).tags.each do |t|%>
-										<%= link_to "##{t.name} ", "/post/tag/#{t.name}", :class => "linkRemote"%>
-									<%end%>
-									
-								<%end%>
-								
-								<%if n.note_type == 5%>
-									
-									<%from = User.find(n.from)%>
-									<%= link_to "#{from.profile}", "/post/user/#{n.from}", :class => "linkRemote"%>
-									<%= t'notificaciones.ha' %>	<%= t'notificaciones.comentado' %>									
-									
-									<%post = Post.find(n.post_id)%> 
-									<%if post.user_id == current_user[:id]%>
-										<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{n.post_id}", :class => "linkRemote"%>
-										<%= t'notificaciones.tuya' %>	
-									<%elsif post.user_id == n.from%>
-									    <%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{n.post_id}", :class => "linkRemote"%>
-									 	<%= t'notificaciones.suya' %>
-									<%else%>
-										<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{n.post_id}", :class => "linkRemote"%> <%= t'notificaciones.de' %> 
-						                <%= link_to "#{User.find(post.user_id).profile}", "/post/user/#{post.user_id}", :class => "linkRemote"%>
-									<%end%>
-									
-								<%end%>
-							</div>								
+		<% @user = n.from -%>
+		<%if @user.id != current_user[:id]%>
+			<%= link_to image_tag(@user.photo.url(:small), :class => 'popbox-photo'), "/post/user/#{@user.id}", :class => "linkRemote"%>
+			<div class="popbox-user">
+			
+	    	<%if n.note_type == 1%>
+				
+				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
+				<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.post_id}", :class => "linkRemote"%>
+				
+			<%end%>
+			
+			<%if n.note_type == 3%>
+				
+				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
+				<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.post_id}", :class => "linkRemote"%> <%= t'notificaciones.en' %> 
+				<% n.tags.each do |t|%>
+					<%= link_to "##{t.name} ", "/post/tag/#{t.name}", :class => "linkRemote"%>
 				<%end%>
+				
+			<%end%>
+			
+			<%if n.note_type == 5%>
+				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
+				<%= t'notificaciones.ha' %>	<%= t'notificaciones.comentado' %>									
+				
+				<% post = n.post %> 
+				<%if post.user_id == current_user[:id]%>
+					<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%>
+					<%= t'notificaciones.tuya' %>	
+				<%elsif post.user_id == @user.id %>
+				    <%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%>
+				 	<%= t'notificaciones.suya' %>
+				<%else%>
+					<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%> <%= t'notificaciones.de' %> 
+	                <%= link_to "#{post.user.profile}", "/post/user/#{post.user_id}", :class => "linkRemote"%>
+				<%end%>
+				
+			<%end%>
+		</div>
 		<%end%>
+	<%end%>
 <%end%>

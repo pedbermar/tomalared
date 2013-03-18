@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   
   
 
-  attr_accessible :title, :post_type, :content, :user_id, :tags, :notifications
+  attr_accessible :id, :title, :post_type, :content, :user_id, :tags, :notifications
 
   # call yamlize_content after we load each record, to translate its content
   # from yaml to a hash (if necessary)

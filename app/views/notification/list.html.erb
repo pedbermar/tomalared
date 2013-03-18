@@ -3,8 +3,8 @@
 </div>
 <% if @notifications%>
 	<%@notifications.each do |n|%>
-	<% @user = User.find(n.from) -%>
-		<%if n.from != current_user[:id]%>
+	<% @user = n.from -%>
+		<%if @user.id != current_user[:id]%>
 			<div class="notification-list">
 				<article class="postContent">
 			
@@ -17,12 +17,12 @@
 					<span class="mainNotiContent">
 						<div id="text">
 							<%if n.note_type == 1%>
-								<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}"%>
+								<%= link_to "#{@user.profile}", "/post/user/#{@user.id}"%>
 								<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.post_id}"%>
 							<%end%>
 			
 							<%if n.note_type == 3%>
-								<%= link_to "#{User.find(n.from).profile}", "/post/user/#{n.from}"%>
+								<%= link_to "#{@user.profile}", "/post/user/#{@user.id}"%>
 								<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.post_id}"%> <%= t'notificaciones.en' %>
 				
 								<%Post.find(n.post_id).tags.each do |t|%>
@@ -31,20 +31,19 @@
 							<%end%>
 			
 							<%if n.note_type == 5%>
-								<% from = User.find(n.from)%>
-								<%= link_to "#{from.profile}", "/post/user/#{n.from}"%>
+								<%= link_to "#{@user.profile}", "/post/user/#{@user.id}"%>
 								<%= t'notificaciones.ha' %>	<%= t'notificaciones.comentado' %>
 				
 								<% post = Post.find(n.post_id)%>
 								<%if post.user_id == current_user[:id]%>
 									<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{n.post_id}"%>
 									<%= t'notificaciones.tuya' %>
-								<%elsif post.user_id == n.from%>
+								<%elsif post.user_id == @user.id %>
 									<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{n.post_id}"%>
 									<%= t'notificaciones.suya' %>
 								<%else%>
 									<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{n.post_id}"%> <%= t'notificaciones.de' %>
-									<%= link_to "#{User.find(post.user_id).profile}", "/post/user/#{post.user_id}"%>
+									<%= link_to "#{post.user.profile}", "/post/user/#{post.user_id}"%>
 								<%end%>
 							<%end%>
 							<span class="timeCount">
