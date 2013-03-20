@@ -351,6 +351,7 @@ class PostController < ApplicationController
         @page_name = "Todos los Posts"
       end
     end
+    @userNotif = User.find(current_user[:id])
     if !params[:external] || params[:remote]
       respond_to do |format|
         format.html
