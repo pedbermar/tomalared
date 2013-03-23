@@ -165,8 +165,7 @@ class PostController < ApplicationController
            
       mentions.each do |u|
         user = User.find_by_name(u)
-        if user 
-          @post.users << user
+        if user
           Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
         end
       end

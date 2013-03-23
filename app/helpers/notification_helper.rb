@@ -2,11 +2,7 @@ module NotificationHelper
 	def cuentaNotificaciones(notifications, type, unread)
 		num = 0
 		style = ""
-		notifications.each do |n|
-			if n.note_type == type and n.unread == unread
-				num = num + 1
-			end
-		end
+		num = notifications.where(:note_type => type, :unread => unread).count
 		if num == 0
 			style = "style=\"display:none\""
 		end
@@ -14,14 +10,7 @@ module NotificationHelper
 	end
 
 	def muestraNotificaciones(notifs, type, unread)
-		@notifications = Array.new
-		notifs.each do |n|
-			if n.note_type == type and n.unread == unread
-				@notifications << n
-			end
-		end
-		@notifications.sort_by {|n| n.id}
-		@notifications.reverse
+		@notifications = notifs.where(:note_type => type, :unread => unread).sort_by {|n| n.id}.reverse
 		"#{render :partial => "notification/list"}"
 	end
 end
