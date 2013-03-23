@@ -13,13 +13,15 @@ module NotificationHelper
 		"<span class=\"numNotif\" #{style}>#{num}</span>"
 	end
 
-	def muestraNotificaciones(notifications, type, unread)
+	def muestraNotificaciones(notifs, type, unread)
 		@notifications = Array.new
-		notifications.each do |n|
+		notifs.each do |n|
 			if n.note_type == type and n.unread == unread
 				@notifications << n
 			end
 		end
-		render :partial => "notification/list", :collection => @notifications
+		@notifications.sort_by {|n| n.id}
+		@notifications.reverse
+		"#{render :partial => "notification/list"}"
 	end
 end
