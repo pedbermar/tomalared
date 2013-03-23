@@ -52,32 +52,32 @@ class PostController < ApplicationController
       # set post variable to the post in question if we're editing, otherwise
       # open a new object
       id = params[:id]
-      post = id ? Post.find(id) : Post.new
+      @post = id ? Post.find(id) : Post.new
       # reset all of post's attributes, replacing them with those submitted
       # from the form
-      post.attributes = params[:post]
+      @post.attributes = params[:post]
       # if post has no user_id set, give it the id of the logged in user
-      post.user_id ||= current_user[:id]
+      @post.user_id ||= current_user[:id]
       type = params[:post_type]
-      post.content = params[:content] if TYPES[type]
-      post.post_type = type_parse(post.content)
+      @post.content = params[:content] if TYPES[type]
+      @post.post_type = type_parse(@post.content)
 
       require 'htmlentities'
       coder = HTMLEntities.new
-      string = post.content
-      post.content = coder.encode(string, :basic)
+      string = @post.content
+      @post.content = coder.encode(string, :basic)
       
-      content = post.content
+      content = @post.content
 
       # POST_TYPE == IMAGE
-      if post.post_type == 'image'
-        capturanombre = "#{post.user_id}-#{Time.now}"
+      if @post.post_type == 'image'
+        capturanombre = "#{@post.user_id}-#{Time.now}"
         capturanombre = capturanombre.gsub(" ","")
         direcion = "public/post/#{capturanombre}.jpg"
         if params[:img] == nil
           require 'open-uri'
           urls = Array.new
-          post.content.split.each do |u|
+          @post.content.split.each do |u|
             if u.match(/(.png|.jpg|.gif)$/)
               urls << u
             end
@@ -91,25 +91,25 @@ class PostController < ApplicationController
           end
         end
         direcion2 = "/post/#{capturanombre}.jpg"
-        post.content = direcion2
+        @post.content = direcion2
       end
 
       # POST_TYPE == LINK || VIDEO
-      if post.post_type == 'link' || post.post_type == 'video'
+      if @post.post_type == 'link' || @post.post_type == 'video'
         require 'metainspector'
         require 'iconv'
-        if post.post_type == 'link'
+        if @post.post_type == 'link'
           urls = Array.new
-          post.content.split.each do |u|
+          @post.content.split.each do |u|
             if u.match(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
               urls << u
             end
           end
           doc = MetaInspector.new(urls.first)
         end
-        if post.post_type == 'video'
+        if @post.post_type == 'video'
           urls = Array.new
-          post.content.split.each do |u|
+          @post.content.split.each do |u|
             if u.match(/\A(http|https):\/\/www.youtube.com/)
               urls << u
             end
@@ -117,7 +117,7 @@ class PostController < ApplicationController
           doc = MetaInspector.new(urls.first)
         end
         desc = doc.description
-        post.title = doc.title
+        @post.title = doc.title
         if doc.image
           img_path = doc.image
         else
@@ -126,7 +126,7 @@ class PostController < ApplicationController
 
         if img_path
           require 'open-uri'
-          capturanombre = "#{post.user_id}-#{Time.now.to_a.join}"
+          capturanombre = "#{@post.user_id}-#{Time.now.to_a.join}"
           direcion = "public/post/#{capturanombre}.jpg"
           open(direcion, "wb") do |file|
             file << open(img_path).read
@@ -137,50 +137,42 @@ class PostController < ApplicationController
           post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
       end
-      @post = nil
-      if id        
-        if post.save
-          @post = Post.find(id)
+      
+      # Agregar tags
+      t11 = Array.new
+      content.split.each do |t|
+        if t.first == '#'
+          t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
         end
-      else
-        @post = Post.create!(:post_type => post.post_type, :title => post.title, :content => post.content, :user_id => post.user_id, :tags => post.tags)
       end
+      
+      t11.each do |t|
+        tag = Tag.find_by_name(t) || Tag.new(:name => t)
+        @post.tags << tag
+        subs = Subscriptions.where(:post_id => t.id, :resource_type => Subscriptions::S_TAG)
+        subs.each do |sub|
+          Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id)
+        end
+      end
+      
+      # Notificaciones para las menciones
+      mentions = Array.new
+      content.split.each do |t|
+        if t.first == '@'
+          mentions << t.gsub(/^@/,"")
+        end
+      end
+           
+      mentions.each do |u|
+        user = User.find_by_name(u)
+        if user 
+          @post.users << user
+          Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
+        end
+      end
+      Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
       # save the post - if it fails, send the user back from whence she came
-      if @post
-        # Agregar tags
-        t11 = Array.new
-        content.split.each do |t|
-          if t.first == '#'
-            t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
-          end
-        end
-        t11.each do |t|
-          tag = Tag.find_by_name(t) || Tag.new(:name => t)
-          @post.tags << tag
-        end
-        
-        # Notificaciones para las menciones
-        mentions = Array.new
-        content.split.each do |t|
-          if t.first == '@'
-            mentions << t.gsub(/^@/,"")
-          end
-        end
-             
-        mentions.each do |u|
-          user = User.find_by_name(u)
-          if user 
-            Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
-          end
-        end
-        # Notificaciones para las usuarios que siguen los GRUPOS
-        @post.tags.each do |t|
-          subs = Subscriptions.where(:post_id => t.id, :resource_type => Subscriptions::S_TAG)
-          subs.each do |sub|
-            Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id)
-          end
-        end
-        Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
+      if @post.save
         flash[:notice] = 'El mensaje se ha guardado correctamente.'
       else
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
