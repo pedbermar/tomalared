@@ -14,12 +14,9 @@ module NotificationHelper
 	end
 
 	def muestraNotificaciones(notifs, type, unread)
-		logger.debug "#####ENTRA #{notifs}, #{type}, #{unread}"
 		@notifications = Array.new
 		notifs.each do |n|
-			logger.debug "#####1  #{n.id}"
 			if n.note_type == type and n.unread == unread
-				logger.debug "#####2  #{n.id}"
 				@notifications << n
 			end
 		end
