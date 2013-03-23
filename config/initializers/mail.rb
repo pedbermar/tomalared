@@ -1,9 +1,9 @@
 ActionMailer::Base.smtp_settings = {
-  :address => "",
+  :address => "smtp.riseup.net",
   :port => 587,
-  :domain => '',
-  :user_name => '',
-  :password => '',
+  :domain => 'tomalared.net',
+  :user_name => 'tomalared',
+  :password => 'T0malare]',
   :authentication => 'plain',
   :enable_starttls_auto => true
 }

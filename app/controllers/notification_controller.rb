@@ -1,13 +1,30 @@
 class NotificationController < ApplicationController
   def list 
-    @numNotifType1 = '#{Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 1, :unread => 1}).count}C'
-    @numNotifType2 = '#{Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 2, :unread => 1}).count}#'
-    @numNotifType3 = '#{Notifications.find(:all, :conditions => {:user_id => current_user[:id], :note_type => 3, :unread => 1}).count}@'
+    @po = Post.new
+    if params[:id]
+      @notifications = Notification.where(:post_id => params[:id])
+    else
+      @notifications = Notifications.where(:user_id => current_user[:id]).asc(:created_at).reverse[0..20]
+    end
     if params[:remote]
         respond_to do |format|
-          format.html
           format.js
         end
+    end
+  end
+  
+  def index
+    @notifications = Notification.where(:user_id => current_user[:id]).asc(:created_at).reverse[0..20]
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def update_config
+    @config = NotificationsConfig.where(:user_id => current_user[:id])
+    if @config.update_attributes(params[:config])
+      @config.save
+      flash[:notice] = "Tu cuenta ha sido actualizada!"
     end
   end
 end

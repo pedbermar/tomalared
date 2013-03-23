@@ -1,17 +1,6 @@
 <div id="cabeceraMuneco">
     <%= render :partial => "muneco" %>
 </div>
-<div id="formulario">
-    <% if current_user and !params[:id] %>
-    <%= render :partial => "newex" %>
-    <% end %>
-</div>
-<div id= "posts">
+<div id="posts" class="endless_scroll_inner_wrap">
     <%= render :partial => "posts", :collection => @posts, :as => "post" %>
 </div>
-<input type="hidden" id="remote" name="remote" value="" />
-<div id="cargandoPag" align="center"">
-    <%= image_tag("/gfx/pagina.gif", :title => "Cargando", :alt => "Cargando") %>
-</div>
-<%#= link_to "<-- Anterior ", { :page => @post_pages.current.previous, :type => params[:type] } if @post_pages.current.previous %>
-<%#= link_to "Siguiente >>", { :page  => @post_pages.current.next, :type => params[:type], :remote => true } if @post_pages.current.next %>

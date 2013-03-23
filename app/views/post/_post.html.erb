@@ -1,5 +1,0 @@
-<% partial = controller.theme_dir + "/post/types/_#{post.post_type}.rhtml" -%>
-<% partial = controller.theme_dir + "/post/types/_post.rhtml" unless File.exists?(partial) %>
-<%= render_file partial, false, { :content => post.content } %>
-
-

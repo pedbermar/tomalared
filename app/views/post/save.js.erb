@@ -1,10 +1,45 @@
-/* Replace the count of comments */
-$("#posts_count").html("<%= pluralize(Post.count, 'posts') %>");
-
-/* Add the new comment to the bottom of the comments list */
-$("#posts").prepend("<%= escape_javascript(render :partial => "post/posts", :object => @post, :as => "post" )%>");
-
+<% if flash[:notice] %>
+	$("#main").prepend("<div id=\"notice\"><%=flash[:notice]%></div>");
+	$("#notice").fadeIn("fast", function(){
+		setTimeout(function() {
+			$("#notice").remove();
+		}, 2000);
+	});
+<% end %>
+<% if flash[:error] %>
+	$("#main").prepend("<div id=\"error\"><%=flash[:error]%></div>");
+	$("#error").fadeIn("fast", function(){
+		setTimeout(function() {
+			$("#error").remove();
+		}, 2000);
+	});
+<% end %>
 /* Reset the comment form */
 resetForm($("#save"));
-
-exitoPost();
+/* Replace the count of comments */
+<%if @tag%>
+<%if @tag.posts%>
+if($("#tagPosts_count").length > 0){
+    $("#tagPosts_count").html("<%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %>");
+}
+<%end%>
+<% if @tag.users%>
+if($("#tagUsers_count").length > 0){
+    $("#tagUsers_count").html("<%= pluralize(@tag.users.count, "#{ t 'seguidor'}").html_safe %>");
+}
+<%end%>
+<%end%>
+<%if @user%>
+if($("#user_count").length > 0){
+    $("#user_count").html("<%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %> | <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %>");
+}
+<%end%>
+/* Add the new comment to the bottom of the comments list */
+if($("#posts").length > 0){
+	var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(location).attr('href');
+	if($("#remote").length > 0)
+		url = $("#remote").val();
+	if(url.indexOf("/post/") != -1){
+		$.getScript(url + "?notif=true&remote=true&postId=<%=@post.id%>");
+	}
+}

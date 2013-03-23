@@ -1,34 +1,43 @@
-#
-# Inspired by the authentication example in the Pragmatic Programmers'
-# Agile Web Development with Ruby on Rails.  Nothing too crazy.
-#
-
-class CantDestroyAdminUser < StandardError; end
-
 class User < ActiveRecord::Base
-  ADMIN_USER_ID = 1
-  PASSWORD_MIN_LENGTH = 6
 
+  include Tenacity
+  
   acts_as_authentic do |c|
+    c.login_field :name
+    c.validate_email_field = false
   end
-
-  has_many :posts, :order => 'created_at DESC'
+  
+  has_many :posts, :order => 'created_at DESC', :dependent => :destroy
   has_and_belongs_to_many :tags
-  has_many :comments, :order => "created_at DESC", :through => :posts
-  has_many :notifications, :order => "created_at DESC", :through => :posts
-  has_many :likes
-
-  before_destroy :dont_destroy_admin
-
-  #attr_accessor   :password
-  #attr_accessible :name, :password, :email
-  attr_accessible :id, :name, :email, :password, :password_confirmation, :openid_identifier, :notifications
+  has_many :comments, :order => "created_at DESC", :through => :posts, :dependent => :destroy
+  has_many :likes, :dependent => :destroy
+  has_many :shares, :dependent => :destroy
+  has_many :posts
+  t_has_many :notifications
+  t_has_many :froms, :class_name => "Notification", :foreign_key => "from_id"
+  attr_accessible :crop_x, :crop_y, :crop_w, :crop_h
+  has_attached_file :photo, :styles => { :small => "50x50", :medium => "210x210", :large => "500x500"}, :processors => [:cropper]
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  
+  attr_accessible :id, :profile, :name, :email,:url, :bio, :password, :password_confirmation, :openid_identifier, :notifications, :photo
 
   validates_uniqueness_of :name
   validates_presence_of   :name
+  validates_presence_of   :profile
+  validates_presence_of   :email
   validates_presence_of   :password, :on => :create
 
-  #has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+  
+  def avatar_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(photo.path(style))
+  end
+  
+
+  
   def before_save
     # hash the plaintext password and set it to an instance variable
     self.hashed_password = User.hash_password(self.password) if self.password
@@ -47,10 +56,7 @@ class User < ActiveRecord::Base
     (password == confirm ? true : false)
   end
 
-  def dont_destroy_admin
-    # that's you.
-    raise CantDestroyAdminUser if self.id == 1
-  end
+
 
   def active?
    active

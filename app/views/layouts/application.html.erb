@@ -1,105 +1,149 @@
-<!DOCTYPE HTML>
+<% I18n.locale = ((lang = request.env['HTTP_ACCEPT_LANGUAGE']) && lang[/^[a-z]{2}/])%>
+<!DOCTYPE html>
 <%	navegadores = ['Firefox','Chrome','Mobile','MSIE'] 
 	navegadores.each do |n| 
-	    if request.env["HTTP_USER_AGENT"].include?(n) 
-	       @navegador = n 
-	    end 
+		if request.env["HTTP_USER_AGENT"].include?(n) 
+			@navegador = n 
+		end 
   	end
   	 
 if @navegador == 'MSIE' -%>
-	<html>
-	    <head>
-	        <meta name="http-equiv" content="Content-type: text/html; charset=utf-8"/>
-	        <title>No queremos Internet explorer en esta paguina</title>
-	        <link rel="shortcut icon" href="/gfx/favicon.ico" type="image/x-icon" />
-	        <META HTTP-EQUIV="REFRESH" CONTENT="30;URL=http://www.mozilla.org/es-ES/firefox/new/"/>
-	    </head>
-	    <body>
-	        <center>
-	            Tu navegador no es aceptado en nuestro sistema, por que lo consideramos defectuoso.
-	            <br>
-	            En breves segundos te redirigiremos por el buen camino.
-	            <br>
-	            Aunque Firefox es uno hay mas.
-	            <br>
-	            Descargate cualquier navegador que no sea Intenet Explorer y l&iacute;brate de los virus.
-	            <h1>No Participaremos en la Corrupci&oacute;n de tu sistema operativo...</h1>
-	            <i>Crearemos una cilivizacion del pensamiento en le ciberespacio.</i>
-	            John Perry Barlow
-	        </center>
-	    </body>
-	</html>
+
+
+<html>
+	<head>
+			<meta charset="UTF-8" />
+			<link rel="shortcut icon" href="/gfx/favicon.ico" type="image/x-icon" />
+			<title>TOMALARED.NET :: Error navegador no compatible</title>
+			<link href="/assets/gumby.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+			<link href="/assets/text.css?body=1" media="screen" rel="stylesheet" type="text/css" />				
+			<link href="/assets/style.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+			<link href="/assets/ui.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+			<link href="/assets/application.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+			<META HTTP-EQUIV="REFRESH" CONTENT="30;URL=http://www.mozilla.org/es-ES/firefox/new/"/>
+	</head>
+	
+	  <body>
+			<header class="row topbar">
+				<a href="/" class="linkRemote titulo">tomalared.net</a>
+			</header>
+			<div class="container">
+				<div class="row maincontent">
+					<section id="main" class="twelve columns">
+						<div id="error">
+							Error :: Navegador no compatible
+						</div>
+					Tu navegador no es aceptado en nuestro sistema, por que lo consideramos defectuoso.
+					<br>
+					En breves segundos te redirigiremos por el buen camino.
+					<br>
+					Aunque Firefox es uno hay mas.
+					<br>
+					<a href="http://www.mozilla.org/es-ES/firefox/new/">Descargar Firefox</a>
+					<br> 
+					Descargate cualquier navegador que no sea Intenet Explorer y l&iacute;brate de los virus.
+					<h1>No Participaremos en la Corrupci&oacute;n de tu sistema operativo...</h1>
+					<i>Crearemos una cilivizacion del pensamiento en le ciberespacio.</i>
+					John Perry Barlow
+				</section>
+				</div>
+			
+				<footer class="row">
+					<div id="footer"  class="twelve columns">					
+						Bienvenido al ciberespacio el nuevo hogar de la mente. 
+						<br/>
+						TOMALRED.NET v0.1 (alpha)
+						<br/>
+						Basado en
+						<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~  
+						<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> 					
+				  	</div>
+				</footer>		
+			</div>
+	</body>
+</html>
 <% else -%>
 
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="shortcut icon" href="/gfx/favicon.ico" type="image/x-icon" />
-        <title>TOMALARED.NET :: <%= @page_name %></title>
-        <%= stylesheet_link_tag    "jquery-ui.custom.css"  %>
-        <%= stylesheet_link_tag    "application", :media => "all" %>
-        <%= stylesheet_link_tag    "post"  %>
-        <%= stylesheet_link_tag    "users"  %>
-        <%= stylesheet_link_tag    "tags"  %>
-        <%= stylesheet_link_tag    "comment"  %>
-        <%= stylesheet_link_tag    "user_sessions"  %>
-        <%= javascript_include_tag "application" %>
-        <%= javascript_include_tag :defaults %>
-        <%= csrf_meta_tags %>
-        <script>
-            var h1 = document.createElement('h1');
-
-            if (!('webkitTextStroke' in h1.style )) {
-
-                var heading = document.getElementsByTagName('h1')[0];
-
-                heading.style.color = 'black';
-            }
-        </script>
-    </head>
-    <body>
-
-        <% if current_user -%>
-            <%= render :partial => 'user_sessions/login' %>
-        <% end -%>
-
-        <div id="all">
-        	<div id="main" align="center">
-		        <div id="content">
-		        	
-		        	<%= yield %>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="shortcut icon" href="/gfx/favicon.ico" type="image/x-icon" />
+		<title>TOMALARED.NET :: <%= @page_name %></title>
+		<%= stylesheet_link_tag	"jquery-ui.custom"  %>
+		<%= stylesheet_link_tag	"gumby"  %>
+		<%= stylesheet_link_tag	"text"  %>
+		<%= stylesheet_link_tag	"jquery.Jcrop"  %>
+		<%= stylesheet_link_tag	"lightbox" %>
+		<%= stylesheet_link_tag	"popbox" %>
+		<%= stylesheet_link_tag	"style"  %>
+		<%= stylesheet_link_tag	"ui"  %>
+		<%= stylesheet_link_tag	"application" %>
+		<%= stylesheet_link_tag	"prettyPhoto" %>		
 		
-		        </div>
-   			        <footer id="footer">
-				        <% if current_user %>
-				        Hola, <%= current_user[:name] %>.&nbsp;
-				        <% end %>&iquest;Estas esperando la revolucion?
-				        <br/>
-				        Pues corre que ella te espera a ti...
-				        <br/>
-				        TOMALARED.NET &nbsp;v0.1 (alpha)
-				        <br/>
-				        Powered By: <a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> ~
-				        <a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~
-				        <a href="http://ushahidi.com/">Ushahidi v2.2</a>
-			        </footer>
-	        </div>
-	
-	        <div id="mainboard" align="center">
-		        <% if current_user %>
-	    		    <%= render :partial => 'users/board' %>
-	            <% else %>
-		            <% if flash[:notice] %>
-	    		        <div id="notice">
-	            	    	<%= flash[:notice] %>
-	            		</div>
-	            	<% end %>
-	            <% end %>
-	        </div>
-	        
-        </div>
-        
-    </body>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+
+	</head>
+	<body>
+		<header class="row topbar">
+			<%= render :partial => 'user_sessions/login' %>
+		</header>
+		<div class="container">
+			<div class="row maincontent">
+			<section id="main" class="<% if current_user -%>nine columns<% else -%>twelve columns<% end -%>">
+				<% if !current_user%>
+					<% if @user_session.errors.any?%>	
+						<div id="error">
+							<%= render "shared/error_messages_login", :target => @user_session %>
+						</div>																		
+					<%end%>
+				<%end%>					
+				<% if flash[:notice] %>
+					<div id="notice">
+						<%= flash[:notice] %>
+					</div>
+				<% end %>
+				<% if flash[:error] %>
+					<div id="error">
+						<%= flash[:error] %>
+					</div>
+				<% end %>
+					<%= yield %>
+				</section>
+				<input type="hidden" id="remote" name="remote" value="" />
+				<input type="hidden" id="destinatario" value="<%=@destinatario%>"/>
+				<div id="cargandoPag" align="center" style="display: none">
+				    <%= image_tag("/gfx/pagina.gif", :title => "Cargando", :alt => "Cargando", :id=> 'loarding') %>
+				</div>
+			</div>		
+				
+		</div>
+		
+		<% if current_user %>
+			<div class="container" id="mainboard">
+				<div class="row" id="trasfondo">
+						<aside class="three columns push_nine board-background">
+									<%= render :partial => 'users/board' %>
+						</aside>
+				</div>  
+			</div>
+   		<% end %>	
+		<div class="container">	
+	   		<footer class="row">
+					<div id="footer"  class="<% if current_user -%>nine columns<% else -%>twelve columns<% end -%>">
+						<% if current_user %>
+						<%= t 'hola' %> <%= current_user[:name] %>. 
+						<% end %><%= t 'bienvenido' %> 
+							<br/>
+							<%= t 'version' %>
+						<br/>
+						<%= t 'basado' %>
+						<a href="http://ozimodo.rubyforge.org/">Ozimodo v1.2.1</a> ~  
+						<a href="http://rubyonrails.org/">RubyOnRails v3.2.6</a> 					
+				  	</div>
+				</footer>	
+		</section>
+   			
+	</body>
 </html>
 <% end -%>
-

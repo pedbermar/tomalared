@@ -1,3 +1,8 @@
-$("#notifType1").html(<%= escape_javascript(@numNotifType1)%>);
-$("#notifType2").html(<%= escape_javascript(@numNotifType2)%>);
-$("#notifType3").html(<%= escape_javascript(@numNotifType3)%>);
+<% if params[:id] %>
+	$("#popbox-notif<%=params[:type]%>").before("<%= escape_javascript(render :partial => "notification/list", :collection => @notifications) %>");
+<% else %>
+	$("#popbox-notif<%=params[:type]%>").html("<%= escape_javascript(render :partial => "notification/list", :collection => @notifications) %>");
+<% end %>
+$("#posts").show();
+if ($("#cargandoPag").dialog("isOpen"))
+	$("#cargandoPag").dialog("close");

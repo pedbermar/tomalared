@@ -1,55 +1,64 @@
-<%= div_for post do %> <div id="div_hr"></div>
-<% @user = User.find(post.user_id) -%>
-<div class="datos">
-    <%if current_user%>
-    <%if current_user[:id] == post.user_id%>
-    <div class="iconBorrarPost">
-        <%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id },
-        :confirm => "¿Seguro que quieres borrar es post?", :class => "borrarPost", :method => :delete, :remote => true %>
-    </div>
-    <% end %>
-    <% end %>
-    <span class="titulo"><b><u><%= link_to "@#{@user.name}" , "/post/user/@user.id", :class => "linkRemote" %></b></u>,
-        &nbsp;<%= distance_of_time_in_words(Time.now, Time.at(post.created_at), false,  :highest_measure_only => true, :locale => "es")%> ago</span>
-    <br />
+<%= div_for(post, :class => "endless_scroll_content") do %>
+	<% @post_user = post.user -%>
+	<article class="postContent">
 
-    <% if post.post_type != 'quote' %>
-    <span id="post-tags" <% if post.tags.empty? %>style="display:none;"<% end %>> <%= linked_tags_with_commas(post.tags).html_safe %> </span>
-    <% end %>
-
-    <div class="new-foto">
-        <br>
-        <% if FileTest.exists?("public/img/#{post.user_id}.jpg") %>
-        <div class="mediano-muneco" style="background: url(/img/<%= post.user_id%>.jpg) no-repeat center; background-size: 200%;"></div>
-        <% else %>
-        <div class="mediano-muneco" style="background: url(/img/default.jpg) no-repeat center; background-size: 100%;"></div>
-        <% end -%>
-
-        <br>
-
-        <%if current_user%>
-        <%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id} %>
-        <%if current_user[:id] == post.user_id%>
-        <br>
-        <%if post.post_type == 'post'%>
-        <%= link_to 'Edit', { :controller => :post, :action => 'edit', :id => post.id }, :class => "editarPost", :remote => true %>
-        <br>
-        <%end%>
-        <% else %>
-        <%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
-        <% end %>
-
-        <% end %>
-    </div>
-
-    <div id="textar">
-        <div id="textare">
-            <%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @user.name, :title => post.title } %>
-        </div>
-    </div>
-
-    <%= render :partial => 'comment/index', :object => post, :as => "post" %>
-    <input type="hidden" id="created_at_<%= post.id %>" value="<%= post.created_at %>"/>
-</div>
+		<div class="mediano-muneco">
+			<div class="arrow-left"></div>	
+			<%if @user%>	
+				<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
+			<%else%>	
+				<%= link_to image_tag( @post_user.photo.url(:medium)  , :alt => "Imagen de #{@post_user.name}"), "/post/user/#{@post_user.name}", :class => "linkRemote mediano-muneco-post" %>
+			<%end%>
+		</div>
+	
+		<div class="mainPostContent">
+			<span class="iconos">
+				<%if current_user[:id] == post.user_id%>
+					<span class="ocultarIconos">
+						<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id }, :class => "borrarPost", :method => :delete, :remote => true %>
+					</span>
+				<% else %>
+					<div id="sharePost_<%=post.id%>" class="ocultarIconos">
+						<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
+					</div>					
+				<% end %>
+				
+				<%if current_user%>
+					<%= render :partial => 'vote/vote_post', :locals => {:post_id => post.id, :likes => post.likes} %>
+				<% end %>
+			</span>
+			
+			<%if @user %>
+				<%if @post_user.id != @user.id %>
+					<%= link_to "#{@user.profile}", "/post/user/#{@user.name}", :class => "linkRemote user", :title =>  "@#{@user.name}"  %>
+					<%= t'posts.share'%> 
+					<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user", :title =>  "@#{@post_user.name}"  %>
+				<% else %>
+					<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user", :title =>  "@#{@post_user.name}"  %>
+				<% end %>
+			<%else %>
+				<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user",:title =>  "@#{@post_user.name}" %>
+			<% end %>
+			
+			<br/>
+			<span class="timeCount">
+				<%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %>		
+			</span>
+			
+			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @post_user.name, :title => post.title, :post_id => post.id } %>
+			<%if post.tags.first && post.post_type != 'quote' %>
+				<div class="postFooter">
+					<span class="tag" > <%= linked_tags_with_commas(Post.find(post.id).tags).html_safe %></span>			
+				</div>
+			<%end%>			    
+		</div>
+	</article>
+	
+	<footer class="postComments">
+		<%= render :partial => 'comment/index', :object => post, :as => "post" %>
+	</footer>
+	
+	<input type="hidden" id="created_at_<%= post.id %>" class="created_at" value="<%= post.created_at %>"/>
 <% end %>
+<div style="clear:both"></div>
 

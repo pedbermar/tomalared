@@ -1,32 +1,11 @@
-<%if !Likes.exists?(:user_id => current_user, :like_type => 2, :type_id => comment_id)%>
-			<%= link_to image_tag( "/gfx/positivo_b_hover.png", :alt => "Votar positivamente",:class => "icons3", :mouseover => image_path("/gfx/positivo.png")),
-										 {:controller => :vote, :action => 'like', :like_type => 2, :type_id => comment_id },
-										 :confirm => "¿Seguro que quieres votar positivamente este post?", :method => :delete %>  
-
-			<%= link_to image_tag( "/gfx/negativo_b_hover.png", :alt => "Votar negativamentemente",:class => "icons3", :mouseover => image_path("/gfx/negativo.png")),
-										 {:controller => :vote, :action => 'dontlike', :like_type => 2, :type_id => comment_id},
-										 :confirm => "¿Seguro que quieres votar negativamente este post?", :method => :delete %> 
-<% else %>
-
-			<% if Likes.exists?(:user_id => current_user, :like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0) %>
-							<%= image_tag( "/gfx/positivo.png", :alt => "Votar positivamente",:class => "icons3")%>  
-
-							<%= link_to image_tag( "/gfx/negativo_b_hover.png", :alt => "Votar negativamente",:class => "icons3", :mouseover => image_path("/gfx/negativo.png")),
-																								{:controller => :vote, :action => 'change_to_dontlike', :like_type => 2, :type_id => comment_id }, 
-																								 :confirm => "¿Seguro que quieres cambiar tu voto a negativo?", :method => :delete %> 
-			<% else %>
-
-								<%= link_to image_tag( "/gfx/positivo_b_hover.png", :alt => "Votar positivamente",:class => "icons3", :mouseover => image_path("/gfx/positivo.png")),
-																								{:controller => :vote, :action => 'change_to_like', :like_type => 2, :type_id => comment_id},
-																								 :confirm => "¿Seguro que quieres cambiar tu voto a positivo?", :method => :delete %> 
-
-								<%=image_tag( "/gfx/negativo.png", :alt => "Votar negativamente",:class => "icons3")%>
-
-			<% end %>
-<% end %>
-
-&nbsp;
-<span style="color: green;"><%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count%></span>
-
-<span style="color: red;"><%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count%></span>
-	<%= Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 1, :dontlike => 0 }).count - Likes.find(:all, :conditions => {:like_type => 2, :type_id => comment_id, :like => 0, :dontlike => 1 }).count  %> 		
+<ul class="voteMenu">
+	<li class="ocultarIconosCm">
+		<%=existeVotoPropietario(2, comment_id, "Menos", likes) %>
+	</li>
+	<li class="ocultarIconosCm">
+		<%=existeVotoPropietario(2, comment_id, "Mas", likes) %>
+	</li>
+	<li id="numVotosComment_<%=comment_id %>" class="icons ocultarIconosCm">
+		<%=numVotos(likes) %>
+	</li>
+</ul>

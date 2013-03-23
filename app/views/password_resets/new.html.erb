@@ -1,8 +1,7 @@
-
-<p>Ingresa tu email</p>
-
-<%= form_tag password_resets_path do %>
-  <%= text_field_tag :email %>
-  <%= submit_tag "Reset Password" %>
-<% end %>
-
+<div id="reg">
+	<h5>Ingresa tu email</h5>	
+	<%= form_tag '/password_resets/create' do %>
+	  <%= text_field_tag :email %>
+	  <%= submit_tag "Reset Password" %>
+	<% end %>
+</div>

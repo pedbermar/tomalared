@@ -1,19 +1,44 @@
-<%= render "shared/error_messages", :target => @user %>
+<% if @usernew.errors.any? %>
+	<div class="registro">
+<% else %>
+	<div class="registro2">
+<% end %>  
+  <%= form.text_field :name, :placeholder => t('perfil.name') %>  
+  <%= form.text_field :profile , :placeholder => t('perfil.profile') %>  
+  <%= form.text_field :email, :placeholder => t('perfil.email') %>
+  <%= form.password_field :password, :placeholder => t('perfil.clave') %>
+  <%= form.password_field :password_confirmation, :placeholder => t('perfil.repite_clave') %>
+  <%= check_box_tag 'accept'%><%= t 'acepto' %> <a href="#"  class="condicion"> <%= t 'condiciones' %> </a>
 
-<p>
-  <%= form.label :name %><br />
-  <%= form.text_field :name %>
-</p>
-<p>
-  <%= form.label :email %><br />
-  <%= form.text_field :email %>
-</p>
-<p>
-  <%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
-  <%= form.password_field :password %>
-</p>
-<p>
-  <%= form.label :password_confirmation %><br />
-  <%= form.password_field :password_confirmation %>
-</p>
+</div>
+<%= render "shared/error_messages", :target => @usernew %>
 
+<div style="clear:both"></div>
+<div class="condiciones">
+	<a href="#" class="cerrar-condiciones"> <%= t 'cerrar' %></a>
+	<h5><%= t 'condiciones_servicio' %></h5>
+	<p>
+		<%= t 'condiciones_servicio1' %>
+	</p>
+	
+	<p>
+		<%= t 'condiciones_servicio2' %>
+	</p>
+	
+	<p>
+		<%= t 'condiciones_servicio3' %>
+	</p>
+	
+	<p>
+		<%= t 'condiciones_servicio4' %>
+	</p>
+	 
+	<p>	
+		<%= t 'condiciones_servicio5' %>
+	</p>
+	
+	<p>
+		<%= t 'condiciones_servicio6' %>
+	</p>	
+</div>
+  <%= form.submit "#{t'crear'}" %>

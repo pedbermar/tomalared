@@ -2,47 +2,6 @@ class PostController < ApplicationController
 
   helper :all
 
-  # list by date - its own method so we can do pagination right
-  def list_by_date
-    datestring = "#{params[:year]}-#{params[:month]}"
-    datestring << "-#{params[:day]}" if params[:day]
-    list :conditions => ['created_at LIKE ?', datestring + '%']
-  end
-
-  # list by post type - its own method so we can do pagination right
-  def list_by_type
-    list :conditions => ['post_type = ?', params[:type]]
-  end
-
-  # list by user id
-  def list_by_uid
-     @user = User.find(params[:id])
-    list :conditions => ['user_id = ?', @user[:id]]
-  end
-
-  # display all the posts associated with a tag
-  def tag
-    tags = params[:tag].split(' ')
-
-    # if more than one tag is specified, get the posts containing all the
-    # passed tags.  otherwise get all the posts with just the one tag.
-    if tags.size > 1
-      @posts = Post.find_by_tags(tags)
-    else
-      post_ids = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id', :include => :tags,
-                           :conditions => ['pt.tag_id = tags.id AND tags.name = ?', tags]).map(&:id)
-      @post_pages, @posts = paginate :posts, :include => [:tags, :user], :order => 'created_at DESC',
-                                     :per_page => TUMBLE['limit'], :conditions => ['posts.id IN (?)', post_ids.join(',')]
-    end
-
-    if @posts.size.nonzero?
-      render :action => 'list'
-    else
-      error "Tag not found."
-    end
-  end
-
-  # show a post, or redirect if we got here through hackery.
   def show
     begin
       if params[:id]
@@ -61,18 +20,6 @@ class PostController < ApplicationController
     @error_msg = x
     render :action => 'error'
   end
-
-  # override template root to your theme's
-  def self.template_root
-    theme_dir
-  end
-  helper :all
-
-  #
-  # post management
-  #
-
-  # we do this a lot.  hrm.
 
   def edit()
     if current_user[:id] != params[:user_id]
@@ -114,6 +61,14 @@ class PostController < ApplicationController
       type = params[:post_type]
       post.content = params[:content] if TYPES[type]
       post.post_type = type_parse(post.content)
+
+      require 'htmlentities'
+      coder = HTMLEntities.new
+      string = post.content
+      post.content = coder.encode(string, :basic)
+      
+      content = post.content
+
       # POST_TYPE == IMAGE
       if post.post_type == 'image'
         capturanombre = "#{post.user_id}-#{Time.now}"
@@ -121,8 +76,14 @@ class PostController < ApplicationController
         direcion = "public/post/#{capturanombre}.jpg"
         if params[:img] == nil
           require 'open-uri'
+          urls = Array.new
+          post.content.split.each do |u|
+            if u.match(/(.png|.jpg|.gif)$/)
+              urls << u
+            end
+          end
           open(direcion, "wb") do |file|
-            file << open(post.content).read
+            file << open(urls.first).read
           end
         else
           File.open(direcion, "wb") do |file|
@@ -132,29 +93,29 @@ class PostController < ApplicationController
         direcion2 = "/post/#{capturanombre}.jpg"
         post.content = direcion2
       end
-      # POST_TYPE == QUOTE
-      if post.post_type == 'quote'
-        t11 = Array.new
-        post.content.split.each do |t|
-          if t.first == '#'
-            t11 << t.gsub(/^#/,"")
-          end
-        end
-        t11.each do |t|
-          tag = Tag.find_by_name(t) || Tag.new(:name => t)
-          post.tags << tag
-        end
-      else
-        params[:tags].split.each do |t|
-          tag = Tag.find_by_name(t) || Tag.new(:name => t)
-          post.tags << tag
-        end
-      end
-      # POST_TYPE == (LINK)
-      if post.post_type == 'link'
+
+      # POST_TYPE == LINK || VIDEO
+      if post.post_type == 'link' || post.post_type == 'video'
         require 'metainspector'
         require 'iconv'
-        doc = MetaInspector.new(post.content)
+        if post.post_type == 'link'
+          urls = Array.new
+          post.content.split.each do |u|
+            if u.match(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
+              urls << u
+            end
+          end
+          doc = MetaInspector.new(urls.first)
+        end
+        if post.post_type == 'video'
+          urls = Array.new
+          post.content.split.each do |u|
+            if u.match(/\A(http|https):\/\/www.youtube.com/)
+              urls << u
+            end
+          end
+          doc = MetaInspector.new(urls.first)
+        end
         desc = doc.description
         post.title = doc.title
         if doc.image
@@ -170,14 +131,14 @@ class PostController < ApplicationController
           open(direcion, "wb") do |file|
             file << open(img_path).read
           end
-          img_url = "http://localhost:3000/post/#{capturanombre}.jpg"
-          post.content = desc + "\n" + img_path + "\n" + doc.url + "\n" + doc.host
+          img_url = "/post/#{capturanombre}.jpg"
+          post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
         else
           post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
       end
       @post = nil
-      if id
+      if id        
         if post.save
           @post = Post.find(id)
         end
@@ -186,40 +147,41 @@ class PostController < ApplicationController
       end
       # save the post - if it fails, send the user back from whence she came
       if @post
-        flash[:notice] = 'El mensaje se ha guardado correctamente.'
+        # Agregar tags
+        t11 = Array.new
+        content.split.each do |t|
+          if t.first == '#'
+            t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
+          end
+        end
+        t11.each do |t|
+          tag = Tag.find_by_name(t) || Tag.new(:name => t)
+          @post.tags << tag
+        end
+        
+        # Notificaciones para las menciones
+        mentions = Array.new
+        content.split.each do |t|
+          if t.first == '@'
+            mentions << t.gsub(/^@/,"")
+          end
+        end
+             
+        mentions.each do |u|
+          user = User.find_by_name(u)
+          if user 
+            Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
+          end
+        end
         # Notificaciones para las usuarios que siguen los GRUPOS
-        post.tags.each do |t|
-          t.users.each do |u|
-            if u.id != current_user[:id]
-              note = Notifications.new
-              note.user_id = u.id
-              note.note_type = 2
-              note.from = current_user[:id]
-              note.post_id = @post.id
-              note.save
-            end
+        @post.tags.each do |t|
+          subs = Subscriptions.where(:post_id => t.id, :resource_type => Subscriptions::S_TAG)
+          subs.each do |sub|
+            Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id)
           end
         end
-        # Notificaciones para las MENCIONES
-        if post.post_type == 'quote'
-          mentions = Array.new
-          post.content.split.each do |t|
-            if t.first == '@'
-              mentions << t.gsub(/^@/,"")
-            end
-          end
-          mentions.each do |u|
-            user = User.find_by_name(u)
-            if user.id != current_user[:id]
-              note = Notifications.new
-              note.user_id = user.id
-              note.note_type = 3
-              note.from = current_user[:id]
-              note.post_id = @post.id
-              note.save
-            end
-          end
-        end
+        Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
+        flash[:notice] = 'El mensaje se ha guardado correctamente.'
       else
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
       end
@@ -230,32 +192,51 @@ class PostController < ApplicationController
           format.js
         end
       end
-      #redirect_to :back
     end
   end
 
-  # ooo, pagination.
-  def list(options = Hash.new)
+  def list(options = Hash.new)    
     @po = Post.new
     @post = Post.new
+    @destinatario = ""
     @pagina = params[:pagina]
     @soloposts = params[:soloposts]?true:false
+    last = params[:last].blank? ? 1 : params[:last]
+    postId = params[:postId].blank? ? 1 : params[:postId]
+    if params[:direccion] == "next"
+      direccion = " AND posts.id < ?"
+    elsif params[:direccion] == "prev"
+      direccion = " AND posts.id > ?"
+    else
+      direccion = " AND 1=?"
+    end
+    if params[:postId]
+      filtroId = " AND posts.id = ?"
+    else
+      filtroId = " AND 1=?"
+    end
     if @pagina == "list"
       if params[:id]
-        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
+        if !params[:last] and !params[:postId]
+          @posts = Post.find(:all, 
+                             :conditions => {:id => params[:id]})
+        else
+          @posts = Array.new
+        end
         @uno_solo = true
       else
         if params[:type]
           @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+                             :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                             :conditions => ["posts.post_type = ?  AND  pt.tag_id IN (?)" + direccion + filtroId, params[:type], current_user.tags, last, postId], 
+                             :order => "posts.created_at DESC")
         else
-            @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+          @posts = Post.find(:all,
+                             :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                             :conditions => ["pt.tag_id IN (?)" + direccion + filtroId, current_user.tags, last, postId], 
+                             :order => "posts.created_at DESC")
         end
+        @posts = @posts.uniq_by{|x| x.id}
       end
       if !@soloposts
         @page_name = "Todos los Posts"
@@ -263,25 +244,29 @@ class PostController < ApplicationController
     elsif @pagina == "tag"
       @tagName = params[:id]
       @tag = Tag.find_by_name(@tagName)
+      @destinatario = "#" + @tagName
       # if more than one tag is specified, get the posts containing all the
       # passed tags.  otherwise get all the posts with just the one tag.
       if params[:type]
-        @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                           :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, params[:type]],
-                           :order => 'posts.created_at DESC',
+        @posts = Post.find(:all, 
+                           :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                           :conditions => ["pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?" + direccion + filtroId, @tagName, params[:type], last, postId],
+                           :order => "posts.created_at DESC",
                            :include => [:tags, :user])
       else
-        @posts = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                           :conditions => ['pt.tag_id = tags.id AND tags.name = ?', @tagName],
-                           :order => 'posts.created_at DESC',
+        @posts = Post.find(:all, 
+                           :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                           :conditions => ["pt.tag_id = tags.id AND tags.name = ?" + direccion + filtroId, @tagName, last, postId],
+                           :order => "posts.created_at DESC",
                            :include => [:tags, :user])
       end
       
       if !@soloposts
         #foto aleatoria de la cabezera de list por tags
-        @tag_foto = Post.find(:all, :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-                              :conditions => ['pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?', @tagName, "image"],
-                              :order => 'rand()',
+        @tag_foto = Post.find(:all, 
+                              :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                              :conditions => ["pt.tag_id = tags.id AND tags.name = ? AND posts.post_type = ?", @tagName, "image"],
+                              :order => "rand()",
                               :limit => 1,
                               :include => [:tags, :user])
     
@@ -291,7 +276,7 @@ class PostController < ApplicationController
   
         @post.content = "##{params[:id]} "
     
-        @users_tag =  Tag.find_by_sql(['SELECT u.*, tu.tag_id FROM tags_users as tu, users as u WHERE u.id = tu.user_id and tu.tag_id = ?', @tag])
+        @users_tag =  Tag.find_by_sql(["SELECT u.*, tu.tag_id FROM tags_users as tu, users as u WHERE u.id = tu.user_id and tu.tag_id = ?", @tag])
         @page_name = "Post del Tag #{params[:id]}"
       end
     elsif @pagina == "user"
@@ -304,42 +289,69 @@ class PostController < ApplicationController
       else
         @user = User.find(current_user[:id])
       end
-      @posts = Post.find(:all, :conditions => { :user_id => @user.id }, :order => 'id DESC', :limit => '10')
-      @post_share = Share.find(:all, :conditions => {:user_id => @user.id })
-      @post_share.each do |ps|
-        p = Post.find(ps.post_id)
-        p.created_at = ps.created_at
-        @posts << p
+      if @user.id != current_user[:id]
+        @destinatario = "@" + @user.name
       end
-      @posts= @posts.sort_by {|post| post.created_at}.reverse
-      
+      @posts = Post.find(:all,
+                         :select => "posts.id, posts.user_id, posts.title, posts.post_type, posts.content, ifnull(sh.created_at, posts.created_at) created_at",
+                         :joins => "LEFT OUTER JOIN shares sh ON posts.id = sh.post_id",
+                         :conditions => ["(posts.user_id = ? OR sh.user_id = ?)" + direccion + filtroId, @user.id, @user.id, last, postId], 
+                         :order => "6 DESC", 
+                         :limit => "10")
+      #Post.find_by_sql ["SELECT * FROM vPosts WHERE user_id = ?" + direccion + filtroId + " ORDER BY created_at DESC LIMIT 10", @user.id, last, postId]
+
       if !@soloposts
         if params[:id]
           @post.content = "@#{params[:id]} : "
         end
         @page_name = "Post de #{@user.name}"
       end
+    elsif params[:pagina] == "mentions"
+      con = Notification.where(:user_id => current_user[:id], :from => params[:id], :note_type => Notifications::USER)
+      con = con + Notification.where(:user_id => params[:id], :from => current_user[:id], :note_type => Notifications::USER)
+      cons = Array.new
+      con.each do |c|
+        cons << c.post_id
+      end
+      @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
+    elsif params[:pagina] == "notifications"
+      comm= Notification.where(:user_id => current_user[:id], :note_type => params[:id])
+      cons = Array.new
+      comm.each do |c|        
+        cons << c.post_id
+      end
+      if cons
+        @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
+        comm.each do |c|       
+          if c.unread == 1
+            c.unread = 0
+            c.save
+          end 
+        end
+      end      
     else
       if params[:id]
-        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => 'id DESC')
+        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => "id DESC")
         @uno_solo = true
       else
         if params[:type]
           @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-            :conditions => {:post_type=> params[:type], 'pt.tag_id' => current_user.tags }, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+                             :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                             :conditions => ["post_type = ? AND pt.tag_id IN (?)" + direccion + filtroId, params[:type], current_user.tags, last, postId],
+                             :order => "posts.created_at DESC")
         else
-            @posts = Post.find(:all,
-            :joins => 'JOIN posts_tags pt ON pt.post_id = posts.id',
-             :conditions => {'pt.tag_id' => current_user.tags}, :order => 'id DESC')
-            @posts = @posts.uniq_by{|x| x.id}
+          @posts = Post.find(:all,
+                             :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
+                             :conditions => ["pt.tag_id IN (?)" + direccion + filtroId, current_user.tags, last, postId],
+                             :order => "posts.created_at DESC")
         end
+        @posts = @posts.uniq_by{|x| x.id}
       end
       if !@soloposts
         @page_name = "Todos los Posts"
       end
     end
+    @userNotif = User.find(current_user[:id])
     if !params[:external] || params[:remote]
       respond_to do |format|
         format.html
@@ -348,36 +360,17 @@ class PostController < ApplicationController
     end
   end
 
-  def note
-    @po = Post.new
-    note = Notifications.find(:all, :conditions => { :user_id => current_user[:id], :note_type => params[:note_type]}, :order => 'id DESC')
-
-    @posts = Array.new
-    note.each do |m|
-      @posts << Post.find(m.post_id)
-      m.unread = 0
-      m.save
-    end
-    @posts = @posts.uniq_by{|x| x.id}
-    render :list
-  end
-
   # grab the post and destroy it.  simple enough.
   def delete
     @post = Post.find(params[:id])
-    if @post
-      @notes = Notifications.find(:all, :conditions => { :post_id => @post.id})
-
-      @notes.each do |m|
-        m.destroy
-      end
-      if @post.destroy
+    if @post           
+      if @post.destroy        
         flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
-        flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
+        flash[:notice] = "Ha habido un problema al borrar el mensaje."
       end
     else
-      flash[:notice] = 'No se encuentra el mensaje.'
+      flash[:notice] = "No se encuentra el mensaje."
     end
     respond_to do |format|
       format.html { redirect_to post_path }
@@ -385,31 +378,40 @@ class PostController < ApplicationController
     end
   end
 
-  def mentions
-    @post = Post.new
-    @user  = User.find(params[:user])
-    @post.post_type = 'quote'
-    @post.content = "@#{@user.name} "
-
-    @mentions = Notifications.find(:all,
-                                   :conditions => ["((`user_id` = ? AND `from` = ?) OR (`user_id` = ? AND `from` = ?)) AND `note_type` = 3", current_user[:id], params[:user], params[:user], current_user[:id]],
-                                   :order => 'post_id DESC')
-
-    @posts = Array.new
-    @mentions.each do |m|
-      @posts << Post.find(m.post_id)
-    end
-    render :action => 'edit'
-  end
-
   def type_parse(str)
-    if str.split.count == 1
-      if str.split.first.match(/\A(http|https):\/\/www.youtube.com/)
-        type = "video"
-      elsif str.split.first.match(/(.png|.jpg|.gif)$/)
-        type = "image"
-      elsif str.split.first.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/)
-        type = "link"
+    plain = 0
+    str.split.each do |x|
+      if x.match(/\A(http|https):\/\/www.youtube.com/) == nil and 
+      x.match(/(.png|.jpg|.gif)$/) == nil and
+      x.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/) == nil and 
+      x.match(/^#/) == nil and
+      x.match(/^@/) == nil
+        plain = 1
+      end
+    end
+    if  plain == 0 #str.split.count == 1
+      imgs = Array.new
+      videos = Array.new
+      links = Array.new
+      str.split.each do |w|
+        if w.match(/(.png|.jpg|.gif)$/)
+          imgs << w
+        elsif w.match(/\A(http|https):\/\/www.youtube.com/)
+          videos << w
+        elsif w.match(/\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}/)
+          links << w
+        end
+      end
+      if imgs.count + videos.count + links.count == 1
+        if imgs.first
+          type = "image"
+        elsif videos.first
+          type = "video"
+        elsif links.first
+          type = "link"
+        end
+      else 
+        type = "quote"
       end
     elsif str.size < 150
       type = "quote"
@@ -418,6 +420,4 @@ class PostController < ApplicationController
     end
     return type
   end
-
 end
-

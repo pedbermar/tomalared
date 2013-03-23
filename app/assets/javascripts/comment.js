@@ -1,38 +1,65 @@
-function pintarBotonesComment() {
-	$(".borrarComentario").button({
+function pintarBotonesComment(postId, commentId) {
+	var elemento = postId;
+	if(commentId != ""){
+		elemento = commentId;
+	}
+	$(elemento + ".borrarComentario").button({
 		icons : {
-			primary : "ui-icon-close"
+			primary : "ui-icon-trash"
 		},
 		text : false
 	});
-	$(".editarComentario").button({
-		icons : {
-			primary : "ui-icon-document"
-		},
-		text : false
+	$(postId + ".comentar").button();
+}
+
+function inicioComment(idPost) {
+	$(idPost + ".formComentContent").charcount({
+		position : 'after'
 	});
 }
 
-function vueltaComment() {
+function llegadaComment(notif) {
+	if($("#post_" + notif.post_id).length > 0){
+		$.getScript("/comment/list/" + notif.resource_id + "?post=" + notif.post_id + "&notif=true&remote=true");
+	} else {
+		$.getScript("/post/list/" + notif.post_id + "?notif=true&remote=true");
+	}
+}
+
+function vueltaComment(postId, commentId) {
+	var elemento = postId;
+	if(commentId != ""){
+		elemento = commentId;
+	}
 	setTimeout(function() {
-		pintarBotonesComment();
-		$(".comments-old").find(".comment").first().removeAttr("style");
+		$(elemento).removeAttr("style");
 	}, 1000);
 };
 
-function exitoComment() {
-	$(".comments-old").find(".comment").last().effect("highlight", {}, "fast",
-			vueltaComment());
+function exitoComment(postId, commentId) {
+	pintarBotonesComment(postId, commentId);
+	pintarBotonesVote(postId, commentId);
+	$(commentId + " .formComentContent").val("").trigger('charcount');
+	$(commentId).effect("highlight", {}, "fast", vueltaComment(postId, commentId));
 }
 
+
 $(document).ready(function() {
-	$(".comentar").button();
-	$(".comentar").click(function() {
-		var texto = $(this).parent().find("textarea.comment-new").val();
+	$(document).on("click", ".comentar", function() {
+		var texto = $(this).parent().find("textarea#body").val();
 		if (texto.length == 0) {
 			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
 			return false;
 		}
 	});
-	pintarBotonesComment();
-});
+	$(document).on("mouseover", ".mainComentContent", function() {
+		var id = $(this).parent().parent().attr("id");
+		$("#" + id + " .ocultarIconosCm").css("visibility", "visible" );
+	}).on("mouseleave", ".mainComentContent", function(){
+		var id = $(this).parent().parent().attr("id");
+		$("#" + id + " .ocultarIconosCm").css("visibility", "hidden" );
+	});
+	inicioComment("");
+	pintarBotonesComment("", "");
+	pintarBotonesVote("", "");
+}); 

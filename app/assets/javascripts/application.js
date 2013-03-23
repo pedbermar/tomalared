@@ -10,15 +10,42 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// 		.JS LLAMADOS POR RAILS
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require private_pub
+//
+// 		NUESTOS .JS
+//= require vote
+//= require users
+//= require user_sessions
+//= require search
+//= require post
+//= require comment
+//= require notification
+//= require charCount
+//
+//		LIBRERIAS DE JQUERY
+//= require libs/plugins
+//= require libs/modernizr-2.0.6.min
+//= require libs/popbox
+//= require libs/gumby
+//= require libs/jquery-ui
+//= require libs/jquery.endless-scroll
+//= require libs/jquery.color
+//= require libs/jquery.Jcrop
+//= require libs/jquery.mousewheel.min
+//= require libs/jquery.tagsphere
+//= require libs/jquery.prettyPhoto
 
 function resetForm($form) {
-	$form.find('input:text, input:password, input:file, select, textarea').val(
-			'');
-	$form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr(
-			'selected');
+	$form.find('input:text, input:password, input:file, select, textarea').val('');
+	$form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+}
+
+function esNumero(num) {
+	var regExp = new RegExp('^\\d+$');
+	return regExp.test(num);
 }
 
 jQuery.ajaxSetup({
@@ -29,7 +56,6 @@ jQuery.ajaxSetup({
 
 jQuery.fn.submitWithAjax = function() {
 	this.submit(function() {
-		$("#cargando").show();
 		$.post(this.action, $(this).serialize(), function() {
 		}, "script");
 		return false;
@@ -40,4 +66,63 @@ jQuery.fn.submitWithAjax = function() {
 $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
+	$("#tumblear").button();
+	
+	$("#cargandoPag").dialog({
+		autoOpen : false,
+		minHeight : 66,
+		minWidth : 66,
+		maxWidth : 66,
+		draggable : false,
+		resizable : false,
+		dialogClass : "cargandoPagPost"
+	});
+
+	$("#form-new").dialog({
+		autoOpen : false,
+		resizable : false,
+		height : 180,
+		width : 600,
+		closeOnEscape : true
+	});
+
+	$("#open-publicar").click(function() {
+		$("#post_content").val("");
+		if ($("#destinatario").val() != "")
+			$("#post_content").val($("#destinatario").val()).trigger('update');
+		else
+			$("#post_content").trigger('charcount');
+		$("#form-new").dialog("open");
+		$("#post_content").focus();
+	});
+
+	$("#tumblear").click(function() {
+		if ($("#post_content").val().length == 0) {
+			alert("El mensaje está vacío ¿seguro no quieres decir nada?");
+			return false;
+		}else{
+			$("#form-new").dialog("close");
+		}
+	});
+	
+	
+	function CambioTamano() {
+		if ($(window).width()<=780)
+		{
+			$("#mainboard").css({"position":"static", "width" : "auto", "margin" : "0 auto"});
+			$(".board-background").css({"margin-top": "80px", "width" : "auto !important"});			
+			$("#main").css({"margin-top": "70px"});
+		}
+		else
+		{
+			$("#mainboard").css({"position":"fixed", "width" : "100%"});
+			$(".board-background").css({"margin-top": "5px", "width" : "220px"});
+			$("#main").css({"margin-top": "20px"});
+		}
+	}
+	CambioTamano();	
+    $(window).resize(function(){
+		CambioTamano();	
+    });	
 });
+

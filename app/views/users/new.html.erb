@@ -1,10 +1,7 @@
-<div id="create_user">
-<br /><br />
-<%= image_tag( "/gfx/logo.png", :alt => "Logo", :class => 'logo') %>
-<br /><br />	<h3>Create User</h3>
-	<%= form_for(@user) do |f| %>
-		<%= render :partial => "form", :object => f, :locals => { :user => @user } %>
-		<%= f.submit "Crear" %>
+<div id="reg">
+	<h1><%= t 'registrate' %></h1>
+	<%= form_for(@usernew) do |f| %>
+		<%= render :partial => "users/form", :object => f, :locals => { :user => @usernew } %>		
 	<% end %>
 </div>
 

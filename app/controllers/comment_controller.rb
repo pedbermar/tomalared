@@ -22,29 +22,31 @@ class CommentController < ApplicationController
     @comment = Comment.create!(:body => params[:body], :post_id => params[:post_id], :user_id => current_user[:id])
     
     if @comment
-      # Notificaciones para el propietario del post donde se hace el COMENTARIO
-      post = Post.find(params[:post_id])
-      user = User.find(post.user_id)
-      if user.id != @comment.user_id
-        note = Notifications.new
-        note.user_id = user.id
-        note.note_type = 1
-        note.from = @comment.user_id
-        note.post_id = @comment.post_id
-        note.save
+      require 'htmlentities'
+      coder = HTMLEntities.new
+      string = @comment.body
+      @comment.body = coder.encode(string, :basic)
+      
+     # Notificaciones para los subscriptores del post  
+      sub = Subscriptions.where(:resource_id => @comment.post_id, :resource_type => Subscriptions::S_POST)
+      sub.each do |s|
+          Notification.send_notification(s.user_id, current_user[:id], Notification::COMMENT, s.resource_id, @comment.id)
       end
-
-      comm = post.comments.uniq_by {|x| x.user_id}
-      comm.each do |c|
-        if current_user.id != c.user_id
-          note = Notifications.new
-          note.user_id = c.user_id
-          note.note_type = 1
-          note.from = @comment.user_id
-          note.post_id = @comment.post_id
-          note.save
+      # Notificaciones para las menciones
+      mentions = Array.new
+      @comment.body.split.each do |t|
+        if t.first == '@'
+          mentions << t.gsub(/^@/,"")
         end
       end
+      mentions.each do |u|
+        user = User.find_by_name(u)
+        Notification.send_notification(user.id, current_user[:id], Notification::USER, @comment.post_id, @comment.id)
+      end
+      # Nos subscribimos al post
+      unless Subscriptions.where(:user_id => current_user[:id], :resource_type => Subscriptions::S_POST, :resource_id => @comment.post_id).exists?
+        Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @comment.post_id)
+      end      
       flash[:notice] = 'El mensaje se ha guardado correctamente.'
     else
       flash[:notice] = 'Hubo un problema al guardar el mensaje.'
@@ -53,6 +55,13 @@ class CommentController < ApplicationController
       format.html { redirect_to }
       format.json { head :no_content }
       format.js #added
+    end
+  end
+  
+  def list
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.js
     end
   end
 end

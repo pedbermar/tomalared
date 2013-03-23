@@ -4,18 +4,21 @@ class PasswordResetsController < ApplicationController
   before_filter :load_user_using_perishable_token, :only => [ :edit, :update ]
 
   def new
+    @user_session = UserSession.new 
   end
 
   def create
+    @user_session = UserSession.new     
     @user = User.find_by_email(params[:email])
-    if @user
+    if @user 
       @user.deliver_password_reset_instructions!
       flash[:notice] = "Instructions to reset your password have been emailed to you"
-      redirect_to root_path
+      render :controller => :user, :action => :new
     else
-      flash.now[:error] = "No user was found with email address #{params[:email]}"
+      flash[:error] = "No user was found with email address #{params[:email]}"
       render :action => :new
     end
+  
   end
 
   def edit
@@ -29,7 +32,7 @@ class PasswordResetsController < ApplicationController
     # Use @user.save_without_session_maintenance instead if you
     # don't want the user to be signed in automatically.
     if @user.save
-      flash[:success] = "Your password was successfully updated"
+      flash[:success] = "Tu password ha sido actualizada con exito!"
       redirect_to @user
     else
       render :action => :edit
@@ -42,7 +45,7 @@ class PasswordResetsController < ApplicationController
   def load_user_using_perishable_token
     @user = User.find_using_perishable_token(params[:id])
     unless @user
-      flash[:error] = "We're sorry, but we could not locate your account"
+      flash[:error] = "Lo sentimos, pero no pudimos encontrar tu cuenta"
       redirect_to root_url
     end
   end

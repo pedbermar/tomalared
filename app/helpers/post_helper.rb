@@ -9,8 +9,13 @@ module PostHelper
       types_base + 'post'
     end
   end
-
-
+  
+  def post_unsuscribe(post_id)
+    post = Post.find(post_id)
+    sub = Subscriptions.where(user_id: "#{current_user[:id]}", subscription_type: Subscriptions::S_TAG, resource_id: "#{@tag.id}")
+    ActiveSupport::Notifications.unsubscribe(sub.name)
+    sub.destroy
+  end
 #################################################################################
 ###  Videos de youtube
 def parse_youtube(url)
@@ -27,15 +32,16 @@ end
 
 def text_parse(str)
 	p2 = ""
-      str.split.each do |t|
+  str = str.gsub(/[\n]/, ' <br/> ')     
+      str.split(' ').each do |t|
         t11 = t.gsub(/\s?(^#)?/, "")
-	      p = t.gsub(/^#\w+/) { link_to "##{t11}", "/post/tag/#{t11}", :class => "linkRemote" }
+	      p = t.gsub(/^#\w+/) { link_to "##{t11} ", "/post/tag/#{t11}", :class => "linkRemote" }
 
         t21 = t.gsub(/\s?(^@)?/, "")
-        p1 = p.gsub(/^@\w+/) { link_to "@#{t21}", "/post/user/#{t21}", :class => "linkRemote" }
+        p1 = p.gsub(/^@\w+/) { link_to "@#{t21} ", "/post/user/#{t21}", :class => "linkRemote" }
 
         t30 = t.scan(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
-	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}...",  "#{$1}", :popup => true}
+	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}... ",  "#{$1}", :target => "_blank"}
       end
 	return p2
 end
@@ -138,7 +144,7 @@ end
 
   # if we're looking at a tag, give the option to add (or remove) another tag
   def tag_link(t)
-    link_to "##{t}", :controller => 'post', :action => "list", :pagina => "tag", :id => t
+    link_to "##{t}", "/post/tag/#{t}", :class => "linkRemote" 
   end
 
   # add a + or - in front of tags if we're looking at a tag's listing

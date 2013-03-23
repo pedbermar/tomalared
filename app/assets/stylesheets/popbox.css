@@ -1,0 +1,125 @@
+.collapse 
+{ 
+	position:relative; 
+	z-index: 999;
+	top: 2px;
+	left: 0px; 		
+}
+
+.collapse-mentions
+{
+	left: 68px;	
+}
+
+.collapse-groups{
+	left: -1px;
+}
+
+.collapse-comments{
+	left: -70px;
+}
+
+.popbox-user{
+	display: table;
+	font-size:9px;
+	height: 51px;
+	padding-left: 0.5em;
+	padding-right: 0.5em;	
+	text-align: justify;
+}
+
+.box 
+{
+	display:block;
+	display:none;
+	background:#FAFAF4;
+	border:solid 1px #BBBBBB;	
+	position:absolute;
+	width: 208px;
+	color: black;
+    box-sizing: border-box;
+}  
+
+.arrow 
+{
+  	width: 0;
+  	height: 0;
+  	border-left: 11px solid transparent;
+  	border-right: 11px solid transparent;
+  	border-bottom: 11px solid #FaFaF4;
+  	position:absolute;
+  	left:20px;
+  	top:-10px;
+  	z-index:1001;
+}
+  
+.arrow-comments, .arrow-border-comments
+{
+  	left: 161px !important;  	
+}
+.arrow-border-groups, .arrow-groups
+{
+	left: 91px !important;
+}
+.arrow-border-mentions, .arrow-mentions
+{
+	left: 22px !important;
+}
+
+.popbox-photo
+{
+	float: left;	
+	border: none;	
+	border-right: 1px solid #BBBBBB;
+	border-bottom: 1px solid #BBBBBB;
+}
+
+.popbox-cajita
+{
+	width: 100%;
+	height: 50px;
+	float: left;
+}
+	
+.popbox-scroll
+{
+	height: 135px;
+	width: 100%;
+  	overflow-y: auto;
+  	overflow-x:hidden; 
+  	font-size: 10px; 	  
+  	vertical-align:middle;	
+}
+
+div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions
+{
+	width: 66px !important;
+	float: left;
+	border:solid 1px #327E04;	
+	margin-left:1px;
+  	color: white;
+  	background: #459E00;  	
+}
+
+div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover
+{
+  	background:#67B021;
+}
+
+.open
+{
+	display:block;
+	color: white !important;
+}
+
+.popbox-title
+{
+	border-bottom: solid 1px #BBBBBB;
+	font-size: 13px;
+	font-weight:bold;	
+}
+
+.popbox-footer
+{
+	border-top: solid 1px #BBBBBB;	
+}

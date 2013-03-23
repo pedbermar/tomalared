@@ -1,0 +1,2 @@
+$("#sharePost_<%= params[:post_id] %>").html("<%= escape_javascript(render :partial => 'share/share', :locals => { :post_id => params[:post_id] }) %>");
+pintarBotonesVote(); 

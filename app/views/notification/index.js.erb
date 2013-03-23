@@ -1,0 +1,3 @@
+$("#main").html("<div class=\"notification-list\"><h5><%= t 'notificaciones.notificaciones' %></h5></div><%= escape_javascript(render :partial => "notification/list") %>");
+if ($("#cargandoPag").dialog("isOpen"))
+	$("#cargandoPag").dialog("close");

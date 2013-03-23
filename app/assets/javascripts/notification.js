@@ -1,7 +1,18 @@
-function actNotif() {
-	$.getScript($(location).attr('origin') + "/notif/list?remote=true&soloposts=true");
-	setTimeout(actNotif, 5000);
+function llegadaNotificacion(notif) {
+	var elemento = "#notif" + notif.note_type;
+	var i = 0;
+	if (notif.unread == 1){
+		i = 1;
+		$.getScript("/notif/list?remote=true&id=" + notif.post_id + "&type=" + notif.note_type);
+	} else {
+		i = -1;
+		$("#notifications_" + notif._id).remove();
+	}
+	var contador = $(elemento).find("span.numNotif").html();
+	if(contador == ""){
+		contador = i;
+	}else{
+		contador = parseInt(contador) + parseInt(i);
+	}
+	$(elemento).find("span.numNotif").html(contador);
 }
-$(document).ready(function() {
-	actNotif();
-});

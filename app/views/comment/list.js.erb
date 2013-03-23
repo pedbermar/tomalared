@@ -1,0 +1,14 @@
+if($("#comment_<%=params[:id]%>").length > 0){
+	if($("#comment_<%=params[:id]%>").prev().length > 0){
+		var elem = $("#comment_<%=params[:id]%>").prev();
+		$("#comment_<%=params[:id]%>").remove();
+		elem.before("<%= escape_javascript( render :partial => 'comment/comments', :collection => @comment, :as => "comment" ) %>");
+	} else {
+		$("#comment_<%=params[:id]%>").remove();
+		$("#post_<%=params[:post]%> .comments-old").append("<%= escape_javascript( render :partial => 'comment/comments', :collection => @comment, :as => "comment" ) %>");
+	}
+}else{
+	$("#post_<%=params[:post]%> .comments-old").append("<%= escape_javascript( render :partial => 'comment/comments', :collection => @comment, :as => "comment" ) %>");
+}
+pintarBotonesComment("#post_<%=params[:post]%> ", "#comment_<%=params[:id]%> ");
+pintarBotonesVote("#post_<%=params[:post]%> ", "#comment_<%=params[:id]%> ");

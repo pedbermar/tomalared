@@ -1,10 +1,12 @@
-<% @tags.each do |t| -%>
-<div id="tags-names"><%= link_to "##{t.name}",:controller => 'post', :action => 'list', :pagina => "tag", :id => t.name %>
-		<% if current_user.tags.exists?(t.id) %>
-					<div id="tags-unfollow" ><%= link_to 'unfollow', {:controller => 'tag', :action=> 'unfollow_tag', :id => t.id}, :confirm => 'Quieres dejar el grupo?' %></div>
+<div class="tags-block">
+	<% @tags.each do |t| -%>
+		<div class="tags-orden">
+			<%= link_to "##{t.name}", :controller => 'post', :action => 'list', :pagina => "tag", :id => t.name, :class => 'linkRemote tags-photo' %>	    	<div class="tags-photo">	    		<%= link_to image_tag( tag_photo(t.name) , :onError=> "this.src='/img/tag.png';", :class => "linkRemote tags-photo-img"),:controller => 'post', :action => 'list', :pagina => "tag", :id => t.name %>	    	</div>
+	    	<% if current_user.tags.exists?(t.id) %>
+						<span class="tags-unfollow" ><%= link_to "#{t'unfollow'}", {:controller => 'tag', :action=> 'unfollow_tag', :id => t.id}, :confirm => 'Quieres dejar el grupo?', :class => 'linkRemote' %></span>
 			<% else %>
-					<div id="tags-follow" ><%= link_to 'follow', {:controller => 'tag', :action=> 'follow_tag', :id => t.id}, :confirm => 'Quieres unirte al grupo?' %></div>
+						<span class="tags-follow" ><%= link_to "#{t'follow'}", {:controller => 'tag', :action=> 'follow_tag', :id => t.id}, :confirm => 'Quieres unirte al grupo?', :class => 'linkRemote' %></span>
 			<% end %>
-</div>
-<% end -%>
-
+		</div>		
+	<% end -%>
+</div> 

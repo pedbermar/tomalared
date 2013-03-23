@@ -1,22 +1,49 @@
 <% if @tag %>
-<div id="muneco" class="muneco" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
-    <font size="5">#<%= @tag.name %> | </font> <% if current_user.tags.exists?(@tag.id) %>
-    <%= link_to "unfollow", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :confirm => "Quieres dejar el grupo?", :remote => true, :class => "linkRemote2" %>
-    <% else %>
-    <%= link_to "follow", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :confirm => "Quieres unirte al grupo?", :remote => true, :class => "linkRemote2" %>
-    <% end %>
-    <br>
-    <span>Followers: <%= @tag.users.count%></span>
-    <br>
-    <% @users_tag.each do |user_tag| -%>
-    <%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
-    <% end -%>
-</div>
+	<div id="muneco" style="background: url(<%= @foto_tag %>) no-repeat center; background-size: 100%;">
+		<div id="muneco-group">
+		    <font size="5">#<%= @tag.name %> | </font> 
+		    <% if current_user.tags.exists?(@tag.id) %>
+		    	<%= link_to "#{ t 'unfollow'}", {:controller => "tag", :action=> "unfollow_tag", :id => @tag.id}, :remote => true, :class => "linkRemote2" %>
+		    <% else %>
+		    	<%= link_to "#{ t 'follow'}", {:controller => "tag", :action=> "follow_tag", :id => @tag.id}, :remote => true, :class => "linkRemote2" %>
+		    <% end %>
+		    
+		    <br/>
+		    <%if @tag.posts%>
+			    <span id="tagPosts_count"><%= pluralize(@tag.posts.count, "#{ t 'post'}").html_safe %>,</span>				
+		    <%end%>
+		    
+		    <%if @tag.users%>
+		    	<span id="tagUsers_count"><%= pluralize(@tag.users.count, "#{ t 'seguidor'}").html_safe %>: </span>
+			<% end -%>
+		    
+		    <% @tag.users.uniq_by{|x| x.id}[0..10].each do |user_tag| -%>
+		    	<%= link_to "@#{user_tag.name}", "/post/user/#{user_tag.id}", :class => "linkRemote" %>&nbsp;
+		    <% end -%>
+
+		</div>		    
+	</div>
 <% elsif @user %>
-<div id="muneco" class="muneco" style="background: url(/img/<%= @user.id%>.jpg) no-repeat center; background-size: 100%;">
-    <font size="5">@<%= @user.name %> </font><span><%= pluralize(Post.count, "posts") %></span>
-    <br />
-    <br />
-    <% if ( current_user[:id] ==  @user.id) -%><%= link_to "Editar Perfil", "/edit_me" %>&nbsp;<% end -%>
-</div>
+	<div id="muneco" style="background: url('<%= @user.photo.url%>') no-repeat center; background-size: 100%;">
+		<div id="muneco-user">	     
+		    <font size="5"><%= @user.profile %> (@<%= @user.name %>) </font>    
+		    <br />
+		    <%if @user.bio%>
+		    	<%=@user.bio%>
+		    	<br />
+		    <%end%>
+		    <%if @user.url%>
+			    <%= link_to @user.url, @user.url, :target => "_blank"%>
+			    <br />
+		    <%end%>
+		    <br />
+		    <span id="user_count"><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %>, <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %>:</span>
+		    <% @user_tags = @user.tags.uniq_by{|x| x.id}[0..10]%>
+			<% @user_tags.each do |t| %>
+		    	<%= link_to "##{t.name}", "/post/tag/#{t.name}", :class => "linkRemote" %>	 
+		    <% end -%>
+		      <br /><br />
+		    <%= hace_tanto_tiempo( Time.at(@user.created_at), Time.now).html_safe%> <%= t 'en_red'%>
+		 </div>
+	</div>
 <% end %>

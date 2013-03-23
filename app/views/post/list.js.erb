@@ -1,8 +1,36 @@
-<% if !@soloposts %>
-    personalizarPag("<%= escape_javascript( render :partial => "muneco" ) %>", "<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>", "<% if current_user and !params[:id] %><%= escape_javascript( render :partial => "newex" ) %><% end %>");
-<% elsif @soloposts %>
-    actualizado("<div id=\"posts\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
+<% if params[:last] %>
+	<% unless @posts.blank? %>
+		<% if params[:direccion] == "prev" %>
+			$("div.post:last").before("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+		<% else %>
+			$("div.post:last").after("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+		<% end %>
+		pintarBotonesPost("");
+		pintarBotonesComment("", "");
+		pintarBotonesVote("", "");
+	<% end %>
+<% elsif params[:notif] %>
+	<% unless @posts.blank? %>
+		if($("#post_<%=params[:postId]%>").length > 0){
+			if($("#post_<%=params[:postId]%>").prev().length > 0){
+				var elem = $("#post_<%=params[:postId]%>").prev();
+				$("#post_<%=params[:postId]%>").remove();
+				elem.after("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+			} else {
+				$("#post_<%=params[:postId]%>").remove();
+				$("#posts").prepend("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+			}
+		}else{
+			$("#posts").prepend("<%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %>");
+		}
+		exitoPost("#post_<%=params[:postId]%>");
+	<% end %>
+<% else %>
+	$("#destinatario").val("<%=@destinatario %> ");
+	$("#main").html("<div id=\"cabeceraMuneco\"><%= escape_javascript( render :partial => "muneco" ) %></div><div id=\"posts\" class=\"endless_scroll_inner_wrap\"><%= escape_javascript( render :partial => "posts", :collection => @posts, :as => "post" ) %></div>");
+	pintarBotonesPost("");
+	pintarBotonesComment("", "");
+	pintarBotonesVote("", "");
 <% end %>
-
-
-
+if ($("#cargandoPag").dialog("isOpen"))
+	$("#cargandoPag").dialog("close");

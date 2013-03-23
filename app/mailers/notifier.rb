@@ -7,8 +7,7 @@ class Notifier < ActionMailer::Base
     mail(:to => user.email_address_with_name,
          :subject => "Instrucciones de activacion",
          :from => "tomalared.net <noreply@tomalared.net>",
-         :fail_to => "tomalared.net <noreply@tomalared.net>"
-    ) do |format|
+         :fail_to => "tomalared.net <noreply@tomalared.net>" ) do |format|
       format.text
     end
   end
@@ -26,7 +25,7 @@ class Notifier < ActionMailer::Base
 
   def password_reset_instructions(user)
     mail(:to => user.email,
-        :subject =>       "Password Reset Instructions",
+        :subject =>       "Intrucciones para resetear el password",
         :from =>          "noreplay@tomalared.net",
         :content_type =>  "text/html",
         :sent_on =>       Time.now,

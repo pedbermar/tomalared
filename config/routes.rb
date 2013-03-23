@@ -12,11 +12,12 @@ Fra::Application.routes.draw do
   match '/signup'     => 'users#new', :as => :signup
 
   #Usuario
-  match '/home'         => 'users#show'
+  match '/home'         => 'users#edit'
   match '/edit_me'    => 'users#edit'
   match '/updatefoto' => 'users#updatefoto'
   match '/updatedatos'=> 'users#updatedatos'
   match '/update' => 'users#update'
+  match '/delete_user' => 'users#delete_user'
 
 	#Grupos
   #Listados
@@ -31,22 +32,19 @@ Fra::Application.routes.draw do
   match '/network/note/:note_type'   => 'post#note'
 
   #Funciones
-  match '/save'  => 'post#save'
-  match '/edit'  => 'post#edit'
+  match '/save'  => 'post#save'  
   match '/delete'     => 'post#delete'
   match '/delete_tag' => 'post#delete_tag'
   match '/post/save' => 'post#save'
-  match '/post/mentions' => 'post#mentions'
+  
 			#Listados por usuario
 			#comentarios
   match '/comment/new' => 'comment#new'
   match '/comment/delete/:id' => 'comment#delete'
+  match '/comment/list/:id' => 'comment#list'
 
 	#Likes
-  match '/like' => 'vote#like'
-  match '/dontlike' => 'vote#dontlike'
-  match '/change_to_like' => 'vote#change_to_like'
-  match '/change_to_dontlike' => 'vote#change_to_dontlike'
+  match '/vote' => 'vote#vote'
 
   match 'activate(/:activation_code)' => 'users#activate', :as => :activate_account
   match 'send_activation(/:user_id)' => 'users#send_activation', :as => :send_activation
@@ -54,9 +52,14 @@ Fra::Application.routes.draw do
 	#Share
   match '/share/:post_id' => 'share#share'
   match '/unshare/:post_id' => 'share#unshare'
+  
+  match '/notifications' => 'notification#list'
+  match '/notif/index' => 'notification#index'
 
 	#Buscador
   match '/search' => 'search#search'
+  match '/search/searched' => 'search#searched'
+  
 
   #External
   match 'external/activador'       => 'external#index'
@@ -67,9 +70,14 @@ Fra::Application.routes.draw do
   match 'chat'       => 'chat#index'
   match 'maps'       => 'maps#index'
 
-  match 'password_resets'=> 'password_resets#new', :only => [ :new, :create, :edit, :update ]
+  match 'password_resets'=> 'password_resets#new'
+  match 'password_resets/edit'=> 'password_resets#edit'
+  match 'password_resets/create'=> 'password_resets#create'
   
   match '/notif/list' => 'notification#list'
+  match '/users/crop/' => 'users#crop'
+  
+  match '/desde' => 'application#calcular_fecha'
   
   #resources
   resources :tags
@@ -79,6 +87,6 @@ Fra::Application.routes.draw do
   resource :user, :as => 'account'
   resources :user_sessions
   resource :password_resets, :only => [ :new, :create, :edit, :update ]
-
+  resources :photos, :member => {:crop => :get}
 end
 

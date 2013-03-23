@@ -1,103 +1,119 @@
-<div id="board">
-    <div id="notice">
-        <a href="/post/user" class="notice_a linkRemote">@<%= current_user.name %></a>
-        <% if flash[:notice] %>
-        <br>
-        <%= flash[:notice] %>
-        <% end %>
-    </div>
+<nav>
 
-    <div id="marcofoto">
-        <% if FileTest.exists?("public/img/#{current_user.id}.jpg") %>
-        <%= link_to image_tag( "/img/#{current_user.id}.jpg", :size => "200", :alt => "Tu imagen",
-        :class => "board_foto"), '/post/user', :class => "linkRemote"%>
-        <% else %>
-        <%= link_to image_tag( "/img/default.jpg", :size => "200", :alt => "Tu imagen",
-        :class => "board_foto"), '/post/user', :class => "linkRemote"%>
-        <% end -%>
-    </div>
+	<header class="board-white">
+		<a href="/post/user" class=" linkRemote"><%= current_user.profile%> <span class="user">@<%= current_user.name%></span></a>
+	</header>
 
-    <div id="board-notifi">
-        <a href="/network/note/1" id="notifType1" class="linkRemote">0C</a>
-        <a href="/network/note/2" id="notifType2" class="linkRemote">0#</a>
-        <a href="/network/note/3" id="notifType3" class="linkRemote">0@</a>
-    </div>
+	<article id="marcofoto">
+		<%= link_to image_tag(current_user.photo.url(:medium) , :alt => "Tu imagen"), '/post/user', :class => "linkRemote" %>
+	</article>
 
-    <div id="board-block">
-        <div id="board-title">
-            Mentions
-        </div>
-        <div id="board-tags">
-            <% @mentions1 = Notifications.find_user_mentios_unread(current_user[:id])
-            @mentions2 = Notifications.find_user_mentios(current_user[:id], 20)
-            @mentions = Array.new
+	<div id="board-notifi">
+		<%= subscribe_to "/u/#{current_user[:id]}" %>
+		<script language="JavaScript">
+			PrivatePub.subscribe("/u/<%= current_user[:id] %>", function(data, channel) {
+				var note = data.note;
+				llegadaNotificacion(note);
+				if(note.resource_id == undefined){
+					llegadaPost(note);
+				}else{
+					llegadaComment(note);
+				}
+			});
+		</script>
 
-            @mentions1.each do |m|
-            @mentions << m
-            end
+		<div class='popbox popbox-mentions'>
+			<a class="open open-mentions" href="#" id="notif1">@<%=cuentaNotificaciones(@userNotif.notifications, 1, 1).html_safe %></a>
+			<div class='collapse collapse-mentions'>
+				<div class='box box-mentions'>
+					<div class='arrow arrow-mentions'></div>
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_menciones %>
+					</div>
+					<div class='popbox-scroll' id="popbox-notif1">
+						<%=muestraNotificaciones(@userNotif.notifications, 1, 1).html_safe %>
+					</div>
+					<div class="popbox-footer">
+						<%= link_to "#{t :todas}", "/notif/index", :class => "popbox-a linkRemote" %>
+					</div>
+				</div>
+			</div>
+		</div>
 
-            @mentions2.each do |m|
-            @mentions << m
-            end
+		<div class='popbox popbox-groups'>
+			<a class='open open-groups' href='#' id="notif3">#<%=cuentaNotificaciones(@userNotif.notifications, 3, 1).html_safe %></a>
+			<div class='collapse collapse-groups'>
+				<div class='box box-groups'>
+					<div class='arrow arrow-groups'></div>
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_grupos %>
+					</div>
+					<div class='popbox-scroll'>
+						<div class="popbox-cajita" id="popbox-notif3">
+							<%=muestraNotificaciones(@userNotif.notifications, 3, 1).html_safe %>
+						</div>
+					</div>
+					<div class="popbox-footer">
+						<%= link_to "#{t :todas}", "/notif/index", :class => "popbox-a linkRemote"  %>
+					</div>
+				</div>
+			</div>
+		</div>
 
-            @mentions2.each do |m|
-            cont = Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count	%>
+		<div class='popbox popbox-comments'>
+			<a class='open  open-comments' href='#' id="notif5">C<%=cuentaNotificaciones(@userNotif.notifications, 5, 1).html_safe %></a>
+			<div class='collapse collapse-comments'>
+				<div class='box box-comments'>
+					<div class='arrow arrow-comments'></div>					
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_comentarios %>
+					</div>
+					<div class='popbox-scroll'>
+						<div class="popbox-cajita" id="popbox-notif5">
+							<%=muestraNotificaciones(@userNotif.notifications, 5, 1).html_safe %>
+						</div>
+					</div>
+					<div class="popbox-footer">
+						<%= link_to "#{t :todas}", "/notif/index", :class => "popbox-a linkRemote"  %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br />
+	</div>
 
-            <a href="/post/mentions?user=<%= m.from %>"> @<%= User.find(m.from).name%> <% if cont != 0 %> [<%= Notifications.find_user_mentios_unread_count(current_user[:id], m.from).count %>] <% end %> </a>
-            <br>
-            <% end %>
-        </div>
-    </div>
+	<div id="tabs-board">
+		<ul>
+			<% if current_user.tags.count != 0 %>
+			<li>
+				<a href="#tusgrupos"><%= t :tus_grupos %></a>
+			</li>
+			<% end %>
+			<li>
+				<a href="#tendencias"><%= t :tendencias %></a>
+			</li>
 
-    <div id="board-block">
-        <div id="board-title">
-            Your groups
-        </div>
-        <% @tags_board = current_user.tags %>
-        <div id="board-tags">
-            <% @tags_board.each do |tag_board| -%>
-            <%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote" %>
-            <br/>
-            <% end %>
-        </div>
-    </div>
-    <div id="board-block">
-        <div id="board-title">
-            Latest tumblrs
-        </div>
-        <div id="board-tags">
-            <% @posts_board = Post.find(:all, :conditions => ["user_id = ? AND post_type NOT LIKE ?", current_user[:id], "image"], :order => 'id DESC') %>
+			<% if current_user.tags.count != 0 %>
+			<div id="tusgrupos" class="tags-cloud-groups nube-tags" style="width:200px; height:120px;position:relative; overflow: hidden;">
+				<% current_user.tags[0..9].each do |tag_board| -%>
+				<ul>
+					<li>
+						<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote tags-a", :rel => tag_board.posts.count, :title => tag_board.name %>
+					</li>
+				</ul>
+				<% end %>
+			</div>
+			<% end %>
 
-            <% @post_board_share = Share.find(:all, :conditions => {:user_id => current_user[:id]})
-  @post_board_share.each do |ps|
-    p = Post.find(ps.post_id)
-    if p.post_type != "image"
-    p.created_at = ps.created_at
-    @posts_board << p
-    end
-  end
-
-  @posts_board= @posts_board.sort_by {|post| post.created_at}.reverse %>
-
-            <% @posts_board.each do |post_board| -%>
-            <a href="/post/list/<%= post_board.id %>" class="linkRemote"><%= strip_textile(post_board.title.length > 0 ? post_board.title : post_board.content.to_s)[0..18] %></a>
-            <br/>
-            <% end %>
-        </div>
-    </div>
-
-    <div id="board-block">
-        <div id="board-title">
-            Popular groups
-        </div>
-        <% @tags_all_board = Tag.find_most_popular(20)%>
-        <div id="board-tags">
-            <% @tags_all_board.each do |tag_board| -%>
-            <%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote"%>
-            <br/>
-            <% end %>
-        </div>
-
-    </div>
-</div>
-
+			<div id="tendencias" <% if current_user.tags.count != 0 %>class="tags-cloud-populars nube-tags"<% else %>class="tags-cloud-groups nube-tags"<% end %> style="width:200px; height:120px;position:relative; overflow: hidden;">
+				<% Tag.find_most_popular(10).each do |tag_board| -%>
+				<ul>
+					<li>
+						<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote", :rel => tag_board.count, :title => tag_board.name %>
+					</li>
+				</ul>
+				<% end %>
+			</div>
+		</ul>
+	</div>
+</nav>

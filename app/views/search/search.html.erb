@@ -1,27 +1,38 @@
-	<% @page_name = 'Lista de Grupos' -%>
-	-<%= @lo %>-
-
-<div style="text-align:left;">
-<% if @tags %>
-		Tags:
-		  <div id="search-results">
-		 		 <%= render :partial => "search/tags" %>
-		  </div>
-	<br/>
-<% end %>
-
-<% if @posts_s %>
-		Posts:
-		  <div id="search-results">
-		 		 <%= render :partial => "search/posts" %>
-		  </div>
-	<br/>
-<% end %>
-
-<% if @users %>
-		Users:
-		  <div id="search-results">
-		 		 <%= render :partial => "search/users" %>
-		  </div>
-<% end %>
+<% @page_name = 'Lista de Grupos' -%>
+<div class="busqueda">
+	<h5><%= t'resultado_busqueda' %>"<%= @q1 %>"</h5>
 </div>
+
+	<% if @tags %>
+		<div class="busqueda">
+			<div class="search-titulo">
+				<%= pluralize(@tags.count, "#{ t'grupo_mayus'}").html_safe %>
+			</div>	
+		  	<div class="search-results">
+		 		 <%= render :partial => "search/tags" %>
+		  	</div>
+		</div>
+	<% end %>
+	
+	<% if @users %>
+		<div class="busqueda">
+			<div class="search-titulo">
+				<%= pluralize(@users.count, "#{ t'usuario_mayus'}").html_safe %>
+			</div>
+			<div class="search-results">
+				<%= render :partial => "search/users" %>
+			</div>
+		</div>
+	<% end %>
+	
+	<% if @posts %>
+		<div class="busqueda">
+			<div class="search-titulo">
+				<%= pluralize(@posts.count, "#{ t'post_mayus'}").html_safe %>
+			</div>
+			<div id= "posts-names">
+			   	<%= render :partial => "post/posts", :collection => @posts, :as => "post" %>
+			</div>
+		</div>		
+	<% end %>
+

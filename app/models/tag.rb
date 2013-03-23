@@ -1,9 +1,9 @@
 class Tag < ActiveRecord::Base
 
-  belongs_to :post
+  has_and_belongs_to_many :posts
   has_and_belongs_to_many :users
 
-  attr_accessible :name
+  attr_accessible :name, :users, :posts
 # get rid of any tags that aren't attached to a post
   def self.prune_tags
     find(:all, :include => [:posts]).each { |t| t.destroy if t.posts.size == 0 }

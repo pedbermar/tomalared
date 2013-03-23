@@ -1,9 +1,12 @@
 class Comment < ActiveRecord::Base
-
+  include Tenacity
   attr_accessible :body, :post_id, :post, :user_id
 
-  belongs_to :users
+  belongs_to :user
   belongs_to :post
+  has_many :likes, :foreign_key => 'type_id',:conditions => ['like_type = 2'], :dependent => :destroy
+  t_has_many :notifications, :foreign_key => 'resource_id', :conditions => ['resource_type = 5 '], :dependent => :destroy
+  has_many :users
   
   DB_TEXT_MAX_LENGTH= 2000
 
@@ -25,5 +28,4 @@ class Comment < ActiveRecord::Base
   def authorized?(user)
     post.user == user
   end
-
 end

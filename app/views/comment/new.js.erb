@@ -1,4 +1,22 @@
-$('#post_<%=@comment.post_id %>').find('.comments-old').append("<%= escape_javascript(render(:partial => 'comment/comments', :object => @comment, :as => "comment")) %>");
+<% if flash[:notice] %>
+	$("#main").prepend("<div id=\"notice\"><%=flash[:notice]%></div>");
+	$("#notice").fadeIn("fast", function(){
+		setTimeout(function() {
+			$("#notice").remove();
+		}, 2000);
+	});
+<% end %>
+<% if flash[:error] %>
+	$("#main").prepend("<div id=\"error\"><%=flash[:error]%></div>");
+	$("#error").fadeIn("fast", function(){
+		setTimeout(function() {
+			$("#error").remove();
+		}, 2000);
+	});
+<% end %>
 /* Reset the comment form */
 resetForm($("#formComment"));
-exitoComment();
+if($("#post_<%=@comment.post_id %>").length > 0){
+	$("#post_<%=@comment.post_id %> .comments-old").append("<%= escape_javascript(render(:partial => 'comment/comments', :object => @comment, :as => "comment")) %>");
+	exitoComment("#post_<%=@comment.post_id %> ", "#comment_<%=@comment.id %> ");
+}
