@@ -7,12 +7,12 @@ class User < ActiveRecord::Base
     c.validate_email_field = false
   end
   
-  has_many :posts, :order => 'created_at DESC', :dependent => :destroy
+  has_many :interactions, :dependent => :destroy
+  has_many :posts, :through => :interactions
   has_and_belongs_to_many :tags
   has_many :comments, :order => "created_at DESC", :through => :posts, :dependent => :destroy
   has_many :likes, :dependent => :destroy
   has_many :shares, :dependent => :destroy
-  has_many :posts
   t_has_many :notifications
   t_has_many :froms, :class_name => "Notification", :foreign_key => "from_id"
   attr_accessible :crop_x, :crop_y, :crop_w, :crop_h

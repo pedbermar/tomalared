@@ -137,44 +137,54 @@ class PostController < ApplicationController
           post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
       end
-      
-      # Agregar tags
-      t11 = Array.new
-      content.split.each do |t|
-        if t.first == '#'
-          t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
-        end
-      end
-      
-      t11.each do |t|
-        tag = Tag.find_by_name(t) || Tag.new(:name => t)
-        @post.tags << tag
-        subs = Subscriptions.where(:post_id => t.id, :resource_type => Subscriptions::S_TAG)
-        subs.each do |sub|
-          Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id)
-        end
-      end
-      
-      # Notificaciones para las menciones
-      mentions = Array.new
-      content.split.each do |t|
-        if t.first == '@'
-          mentions << t.gsub(/^@/,"")
-        end
-      end
-           
-      mentions.each do |u|
-        user = User.find_by_name(u)
-        if user
-          Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
-        end
-      end
-      Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
+
       # save the post - if it fails, send the user back from whence she came
       if @post.save
         flash[:notice] = 'El mensaje se ha guardado correctamente.'
       else
         flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
+      end
+      
+      if @post
+        # Agregar tags
+        t11 = Array.new
+        content.split.each do |t|
+          if t.first == '#'
+            t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
+          end
+        end
+
+        t11.each do |t|
+          tag = Tag.find_by_name(t) || Tag.new(:name => t)
+          @post.tags << tag
+          subs = Subscriptions.where(:post_id => tag.id, :resource_type => Subscriptions::S_TAG)
+          subs.each do |sub|
+            Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id)
+          end
+        end
+        
+        # Notificaciones para las menciones
+        mentions = Array.new
+        content.split.each do |t|
+          if t.first == '@'
+            mentions << t.gsub(/^@/,"")
+          end
+        end
+        
+        interaction = Interaction.new(:post_id => @post.id, :user_id => @post.user_id)
+        @post.interactions << interaction
+        mentions.each do |u|
+          user = User.find_by_name(u)
+          if user
+            interaction = Interaction.new(:post_id => @post.id, :user_id => user.user_id, :type => Interaction::MENTION)
+            @post.interactions << interaction
+            Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
+          end
+        end
+        Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
+
+        # save the post - if it fails, send the user back from whence she came
+        @post.save
       end
 
       if !params[:external] || params[:remote]

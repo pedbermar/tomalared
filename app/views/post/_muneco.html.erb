@@ -37,7 +37,7 @@
 			    <br />
 		    <%end%>
 		    <br />
-		    <span id="user_count"><%= pluralize(@user.posts.count, "#{ t 'post'}").html_safe %>, <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %>:</span>
+		    <span id="user_count"><%= pluralize(@user.interactions.count, "#{ t 'post'}").html_safe %>, <%= pluralize(@user.tags.count, "#{ t 'grupo'}").html_safe %>:</span>
 		    <% @user_tags = @user.tags.uniq_by{|x| x.id}[0..10]%>
 			<% @user_tags.each do |t| %>
 		    	<%= link_to "##{t.name}", "/post/tag/#{t.name}", :class => "linkRemote" %>	 
