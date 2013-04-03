@@ -2,7 +2,7 @@ class InteractionController < ApplicationController
 
 	def share
 	  
-	  interaction = current_user.interactions.where(:post_id => params[:post_id], :type => Interactions.SHARE)
+	  interaction = current_user.interactions.where(:post_id => params[:post_id], :type => Interactions::SHARE)
     if !interaction
       interaction = Interaction.new
       interaction.post_id = params[:post_id]
