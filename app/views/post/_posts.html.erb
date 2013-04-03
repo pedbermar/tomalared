@@ -19,7 +19,7 @@
 					</span>
 				<% else %>
 					<div id="sharePost_<%=post.id%>" class="ocultarIconos">
-						<%= render :partial => 'share/share', :locals => { :post_id => post.id } %>
+						<%= render :partial => 'interaction/share', :locals => { :post_id => post.id } %>
 					</div>					
 				<% end %>
 				

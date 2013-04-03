@@ -181,5 +181,13 @@ end
   def oz_render_theme_partial(partial, options = {})
     render({:partial => ('post/' + partial) }.merge(options))
   end
+
+  def cuentaPostUser(interactions)
+    num = 0
+    interactions.each do |i|
+      nun = num + 1 if i.type == Interactions.SHARE and  i.type == Interactions.CREATOR
+    end
+    pluralize(num, "#{ t 'post'}")
+  end
 end
 

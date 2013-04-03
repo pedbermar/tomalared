@@ -226,6 +226,9 @@ class PostController < ApplicationController
         end
         @uno_solo = true
       else
+        current_user.tags.each do |t|
+          
+        end 
         if params[:type]
           @posts = Post.find(:all,
                              :joins => "JOIN posts_tags pt ON pt.post_id = posts.id",
