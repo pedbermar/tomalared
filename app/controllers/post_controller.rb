@@ -176,7 +176,7 @@ class PostController < ApplicationController
         mentions.each do |u|
           user = User.find_by_name(u)
           if user
-            interaction = Interaction.new(:post_id => @post.id, :user_id => user.user_id, :type => Interaction::MENTION)
+            interaction = Interaction.new(:post_id => @post.id, :user_id => user.user_id, :type => Interaction::I_MENTION)
             @post.interactions << interaction
             Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
           end
@@ -230,7 +230,7 @@ class PostController < ApplicationController
         current_user.tags.each do |t|
           postsAux1 = postsAux1 + t.posts
         end
-        current_user.interactions.where(:type => Interactions::MENTION).each do |i|
+        current_user.interactions.where(:type => Interaction::I_MENTION).each do |i|
           postsAux1 = postsAux1 + i.posts
         end
         if params[:type]
@@ -275,13 +275,13 @@ class PostController < ApplicationController
       end
       postsAux1 = Array.new
       @user.interactions.each do |t|
-        if t.type == Interactions::SHARE
+        if t.type == Interaction::I_SHARE
           t.posts.each do |p|
             p.created_at = t.created_at
             postsAux1 << p
           end
         end
-        if t.type == Interactions::CREATOR
+        if t.type == Interaction::I_CREATOR
           postsAux1 = postsAux1 + t.posts
         end
       end
@@ -292,27 +292,24 @@ class PostController < ApplicationController
         @page_name = "Post de #{@user.name}"
       end
     elsif params[:pagina] == "mentions"
+      postsAux1 = Array.new
       @user.interactions.each do |t|
-        if t.type == Interactions::MENTION
+        if t.type == Interaction::I_MENTION
           postsAux1 = postsAux1 + t.posts
         end
       end
     elsif params[:pagina] == "notifications"
-      comm= Notification.where(:user_id => current_user[:id], :note_type => params[:id])
-      cons = Array.new
-      comm.each do |c|        
-        cons << c.post_id
-      end
-      if cons
-        @posts = Post.find(cons).sort_by {|x| x.created_at}.reverse
-        comm.each do |c|       
-          if c.unread == 1
-            c.unread = 0
-            c.save
-            PrivatePub.publish_to "/u/#{to}", { :note => c, :type => "NOTIF" }
-          end 
+      postsAux1 = Array.new
+      current_user.notifications.each do |n|
+        if n.note_type == params[:id]
+          postsAux1 = postsAux1 + n.posts
+          if n.unread == 1
+            n.unread = 0
+            n.save
+            PrivatePub.publish_to "/u/#{to}", { :note => n, :type => "NOTIF" }
+          end
         end
-      end      
+      end    
     else
       if params[:id]
         @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => "id DESC")
@@ -335,7 +332,6 @@ class PostController < ApplicationController
     end
     postsAux1 = postsAux1.uniq_by{|x| x.id}
     postsAux1 = postsAux1.sort_by {|n| n.created_at}.reverse
-    postsAux1 = postsAux1.sort_by {|n| n.created_at}.reverse
     if params[:direccion]
       postsAux2 = Array.new
       postsAux1.each do |p|
@@ -350,7 +346,6 @@ class PostController < ApplicationController
     if postsAux2
       @posts = postsAux2.first(10)
     end
-    @userNotif = User.find(current_user[:id])
     if !params[:external] || params[:remote]
       respond_to do |format|
         format.html

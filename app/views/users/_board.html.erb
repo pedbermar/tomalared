@@ -31,7 +31,7 @@
 						<%= t :titulo_notificaciones_menciones %>
 					</div>
 					<div class='popbox-scroll' id="popbox-notif1">
-						<%=muestraNotificaciones(@userNotif.notifications, 1, 1).html_safe %>
+						<%=muestraNotificaciones(current_user.notifications, 1, 1).html_safe %>
 					</div>
 					<div class="popbox-footer">
 						<%= link_to "#{t :todas}", "/notif/index", :class => "popbox-a linkRemote" %>
@@ -50,7 +50,7 @@
 					</div>
 					<div class='popbox-scroll'>
 						<div class="popbox-cajita" id="popbox-notif3">
-							<%=muestraNotificaciones(@userNotif.notifications, 3, 1).html_safe %>
+							<%=muestraNotificaciones(current_user.notifications, 3, 1).html_safe %>
 						</div>
 					</div>
 					<div class="popbox-footer">
@@ -70,7 +70,7 @@
 					</div>
 					<div class='popbox-scroll'>
 						<div class="popbox-cajita" id="popbox-notif5">
-							<%=muestraNotificaciones(@userNotif.notifications, 5, 1).html_safe %>
+							<%=muestraNotificaciones(current_user.notifications, 5, 1).html_safe %>
 						</div>
 					</div>
 					<div class="popbox-footer">
