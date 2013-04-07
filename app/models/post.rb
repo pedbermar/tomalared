@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
 
   include Tenacity
   
-  has_many :interactions
+  has_many :interactions, :dependent => :destroy
   has_many :users, :through => :interactions
   has_many :comments, :order => "created_at", :dependent => :destroy
   t_has_many :notifications, :dependent => :destroy

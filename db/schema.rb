@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 15) do
   create_table "interactions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.integer  "type",       :default => 0
+    t.integer  "int_type",   :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end

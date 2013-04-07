@@ -185,7 +185,7 @@ end
   def cuentaPostUser(interactions)
     num = 0
     interactions.each do |i|
-      nun = num + 1 if i.type == Interaction::I_SHARE and i.type == Interaction::I_CREATOR
+      num = num + 1 if i.int_type == Interaction::I_SHARE or i.int_type == Interaction::I_CREATOR
     end
     pluralize(num, "#{ t 'post'}")
   end

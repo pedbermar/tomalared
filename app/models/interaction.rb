@@ -1,6 +1,6 @@
 class Interaction < ActiveRecord::Base
-  	attr_accessible :post_id, :user_id, :type, :created_at, :updated_at
+  	attr_accessible :id, :post_id, :user_id, :int_type, :created_at, :updated_at
 	
-	belongs_to :posts, :dependent => :destroy
-	belongs_to :users
+	belongs_to :post, :dependent => :destroy
+	belongs_to :user
 end

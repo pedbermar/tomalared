@@ -176,7 +176,7 @@ class PostController < ApplicationController
         mentions.each do |u|
           user = User.find_by_name(u)
           if user
-            interaction = Interaction.new(:post_id => @post.id, :user_id => user.user_id, :type => Interaction::I_MENTION)
+            interaction = Interaction.new(:post_id => @post.id, :user_id => user.user_id, :int_type => Interaction::I_MENTION)
             @post.interactions << interaction
             Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
           end
@@ -202,20 +202,6 @@ class PostController < ApplicationController
     @destinatario = ""
     @pagina = params[:pagina]
     @soloposts = params[:soloposts]?true:false
-    last = params[:last].blank? ? 1 : params[:last]
-    postId = params[:postId].blank? ? 1 : params[:postId]
-    if params[:direccion] == "next"
-      direccion = " AND posts.id < ?"
-    elsif params[:direccion] == "prev"
-      direccion = " AND posts.id > ?"
-    else
-      direccion = " AND 1=?"
-    end
-    if params[:postId]
-      filtroId = " AND posts.id = ?"
-    else
-      filtroId = " AND 1=?"
-    end
     if @pagina == "list"
       if params[:id]
         if !params[:last] and !params[:postId]
@@ -230,8 +216,8 @@ class PostController < ApplicationController
         current_user.tags.each do |t|
           postsAux1 = postsAux1 + t.posts
         end
-        current_user.interactions.where(:type => Interaction::I_MENTION).each do |i|
-          postsAux1 = postsAux1 + i.posts
+        current_user.interactions.where(:int_type => Interaction::I_MENTION).each do |i|
+          postsAux1 << i.post
         end
         if params[:type]
           postsAux1 = postsAux1.where(:post_type => params[:type])
@@ -252,9 +238,14 @@ class PostController < ApplicationController
       end
       if !@soloposts
         #foto aleatoria de la cabezera de list por tags
-        @tag_foto = postsAux1.where(:post_type => "image").sample()
-        @tag_foto.each do |tag_foto|
-          @foto_tag = tag_foto.content
+        posts_image = postsAux1.where(:post_type => "image")
+        if posts_image
+          @tag_foto = posts_image.sample()
+          if @tag_foto
+            @tag_foto.each do |tag_foto|
+              @foto_tag = tag_foto.content
+            end
+          end
         end
         @post.content = "##{params[:id]} "
         @users_tag =  @tag.users
@@ -275,14 +266,13 @@ class PostController < ApplicationController
       end
       postsAux1 = Array.new
       @user.interactions.each do |t|
-        if t.type == Interaction::I_SHARE
-          t.posts.each do |p|
-            p.created_at = t.created_at
-            postsAux1 << p
-          end
+        if t.int_type == Interaction::I_SHARE
+          p = t.post
+          p.created_at = t.created_at
+          postsAux1 << p
         end
-        if t.type == Interaction::I_CREATOR
-          postsAux1 = postsAux1 + t.posts
+        if t.int_type == Interaction::I_CREATOR
+          postsAux1 << t.post
         end
       end
       if !@soloposts
@@ -294,15 +284,15 @@ class PostController < ApplicationController
     elsif params[:pagina] == "mentions"
       postsAux1 = Array.new
       @user.interactions.each do |t|
-        if t.type == Interaction::I_MENTION
-          postsAux1 = postsAux1 + t.posts
+        if t.int_type == Interaction::I_MENTION
+          postsAux1 << t.post
         end
       end
     elsif params[:pagina] == "notifications"
       postsAux1 = Array.new
       current_user.notifications.each do |n|
         if n.note_type == params[:id]
-          postsAux1 = postsAux1 + n.posts
+          postsAux1 << n.post
           if n.unread == 1
             n.unread = 0
             n.save
@@ -327,18 +317,30 @@ class PostController < ApplicationController
         @page_name = "Todos los Posts"
       end
     end
-    if params[:postId]
-      postsAux1 = postsAux1.where(:id => postId)
-    end
     postsAux1 = postsAux1.uniq_by{|x| x.id}
     postsAux1 = postsAux1.sort_by {|n| n.created_at}.reverse
+    if params[:postId]
+      postId = params[:postId].to_i
+      postsAux2 = Array.new
+      postsAux1.each do |p|
+        if postId == p.id
+          postsAux2 << p
+        end
+      end
+    end
     if params[:direccion]
       postsAux2 = Array.new
       postsAux1.each do |p|
-        if params[:direccion] == "next" and p.id < last
-          postsAux2 << p
-        else params[:direccion] == "prev" and p.id < last
-          postsAux2 << p
+        if params[:direccion] == "next"
+          last = params[:last].blank? ? 1 : (params[:last].to_i - 1)
+          if p.id <= last
+            postsAux2 << p
+          end
+        else params[:direccion] == "prev"
+          last = params[:last].blank? ? 1 : (params[:last].to_i + 1)
+          if p.id >= last
+            postsAux2 << p
+          end
         end
       end
     end
