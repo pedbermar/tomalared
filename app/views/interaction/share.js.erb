@@ -1,0 +1,6 @@
+if($("#destinatario").val() == " "){
+	$("#post_<%= params[:post_id] %>").remove(); 
+} else {
+	$("#sharePost_<%= params[:post_id] %>").html("<%= escape_javascript(render :partial => 'interaction/share', :locals => { :post_id => params[:post_id] }) %>");
+	pintarBotonesVote("#sharePost_<%= params[:post_id] %> ", "");
+}

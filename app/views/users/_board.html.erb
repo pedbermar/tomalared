@@ -23,7 +23,7 @@
 		</script>
 
 		<div class='popbox popbox-mentions'>
-			<a class="open open-mentions" href="#" id="notif1">@<%=cuentaNotificaciones(@userNotif.notifications, 1, 1).html_safe %></a>
+			<a class="open open-mentions" href="#" id="notif1">@<%=cuentaNotificaciones(current_user.notifications, 1, 1).html_safe %></a>
 			<div class='collapse collapse-mentions'>
 				<div class='box box-mentions'>
 					<div class='arrow arrow-mentions'></div>
@@ -31,7 +31,7 @@
 						<%= t :titulo_notificaciones_menciones %>
 					</div>
 					<div class='popbox-scroll' id="popbox-notif1">
-						<%=muestraNotificaciones(@userNotif.notifications, 1, 1).html_safe %>
+						<%=muestraNotificaciones(current_user.notifications, 1, 1).html_safe %>
 					</div>
 					<div class="popbox-footer">
 						<%= link_to "#{t :todas}", "/notif/index", :class => "popbox-a linkRemote" %>
@@ -41,7 +41,7 @@
 		</div>
 
 		<div class='popbox popbox-groups'>
-			<a class='open open-groups' href='#' id="notif3">#<%=cuentaNotificaciones(@userNotif.notifications, 3, 1).html_safe %></a>
+			<a class='open open-groups' href='#' id="notif3">#<%=cuentaNotificaciones(current_user.notifications, 3, 1).html_safe %></a>
 			<div class='collapse collapse-groups'>
 				<div class='box box-groups'>
 					<div class='arrow arrow-groups'></div>
@@ -50,7 +50,7 @@
 					</div>
 					<div class='popbox-scroll'>
 						<div class="popbox-cajita" id="popbox-notif3">
-							<%=muestraNotificaciones(@userNotif.notifications, 3, 1).html_safe %>
+							<%=muestraNotificaciones(current_user.notifications, 3, 1).html_safe %>
 						</div>
 					</div>
 					<div class="popbox-footer">
@@ -61,7 +61,7 @@
 		</div>
 
 		<div class='popbox popbox-comments'>
-			<a class='open  open-comments' href='#' id="notif5">C<%=cuentaNotificaciones(@userNotif.notifications, 5, 1).html_safe %></a>
+			<a class='open  open-comments' href='#' id="notif5">C<%=cuentaNotificaciones(current_user.notifications, 5, 1).html_safe %></a>
 			<div class='collapse collapse-comments'>
 				<div class='box box-comments'>
 					<div class='arrow arrow-comments'></div>					
@@ -70,7 +70,7 @@
 					</div>
 					<div class='popbox-scroll'>
 						<div class="popbox-cajita" id="popbox-notif5">
-							<%=muestraNotificaciones(@userNotif.notifications, 5, 1).html_safe %>
+							<%=muestraNotificaciones(current_user.notifications, 5, 1).html_safe %>
 						</div>
 					</div>
 					<div class="popbox-footer">

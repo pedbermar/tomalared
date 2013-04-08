@@ -46,6 +46,7 @@ class GetYourTumbleOn < ActiveRecord::Migration
       t.string    :url
       t.timestamps
     end
+
     
 
     add_index :users, :id, :unique

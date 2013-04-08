@@ -24,7 +24,7 @@ class Notification
           @note.post_id = post_id
           @note.resource_id = resource_id
           @note.unread = 1
-          @note.save!
+          @note.save
           
           @notifications = Array.new
           @notifications << @note
