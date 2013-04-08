@@ -176,7 +176,7 @@ class PostController < ApplicationController
         mentions.each do |u|
           user = User.find_by_name(u)
           if user
-            interaction = Interaction.new(:post_id => @post.id, :user_id => user.user_id, :int_type => Interaction::I_MENTION)
+            interaction = Interaction.new(:post_id => @post.id, :user_id => user.id, :int_type => Interaction::I_MENTION)
             @post.interactions << interaction
             Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
           end
@@ -205,10 +205,10 @@ class PostController < ApplicationController
     if @pagina == "list"
       if params[:id]
         if !params[:last] and !params[:postId]
-          @posts = Post.find(:all, 
+          postsAux1 = Post.find(:all, 
                              :conditions => {:id => params[:id]})
         else
-          @posts = Array.new
+          postsAux1 = Array.new
         end
         @uno_solo = true
       else
@@ -296,7 +296,7 @@ class PostController < ApplicationController
           if n.unread == 1
             n.unread = 0
             n.save
-            PrivatePub.publish_to "/u/#{to}", { :note => n, :type => "NOTIF" }
+            PrivatePub.publish_to "/u/#{n.user_id}", { :note => n, :type => "NOTIF" }
           end
         end
       end    

@@ -1,0 +1,5 @@
+<% if current_user.interactions.where(:post_id => post_id, :int_type => Interaction::I_SHARE).count >= 1 %>
+		<%= link_to '', {:controller => :interaction, :action => 'share', :post_id => post_id}, :remote => true, :class => 'iconUnshare', :title => 'UnShare'%>
+<% else %>
+    	<%= link_to '', {:controller => :interaction, :action => 'share', :post_id => post_id}, :remote => true, :class => 'iconShare', :title => 'Share'%>
+<% end %> 
