@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   end
 
   def show
-      redirect_to "/post/list/"
+      redirect_to "/"
   end
   
    def crop
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
         if @user.cropping?
           @user.photo.reprocess!
         end
-        redirect_to '/post/user/'
+        redirect_to '/'
       else
         render :action => 'crop'
       end

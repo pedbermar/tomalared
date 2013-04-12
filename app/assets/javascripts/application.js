@@ -15,17 +15,8 @@
 //= require jquery_ujs
 //= require private_pub
 //
-// 		NUESTOS .JS
-//= require vote
-//= require users
-//= require user_sessions
-//= require search
-//= require post
-//= require comment
-//= require notification
-//= require charCount
-//
 //		LIBRERIAS DE JQUERY
+//= require libs/jquery-migrate-1.1.1
 //= require libs/plugins
 //= require libs/modernizr-2.0.6.min
 //= require libs/popbox
@@ -38,6 +29,16 @@
 //= require libs/jquery.tagsphere
 //= require libs/jquery.prettyPhoto
 //= require libs/jquery.address-1.5.min
+//
+// 		NUESTOS .JS
+//= require vote
+//= require users
+//= require user_sessions
+//= require search
+//= require post
+//= require comment
+//= require notification
+//= require charCount
 
 function resetForm($form) {
 	$form.find('input:text, input:password, input:file, select, textarea').val('');
@@ -68,11 +69,6 @@ $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
 	$("#tumblear").button();
-	$(".linkRemote").address();
-	$(".linkRemote2").address();
-	$(".ui-corner-all a").address();
-	$("div.nube-tags a").address();
-	$(".popbox-scroll div.board-munecos").address();
 	
 	$("#cargandoPag").dialog({
 		autoOpen : false,
