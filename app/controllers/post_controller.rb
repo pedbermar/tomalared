@@ -132,9 +132,9 @@ class PostController < ApplicationController
             file << open(img_path).read
           end
           img_url = "/post/#{capturanombre}.jpg"
-          post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
+          @post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
         else
-          post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
+          @post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
       end
 
@@ -336,7 +336,7 @@ class PostController < ApplicationController
           if p.id <= last
             postsAux2 << p
           end
-        else params[:direccion] == "prev"
+        elsif params[:direccion] == "prev"
           last = params[:last].blank? ? 1 : (params[:last].to_i + 1)
           if p.id >= last
             postsAux2 << p
