@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   end
 
   def create
-      @user_session = UserSession.new    
-      @usernew = User.new(params[:user])
+    @user_session = UserSession.new    
+    @usernew = User.new(params[:user])
     if params[:accept]      
       # Saving without session maintenance to skip
       # auto-login which can't happen here because
@@ -24,8 +24,8 @@ class UsersController < ApplicationController
         render :action => :new
       end
     else
-        flash[:error] = "Debe aceptar las condiciones."
-        render :action => :new
+      flash[:error] = "Debe aceptar las condiciones."
+      render :action => :new
     end
   end
 
@@ -48,14 +48,24 @@ class UsersController < ApplicationController
       redirect_to "/"
   end
   
-   def crop
+  def crop
     @po = Post.new
     @user = User.find(current_user[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
     @po = Post.new
     @user = User.find(current_user[:id])
+    if params[:remote]
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end
   end
 
   def update
@@ -65,16 +75,17 @@ class UsersController < ApplicationController
       flash[:notice] = "Tu cuenta ha sido actualizada!"
       not_conf = NotificationsConfig.new
       not_conf.user_id = current_user[:id]
-      if params[:user][:photo].blank?
+      logger.debug "llega #{params[:crop]}"
+      if params[:crop] == "1"
+        @crop = true
+      else
         if @user.cropping?
           @user.photo.reprocess!
         end
-        redirect_to '/'
-      else
-        render :action => 'crop'
       end
-    else
-      render :action => :edit
+    end
+    respond_to do |format|
+      format.js
     end
   end
 

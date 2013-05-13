@@ -19,6 +19,7 @@ Fra::Application.routes.draw do
   match '/updatedatos'=> 'users#updatedatos'
   match '/update' => 'users#update'
   match '/delete_user' => 'users#delete_user'
+  match '/crop' => 'users#crop'
 
 	#Grupos
   #Listados

@@ -1,5 +1,14 @@
-$(document).ready(function() {
+function aspectoUser(){
+	$("#imagenUser").button();
+	$("#datosUser").button();
+	$("#claveUser").button();
+	$("#borrarUser").button();
 	$("#tabs").tabs();
+	$("#formUser").submitWithAjax();
+}
+
+$(document).ready(function() {
+	aspectoUser();
 	$("#tabs-board").tabs();
 	$('.tags-cloud-groups').tagcloud({		
 		centrex : 10,
@@ -51,10 +60,10 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$( ".cerrar-condiciones" ).click(function() {
+	$(document).on("click", ".cerrar-condiciones", function(event) {
 		$( ".condiciones" ).hide( "drop", { direction: "down" }, "slow" );
 	});
-	$( ".condicion" ).click(function() {
+	$(document).on("click", ".condicion", function(event) {
 	  	$( ".condiciones" ).show( "fold", 1000 );
 	});
 });

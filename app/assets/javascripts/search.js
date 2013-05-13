@@ -3,7 +3,7 @@ $(document).ready(function()
 	$( "#q" ).autocomplete({
 	    source: "/search/searched",
 	    select: function(event, ui) {
-			$.address.value("/post/"+ ui.item.tipo+"/" + ui.item.name); 
+			$.address.value(("/post/"+ ui.item.tipo+"/" + ui.item.name)); 
 		},
 	    response: function(event, ui) {
 	    	var dataString  = $(this).val();        
@@ -28,13 +28,13 @@ $(document).ready(function()
 	  	autoFocus: true	
 	})
 	.data("autocomplete")._renderItem = function( ul, item ) {
-		return $( "<li></li>" )
+		return $( "<li class=\"resultSearch\"></li>" )
 		.data( "item.autocomplete", item )
 		.append( "<a href=\"/post/"+ item.tipo+ "/"+ item.name+ "\"><div class='a-autocomplete'><img width='30' src='"+item.img+"' onError=\"this.src='/img/default.jpg';\"> "+ item.label + "</div></a>")
 		.appendTo( ul );
 	};
 
-	$(document).on("click", ".ui-corner-all a", function(event) {
+	$(document).on("click", ".resultSearch a", function(event) {
 		$.address.value($(this).attr('href'));
 		return false;
 	});

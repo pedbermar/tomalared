@@ -1,0 +1,4 @@
+$("#main").html("<%= escape_javascript(render :partial => "users/edit") %>");
+aspectoUser();
+if ($("#cargandoPag").dialog("isOpen"))
+	$("#cargandoPag").dialog("close");
