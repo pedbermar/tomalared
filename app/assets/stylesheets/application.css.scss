@@ -1153,7 +1153,7 @@ div #form-new
 /* Autocomplete
 ----------------------------------*/
 .ui-autocomplete { position: absolute; cursor: default; }       
-.ui-autocomplete-loading { background: white url('/gfx/ajax-loader.gif') center center no-repeat; text-shadow: none; border: none !important;}
+.ui-autocomplete-loading { background: white url('/gfx/loading.gif') center center no-repeat; text-shadow: none; border: none !important;}
 
 /* workarounds */
 * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */

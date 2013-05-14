@@ -1,0 +1,47 @@
+<script type="text/javascript" charset="utf-8">
+$(function() {
+
+	
+
+  $('#target-photo').Jcrop({
+    onChange: update_crop,
+    onSelect: update_crop,
+    aspectRatio: 1,
+    bgOpacity: 0.5,    
+    bgColor: 'white',
+    bgFade: true,    
+    addClass: 'jcrop-light'    
+  });
+
+
+function update_crop(coords) {
+ var bounds = this.getBounds();
+        boundx = bounds[0];
+        boundy = bounds[1];
+  var rx = 100/coords.w;
+  var ry = 100/coords.h; 
+  
+  var ratio = <%= @user.avatar_geometry(:original).width %> / <%= @user.avatar_geometry(:large).width %>;
+  $("#crop_x").val(Math.round(coords.x * ratio));
+  $("#crop_y").val(Math.round(coords.y * ratio));
+  $("#crop_w").val(Math.round(coords.w * ratio));
+  $("#crop_h").val(Math.round(coords.h * ratio));
+
+}
+
+});
+</script>
+	<div id="photo-recorte">	
+		<h5>Recorta la foto</h5>			
+		<img src="<%=@user.photo.url(:large)%>" id="target-photo" />		   		
+	  	<br/>
+	    <%= form_for @user, :html => {:id => "formUser", :remote => true} do |form| %>
+	  		<% for attribute in [:crop_w, :crop_h, :crop_x, :crop_y] %>
+	  			<%= form.hidden_field attribute, :id => attribute %>
+	  		<% end %>
+	  		<p><%= form.submit "Recortar" %></p>
+		<% end %>
+	</div>
+
+
+

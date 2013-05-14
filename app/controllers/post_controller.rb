@@ -196,163 +196,167 @@ class PostController < ApplicationController
     end
   end
 
-  def list(options = Hash.new)    
-    @po = Post.new
-    @post = Post.new
-    @destinatario = ""
-    @pagina = params[:pagina]
-    @soloposts = params[:soloposts]?true:false
-    if @pagina == "list"
-      if params[:id]
-        if !params[:last] and !params[:postId]
-          postsAux1 = Post.find(:all, 
-                             :conditions => {:id => params[:id]})
+  def list(options = Hash.new) 
+      if current_user   
+      @po = Post.new
+      @post = Post.new
+      @destinatario = ""
+      @pagina = params[:pagina]
+      @soloposts = params[:soloposts]?true:false
+      if @pagina == "list"
+        if params[:id]
+          if !params[:last] and !params[:postId]
+            postsAux1 = Post.find(:all, 
+                               :conditions => {:id => params[:id]})
+          else
+            postsAux1 = Array.new
+          end
+          @uno_solo = true
         else
           postsAux1 = Array.new
+          current_user.tags.each do |t|
+            postsAux1 = postsAux1 + t.posts
+          end
+          current_user.interactions.where(:int_type => Interaction::I_MENTION).each do |i|
+            postsAux1 << i.post
+          end
+          if params[:type]
+            postsAux1 = postsAux1.where(:post_type => params[:type])
+          end
         end
-        @uno_solo = true
-      else
-        postsAux1 = Array.new
-        current_user.tags.each do |t|
-          postsAux1 = postsAux1 + t.posts
+        if !@soloposts
+          @page_name = "Todos los Posts"
         end
-        current_user.interactions.where(:int_type => Interaction::I_MENTION).each do |i|
-          postsAux1 << i.post
-        end
+      elsif @pagina == "tag"
+        @tagName = params[:id]
+        @tag = Tag.find_by_name(@tagName)
+        @destinatario = "#" + @tagName
+        # if more than one tag is specified, get the posts containing all the
+        # passed tags.  otherwise get all the posts with just the one tag.
+        postsAux1 = @tag.posts
         if params[:type]
           postsAux1 = postsAux1.where(:post_type => params[:type])
         end
-      end
-      if !@soloposts
-        @page_name = "Todos los Posts"
-      end
-    elsif @pagina == "tag"
-      @tagName = params[:id]
-      @tag = Tag.find_by_name(@tagName)
-      @destinatario = "#" + @tagName
-      # if more than one tag is specified, get the posts containing all the
-      # passed tags.  otherwise get all the posts with just the one tag.
-      postsAux1 = @tag.posts
-      if params[:type]
-        postsAux1 = postsAux1.where(:post_type => params[:type])
-      end
-      if !@soloposts
-        #foto aleatoria de la cabezera de list por tags
-        posts_image = postsAux1.where(:post_type => "image")
-        if posts_image
-          @tag_foto = posts_image.sample()
-          if @tag_foto
-            #@tag_foto.each do |tag_foto|
-              @foto_tag = @tag_foto.content
-            #end
+        if !@soloposts
+          #foto aleatoria de la cabezera de list por tags
+          posts_image = postsAux1.where(:post_type => "image")
+          if posts_image
+            @tag_foto = posts_image.sample()
+            if @tag_foto
+              #@tag_foto.each do |tag_foto|
+                @foto_tag = #tag_foto.content
+              #end
+            end
           end
+          @post.content = "##{params[:id]} "
+          @users_tag =  @tag.users
+          @page_name = "Post del Tag #{params[:id]}"
         end
-        @post.content = "##{params[:id]} "
-        @users_tag =  @tag.users
-        @page_name = "Post del Tag #{params[:id]}"
-      end
-    elsif @pagina == "user"
-      if params[:id]
-        if /^[\d]+(\.[\d]+){0,1}$/ === params[:id]
-          @user = User.find(params[:id])
-        else
-          @user = User.find_by_name(params[:id])
-        end
-      else
-        @user = User.find(current_user[:id])
-      end
-      if @user.id != current_user[:id]
-        @destinatario = "@" + @user.name
-      end
-      postsAux1 = Array.new
-      @user.interactions.each do |t|
-        if t.int_type == Interaction::I_SHARE
-          p = t.post
-          p.created_at = t.created_at
-          postsAux1 << p
-        end
-        if t.int_type == Interaction::I_CREATOR
-          postsAux1 << t.post
-        end
-      end
-      if !@soloposts
+      elsif @pagina == "user"
         if params[:id]
-          @post.content = "@#{params[:id]} : "
-        end
-        @page_name = "Post de #{@user.name}"
-      end
-    elsif params[:pagina] == "mentions"
-      postsAux1 = Array.new
-      @user.interactions.each do |t|
-        if t.int_type == Interaction::I_MENTION
-          postsAux1 << t.post
-        end
-      end
-    elsif params[:pagina] == "notifications"
-      postsAux1 = Array.new
-      current_user.notifications.each do |n|
-        if n.note_type == params[:id]
-          postsAux1 << n.post
-          if n.unread == 1
-            n.unread = 0
-            n.save
-            PrivatePub.publish_to "/u/#{n.user_id}", { :note => n, :type => "NOTIF" }
+          if /^[\d]+(\.[\d]+){0,1}$/ === params[:id]
+            @user = User.find(params[:id])
+          else
+            @user = User.find_by_name(params[:id])
           end
+        else
+          @user = User.find(current_user[:id])
         end
-      end    
-    else
-      if params[:id]
-        @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => "id DESC")
-        @uno_solo = true
-      else
+        if @user.id != current_user[:id]
+          @destinatario = "@" + @user.name
+        end
         postsAux1 = Array.new
-        current_user.tags.each do |t|
-          postsAux1 = postsAux1 + t.posts
-        end
-        if params[:type]
-          postsAux1 = postsAux1.where(:post_type => params[:type])
-        end
-      end
-      if !@soloposts
-        @page_name = "Todos los Posts"
-      end
-    end
-    postsAux1 = postsAux1.uniq_by{|x| x.id}
-    postsAux1 = postsAux1.sort_by {|n| n.created_at}.reverse
-    if params[:postId]
-      postId = params[:postId].to_i
-      postsAux2 = Array.new
-      postsAux1.each do |p|
-        if postId == p.id
-          postsAux2 << p
-        end
-      end
-    end
-    if params[:direccion]
-      postsAux2 = Array.new
-      postsAux1.each do |p|
-        if params[:direccion] == "next"
-          last = params[:last].blank? ? 1 : (params[:last].to_i - 1)
-          if p.id <= last
-            postsAux2 << p
+        @user.interactions.each do |t|
+          if t.int_type == Interaction::I_SHARE
+            p = t.post
+            p.created_at = t.created_at
+            postsAux1 << p
           end
-        elsif params[:direccion] == "prev"
-          last = params[:last].blank? ? 1 : (params[:last].to_i + 1)
-          if p.id >= last
-            postsAux2 << p
+          if t.int_type == Interaction::I_CREATOR
+            postsAux1 << t.post
           end
         end
+        if !@soloposts
+          if params[:id]
+            @post.content = "@#{params[:id]} : "
+          end
+          @page_name = "Post de #{@user.name}"
+        end
+      elsif params[:pagina] == "mentions"
+        postsAux1 = Array.new
+        @user.interactions.each do |t|
+          if t.int_type == Interaction::I_MENTION
+            postsAux1 << t.post
+          end
+        end
+      elsif params[:pagina] == "notifications"
+        postsAux1 = Array.new
+        current_user.notifications.each do |n|
+          if n.note_type == params[:id]
+            postsAux1 << n.post
+            if n.unread == 1
+              n.unread = 0
+              n.save
+              PrivatePub.publish_to "/u/#{n.user_id}", { :note => n, :type => "NOTIF" }
+            end
+          end
+        end    
+      else
+        if params[:id]
+          @posts = Post.find(:all, :conditions => {:id => params[:id]}, :order => "id DESC")
+          @uno_solo = true
+        else
+          postsAux1 = Array.new
+          current_user.tags.each do |t|
+            postsAux1 = postsAux1 + t.posts
+          end
+          if params[:type]
+            postsAux1 = postsAux1.where(:post_type => params[:type])
+          end
+        end
+        if !@soloposts
+          @page_name = "Todos los Posts"
+        end
       end
-    end
-    @posts = postsAux1.first(10)
-    if postsAux2
-      @posts = postsAux2.first(10)
-    end
-    if !params[:external] || params[:remote]
-      respond_to do |format|
-        format.html
-        format.js
+      postsAux1 = postsAux1.uniq_by{|x| x.id}
+      postsAux1 = postsAux1.sort_by {|n| n.created_at}.reverse
+      if params[:postId]
+        postId = params[:postId].to_i
+        postsAux2 = Array.new
+        postsAux1.each do |p|
+          if postId == p.id
+            postsAux2 << p
+          end
+        end
       end
+      if params[:direccion]
+        postsAux2 = Array.new
+        postsAux1.each do |p|
+          if params[:direccion] == "next"
+            last = params[:last].blank? ? 1 : (params[:last].to_i - 1)
+            if p.id <= last
+              postsAux2 << p
+            end
+          else params[:direccion] == "prev"
+            last = params[:last].blank? ? 1 : (params[:last].to_i + 1)
+            if p.id >= last
+              postsAux2 << p
+            end
+          end
+        end
+      end
+      @posts = postsAux1.first(10)
+      if postsAux2
+        @posts = postsAux2.first(10)
+      end
+      if !params[:external] || params[:remote]
+        respond_to do |format|
+          format.html
+          format.js
+        end
+      end
+    else
+      redirect_to "/user"
     end
   end
 

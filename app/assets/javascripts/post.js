@@ -140,26 +140,11 @@ function exitoPost(idPost) {
 $(document).ready(function() {
 	$("#save").submitWithAjax();
 	$(document).on("click", ".linkRemote", function(event) {
-		if($("#notice").length > 0)
-			$("#notice").remove();
-		if($("#error").length > 0)
-			$("#error").remove();
-		if ($("#remote").length > 0) {
-			$('html, body').animate({ scrollTop: 0 }, 0);
-			$("#cargandoPag").dialog("open");
-			var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
-			$("#remote").val(url);
-			$.getScript(url + "?remote=true");
-			return false;
-		}
+		$.address.value($(this).attr('href'));
+		return false;
 	});
 	$(document).on("click", ".linkRemote2", function(event) {
-		if($("#notice").length > 0)
-			$("#notice").remove();
-		if($("#error").length > 0)
-			$("#error").remove();
-		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
-		$.getScript(url + "?remote=true");
+		$.address.value($(this).attr('href'));
 		return false;
 	});
 	$("#post_content").charcount({

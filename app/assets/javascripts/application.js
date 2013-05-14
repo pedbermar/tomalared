@@ -15,17 +15,8 @@
 //= require jquery_ujs
 //= require private_pub
 //
-// 		NUESTOS .JS
-//= require vote
-//= require users
-//= require user_sessions
-//= require search
-//= require post
-//= require comment
-//= require notification
-//= require charCount
-//
 //		LIBRERIAS DE JQUERY
+//= require libs/jquery-migrate-1.1.1
 //= require libs/plugins
 //= require libs/modernizr-2.0.6.min
 //= require libs/popbox
@@ -37,6 +28,18 @@
 //= require libs/jquery.mousewheel.min
 //= require libs/jquery.tagsphere
 //= require libs/jquery.prettyPhoto
+//= require libs/jquery.address-1.5.min
+//= require libs/jquery.form
+//
+// 		NUESTOS .JS
+//= require vote
+//= require users
+//= require user_sessions
+//= require search
+//= require post
+//= require comment
+//= require notification
+//= require charCount
 
 function resetForm($form) {
 	$form.find('input:text, input:password, input:file, select, textarea').val('');
@@ -86,6 +89,23 @@ $(document).ready(function() {
 		closeOnEscape : true
 	});
 
+	$.address.change(function(event) {
+        // Set shortcut to URI value
+        var uri = event.value;
+        // Run ajax call and get JSON data
+		if($("#notice").length > 0)
+			$("#notice").remove();
+		if($("#error").length > 0)
+			$("#error").remove();
+		$('html, body').animate({ scrollTop: 0 }, 0);
+		$("#cargandoPag").dialog("open");
+		if ($("#remote").length > 0) {
+			$("#remote").val(url);
+		}
+		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + uri;
+		$.getScript(url + "?remote=true");
+    });
+
 	$("#open-publicar").click(function() {
 		$("#post_content").val("");
 		if ($("#destinatario").val() != "")
@@ -123,6 +143,6 @@ $(document).ready(function() {
 	CambioTamano();	
     $(window).resize(function(){
 		CambioTamano();	
-    });	
+    });
 });
 
