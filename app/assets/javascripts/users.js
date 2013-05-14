@@ -1,5 +1,14 @@
-$(document).ready(function() {
+function aspectoUser(){
+	$("#imageUser").button();
+	$("#datosUser").button();
+	$("#claveUser").button();
+	$("#borrarUser").button();
 	$("#tabs").tabs();
+	$("#formUser").submitWithAjax();
+}
+
+$(document).ready(function() {
+	aspectoUser();
 	$("#tabs-board").tabs();
 	$('.tags-cloud-groups').tagcloud({		
 		centrex : 10,
@@ -43,38 +52,30 @@ $(document).ready(function() {
 		'close' : '.close-comments'
 	});
 	$("div.nube-tags").on("click", "a", function(event) {
-		$("#notice").hide();
-		if ($("#remote").length > 0) {
-			$("#cargandoPag").dialog("open");
-			$("#cabeceraMuneco").hide();
-			$("#formulario").hide();
-			$("#posts").hide();
-			var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).attr('href');
-			$("#remote").val(url);
-			$("#posts").html("");
-			$.getScript(url + "?remote=true");
-			return false;
-		}
+		$.address.value($(this).attr('href'));
+		return false;
 	});
 	$(".popbox-scroll").on("click", "div.board-munecos", function(event) {
-		$("#notice").hide();
-		if ($("#remote").length > 0) {
-			$("#cargandoPag").dialog("open");
-			$("#cabeceraMuneco").hide();
-			$("#formulario").hide();
-			$("#posts").hide();
-			var url = $(location).attr('protocol') + "//" + $(location).attr('host') + $(this).child("a").attr('href');
-			$("#remote").val(url);
-			$("#posts").html("");
-			$.getScript(url + "?remote=true");
-			return false;
-		}
+		$.address.value($(this).attr('href'));
+		return false;
 	});
 
-	$( ".cerrar-condiciones" ).click(function() {
+	$(document).on("click", ".cerrar-condiciones", function(event) {
 		$( ".condiciones" ).hide( "drop", { direction: "down" }, "slow" );
 	});
-	$( ".condicion" ).click(function() {
+	$(document).on("click", ".condicion", function(event) {
 	  	$( ".condiciones" ).show( "fold", 1000 );
+	});
+
+	$(document).on("click", "#imageUser", function(event) {
+		$("#formImageUser").ajaxSubmit({
+			beforeSubmit: function(a,f,o) {
+				o.dataType = 'json';
+			},
+			complete: function(XMLHttpRequest, textStatus) {
+				$.address.value("/crop");
+			},
+		});
+		return false;
 	});
 });

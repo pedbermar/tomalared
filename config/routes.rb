@@ -4,7 +4,8 @@ Fra::Application.routes.draw do
   #resources :sessions, :constraints => { :protocol => "https" }
 
 	#Rutas principales
-  root :to 	     => 'user_sessions#new', :as => :login
+  root :to 	     => "post#list"
+  match "/user" => 'user_sessions#new', :as => :login
 
 	#Login
   match '/login'      => "user_sessions#new", :as => :login
@@ -16,8 +17,10 @@ Fra::Application.routes.draw do
   match '/edit_me'    => 'users#edit'
   match '/updatefoto' => 'users#updatefoto'
   match '/updatedatos'=> 'users#updatedatos'
+  match '/updateImage'=> 'users#updateImage'
   match '/update' => 'users#update'
   match '/delete_user' => 'users#delete_user'
+  match '/crop' => 'users#crop'
 
 	#Grupos
   #Listados

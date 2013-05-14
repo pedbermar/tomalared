@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
     @usernew = User.new
     if @user_session.save
       flash[:notice] = "Login successful!"
-      redirect_to '/post/list'
+      redirect_to '/'
     else
       render :action => :new
     end

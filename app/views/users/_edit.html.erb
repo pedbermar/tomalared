@@ -1,0 +1,91 @@
+<section id="user-edit" >
+	<div id="tabs">
+	  <ul>
+	    <li><a href="#perfil"><%= t 'perfil.perfil' %></a></li>
+	    <li><a href="#cuenta"><%= t 'perfil.cuenta' %></a></li>
+	    <li><a href="#sobre"><%= t 'perfil.sobre' %></a></li>
+		<div id="perfil">
+		 	<div class="user-edit-2">
+				<%= form_for :user, :url => { :controller => "users", :action => :updateImage }, :html => {:id => "formImageUser", :multipart => true, :method => :post, :remote => true} do |f| %>
+					<%= t'perfil.escoja_foto' %><br/><br/>
+					<%= image_tag @user.photo.url(:medium), :onError=> "this.src='/img/default.jpg';" %>
+					<br />  <br />
+					<%= f.file_field :photo %>
+					<br />  <br />
+					<%= link_to "#{t'cambiar'}", "#", :id => "imageUser" %>
+				<% end %>
+			</div>
+			<div class="user-edit">	  
+				<%= form_for @user, :html => {:id => "formUser", :remote => true} do |f| %>
+				  <%#= f.error_messages %>
+				    <%= f.label :profile, "#{t'perfil.profile'}" %>
+				    <%= f.text_field :profile %>
+			   		<br />  <br />
+				    <%= f.label :bio, "#{t'perfil.bio'}" %>
+				    <%= f.text_field :bio %>
+					<br />  <br />
+				    <%= f.label :url, "#{t'perfil.web'}" %>
+				    <%= f.text_field :url %>
+					<br />  <br />
+					<%= f.submit "#{t'cambiar'}", :html => { :id => "datosUser" } %>
+				<% end %>	
+	  		</div>
+		</div>
+		<div id="cuenta">
+		  	<div class="user-edit-2">
+		  		<%= form_for @user, :html => {:id => "formUser", :remote => true} do |f| %>
+				    <%= f.label :email, "#{t'perfil.email'}" %>
+				    <%= f.text_field :email %>
+					<br />  <br />
+				    <%= f.label :password, "#{t'perfil.clave'}" %>
+				    <%= f.password_field :password %>
+					<br />  <br />
+					<%= f.label :password_confirmation, "#{t'perfil.repite_clave'}" %>
+				    <%= f.password_field :password_confirmation %>
+					<br />  <br />
+				 	<%= f.submit "#{t'cambiar'}", :html => { :id => "claveUser" } %>				
+				<% end %>				
+			</div>			
+			<div class="user-edit user-text">	  
+				<%= t'perfil.politica_datos' %>
+				<br/><br/>
+				<p>
+					<%= t 'perfil.politica_datos1' %>
+				</p>
+				<p>
+					<%= t 'perfil.politica_datos2' %>
+				</p>
+				<p>
+					<%= t 'perfil.politica_datos3' %>		
+				</p>
+		  	</div>
+		  	<div style="clear:both"></div>
+		  	<a href="#"  class="condicion"> <%= t 'perfil.borrar' %> </a>
+			<div class="condiciones">
+				<a href="#" class="cerrar-condiciones"> <%= t 'cerrar' %></a>
+				<h5><%= t 'perfil.seguroBorrar' %></h5>		
+				<%= form_tag :controller => 'users', :action => 'delete_user', :method => 'delete', :html => {:id => "formUser", :remote => true} do %>
+					<%= label_tag :email, "#{t'perfil.email'}" %>
+				    <%= text_field_tag :email %>						
+				    <br />  <br />
+					<%= submit_tag "#{t'perfil.borrar'}", :html => { :id => "borrarUser" } %>
+					<br />  <br />				
+				<% end %>											
+			</div>
+		</div>		  
+		<div id="sobre">
+			<div class="user-text">				
+				<br/><br/>
+				<%= t'perfil.tomalared_es' %>
+				<br/><br/>
+				<p>
+					<%= t 'perfil.tomalared_es1' %> 
+				</p>
+				<p>
+					<%= t 'perfil.tomalared_es2' %>
+				</p>
+		  	</div>				
+		</div>
+	  </ul>
+  </div>
+</section>
