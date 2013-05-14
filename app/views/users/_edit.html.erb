@@ -6,14 +6,13 @@
 	    <li><a href="#sobre"><%= t 'perfil.sobre' %></a></li>
 		<div id="perfil">
 		 	<div class="user-edit-2">
-				<%= form_for @user, :html => {:multipart => true, :id => "formUser", :remote => true} do |form|%>
-					<%= t'perfil.escoja_foto' %><br/><br/>					
+				<%= form_for :user, :url => { :controller => "users", :action => :updateImage }, :html => {:id => "formImageUser", :multipart => true, :method => :post, :remote => true} do |f| %>
+					<%= t'perfil.escoja_foto' %><br/><br/>
 					<%= image_tag @user.photo.url(:medium), :onError=> "this.src='/img/default.jpg';" %>
-					<br />  <br />	      
-			    	<%= form.file_field( :photo, :id => "fileFoto") %>
 					<br />  <br />
-					<input type="hidden" id="crop" name="crop" value="0"/>
-					<%= form.submit "#{t'cambiar'}", :html => { :id => "imagenUser" } %>
+					<%= f.file_field :photo %>
+					<br />  <br />
+					<%= link_to "#{t'cambiar'}", "#", :id => "imageUser" %>
 				<% end %>
 			</div>
 			<div class="user-edit">	  

@@ -68,6 +68,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def updateImage
+    @po = Post.new    
+    @user = current_user
+    @user.photo = params[:user][:photo]
+    @user.save
+    flash[:notice] = "Tu cuenta ha sido actualizada!"
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def update
     @po = Post.new    
     @user = current_user # makes our views "cleaner" and more consistent
@@ -75,14 +86,6 @@ class UsersController < ApplicationController
       flash[:notice] = "Tu cuenta ha sido actualizada!"
       not_conf = NotificationsConfig.new
       not_conf.user_id = current_user[:id]
-      logger.debug "llega #{params[:crop]}"
-      if params[:crop] == "1"
-        @crop = true
-      else
-        if @user.cropping?
-          @user.photo.reprocess!
-        end
-      end
     end
     respond_to do |format|
       format.js

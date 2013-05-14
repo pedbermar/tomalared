@@ -1,5 +1,5 @@
 function aspectoUser(){
-	$("#imagenUser").button();
+	$("#imageUser").button();
 	$("#datosUser").button();
 	$("#claveUser").button();
 	$("#borrarUser").button();
@@ -65,5 +65,17 @@ $(document).ready(function() {
 	});
 	$(document).on("click", ".condicion", function(event) {
 	  	$( ".condiciones" ).show( "fold", 1000 );
+	});
+
+	$(document).on("click", "#imageUser", function(event) {
+		$("#formImageUser").ajaxSubmit({
+			beforeSubmit: function(a,f,o) {
+				o.dataType = 'json';
+			},
+			complete: function(XMLHttpRequest, textStatus) {
+				$.address.value("/crop");
+			},
+		});
+		return false;
 	});
 });

@@ -17,6 +17,7 @@ Fra::Application.routes.draw do
   match '/edit_me'    => 'users#edit'
   match '/updatefoto' => 'users#updatefoto'
   match '/updatedatos'=> 'users#updatedatos'
+  match '/updateImage'=> 'users#updateImage'
   match '/update' => 'users#update'
   match '/delete_user' => 'users#delete_user'
   match '/crop' => 'users#crop'

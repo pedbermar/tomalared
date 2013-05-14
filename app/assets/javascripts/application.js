@@ -29,6 +29,7 @@
 //= require libs/jquery.tagsphere
 //= require libs/jquery.prettyPhoto
 //= require libs/jquery.address-1.5.min
+//= require libs/jquery.form
 //
 // 		NUESTOS .JS
 //= require vote
