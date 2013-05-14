@@ -132,9 +132,9 @@ class PostController < ApplicationController
             file << open(img_path).read
           end
           img_url = "/post/#{capturanombre}.jpg"
-          post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
+          @post.content = desc + "\n" + img_url + "\n" + doc.url + "\n" + doc.host
         else
-          post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
+          @post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
       end
 
@@ -243,9 +243,9 @@ class PostController < ApplicationController
           if posts_image
             @tag_foto = posts_image.sample()
             if @tag_foto
-              @tag_foto.each do |tag_foto|
-                @foto_tag = tag_foto.content
-              end
+              #@tag_foto.each do |tag_foto|
+                @foto_tag = #tag_foto.content
+              #end
             end
           end
           @post.content = "##{params[:id]} "
