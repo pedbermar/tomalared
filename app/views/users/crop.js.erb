@@ -1,3 +1,6 @@
-$("#main").html("<%= escape_javascript(render :partial => "users/crop") %>");
+$("#ventanaEmergente").html("<%= escape_javascript(render :partial => "users/crop") %>");
+$("#ventanaEmergente").dialog("open");
+$("#rctImgUser").button();
+$(".ui-icon-closethick").remove();
 if ($("#cargandoPag").dialog("isOpen"))
 	$("#cargandoPag").dialog("close");

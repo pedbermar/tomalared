@@ -31,17 +31,14 @@ function update_crop(coords) {
 
 });
 </script>
-	<div id="photo-recorte">	
-		<h5>Recorta la foto</h5>			
+  <div id="photo-recorte">	
+  	<h5>Recorta la foto</h5>			
 		<img src="<%=@user.photo.url(:large)%>" id="target-photo" />		   		
 	  	<br/>
 	    <%= form_for @user, :html => {:id => "formUser", :remote => true} do |form| %>
 	  		<% for attribute in [:crop_w, :crop_h, :crop_x, :crop_y] %>
 	  			<%= form.hidden_field attribute, :id => attribute %>
 	  		<% end %>
-	  		<p><%= form.submit "Recortar" %></p>
+	  		<p><%= form.submit "Recortar", :html => { :id => "rctImgUser" } %></p>
 		<% end %>
 	</div>
-
-
-
