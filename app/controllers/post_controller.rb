@@ -244,7 +244,7 @@ class PostController < ApplicationController
             @tag_foto = posts_image.sample()
             if @tag_foto
               #@tag_foto.each do |tag_foto|
-                @foto_tag = #tag_foto.content
+                @foto_tag = @tag_foto.content
               #end
             end
           end
