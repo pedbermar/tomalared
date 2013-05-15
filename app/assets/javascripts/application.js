@@ -81,6 +81,14 @@ $(document).ready(function() {
 		dialogClass : "cargandoPagPost"
 	});
 
+	$( "#ventanaEmergente" ).dialog({
+    	autoOpen: false,
+    	modal: true,
+		resizable : false,
+		height : 650,
+		width : 650
+    });
+
 	$("#form-new").dialog({
 		autoOpen : false,
 		resizable : false,

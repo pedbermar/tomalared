@@ -86,6 +86,11 @@ class UsersController < ApplicationController
       flash[:notice] = "Tu cuenta ha sido actualizada!"
       not_conf = NotificationsConfig.new
       not_conf.user_id = current_user[:id]
+      if params[:user][:photo].blank?
+        if @user.cropping?
+          @user.photo.reprocess!
+        end
+      end
     end
     respond_to do |format|
       format.js
