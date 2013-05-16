@@ -126,7 +126,7 @@ class UsersController < ApplicationController
       @user.send_activation_confirmation!
       redirect_to account_url
     else
-      render :action => :new
+      render '/'
     end
   end
 end
