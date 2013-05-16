@@ -337,7 +337,7 @@ class PostController < ApplicationController
             if p.id <= last
               postsAux2 << p
             end
-          else params[:direccion] == "prev"
+          elsif params[:direccion] == "prev"
             last = params[:last].blank? ? 1 : (params[:last].to_i + 1)
             if p.id >= last
               postsAux2 << p
