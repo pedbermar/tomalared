@@ -107,10 +107,10 @@ $(document).ready(function() {
 			$("#error").remove();
 		$('html, body').animate({ scrollTop: 0 }, 0);
 		$("#cargandoPag").dialog("open");
+		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + uri;
 		if ($("#remote").length > 0) {
 			$("#remote").val(url);
 		}
-		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + uri;
 		$.getScript(url + "?remote=true");
     });
 
