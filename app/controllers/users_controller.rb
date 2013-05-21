@@ -124,9 +124,9 @@ class UsersController < ApplicationController
     if @user.activate!
       UserSession.create(@user, false)
       @user.send_activation_confirmation!
-      redirect_to account_url
+      redirect_to '/'
     else
-      render :action => :new
+      render ':action => :new'
     end
   end
 end

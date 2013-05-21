@@ -147,6 +147,15 @@ $(document).ready(function() {
 			$(".board-background").css({"margin-top": "5px", "width" : "220px"});
 			$("#main").css({"margin-top": "20px"});
 		}
+		
+		if ($(window).height()<=599)
+		{
+			$("#marcofoto img").css({"height":"100"});
+		}
+		else
+		{
+			$("#marcofoto img").css({"height":"auto"});
+		}
 	}
 	CambioTamano();	
     $(window).resize(function(){
