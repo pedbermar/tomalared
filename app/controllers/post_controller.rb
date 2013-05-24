@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class PostController < ApplicationController
 
   helper :all
@@ -150,7 +152,14 @@ class PostController < ApplicationController
         t11 = Array.new
         content.split.each do |t|
           if t.first == '#'
-            t11 << t.gsub(/^#/,"").gsub(/[^a-zA-Z0-9]/, "")
+            t = t.gsub(/^#/,"")
+            t = t.gsub(/[áäà]/i, "a")
+            t = t.gsub(/[éëè]/i, "e")
+            t = t.gsub(/[íïì]/i, "i")
+            t = t.gsub(/[óöò]/i, "o")
+            t = t.gsub(/[úüù]/i, "u")
+            t = t.gsub(/[^a-zA-Z0-9ñÑçÇ\']/i, "")
+            t11 << t
           end
         end
 
