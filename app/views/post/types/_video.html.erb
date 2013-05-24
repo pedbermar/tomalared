@@ -1,15 +1,13 @@
 <div id="video">
-<% img = content.split[-3] -%>
-<% url = content.split[-2] -%>
-<% host = content.split[-1] -%>
-<% desc = content.split[0..-4].join(" ") -%>
-		<a href="<%= url %>" target="_blank">
-			<%= title.html_safe %></a>
-<div class="post_link_photo">
-		</div>
+	<% img = content.split[-3] -%>
+	<% url = content.split[-2] -%>
+	<% host = content.split[-1] -%>
+	<% desc = content.split[0..-4].join(" ") -%>
+	<a href="<%= url %>" target="_blank"><%= title.html_safe %></a>
+	<div class="post_link_photo"></div>
 	<iframe class="youtube" src="https://www.youtube.com/embed/<%= parse_youtube(url) -%>?rel=0&amp;wmode=transparent" frameborder="0" allowfullscreen></iframe>
-<%=desc.html_safe%>
-<span class="timeCount"></br>
-				<%= host %>
-			</spam>
+	<%=desc.html_safe%>
+	<span class="timeCount"></br>
+		<%= host %>
+	</spam>
 </div>

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class CommentController < ApplicationController
   respond_to :xml, :json
   def delete
@@ -26,6 +28,30 @@ class CommentController < ApplicationController
       coder = HTMLEntities.new
       string = @comment.body
       @comment.body = coder.encode(string, :basic)
+        
+      # Agregar tags
+      t11 = Array.new
+      @comment.body.split.each do |t|
+        if t.first == '#'
+          t = t.gsub(/^#/,"")
+          t = t.gsub(/[áäà]/i, "a")
+          t = t.gsub(/[éëè]/i, "e")
+          t = t.gsub(/[íïì]/i, "i")
+          t = t.gsub(/[óöò]/i, "o")
+          t = t.gsub(/[úüù]/i, "u")
+          t = t.gsub(/[^a-zA-Z0-9ñÑçÇ\']/i, "")
+          t11 << t
+        end
+      end
+
+      t11.each do |t|
+        tag = Tag.find_by_name(t) || Tag.new(:name => t)
+        @comment.post.tags << tag
+        subs = Subscriptions.where(:post_id => tag.id, :resource_type => Subscriptions::S_TAG)
+        subs.each do |sub|
+          Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @comment.post_id)
+        end
+      end
       
      # Notificaciones para los subscriptores del post  
       sub = Subscriptions.where(:resource_id => @comment.post_id, :resource_type => Subscriptions::S_POST)

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module PostHelper
   # if the types partial doesn't exist, serve post
   def oz_type_partial(post_type)
@@ -34,11 +36,17 @@ def text_parse(str)
 	p2 = ""
   str = str.gsub(/[\n]/, ' <br/> ')     
       str.split(' ').each do |t|
-        t11 = t.gsub(/\s?(^#)?/, "")
-	      p = t.gsub(/^#\w+/) { link_to "##{t11} ", "/post/tag/#{t11}", :class => "linkRemote" }
+        t11 = t.gsub(/^#/,"")
+        t12 = t11.gsub(/[áäà]/i, "a")
+        t12 = t11.gsub(/[éëè]/i, "e")
+        t12 = t11.gsub(/[íïì]/i, "i")
+        t12 = t11.gsub(/[óöò]/i, "o")
+        t12 = t11.gsub(/[úüù]/i, "u")
+        t12 = t11.gsub(/[^a-zA-Z0-9ñÑçÇ\']/i, "")
+	      p = t.gsub(/^#.+/) { link_to "##{t11} ", "/post/tag/#{t12}", :class => "linkRemote" }
 
-        t21 = t.gsub(/\s?(^@)?/, "")
-        p1 = p.gsub(/^@\w+/) { link_to "@#{t21} ", "/post/user/#{t21}", :class => "linkRemote" }
+        t21 = t.gsub(/^@/, "")
+        p1 = p.gsub(/^@.+/) { link_to "@#{t21} ", "/post/user/#{t21}", :class => "linkRemote" }
 
         t30 = t.scan(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix)
 	      p2 << "\n" + p1.gsub(/(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix) {link_to "#{$1[0..39]}... ",  "#{$1}", :target => "_blank"}
