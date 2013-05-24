@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class PostController < ApplicationController
 
   helper :all
@@ -148,19 +150,15 @@ class PostController < ApplicationController
       if @post
         # Agregar tags
         t11 = Array.new
-        arrVoc = ["a", "e", "i", "o", "u"]
-        arrVocAcc1 = [/á/g, /é/g, /í/g, /ó/g, /ú/g]
-        arrVocAcc2 = [/ä/g, /ë/g, /ï/g, /ö/g, /ü/g]
-        arrVocAcc3 = [/à/g, /è/g, /ì/g, /ò/g, /ù/g]
         content.split.each do |t|
           if t.first == '#'
             t = t.gsub(/^#/,"")
-            for i in (1 .. 5)
-              t = t.gsub(arrVocAcc1[i], arrVoc[i])
-              t = t.gsub(arrVocAcc2[i], arrVoc[i])
-              t = t.gsub(arrVocAcc3[i], arrVoc[i])
-            end
-            t = t.gsub(/[^a-zA-Z0-9ñÑçÇ\']/g, "")
+            t = t.gsub(/[áäà]/i, "a")
+            t = t.gsub(/[éëè]/i, "e")
+            t = t.gsub(/[íïì]/i, "i")
+            t = t.gsub(/[óöò]/i, "o")
+            t = t.gsub(/[úüù]/i, "u")
+            t = t.gsub(/[^a-zA-Z0-9ñÑçÇ\']/i, "")
             t11 << t
           end
         end
