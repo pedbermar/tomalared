@@ -31,9 +31,9 @@ class SearchController < ApplicationController
  
  
   def searched
-    
     if params[:term]
       @q = params[:term]
+      
       tags = Array.new
       users = Array.new      
             
@@ -51,10 +51,9 @@ class SearchController < ApplicationController
         tags = Tag.where("name like ?", like)[0..4]
       end
       
-    list = users.map {|u| Hash[ id: u.id, label: "@#{u.name}", name: u.name, tipo: "user", img: u.photo.url(:small) ]}.sort_by {|a| a[:name]}
-    list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "/img/tag.png" ]}.sort_by {|a| a[:name]}
-    
-    render json: list
+      list = users.map {|u| Hash[ id: u.id, label: "@#{u.name}", name: u.name, tipo: "user", img: u.photo.url(:small) ]}.sort_by {|a| a[:name]}
+      list = list + tags.map {|t| Hash[ id: t.id, label: "##{t.name}", name: t.name, tipo: "tag", img: "/img/tag.png" ]}.sort_by {|a| a[:name]}
+      render :json => list.to_json
     end
   end
 end
