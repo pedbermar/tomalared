@@ -29,8 +29,12 @@ class NotificationController < ApplicationController
   end
   
   def read
-    @notification = Notification.where(:id => params[:id])
-    @notification.save
+    notifications = Notification.where(:user_id => current_user[:id], :note_type => params[:note_type])
+    @numNotif = notifications.count
+    notifications.each do |n|
+      n.unread = 0
+      n.save
+    end
     respond_to do |format|
       format.js
     end

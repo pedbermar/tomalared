@@ -62,7 +62,7 @@ Fra::Application.routes.draw do
   match '/notifications' => 'notification#list'
   match '/notif/index' => 'notification#index'
   match '/notif/list' => 'notification#list'
-  match '/notif/read' => 'notification#read'
+  match '/notif/read/:note_type' => 'notification#read'
 
 	#Buscador
   match '/search' => 'search#search'

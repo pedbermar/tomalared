@@ -8,11 +8,15 @@ function llegadaNotificacion(notif) {
 		i = -1;
 		$("#notifications_" + notif._id).remove();
 	}
-	var contador = $(elemento).find("span.numNotif").html();
+	var contador = $(elemento + " span.numNotif").html();
 	if(contador == ""){
 		contador = i;
 	}else{
 		contador = parseInt(contador) + parseInt(i);
 	}
-	$(elemento).find("span.numNotif").html(contador);
+	$(elemento + " span.numNotif").html(contador);
+	if(parseInt(contador) > 0)
+		$("#notif<%=params[:note_type]%> span.numNotif").show();
+	else
+		$("#notif<%=params[:note_type]%> span.numNotif").hide();
 }

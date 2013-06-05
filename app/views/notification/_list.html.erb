@@ -8,14 +8,14 @@
 	    	<%if n.note_type == 1%>
 				
 				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
-				<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.post_id}", :class => "linkRemote readNotif"%>
+				<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.post_id}", :class => "linkRemote"%>
 				
 			<%end%>
 			
 			<%if n.note_type == 3%>
 				
 				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
-				<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.post_id}", :class => "linkRemote readNotif"%> <%= t'notificaciones.en' %> 
+				<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.post_id}", :class => "linkRemote"%> <%= t'notificaciones.en' %> 
 				<% n.tags.each do |t|%>
 					<%= link_to "##{t.name} ", "/post/tag/#{t.name}", :class => "linkRemote"%>
 				<%end%>
@@ -28,13 +28,13 @@
 				
 				<% post = n.post %> 
 				<%if post.user_id == current_user[:id]%>
-					<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote readNotif"%>
+					<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%>
 					<%= t'notificaciones.tuya' %>	
 				<%elsif post.user_id == @user.id %>
-				    <%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote readNotif"%>
+				    <%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%>
 				 	<%= t'notificaciones.suya' %>
 				<%else%>
-					<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote readNotif"%> <%= t'notificaciones.de' %> 
+					<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%> <%= t'notificaciones.de' %> 
 	                <%= link_to "#{post.user.profile}", "/post/user/#{post.user_id}", :class => "linkRemote"%>
 				<%end%>
 				
