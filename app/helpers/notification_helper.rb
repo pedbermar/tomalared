@@ -3,7 +3,7 @@ module NotificationHelper
 		num = 0
 		style = ""
 		num = notifications.where(:note_type => type, :unread => unread).count
-		if num == 0
+		if num <= 0
 			style = "style=\"display:none\""
 		end
 		"<span class=\"numNotif\" #{style}>#{num}</span>"
