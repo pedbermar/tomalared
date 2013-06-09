@@ -11,12 +11,14 @@ function llegadaNotificacion(notif) {
 	var contador = $(elemento + " span.numNotif").html();
 	if(contador == ""){
 		contador = i;
+	}else if(contador < 0){
+		contador = 0 + parseInt(i);
 	}else{
 		contador = parseInt(contador) + parseInt(i);
 	}
 	$(elemento + " span.numNotif").html(contador);
 	if(parseInt(contador) > 0)
-		$("#notif<%=params[:note_type]%> span.numNotif").show();
+		$(elemento + " span.numNotif").show();
 	else
-		$("#notif<%=params[:note_type]%> span.numNotif").hide();
+		$(elemento + " span.numNotif").hide();
 }
