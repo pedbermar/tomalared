@@ -27,5 +27,17 @@ class NotificationController < ApplicationController
       flash[:notice] = "Tu cuenta ha sido actualizada!"
     end
   end
+  
+  def read
+    notifications = Notification.where(:user_id => current_user[:id], :note_type => params[:note_type])
+    @numNotif = notifications.count
+    notifications.each do |n|
+      n.unread = 0
+      n.save
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 end
 

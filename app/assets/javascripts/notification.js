@@ -8,11 +8,17 @@ function llegadaNotificacion(notif) {
 		i = -1;
 		$("#notifications_" + notif._id).remove();
 	}
-	var contador = $(elemento).find("span.numNotif").html();
+	var contador = $(elemento + " span.numNotif").html();
 	if(contador == ""){
 		contador = i;
+	}else if(contador < 0){
+		contador = 0 + parseInt(i);
 	}else{
 		contador = parseInt(contador) + parseInt(i);
 	}
-	$(elemento).find("span.numNotif").html(contador);
+	$(elemento + " span.numNotif").html(contador);
+	if(parseInt(contador) > 0)
+		$(elemento + " span.numNotif").show();
+	else
+		$(elemento + " span.numNotif").hide();
 }
