@@ -138,7 +138,6 @@ $(document).ready(function() {
 		var note_type = $(this).attr('id').replace("notif", "");
 		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + "/notif/read/" + note_type;
 		$.getScript(url + "?remote=true");
-		return false;
 	});
 	
 	function CambioTamano() {
