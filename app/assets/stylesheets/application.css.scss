@@ -58,13 +58,30 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 {
   position: relative;
   border: solid -1px !important;  
-  outline: none !important;
-  float:right;
-  font-size: 13px;
-  top: 0px;
+  outline: none !important;  
+  font-size: 19px;
+  margin-right: 3%;
+  top: -3px;
+  width: 65%;  
+  float: right;
+}
+
+::-webkit-input-placeholder 
+{ 
+  font-weight:bold;
+}
+
+:-moz-placeholder 
+{ 
+      font-weight:bold;
+}
+
+::-moz-placeholder 
+{ 
+      font-weight:bold;
 }
     /*Radius*/
-.busqueda, .ui-dialog, .post, #user-edit, #footer, .board-background, .notification-list, #login, #main 
+.busqueda, .ui-dialog, .post, #user-edit, #footer, .board-background, .notification-list, #login, #main, #q
 {
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -103,10 +120,11 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 {
   font-size: 28px;
   color: #aff675;
-  margin-left: 15px;
+  margin: 4px;
   font-weight: bold;
   font-family: monospace;
   text-shadow: -1px 0px green, 0px 1px green, 1px 0px green, 0px -1px green;
+  float: left;
 }
 
 .titulo:hover
@@ -134,18 +152,14 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   box-shadow:         0px 0px 6px 2px #283327;
   min-width: 100%;
   font-size: 12px;
+  height: 45px;
 }
 
-#nav0 li
-{
-  display: inline !important;
-}
-
-#search, #nav0
+#search
 {
   margin-top: 10px;
-  text-align: center;
-  margin-left: 15%;
+  text-align: left;
+  width: 100%;  
 }
 
 .usersboard
@@ -209,7 +223,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 #user_session_name, #user_session_password
 {
-  width: 100px;
+  width: 25%;
   margin-left: 5px;
   font-size: 12px;
   float: left;
@@ -418,7 +432,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   width: 23px;
   height: 23px;
   padding: 2px;
-  top: 0px;
+  top: -3px;
 }
 
 #open-publicar
@@ -492,11 +506,10 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 .textarea
 {
   margin: 6px;
+  width: 373px;  
+  margin-top: 14px;
   float: right;
-  width: 375px;;  
-  height: 92px;    
-  padding: 6px;
-  padding-top: 11px;   
+  height: 111px;
 }
 
 #tumblear
@@ -507,8 +520,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 .new_user_session
 {
-  padding-top: 7px;
-  width: 100%;
+  padding-top: 7px;  
 }
 
 .ui-dialog
@@ -561,7 +573,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
   position: relative;
   top: -20px;
   display: table;  
-  width: 95%;
+  width: 98%;  
   margin-left: 0px; 
 }
 
@@ -713,6 +725,7 @@ div #form-new
 {
     position: relative;
     top: 45px;    
+    left: -18px;
 }
 
 .comment 
@@ -837,6 +850,7 @@ div #form-new
   color: black; 
   z-index: 2;
   margin-bottom: 125px;
+  left: -18px;
 }
 
 #footer a
@@ -883,13 +897,40 @@ div #form-new
 .searcher
 {
   color: white; 
-  text-align: left
+  text-align: left;
+  float: left;
+  margin-top: 2px;
+  width: 75%;
 }
+
+.searchef
+{
+  color: white; 
+  text-align: left;  
+  float:right;
+  margin: -2px;
+  width: 58%;
+}
+
+
+.searched
+{
+  color: white; 
+  text-align: right;
+  float: right;
+  padding-top: 12px;
+  padding-right: 12px;
+}
+
 
 #resultado-busqueda
 {
+  position: absolute;
   color: red;
   font-size: 12px;
+  top: 10px;
+  left: 70%;
+  
 }
 
 .arrow-left 

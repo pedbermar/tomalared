@@ -8,15 +8,20 @@
 
 .collapse-mentions
 {
-	left: 68px;	
+	left: 70px;
+	top: 0px;	
 }
 
-.collapse-groups{
-	left: -1px;
+.collapse-groups
+{
+	left: 3px;
+	top: 3px;
 }
 
-.collapse-comments{
-	left: -70px;
+.collapse-comments
+{
+	left: -64px;
+	top:3px;
 }
 
 .popbox-user{
@@ -83,7 +88,7 @@
 	
 .popbox-scroll
 {
-	height: 135px;
+	height: 122px;
 	width: 100%;
   	overflow-y: auto;
   	overflow-x:hidden; 
@@ -93,12 +98,13 @@
 
 div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions
 {
-	width: 66px !important;
+	width: 66px !important;	
 	float: left;
 	border:solid 1px #327E04;	
 	margin-left:1px;
   	color: white;
   	background: #459E00;  	
+  	height: 26px;
 }
 
 div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover
@@ -106,10 +112,15 @@ div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.po
   	background:#67B021;
 }
 
+.popbox-a
+{
+	font-size: 12px;
+}
 .open
 {
 	display:block;
 	color: white !important;
+	font-size: 10px;
 }
 
 .popbox-title

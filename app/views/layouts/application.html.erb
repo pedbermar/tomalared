@@ -85,7 +85,7 @@ if @navegador == 'MSIE' -%>
 
 	</head>
 	<body>
-		<header class="row topbar">
+		<header class="fixed topbar">
 			<%= render :partial => 'user_sessions/login' %>
 		</header>
 		<div class="container">
@@ -120,7 +120,7 @@ if @navegador == 'MSIE' -%>
 		</div>
 		
 		<% if current_user %>
-			<div class="container" id="mainboard">
+			<div class="fixed" id="mainboard">
 				<div class="row" id="trasfondo">
 						<aside class="three columns push_nine board-background">
 									<%= render :partial => 'users/board' %>

@@ -1,23 +1,25 @@
-<div class="theree columns">	
-	<%= link_to "#{t'tomalared_net'}", '/', :class => "linkRemote titulo" %>
+<div class="titulo">	
+	<%= link_to "#{t'tomalared_net'}", '/', :class => "linkRemote titulo"  %>
 </div>
+
 <% if current_user -%>
-	<section class="four columns searcher">	
-	   <%= form_tag('/search', :id => 'search', :method=> 'get', :remote => true) do %>   		
-		   	<%= search_field_tag 'q', '',:placeholder =>  "#{t'buscar'}" %>
-	   		<span id="resultado-busqueda"></span>
-	   <% end %>
-	</section>
+<div class="searched">	
+	<%= render :partial => "post/newex" %>
+	<%= link_to '','/home', :class => "icon-home linkRemote", :title => "#{t'editar_perfil'}" %>				  
+	<%= link_to '', '/logout', :class => "icon-exit", :title => "#{t'salir'}" %>		
+</div>
+
+<div class="searchef">	
+	<%= form_tag('/search', :id => 'search', :method=> 'get', :remote => true) do %>   		
+			<%= search_field_tag 'q', '',:placeholder =>  "#{t'buscar'}", :class=>"search imput" %>
+	<% end %>
+   	<span id="resultado-busqueda"></span>
+</div>
 	
-	<nav class="four columns">
-		<div id="nav0">
-			<%= render :partial => "post/newex" %></li>
-    		<%= link_to '','/home', :class => "icon-home linkRemote", :title => "#{t'editar_perfil'}" %>				  
-			<%= link_to '', '/logout', :class => "icon-exit", :title => "#{t'salir'}" %>		
-		</div>
-	</nav>
+
+	
 <% else -%>
-	<section class="seven columns searcher">	
+	<div class="searcher">	
 		<%= render :partial => "user_sessions/new" %>
-	</section>	
+	</div>	
 <% end -%>
