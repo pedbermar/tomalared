@@ -17,10 +17,11 @@
 //
 //		LIBRERIAS DE JQUERY
 //= require libs/jquery-migrate-1.1.1
-//= require libs/plugins
-//= require libs/modernizr-2.0.6.min
+//= require libs/modernizr-2.6.2.min
 //= require libs/popbox
 //= require libs/gumby
+//= require libs/plugins
+//= require libs/main
 //= require libs/jquery-ui
 //= require libs/jquery.endless-scroll
 //= require libs/jquery.color
