@@ -135,6 +135,12 @@ $(document).ready(function() {
 	});
 	
 	
+	$(document).on("click", ".open", function(event) {
+		var note_type = $(this).attr('id').replace("notif", "");
+		var url = $(location).attr('protocol') + "//" + $(location).attr('host') + "/notif/read/" + note_type;
+		$.getScript(url + "?remote=true");
+	});
+	
 	function CambioTamano() {
 		if ($(window).width()<=780)
 		{

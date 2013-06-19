@@ -1,0 +1,7 @@
+var num = $("#notif<%=params[:note_type]%> span.numNotif").html();
+num = parseInt(num) - parseInt(<%=@numNotif%>);
+$("#notif<%=params[:note_type]%> span.numNotif").html(num);
+if(num > 0)
+	$("#notif<%=params[:note_type]%> span.numNotif").show();
+else
+	$("#notif<%=params[:note_type]%> span.numNotif").hide();

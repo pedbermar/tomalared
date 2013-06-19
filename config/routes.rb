@@ -61,6 +61,8 @@ Fra::Application.routes.draw do
   
   match '/notifications' => 'notification#list'
   match '/notif/index' => 'notification#index'
+  match '/notif/list' => 'notification#list'
+  match '/notif/read/:note_type' => 'notification#read'
 
 	#Buscador
   match '/search' => 'search#search'
@@ -80,7 +82,6 @@ Fra::Application.routes.draw do
   match 'password_resets/edit'=> 'password_resets#edit'
   match 'password_resets/create'=> 'password_resets#create'
   
-  match '/notif/list' => 'notification#list'
   match '/users/crop/' => 'users#crop'
   
   match '/desde' => 'application#calcular_fecha'
