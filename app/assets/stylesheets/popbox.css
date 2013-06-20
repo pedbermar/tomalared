@@ -2,25 +2,23 @@
 { 
 	position:relative; 
 	z-index: 999;
-	top: 2px;
-	left: 0px; 		
 }
 
 .collapse-mentions
 {
-	left: 70px;
-	top: 0px;	
+	left: 69px;
+	top: 3px;	
 }
 
 .collapse-groups
 {
-	left: 3px;
+	left: 2px;
 	top: 3px;
 }
 
 .collapse-comments
 {
-	left: -64px;
+	left: -65px;
 	top:3px;
 }
 
