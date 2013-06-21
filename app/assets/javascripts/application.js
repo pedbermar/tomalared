@@ -145,14 +145,22 @@ $(document).ready(function() {
 		if ($(window).width()<=780)
 		{
 			$("#mainboard").css({"position":"static", "width" : "auto", "margin" : "0 auto"});
-			$(".board-background").css({"margin-top": "80px", "width" : "auto !important"});			
+			$(".board-background").css({"width" : "auto !important", "position": "relative", "left":"27px", "top":"-80px"});			
 			$("#main").css({"margin-top": "70px"});
+			$(".maincontent").css({"left": "0px", "top": "-40px"});
+			$(".searchef").css({"width": "20%"});
+			$("#q").css({"width": "100%"});
+			$("#footer").css({"top":"0px", "left":"0px"});		
 		}
 		else
 		{
 			$("#mainboard").css({"position":"fixed", "width" : "100%"});
-			$(".board-background").css({"margin-top": "5px", "width" : "220px"});
+			$(".board-background").css({"width" : "220px", "position": "relative", "left":"0px", "top":"0px"});
 			$("#main").css({"margin-top": "20px"});
+			$(".maincontent").css({"left": "-18px", "top": "45px"});
+			$(".searchef").css({"width": "58%"})
+			$("#q").css({"width": "65%"});
+			$("#footer").css({"top":"60px", "left":"-18px"});
 		}
 		
 		if ($(window).height()<=599)
