@@ -15,7 +15,7 @@ body
   background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
-img
+img, .youtube
 {
   border: solid 1px #BBBBBB !important;  
 }
@@ -806,6 +806,7 @@ div #form-new
 { 
   font-size: 10px;  
   text-align: justify;
+  line-height: 1.5em;
 }
 
 .text-quote
@@ -1331,3 +1332,4 @@ form
 {
   margin-top: -1px;
 }
+

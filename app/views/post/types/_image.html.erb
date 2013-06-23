@@ -1,9 +1,5 @@
-<div class="imagen">
-	<div class="imagen">
-		<a href="<%=content%>" rel="prettyPhoto[post]" class="ln">
-	  		<img src="<%=content%>" class="post-image" width="387" height="85" usemap="#image_map" border="0" alt='
-	  		<%= link_to "@#{Post.find(post_id).user.name}", "/post/user/#{@post_user.name}", :class => "linkRemote" %>	  		 
-	  		 en <%= linked_tags_with_commas(Post.find(post_id).tags).html_safe %>'>
-	  	</a>
-	</div>
-</div>
+<a href="<%=content%>" rel="prettyPhoto[post]" class="ln">	
+	<span title="<%Post.find(post_id).tags.each do |t|%>#<%= t.name%> <%end%>">
+	    <img src="<%=content%>" class="post-image" usemap="#image_map" border="0" alt='<%= link_to "@#{Post.find(post_id).user.name}", "/post/user/#{@post_user.name}", :class => "linkRemote" %>	 en <%= linked_tags_with_commas(Post.find(post_id).tags).html_safe %>'>
+	</span>
+</a>

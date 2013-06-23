@@ -18,6 +18,7 @@
 	   		</span>
 	   		<div class="text">	    		
 	   			<%= link_to @user_.profile , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user", :title =>  "@#{@user_.name}" %>
+				<br/>
 	   			<span class="timeCount">
 					<%= hace_tanto_tiempo(Time.at(comment.created_at),Time.now).html_safe %>				
 				</span>

@@ -165,11 +165,11 @@ $(document).ready(function() {
 		
 		if ($(window).height()<=599)
 		{
-			$("#marcofoto img").css({"height":"100"});
+			$("#marcofoto img").css({"height":"100","width":"auto"});
 		}
 		else
 		{
-			$("#marcofoto img").css({"height":"auto"});
+			$("#marcofoto img").css({"height":"auto","width":"208px"});
 		}
 	}
 	CambioTamano();	
