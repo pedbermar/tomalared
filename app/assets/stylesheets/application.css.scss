@@ -17,7 +17,7 @@ body
 
 img
 {
-  border: solid 1px #BBBBBB;  
+  border: solid 1px #BBBBBB !important;  
 }
 a{
   color: white;  
@@ -86,6 +86,7 @@ input[type='text'], input[type='password'], #q
   padding-left: 0.3em;
   padding-right: 0.3em;
 }
+
     /*Radius*/
 .busqueda, .ui-dialog, .post, #user-edit, #footer, .board-background, .notification-list, #login, #main, input[type='text'], input[type='password'], #q
 {
@@ -103,7 +104,7 @@ input[type='text'], input[type='password'], #q
 {
   position: relative;
   overflow: hidden !important;
-  height: 179px;
+  height: 150px;
   width: 208px;
   top: 0px;
   -webkit-box-sizing: border-box; 
@@ -466,8 +467,8 @@ input[type='text'], input[type='password'], #q
 }
 
 #loarding{
-  border: none;
-  padding-top: 18px;
+  border: none !important;
+  padding-top: 10px;
 }
 .cargandoPagPost .ui-dialog-titlebar 
 {
@@ -645,7 +646,8 @@ div #form-new
 {
   display: table;
   width: 100%;  
-  margin-top: 20px;
+  margin-top: 4px;
+  margin-bottom: 30px;
   padding-bottom: 5px;
 }
 
@@ -1191,7 +1193,7 @@ div #form-new
 {
   background: #fafaf4;
   width: 208 !important;
-  height: 148 !important;
+  height: 150 !important;
 }
 #tusgrupos a:hover, #tendencias a:hover
 {
@@ -1318,4 +1320,14 @@ div #form-new
 
   vertical-align:super;
   font-size: 8px;
+}
+
+form 
+{
+  margin: 0 0 0px;
+}
+
+#entrar
+{
+  margin-top: -1px;
 }

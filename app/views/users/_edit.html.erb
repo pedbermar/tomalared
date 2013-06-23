@@ -7,12 +7,13 @@
 		<div id="perfil">
 		 	<div class="user-edit-2">
 				<%= form_for :user, :url => { :controller => "users", :action => :updateImage }, :html => {:id => "formImageUser", :multipart => true, :method => :post, :remote => true} do |f| %>
-					<%= t'perfil.escoja_foto' %><br/><br/>
+					<%= t'perfil.escoja_foto' %><br/>
 					<%= image_tag @user.photo.url(:medium), :onError=> "this.src='/img/default.jpg';" %>
-					<br />  <br />
+					<br /> 
 					<%= f.file_field :photo %>
-					<br />  <br />
+					<br /><br /> 
 					<%= link_to "#{t'cambiar'}", "#", :id => "imageUser" %>
+					<br />
 				<% end %>
 			</div>
 			<div class="user-edit">	  
@@ -27,7 +28,8 @@
 				    <%= f.label :url, "#{t'perfil.web'}" %>
 				    <%= f.text_field :url %>
 					<br />  <br />
-					<%= f.submit "#{t'cambiar'}", :html => { :id => "datosUser" } %>
+					<%= f.submit "#{t'cambiar'}", :id => "datosUser" %>
+					<br />  <br />
 				<% end %>	
 	  		</div>
 		</div>
@@ -43,7 +45,7 @@
 					<%= f.label :password_confirmation, "#{t'perfil.repite_clave'}" %>
 				    <%= f.password_field :password_confirmation %>
 					<br />  <br />
-				 	<%= f.submit "#{t'cambiar'}", :html => { :id => "claveUser" } %>				
+				 	<%= f.submit "#{t'cambiar'}", :id => "claveUser" %>				
 				<% end %>				
 			</div>			
 			<div class="user-edit user-text">	  

@@ -3,6 +3,8 @@ function aspectoUser(){
 	$("#datosUser").button();
 	$("#claveUser").button();
 	$("#borrarUser").button();
+	$("#entrar").button();
+	$("#crearUser").button();	
 	$("#tabs").tabs();
 	$("#formUser").submitWithAjax();
 }
@@ -11,20 +13,20 @@ $(document).ready(function() {
 	aspectoUser();
 	$("#tabs-board").tabs();
 	$('.tags-cloud-groups').tagcloud({		
-		centrex : 10,
-		centrey : 30,
-		zoom : 300,
-		min_zoom : 150,
+		centrex : 15,
+		centrey : 10,
+		zoom : 250,
+		min_zoom : 200,
 		max_zoom : 600,
 		min_font_size: 7, 
 		max_font_size: 32,
 		rotate_factor: 10  		
 	});
 	$('.tags-cloud-populars').tagcloud({		
-		centrex : -20,
-		centrey : 30,
-		zoom : 300,
-		min_zoom : 150,
+		centrex : -25,
+		centrey : 20,
+		zoom : 150,
+		min_zoom : 200,
 		max_zoom : 600,
 		min_font_size: 7, 
 		max_font_size: 32,
