@@ -43,7 +43,7 @@
 		    	<%= link_to "##{t.name}", "/post/tag/#{t.name}", :class => "linkRemote" %>	 
 		    <% end -%>
 		      <br /><br />
-		    <%= hace_tanto_tiempo( Time.at(@user.created_at), Time.now).html_safe%> <%= t 'en_red'%>
+		    <%= hace_tanto_tiempo(@user.created_at,Time.now).html_safe %> <%= t 'en_red'%>
 		 </div>
 	</div>
 <% end %>

@@ -42,7 +42,7 @@
 			
 			<br/>
 			<span class="timeCount">
-				<%= hace_tanto_tiempo(Time.at(post.created_at),Time.now).html_safe %>		
+				<%= hace_tanto_tiempo(post.created_at,Time.now).html_safe %>		
 			</span>
 			
 			<%= render :partial => oz_type_partial(post.post_type), :locals => { :content => post.content, :usr => @post_user.name, :title => post.title, :post_id => post.id } %>
