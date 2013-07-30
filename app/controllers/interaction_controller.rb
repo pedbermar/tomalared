@@ -10,7 +10,7 @@ class InteractionController < ApplicationController
       interaction.save
       post = Post.find(params[:post_id])
       if post
-        Notification.send_notification(post.user_id, current_user[:id], Notification::SHARE, post.id)
+        Notification.send_notification(post.user_id, current_user[:id], Notification::SHARE, post.id, interaction.id)
       end
     else
       interactions.each do |i|

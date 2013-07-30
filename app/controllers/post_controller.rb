@@ -139,13 +139,8 @@ class PostController < ApplicationController
           @post.content = desc + "\n" + "no-img" + "\n" + doc.url + "\n" + doc.host
         end
       end
-
-      # save the post - if it fails, send the user back from whence she came
-      if @post.save
-        flash[:notice] = 'El mensaje se ha guardado correctamente.'
-      else
-        flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
-      end
+      
+      @post.save   
       
       if @post
         # Agregar tags
@@ -166,9 +161,9 @@ class PostController < ApplicationController
         t11.each do |t|
           tag = Tag.find_by_name(t) || Tag.new(:name => t)
           @post.tags << tag
-          subs = Subscriptions.where(:post_id => tag.id, :resource_type => Subscriptions::S_TAG)
+          subs = Subscriptions.where(:resource_id => tag.id, :resource_type => Subscriptions::S_TAG)
           subs.each do |sub|
-            Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id)
+            Notification.send_notification(sub.user_id, current_user[:id], Notification::TAG_POST, @post.id, tag.id)
           end
         end
         
@@ -187,7 +182,7 @@ class PostController < ApplicationController
           if user
             interaction = Interaction.new(:post_id => @post.id, :user_id => user.id, :int_type => Interaction::I_MENTION)
             @post.interactions << interaction
-            Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id)
+            Notification.send_notification(user.id, current_user[:id], Notification::USER, @post.id, @post.user_id)
           end
         end
         Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @post.id)
@@ -374,12 +369,12 @@ class PostController < ApplicationController
     @post = Post.find(params[:id])
     if @post           
       if @post.destroy        
-        flash[:notice] = 'El mensaje se ha borrado correctamente.'
+        #flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
-        flash[:notice] = "Ha habido un problema al borrar el mensaje."
+        #flash[:notice] = "Ha habido un problema al borrar el mensaje."
       end
     else
-      flash[:notice] = "No se encuentra el mensaje."
+      #flash[:notice] = "No se encuentra el mensaje."
     end
     respond_to do |format|
       format.html { redirect_to post_path }

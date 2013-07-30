@@ -9,17 +9,35 @@
 				
 				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
 				<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.post_id}", :class => "linkRemote"%>
-				
+				</br>
+		
 			<%end%>
 			
 			<%if n.note_type == 3%>
 				
 				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
 				<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.post_id}", :class => "linkRemote"%> <%= t'notificaciones.en' %> 
-				<% n.tags.each do |t|%>
-					<%= link_to "##{t.name} ", "/post/tag/#{t.name}", :class => "linkRemote"%>
-				<%end%>
 				
+					<%= link_to "##{Tag.find(n.resource_id).name} ", "/post/tag/#{Tag.find(n.resource_id).name}", :class => "linkRemote"%>
+				
+				
+			<%end%>
+			
+			<%if n.note_type == 4%>
+				
+				A <%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%> 
+				<%like = Like.find(n.resource_id)%>
+				<%if like.like == 1%>
+					le gusta tu
+				<%elsif like.dontlike == 1%>
+					no le gusta
+				<%end%>
+				tu
+				<%if like.like_type == 1%>
+					<%= link_to "publicacion", "/post/list/#{n.post_id}", :class => "linkRemote"%>
+				<%elsif like.like_tyoe == 2%>
+					<%= link_to "comentario", "/post/list/#{n.post_id}", :class => "linkRemote"%>		
+				<%end%>
 			<%end%>
 			
 			<%if n.note_type == 5%>

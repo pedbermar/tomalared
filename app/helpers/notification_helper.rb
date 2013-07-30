@@ -10,7 +10,7 @@ module NotificationHelper
 	end
 
 	def muestraNotificaciones(notifs, type, unread)
-		@notifications = notifs.where(:note_type => type, :unread => unread).sort_by {|n| n.id}.reverse
+		@notifications = notifs.where(:note_type => type).sort_by {|n| n.id}.reverse
 		"#{render :partial => "notification/list"}"
 	end
 end

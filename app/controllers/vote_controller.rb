@@ -18,10 +18,13 @@ class VoteController < ApplicationController
     like.save
     if params[:like_type] == 1
       @post = true
+      Notification.send_notification(@post.user_id, current_user[:id], Notification::LIKE, @post.id, nil)
     end
     if params[:like_type] == 2
       @comment = true
+      Notification.send_notification(@comment.user_id, current_user[:id], Notification::LIKE, @post.id, @comment.id)
     end
+    
     @numLikes = Like.find(:all, :conditions => {:like_type => params[:like_type], :type_id => params[:type_id], :like => 1, :dontlike => 0 }).count - Like.find(:all, :conditions => {:like_type => params[:like_type], :type_id => params[:type_id], :like => 0, :dontlike => 1 }).count
     if params[:remote]
       respond_to do |format|

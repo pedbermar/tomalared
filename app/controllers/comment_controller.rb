@@ -6,12 +6,12 @@ class CommentController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment
       if @comment.destroy
-        flash[:notice] = 'El mensaje se ha borrado correctamente.'
+      #  flash[:notice] = 'El mensaje se ha borrado correctamente.'
       else
-        flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
+       # flash[:notice] = 'Ha habido un problema al borrar el mensaje.'
       end
     else
-      flash[:notice] = 'No se encuentra el mensaje.'
+      #flash[:notice] = 'No se encuentra el mensaje.'
     end
     respond_to do |format|
       format.html { redirect_to }
@@ -73,9 +73,9 @@ class CommentController < ApplicationController
       unless Subscriptions.where(:user_id => current_user[:id], :resource_type => Subscriptions::S_POST, :resource_id => @comment.post_id).exists?
         Subscriptions.subscribe(current_user[:id], Subscriptions::S_POST, @comment.post_id)
       end      
-      flash[:notice] = 'El mensaje se ha guardado correctamente.'
+      #flash[:notice] = 'El mensaje se ha guardado correctamente.'
     else
-      flash[:notice] = 'Hubo un problema al guardar el mensaje.'
+      #flash[:notice] = 'Hubo un problema al guardar el mensaje.'
     end
     respond_to do |format|
       format.html { redirect_to }
