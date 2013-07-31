@@ -1,12 +1,17 @@
+/*Fuente*/
+@font-face
+{
+font-family: pixl;
+src: url('/fonts/pixl/Pixlpowr.ttf');     
+}
+
 /* Etiquetas generales */
 body
-{
-  background-image: url('/gfx/fondo.png');
-  background-color: black;
+{ 
+  background-color: #B9BDBA;
   background-repeat:no-repeat;
   background-attachment:fixed;
-  background-position:center; 
-  font-family: monospace;
+  background-position:center;  
   color: #000;
 }
 
@@ -56,14 +61,30 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 #q
 {
+  font-family: entypo;
   position: relative;
-  border: solid -1px !important;  
+  border: 0px !important;  
   outline: none !important;  
-  font-size: 19px;
-  margin-right: 3%;
-  top: -3px;
-  width: 65%;  
+  font-size: 20px;
+  margin-right: 1%;  
   float: right;
+  text-align: left;
+}
+
+#q::-webkit-input-placeholder {
+   text-align: right;
+}
+
+#q:-moz-placeholder { /* Firefox 18- */
+   text-align: right;  
+}
+
+#q::-moz-placeholder {  /* Firefox 19+ */
+   text-align: right;  
+}
+
+#q:-ms-input-placeholder {  
+   text-align: right; 
 }
 
 ::-webkit-input-placeholder 
@@ -123,21 +144,20 @@ input[type='text'], input[type='password'], #q
   width:300px;
 }
 
-.titulo
+.titulo a
 {
-  font-size: 28px;
-  color: #aff675;
-  margin: 4px;
-  font-weight: bold;
-  font-family: monospace;
-  text-shadow: -1px 0px green, 0px 1px green, 1px 0px green, 0px -1px green;
-  float: left;
-}
-
-.titulo:hover
-{
-  color: #459E00 !important;  
-  text-shadow: -1px 0px green, 0px 1px green, 1px 0px green, 0px -1px green;
+  position: relative;
+  font-size: 34px;
+  color: white;  
+  font-family: pixl;
+  font-weight: bold;    
+  float: left;  
+  left: 10px;
+  top: 4px;
+  padding-top: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: block;
 }
 
 .board-foto
@@ -185,7 +205,13 @@ input[type='text'], input[type='password'], #q
   display: inline;  
 }
 
-#error, .notice-li
+#error, #notice
+{
+  text-align: center;
+  margin: 15px;
+}
+
+.notice-li
 {
   text-align: center;
   border: 1px red;
@@ -193,17 +219,6 @@ input[type='text'], input[type='password'], #q
   border-width: 2px;
   background: #F78181;
   color: white;  
-  margin: 5px;
-}
-
-#notice
-{
-  text-align: center;
-  border: 1px green;
-  border-style:solid;
-  border-width: 2px;
-  background: #aff675;
-  color: black;  
   margin: 5px;
 }
 
@@ -230,11 +245,8 @@ input[type='text'], input[type='password'], #q
 
 #user_session_name, #user_session_password
 {
-  width: 20%;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: 12px;
-  float: left;
+  width: 150px !important;  
+  font-size: 10px;  
 }
 
 #user_url, #user_bio, #user_profile, #user_email, #user_password, #user_password_confirmation, #user_name
@@ -443,13 +455,6 @@ input[type='text'], input[type='password'], #q
   top: -3px;
 }
 
-#open-publicar
-{
-  height: 29px;
-  font-size: 13px;
-  top: -10px;
-}
-  
 #archivo
 {
   left: 6px;
@@ -929,6 +934,23 @@ div #form-new
   float: right;
   padding-top: 12px;
   padding-right: 12px;
+  font-family: entypo !important;
+  font-size: 20px;
+}
+
+.searched a,.titulo
+{
+  position: relative;
+  top: -8px;
+  display: block;
+  float: left;
+  padding: 7px;
+}
+
+.searched a:hover, .titulo a:hover
+{
+ background: rgb(75, 83, 75);
+ color: white;
 }
 
 
@@ -938,7 +960,7 @@ div #form-new
   color: red;
   font-size: 12px;
   top: 10px;
-  left: 70%;
+  left: 65%;
   
 }
 
@@ -1269,10 +1291,6 @@ div #form-new
   position:fixed;
 }
 
-.ui-widget 
-{
-  font-family: monospace;
-}
 
 ::-webkit-scrollbar 
 { 
@@ -1329,6 +1347,45 @@ form
 
 #entrar
 {
-  margin-top: -1px;
+  background: none;
+  border: 0px;
+  font-family: entypo;
+  color: white;
+  font-size: 20px;
+  padding: 7px;
+  margin-top: -5px;
 }
 
+#entrar:hover
+{
+  background: #4b534b;  
+}
+
+.ui-button
+{
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+}
+
+.logeo li
+{
+   display: inline;
+}
+
+.logeo
+{
+  margin-right: -20px;
+   text-align: right;
+}
+
+.field .input 
+{
+  height: 20px;
+  line-height: 12px;
+}
+
+.field .text
+{
+  padding: 0px 10px;
+}

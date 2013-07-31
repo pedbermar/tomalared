@@ -4,7 +4,7 @@
 en:
   version: TOMALRED.NET  v0.1 (alpha)
   basado: Power by
-  tomalared_net: takethenetwork.net
+  tomalared_net: takethenetwork
   publicar: Publish
   entrar: Login
   recuerdame: Remenmer me
@@ -24,7 +24,7 @@ en:
   cambiar: Change
   crear: Create
   registrate: Register
-  buscar: Search!!!!!
+  buscar: "&#128269;"
   editar_perfil: Edit profile
   salir: Logout
   resultado_busqueda: Your search for

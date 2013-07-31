@@ -99,12 +99,12 @@ if @navegador == 'MSIE' -%>
 					<%end%>
 				<%end%>					
 				<% if flash[:notice] %>
-					<div id="notice">
+					<div id="notice" class="success alert">
 						<%= flash[:notice] %>
 					</div>
 				<% end %>
 				<% if flash[:error] %>
-					<div id="error">
+					<div id="error" class="danger alert">
 						<%= flash[:error] %>
 					</div>
 				<% end %>

@@ -4,7 +4,7 @@
 es:
   version: TOMALRED.NET  v0.1 (alpha)
   basado: Basado en
-  tomalared_net: tomalared.net  
+  tomalared_net: tomalared  
   publicar: Publicar
   entrar: Entrar
   recuerdame: Recuedame
@@ -24,7 +24,7 @@ es:
   cambiar: Cambiar
   crear: Crear
   registrate: Regístrate
-  buscar: Busca!!!!!
+  buscar: "&#128269;"
   editar_perfil: Editar perfil
   salir: Cerrar sesion
   resultado_busqueda: Resultado de la busqueda
