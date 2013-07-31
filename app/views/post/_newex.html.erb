@@ -1,5 +1,6 @@
 <% if current_user %>
-<button id="open-publicar"><%= t 'publicar' %></button>
+
+<%= link_to ('&#9998;').html_safe, '', :title => "#{t'publicar'}", :id=>"open-publicar",:class => "linkRemote"  %>
 	<div id="form-new">
 		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
 			<div class="mediano-muneco2"> 

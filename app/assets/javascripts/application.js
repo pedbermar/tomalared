@@ -159,7 +159,7 @@ $(document).ready(function() {
 			$("#main").css({"margin-top": "20px"});
 			$(".maincontent").css({"left": "-18px", "top": "45px"});
 			$(".searchef").css({"width": "58%"})
-			$("#q").css({"width": "65%"});
+			$("#q").css({"width": "35%"});
 			$("#footer").css({"top":"60px", "left":"-18px"});
 		}
 		

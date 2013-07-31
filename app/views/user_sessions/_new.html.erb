@@ -1,9 +1,15 @@
 <%= form_for @user_session, :as => :user_session, :url => { :controller => "user_sessions", :action => "create" } do |f| %>
-		<%= f.text_field :name, :placeholder =>  t('perfil.name')%>
-		<%= f.password_field :password, :placeholder => t('perfil.clave') %>
-		<%= f.submit t('entrar'), :id =>"entrar" %>		
-		<%= f.check_box :remember_me %> <%= t('recuerdame')%>	|
-		<%= link_to t('olvidaste_clave'), password_resets_path %>
+
+<ul class="logeo">
+<li class="prepend append double field">
+   		<%= f.text_field :name, :placeholder =>  t('perfil.name'), :class =>"text input"%>
+		<%= f.password_field :password, :placeholder => t('perfil.clave'), :class =>"password input" %>
+
+</li>
+<li><%= f.submit ('&#59200;').html_safe, :id =>"entrar" %></li>
+<li><%= f.check_box :remember_me %> <%= t('recuerdame')%>	|</li>
+<li><%= link_to t('olvidaste_clave'), password_resets_path %></li>
+</ul>
 <% end %>
 	
 

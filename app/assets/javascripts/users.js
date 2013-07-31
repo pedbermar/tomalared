@@ -2,8 +2,7 @@ function aspectoUser(){
 	$("#imageUser").button();
 	$("#datosUser").button();
 	$("#claveUser").button();
-	$("#borrarUser").button();
-	$("#entrar").button();
+	$("#borrarUser").button();	
 	$("#crearUser").button();	
 	$("#tabs").tabs();
 	$("#formUser").submitWithAjax();
