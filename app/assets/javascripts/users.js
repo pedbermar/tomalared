@@ -12,25 +12,26 @@ $(document).ready(function() {
 	aspectoUser();
 	$("#tabs-board").tabs();
 	$('.tags-cloud-groups').tagcloud({		
-		centrex : 15,
-		centrey : 10,
-		zoom : 250,
-		min_zoom : 200,
-		max_zoom : 600,
+		centrex : 55,
+		centrey : 55,
+		zoom : 100,
+		min_zoom : 50,
+		max_zoom : 200,
 		min_font_size: 7, 
 		max_font_size: 32,
 		rotate_factor: 10  		
 	});
 	$('.tags-cloud-populars').tagcloud({		
-		centrex : -25,
-		centrey : 20,
-		zoom : 150,
-		min_zoom : 200,
-		max_zoom : 600,
+		centrex : 55,
+		centrey : 55,
+		zoom : 100,
+		min_zoom : 50,
+		max_zoom : 200,
 		min_font_size: 7, 
 		max_font_size: 32,
 		rotate_factor: 10    
 	});
+	
 	$('.popbox-mentions').popbox({
 		'open' : '.open-mentions',
 		'box' : '.box-mentions',
@@ -51,6 +52,21 @@ $(document).ready(function() {
 		'arrow' : '.arrow-comments',
 		'arrow_border' : '.arrow-border-comments',
 		'close' : '.close-comments'
+	});
+		
+	$('.popbox-tusgrupos').popbox({
+		'open' : '.open-tusgrupos',
+		'box' : '.box-tusgrupos',
+		'arrow' : '.arrow-tusgrupos',
+		'arrow_border' : '.arrow-border-tusgrupos',
+		'close' : '.close-tendencias'
+	});
+	$('.popbox-tendencias').popbox({
+		'open' : '.open-tendencias',
+		'box' : '.box-tendencias',
+		'arrow' : '.arrow-tendencias',
+		'arrow_border' : '.arrow-border-tendencias',
+		'close' : '.close-tendencias'
 	});
 	$("div.nube-tags").on("click", "a", function(event) {
 		$.address.value($(this).attr('href'));

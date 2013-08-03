@@ -1,0 +1,122 @@
+	<div id="board-notifi">
+		<%= subscribe_to "/u/#{current_user[:id]}" %>
+		<script language="JavaScript">
+			PrivatePub.subscribe("/u/<%= current_user[:id] %>", function(data, channel) {
+				var note = data.note;
+				llegadaNotificacion(note);
+				if(note.resource_id == undefined){
+					llegadaPost(note);
+				}else{
+					llegadaComment(note);
+				}
+			});
+		</script>
+		
+		<div class='popbox popbox-mentions'>
+			<a class="open open-mentions" href="#" id="notif1" title="<%= t :titulo_notificaciones_menciones %>">&#128100;<%=cuentaNotificaciones(current_user.notifications, 1, 1).html_safe %></a>
+			<div class='collapse collapse-mentions'>
+				<div class='box box-mentions'>
+					<div class='arrow arrow-mentions'></div>
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_menciones %>
+					</div>
+					<div class='popbox-scroll' id="popbox-notif1">
+						<%=muestraNotificaciones(current_user.notifications, 1, 1).html_safe %>
+					</div>
+					<div class="popbox-footer">
+						<%= link_to "#{t :todas}", "/notif/index", :class => "popbox-a linkRemote" %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class='popbox popbox-groups'>
+			<a class='open open-groups' href='#' id="notif3" title="<%= t :titulo_notificaciones_grupos %>">&#127758;<%=cuentaNotificaciones(current_user.notifications, 3, 1).html_safe %></a>
+			<div class='collapse collapse-groups'>
+				<div class='box box-groups'>
+					<div class='arrow arrow-groups'></div>
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_grupos %>
+					</div>
+					<div class='popbox-scroll'>
+						<div class="popbox-cajita" id="popbox-notif3">
+							<%=muestraNotificaciones(current_user.notifications, 3, 1).html_safe %>
+						</div>
+					</div>
+					<div class="popbox-footer">
+						<%= link_to "#{t :todas}", "/notif/index", :class => "popbox-a linkRemote"  %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class='popbox popbox-comments'>
+			<a class='open  open-comments' href='#' id="notif5" title="<%= t :titulo_notificaciones_comentarios %>">&#59190;<%=cuentaNotificaciones(current_user.notifications, 5, 1).html_safe %></a>
+			<div class='collapse collapse-comments'>
+				<div class='box box-comments'>
+					<div class='arrow arrow-comments'></div>					
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_comentarios %>
+					</div>
+					<div class='popbox-scroll'>
+						<div class="popbox-cajita" id="popbox-notif5">
+							<%=muestraNotificaciones(current_user.notifications, 5, 1).html_safe %>
+						</div>
+					</div>
+					<div class="popbox-footer">
+						<%= link_to "#{t :todas}", "/notif/index", :class => "popbox-a linkRemote"  %>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<% if current_user.tags.count != 0 %>
+		<div class='popbox popbox-tusgrupos'>
+			<a class='open  open-tusgrupos' href='#' id="notif5" title="<%= t :titulo_notificaciones_tusgrupos %>">&#59254;</a>
+			<div class='collapse collapse-tusgrupos'>
+				<div class='box box-tusgrupos'>
+					<div class='arrow arrow-tusgrupos'></div>					
+					<div class="popbox-title">
+						<%= t :titulo_notificaciones_tusgrupos %>
+					</div>
+					<div class='popbox-scroll'>
+						<div id="tusgrupos" class="tags-cloud-groups nube-tags" style="width:200px; height:120px;position:relative; overflow: hidden;">
+							<% current_user.tags[0..9].each do |tag_board| -%>
+							<ul>
+								<li>
+									<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote tags-a", :rel => tag_board.posts.count, :title => tag_board.name %>
+								</li>
+							</ul>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		
+		<div class='popbox popbox-tendencias'>
+			<a class='open  open-tendencias' href='#' id="notif5" title="<%= t :titulo_notificaciones_tendencias %>">&#9733;</a>
+			<div class='collapse collapse-tendencias'>
+				<div class='box box-tendencias'>
+					<div class='arrow arrow-tendencias'></div>					
+						<div class="popbox-title">
+							<%= t :titulo_notificaciones_tendencias %>
+						</div>
+					<div class='popbox-scroll'>
+						<div id="tendencias" <% if current_user.tags.count != 0 %>class="tags-cloud-populars nube-tags"<% else %>class="tags-cloud-groups nube-tags"<% end %> style="width:200px; height:120px;position:relative; overflow: hidden;">
+							<% Tag.find_most_popular(10).each do |tag_board| -%>
+								<ul>
+									<li>
+										<%= link_to "##{tag_board.name}", "/post/tag/#{tag_board.name}", :class => "linkRemote", :rel => tag_board.count, :title => tag_board.name %>
+									</li>
+								</ul>
+							<% end %>
+						</div>
+					</ul>
+				</div>
+			</div>
+		</div>	
+		</div>
+		
+</div>

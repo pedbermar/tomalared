@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  version: TOMALRED.NET  v0.1 (alpha)
+  version: TOMALRED.NET  v0.5 (Beta)
   basado: Power by
   tomalared_net: takethenetwork
   publicar: Publish
@@ -13,11 +13,11 @@ en:
   bienvenido: Welcome to Cyberspace, the new home of Mind.
   hace: ""
   todas: All
-  tendencias: Tendencies
-  tus_grupos: Your groups
   titulo_notificaciones_menciones: Mentions
   titulo_notificaciones_grupos: Post of groups
   titulo_notificaciones_comentarios: Comments
+  titulo_notificaciones_yourgroups: Your groups
+  titulo_notificaciones_tendencies: Tendencies
   cerrar: Close
   acepto:  I agreed
   condiciones: conditions

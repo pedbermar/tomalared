@@ -3,12 +3,6 @@ function pintarBotonesComment(postId, commentId) {
 	if(commentId != ""){
 		elemento = commentId;
 	}
-	$(elemento + ".borrarComentario").button({
-		icons : {
-			primary : "ui-icon-trash"
-		},
-		text : false
-	});
 	$(postId + ".comentar").button();
 }
 

@@ -1,16 +1,5 @@
 function pintarBotonesPost(postId) {
-	$(postId + ".borrarPost").button({
-		icons : {
-			primary : "ui-icon-trash"
-		},
-		text : false
-	});
-	$(postId + ".editarPost").button({
-		icons : {
-			primary : "ui-icon-document"
-		},
-		text : false
-	});
+	$(postId + ".borrarPost").button();	
 	cajaluz();
 }
 

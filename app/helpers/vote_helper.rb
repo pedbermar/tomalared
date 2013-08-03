@@ -21,9 +21,9 @@ module VoteHelper
 			clase = "Disable"
 		end
 		if boton == "Menos"
-			link_to '', {:controller => :vote, :action => 'vote', :like_type => like_type, :type_id => type_id, :dontLike => true }, :id => "votoMenos#{id}_#{type_id}", :class => "iconsMenos#{clase}", :remote => true
+			link_to '&#128078;'.html_safe, {:controller => :vote, :action => 'vote', :like_type => like_type, :type_id => type_id, :dontLike => true }, :id => "votoMenos#{id}_#{type_id}", :class => "iconsMenos#{clase}", :remote => true
 		elsif boton == "Mas"
-			link_to '', {:controller => :vote, :action => 'vote', :like_type => like_type, :type_id => type_id, :like => true }, :id => "votoMas#{id}_#{type_id}", :class => "iconsMas#{clase}", :remote => true
+			link_to '&#128077;'.html_safe, {:controller => :vote, :action => 'vote', :like_type => like_type, :type_id => type_id, :like => true }, :id => "votoMas#{id}_#{type_id}", :class => "iconsMas#{clase}", :remote => true
 		end
 	end
 	def numVotos(likes)
