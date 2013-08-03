@@ -1,15 +1,14 @@
 <%= div_for comment do %>
 	<% @user_ = comment.user%>
     <article class="postContent">    	
-    	<div class="comment-muneco" >
-    		<div class="arrow-left-comment"></div>	    		
+    	<div class="comment-muneco">
     		<%= link_to image_tag( @user_.photo.url(:small)  , :alt => "Imagen de #{@user_.name}"), "/post/user/#{@user_.name}", :class => "linkRemote comment-muneco-photo" %>
     	</div>
 	    <span class="mainComentContent">
 	    	<span class="iconos">
 		    	<% if  current_user[:id] == comment.user_id %>
 		    		<span class="ocultarIconosCm">
-					    <%= link_to 'Borrar', {:controller => 'comment', :action => 'delete', :id => comment.id}, :class => "borrarComentario", :method => :delete, :remote => true %>
+					    <%= link_to '&#10060;'.html_safe, {:controller => 'comment', :action => 'delete', :id => comment.id}, :class => "borrarComentario", :method => :delete, :remote => true %>
 					</span>
 				<% end %>
 		   		<%if current_user%>
@@ -17,8 +16,7 @@
 	   			<% end %>
 	   		</span>
 	   		<div class="text">	    		
-	   			<%= link_to @user_.profile , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user", :title =>  "@#{@user_.name}" %>
-				<br/>
+	   			<%= link_to @user_.profile , {:controller => 'post', :action => 'list', :pagina => "user", :id => @user_.name}, :class => "linkRemote user", :title =>  "@#{@user_.name}" %>				
 	   			<span class="timeCount">
 					<%= hace_tanto_tiempo(comment.created_at,Time.now).html_safe %>				
 				</span>

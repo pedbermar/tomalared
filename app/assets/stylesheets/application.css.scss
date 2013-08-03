@@ -15,16 +15,13 @@ body
   color: #000;
 }
 
-#footer
-{
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
-
 img, .youtube
 {
-  border: solid 1px #BBBBBB !important;  
+  border: solid 1px rgb(66,65,65)!important;  
 }
-a{
+
+a
+{
   color: white;  
   font-weight: bold;  
 }
@@ -35,9 +32,9 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 }
 
       /* Fondos blancos */
-.mainNotiContent, .formComentContent, .mainComentContent, .mainPostContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea
+.mainNotiContent, .formComentContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea
 {
-  background: #FAFAF4 !important;
+  background: #F0F0F0 !important;
   border:solid 1px #BBBBBB;  
 }
 
@@ -104,16 +101,8 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 
 input[type='text'], input[type='password'], #q
 {
-  padding-left: 0.3em;
-  padding-right: 0.3em;
-}
-
-    /*Radius*/
-.busqueda, .ui-dialog, .post, #user-edit, #footer, .board-background, .notification-list, #login, #main, input[type='text'], input[type='password'], #q
-{
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  border-radius: 7px;
+  padding-left: 0em;
+  padding-right: 0em;
 }
 
 .ui-tabs-anchor
@@ -128,6 +117,7 @@ input[type='text'], input[type='password'], #q
   height: 150px;
   width: 208px;
   top: 0px;
+  border: solid 1px gray;  
   -webkit-box-sizing: border-box; 
   -moz-box-sizing: border-box;    
   box-sizing: border-box;
@@ -168,7 +158,8 @@ input[type='text'], input[type='password'], #q
 
 .ui-tabs-nav
 {
-  border:solid 1px #BBBBBB;  
+  border: none;
+  background: transparent !important;  
 }
 
 .topbar
@@ -303,8 +294,7 @@ input[type='text'], input[type='password'], #q
 .comment-muneco
 {
   position: relative;
-  top: -21px;
-  width: 10%;
+  top: -21px;  
   height: 45px;
   float: left;
   margin: 1%;
@@ -314,8 +304,8 @@ input[type='text'], input[type='password'], #q
 
 .comment-muneco-photo
 {
-  width: 50px;
-  height: 50px;  
+  position: relative;
+  top: 22px;
 }
 
 .mainNotiContent
@@ -397,6 +387,11 @@ input[type='text'], input[type='password'], #q
   height: 42px; 
 }
 
+a.borrarPost, a.borrarComentario , a.iconUnshare 
+{
+  color: #d04526 !important;  
+}
+
 .borrarPost, .borrarComentario, .iconUnshare, .iconShare
 {
   margin-left: 3px;
@@ -407,6 +402,17 @@ input[type='text'], input[type='password'], #q
   width: 15px;
   height: 15px;  
 }
+
+.iconsMenosComentarioDisable, .iconsMasComentarioDisable, .iconsMasDisable, .iconsMenosDisable
+{
+  color: #4b534b !important;
+}
+
+.iconsMenosComentario, .iconsMasComentario, .iconsMas, .iconsMenos
+{
+  color: gray !important;
+}
+
 
 .mainPostContent .iconsMas, .mainPostContent .iconsMenos,.mainPostContent .iconsMasDisable,.mainPostContent .iconsMenosDisable 
 {
@@ -520,7 +526,7 @@ input[type='text'], input[type='password'], #q
 {
   margin: 6px;
   width: 373px;  
-  margin-top: 14px;
+  margin-top: 21px;
   float: right;
   height: 111px;
 }
@@ -609,7 +615,7 @@ div #form-new
   position: relative;
   width: 20%;  
   height: 108px;
-  margin: 1%;
+  margin: 4%;
   float: left;
   top: -3px;  
 }
@@ -629,16 +635,16 @@ div #form-new
   top: 4px;  
 }
 
-.mediano-muneco-post
-{
-  position:relative;
-  top: -22px;
-}
-
 .mediano-muneco-newex
 {
   position:relative;
   top: -20px;
+}
+
+.userPostFoto
+{
+  float: left;
+  margin-right: 10px;
 }
 
 #posts
@@ -650,9 +656,11 @@ div #form-new
 .post
 {
   display: table;
+  border: 1px solid gray;
+  background: rgba(255,255,255,0.9);
   width: 100%;  
-  margin-top: 4px;
-  margin-bottom: 30px;
+  margin-top: 4px;  
+  margin-bottom: 5px;
   padding-bottom: 5px;
 }
 
@@ -669,6 +677,10 @@ div #form-new
   padding: 10px;
   text-align: center;
   margin: 0;
+  margin-bottom: 5px;
+  width: 100%;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid gray;
 }
 
 
@@ -710,16 +722,15 @@ div #form-new
     position: relative;
     margin-top: 20px;
     z-index:50;
-    background-color: rgba(255, 255, 255, 0.8);
     min-height: 30px;
     padding-bottom: 20px;
-    overflow: hidden;
+    overflow: hidden;    
 }
 
 .postComments 
 {
   float: right;
-  width: 78%;
+  width: 100%;
   display:block;
   margin-top: 2px;  
 }
@@ -738,8 +749,7 @@ div #form-new
 .maincontent
 {
     position: relative;
-    top: 45px;    
-    left: -18px;
+    top: 39px;    
 }
 
 .comment 
@@ -750,15 +760,13 @@ div #form-new
 
 .mainPostContent
 {
-  width: 76%;
+  width: 98%;
   margin: 1%;
-  padding: 1%;
   margin-bottom: 0px;  
   float: left;
   font-size: 13px;
   line-height: 15px;  
-  color: black;
-  border: solid 1px #BBBBBB;
+  color: black;  
   -webkit-box-sizing: border-box; 
   -moz-box-sizing: border-box;    
   box-sizing: border-box;
@@ -766,15 +774,14 @@ div #form-new
 
 .formComentContent, .mainComentContent
 {
-  width: 85%;
+  width: 91%;
   margin-top: 5px;
   margin-right: 7px;    
   padding: 1%;  
-  float: right;
+  float: left;
   font-size: 10px;
-  border: solid 1px #BBBBBB;
-  min-height: 39px;
-  background: #FAFAF4; 
+  border: none;
+  min-height: 39px;   
   -webkit-box-sizing: border-box; 
   -moz-box-sizing: border-box;    
   box-sizing: border-box;         
@@ -783,12 +790,12 @@ div #form-new
 
 .formComentContent
 {
-  height: 26px;
+  height: 52px;
+  margin-top: 10px;
 }  
 
 .mainPostContent 
 {
-  max-width: 532px;
   box-sizing: border-box;
 }
 
@@ -797,16 +804,19 @@ div #form-new
   margin: 1%;
   text-align: justify;
   word-wrap: break-word;
-  width: 99%;
+  width: 91%;
+  float: right;
 }
+
 .mainComentContent .text
 {
   font-size:10px;
   text-align: justify;
   padding-top: 1px;
   word-wrap: break-word;
-  width: 99%;
+  width: 99%;  
 }
+
 .text, .text-link
 { 
   font-size: 10px;  
@@ -828,6 +838,7 @@ div #form-new
 
 .voteMenu li
 {
+  font-family: entypo;
   display: inline;
   float: right;
   height: 0px;  
@@ -840,11 +851,12 @@ div #form-new
 
 #mainboard
 {
-  position: fixed;  
-  top: 60px;
-  left: -27px;
   width: 100%;
   z-index:1;    
+  position: fixed !important;
+  padding: 5px;      
+  text-align: center;   
+  margin-top: 52px;  
 }
 
 .comentar
@@ -859,13 +871,14 @@ div #form-new
 {
   position: relative;  
   padding: 5px;
-  top: 60px;  
+  top: 20px;  
   font-size: 11px;
   text-align: center;  
   color: black; 
   z-index: 2;
-  margin-bottom: 125px;
-  left: -18px;
+  margin-bottom: 40px;  
+  border: 1px solid gray;
+  background: rgba(255,255,255,0.9);
 }
 
 #footer a
@@ -922,10 +935,13 @@ div #form-new
   color: white; 
   text-align: left;  
   float:right;
-  margin: -2px;
-  width: 58%;
+  margin: -2px;  
 }
 
+.searcheb
+{
+  float: left;
+}
 
 .searched
 {
@@ -936,6 +952,12 @@ div #form-new
   padding-right: 12px;
   font-family: entypo !important;
   font-size: 20px;
+}
+
+
+.iconos
+{
+  font-family: entypo !important;
 }
 
 .searched a,.titulo
@@ -1026,20 +1048,12 @@ div #form-new
   z-index:1000;   
 }
 
-.board-background
-{
-   background-color:rgba(255,255,255,0.8);
-   padding: 5px;      
-   text-align: center;   
-   margin-top: 5px;
-}
-
 .board-white
 {  
   margin-bottom: 6px;
   margin-top: 6px;
   padding: 5px;
-  border: solid 1px #BBBBBB;
+  border: solid 1px gray;
 }
 
 
@@ -1062,10 +1076,10 @@ div #form-new
 
 #board-notifi 
 {  
+    width: 200px;
     margin: 0 auto;
     margin-bottom: 5px;    
-    background: none !important;
-    width: 207px;
+    background: none !important;    
 }
 
 
@@ -1090,15 +1104,14 @@ div #form-new
 #login
 {
   display: table;
-  width: 100%;
-  background-color:rgba(255,255,255,0.8);
+  width: 100%;  
   text-align: center;   
   color: black;
-  padding: 10px;
+  padding: 10px;    
 }
 
 #reg
-{
+{  
   display: table;
   width: 100%;  
   text-align: center;   
@@ -1387,5 +1400,54 @@ form
 
 .field .text
 {
-  padding: 0px 10px;
+  padding: 0px 10px;  
+}
+
+.iconos .ui-button-text-only .ui-button-text 
+{
+  margin-top: -1px;
+  padding: 0;
+  font-family: entypo;
+}
+
+.mainComentContent .iconos .ui-button-text-only .ui-button-text 
+{
+  margin-top: 7px;
+}
+
+.iconos .ui-state-default
+{
+  border: none;
+  background: none;
+}
+
+.login
+{
+  margin-bottom: 30px;
+  border: 1px solid gray;
+  background-image: url("/gfx/tomalared.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(255,255,255,0.9);
+}
+
+
+div.ui-dialog-titlebar.ui-widget-header.ui-corner-all.ui-helper-clearfix
+{
+  background: transparent !important;
+  border: 0px;
+}
+
+.ui-dialog .ui-dialog-content
+{
+  padding: 0em 1em;
+}
+
+
+input.text.input
+{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+  border-radius: none;
 }

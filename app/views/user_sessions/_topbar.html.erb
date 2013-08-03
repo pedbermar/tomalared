@@ -6,17 +6,22 @@
 <div class="searched">	
 	<%= render :partial => "post/newex" %>
 	<%= link_to ('&#9881;').html_safe, '/home', :class => "linkRemote", :title => "#{t'editar_perfil'}" %>  
-	<%= link_to ('&#59201;').html_safe, '/logout', :title => "#{t'salir'}" %>				
+	<%= link_to ('&#59201;').html_safe, '/logout', :title => "#{t'salir'}" %>	
+	<div class='popbox fotoTopbar '>
+		<%= link_to image_tag(current_user.photo.url(:small) , :alt => "Tu imagen"), '/post/user', :class => "linkRemote" %>		
+	</div>
 </div>
 
-<div class="searchef">	
+<div class="searchef">
 	<%= form_tag('/search', :id => 'search', :method=> 'get', :remote => true) do %>   		
 			<%= search_field_tag 'q', '',:placeholder =>  ("#{t'buscar'}").html_safe, :class=>"search imput" %>
 	<% end %>
    	<span id="resultado-busqueda"></span>
 </div>
-	
 
+<div class="searcheb">	
+	<%= render :partial => "user_sessions/notifications.html.erb" %>
+</div>	
 	
 <% else -%>
 	<div class="searcher">	

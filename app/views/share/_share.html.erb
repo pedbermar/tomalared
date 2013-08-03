@@ -1,8 +1,0 @@
-<% if Share.post_user_share(post_id, current_user[:id]) %>
-		<%= link_to 'df', {:controller => :share, :action => 'share', :post_id => post_id}, 
-			:method => :delete, :remote => true, :share => false, :class => 'iconUnshare', :title => 'UnShare'%>
-<% else %>
-    	<%= link_to 'dfdf', {:controller => :share, :action => 'share', :post_id => post_id},
-    		:method => :post, :remote => true, :share => true, :class => 'iconShare', :title => 'Share'%>
-<% end %> 
-

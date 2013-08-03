@@ -2,20 +2,19 @@
 	<% @post_user = post.user -%>
 	<article class="postContent">
 
-		<div class="mediano-muneco">
-			<div class="arrow-left"></div>	
+
+		<div class="mainPostContent">
+		<div class="userPostFoto">			
 			<%if @user%>	
-				<%= link_to image_tag( @user.photo.url(:medium)  , :alt => "Imagen de #{@user.name}"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
+				<%= link_to image_tag( @user.photo.url(:small)  , :alt => "Imagen de #{@user.name}"), "/post/user/#{@user.name}", :class => "linkRemote mediano-muneco-post" %>
 			<%else%>	
-				<%= link_to image_tag( @post_user.photo.url(:medium)  , :alt => "Imagen de #{@post_user.name}"), "/post/user/#{@post_user.name}", :class => "linkRemote mediano-muneco-post" %>
+				<%= link_to image_tag( @post_user.photo.url(:small)  , :alt => "Imagen de #{@post_user.name}"), "/post/user/#{@post_user.name}", :class => "linkRemote mediano-muneco-post" %>
 			<%end%>
 		</div>
-	
-		<div class="mainPostContent">
 			<span class="iconos">
 				<%if current_user[:id] == post.user_id%>
 					<span class="ocultarIconos">
-						<%= link_to 'Delete', { :controller => :post, :action => 'delete', :id => post.id }, :class => "borrarPost", :method => :delete, :remote => true %>
+						<%= link_to '&#10060;'.html_safe, { :controller => :post, :action => 'delete', :id => post.id }, :class => "borrarPost", :method => :delete, :remote => true %>
 					</span>
 				<% else %>
 					<div id="sharePost_<%=post.id%>" class="ocultarIconos">
@@ -39,8 +38,7 @@
 			<%else %>
 				<%= link_to "#{@post_user.profile}", "/post/user/#{@post_user.name}", :class => "linkRemote user",:title =>  "@#{@post_user.name}" %>
 			<% end %>
-			
-			<br/>
+						
 			<span class="timeCount">
 				<%= hace_tanto_tiempo(post.created_at,Time.now).html_safe %>		
 			</span>

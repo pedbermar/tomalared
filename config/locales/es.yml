@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points
 
 es:
-  version: TOMALRED.NET  v0.1 (alpha)
+  version: TOMALRED.NET  v0.5 (Beta)
   basado: Basado en
   tomalared_net: tomalared  
   publicar: Publicar
@@ -13,11 +13,11 @@ es:
   bienvenido: Bienvenido al ciberespacio, el nuevo hogar de la mente.
   hace: hace
   todas: Todas
-  tendencias: Tendencias
-  tus_grupos: Tus grupos
   titulo_notificaciones_menciones: Menciones
   titulo_notificaciones_grupos: Post de grupos
   titulo_notificaciones_comentarios: Comentarios
+  titulo_notificaciones_tusgrupos: Tus grupos
+  titulo_notificaciones_tendencias: Tendencias
   cerrar: Cerrar
   acepto: Acepto las
   condiciones: condiciones

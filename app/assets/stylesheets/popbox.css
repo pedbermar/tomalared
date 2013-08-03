@@ -4,24 +4,6 @@
 	z-index: 999;
 }
 
-.collapse-mentions
-{
-	left: 69px;
-	top: 3px;	
-}
-
-.collapse-groups
-{
-	left: 2px;
-	top: 3px;
-}
-
-.collapse-comments
-{
-	left: -65px;
-	top:3px;
-}
-
 .popbox-user{
 	display: table;
 	font-size:9px;
@@ -56,25 +38,10 @@
   	z-index:1001;
 }
   
-.arrow-comments, .arrow-border-comments
-{
-  	left: 161px !important;  	
-}
-.arrow-border-groups, .arrow-groups
-{
-	left: 91px !important;
-}
-.arrow-border-mentions, .arrow-mentions
-{
-	left: 22px !important;
-}
-
 .popbox-photo
 {
+	margin-bottom:3px;
 	float: left;	
-	border: none;	
-	border-right: 1px solid #BBBBBB;
-	border-bottom: 1px solid #BBBBBB;
 }
 
 .popbox-cajita
@@ -83,7 +50,12 @@
 	height: 50px;
 	float: left;
 }
-	
+
+.notification	
+{
+	margin-bottom: 4px;
+}
+
 .popbox-scroll
 {
 	height: 122px;
@@ -94,25 +66,43 @@
   	vertical-align:middle;	
 }
 
-div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions
+div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions, div.popbox.popbox-tusgrupos, div.popbox.popbox-tendencias
 {
-	width: 68px !important;	
-	float: left;
-	border:solid 1px #327E04;	
-	margin-left:1px;
+	width: 33px !important;	
+	float: left;	
+  	color: white;  	 	
+  	height: 40px;  	
+  	margin-top: 4px;  	
+  	padding-top: 6px;
+}
+
+div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover, div.popbox.popbox-tusgrupos:hover, div.popbox.popbox-tendencias:hover
+{
+  	background: #4b534b;
+}
+
+div.popbox.fotoTopbar
+{
+	width: 46px !important;	
+	float: left;	
   	color: white;
-  	background: #459E00;  	
-  	height: 26px;
+  	margin-top: -4px;
 }
 
-div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover
+.searched .fotoTopbar a:hover 
 {
-  	background:#67B021;
+	background: none !important;
 }
-
-.popbox-a
+.searcheb
 {
-	font-size: 12px;
+	margin-left: 2%;
+}
+.popbox a
+{
+	font-size: 15px;
+	display: block;
+	text-align: center;
+	font-family: entypo;
 }
 .open
 {
@@ -125,7 +115,8 @@ div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.po
 {
 	border-bottom: solid 1px #BBBBBB;
 	font-size: 13px;
-	font-weight:bold;	
+	font-weight:bold;
+	text-align: center;	
 }
 
 .popbox-footer
