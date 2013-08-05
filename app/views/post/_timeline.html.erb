@@ -1,0 +1,26 @@
+
+<ul class="timeline">	
+		<li><a href="#">Ahora</a> <%= Time.now%></li>
+		<li><%= link_to "Ayer", "/post/user/#{@user.name}", :class => "linkRemote user", :title =>  "@#{@user.name}", :date => "#{4.day.ago.to_date}"%>
+		</li>
+		<li><a href="#">Esta semana</a>
+			<ul>
+				<%n = 1%>
+				<%while n < 7 %>
+					<li><a href="#"><%= "#{n}".to_i.day.ago.strftime("%A")%> </a></li>
+				<% n = n + 1%>
+				<%end%>
+			</ul>
+		</li>
+		<li><a href="#">2013</a>
+			<ul>
+				<% n = 1%>
+				<% m = Time.now.month%>
+				<%while n < m %>
+					<li><a href="#"><%= "#{n}".to_i.month.ago.strftime("%B")%> </a></li>
+				<% n = n + 1%>
+				<%end%>
+			
+			</ul>
+		</li>	    	
+	</ul>

@@ -126,7 +126,7 @@ class PostController < ApplicationController
           img_path = doc.images.first
         end
 
-        if img_path
+       if img_path != ""
           require 'open-uri'
           capturanombre = "#{@post.user_id}-#{Time.now.to_a.join}"
           direcion = "public/post/#{capturanombre}.jpg"
@@ -347,6 +347,15 @@ class PostController < ApplicationController
               postsAux2 << p
             end
           end
+        end
+      end
+      
+      if params[:date]
+        postsAux1 = postsAux1.where("created_at >= :start", 
+                                      :start => params[:date])
+        if postsAux2
+          @posts = postsAux2.where("created_at >= :start",
+                                      :start => params[:date])
         end
       end
       @posts = postsAux1.first(10)

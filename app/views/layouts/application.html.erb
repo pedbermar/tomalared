@@ -95,9 +95,9 @@ if @navegador == 'MSIE' -%>
 				<div id="ventanaEmergente">
 					<br>
 				</div>
-   			<% end %>
-				
-			<section id="main" class="twelve columns <% if !current_user%>login<%end%>">
+  			<% end %>
+
+			<section id="main" class="ten columns <% if !current_user%>login<%end%>">
 				<% if !current_user%>
 					<% if @user_session.errors.any?%>	
 						<div id="error">
@@ -125,9 +125,10 @@ if @navegador == 'MSIE' -%>
 			</div>		
 				
 		</div>
+
   			
 		<footer class="row">
-					<div id="footer"  class="twelve columns">
+					<div id="footer"  class="ten columns">
 						<% if current_user %>
 						<%= t 'hola' %> <%= current_user[:name] %>. 
 						<% end %><%= t 'bienvenido' %> 

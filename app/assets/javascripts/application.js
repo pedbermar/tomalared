@@ -31,6 +31,8 @@
 //= require libs/jquery.prettyPhoto
 //= require libs/jquery.address-1.5.min
 //= require libs/jquery.form
+//= require libs/timeline
+
 //
 // 		NUESTOS .JS
 //= require vote
@@ -96,6 +98,11 @@ $(document).ready(function() {
 		height : 180,
 		width : 600,
 		closeOnEscape : true
+	});
+	
+	$(".timeline").timeline({
+		accordion: true,
+		speed: 500
 	});
 
 	$.address.change(function(event) {
@@ -168,5 +175,6 @@ $(document).ready(function() {
     $(window).resize(function(){
 		CambioTamano();	
     });
+    
 });
 
