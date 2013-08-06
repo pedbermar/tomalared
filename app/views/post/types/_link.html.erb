@@ -11,17 +11,21 @@
 		
 	<% end %>
 
-	<div class="text-link"><br>
+	<div class="text-link">
 		<a href="<%= link %>" target="_blank">
-			<%= title.html_safe %></a>		
-			<%if desc != nil%>
+			<%= title.html_safe %>
+		</a>		
+
+		<%if desc != nil%>
 			</br>
 			<%= desc.html_safe[0..150] %>
-			<%end%>
-			<p>
+		<%end%>
+
+		<p>
 			<span class="timeCount">
 				<%= host %>
-			</spam></p>
+			</spam>
+		</p>
 	</div>
 </div>
 

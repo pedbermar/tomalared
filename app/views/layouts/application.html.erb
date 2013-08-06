@@ -97,7 +97,7 @@ if @navegador == 'MSIE' -%>
 				</div>
   			<% end %>
 
-			<section id="main" class="ten columns <% if !current_user%>login<%end%>">
+			<section id="main" class="twelven columns <% if !current_user%>login<%end%>">
 				<% if !current_user%>
 					<% if @user_session.errors.any?%>	
 						<div id="error">
@@ -128,7 +128,7 @@ if @navegador == 'MSIE' -%>
 
   			
 		<footer class="row">
-					<div id="footer"  class="ten columns">
+					<div id="footer"  class="twelve columns">
 						<% if current_user %>
 						<%= t 'hola' %> <%= current_user[:name] %>. 
 						<% end %><%= t 'bienvenido' %> 

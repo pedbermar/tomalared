@@ -614,7 +614,8 @@ div #form-new
 
 .post-image
 {
-  width: 100%;
+  width: 92%;
+  margin-top: 5px;
 }
 
 .mediano-muneco2
@@ -635,6 +636,7 @@ div #form-new
 
 .userPostFoto
 {
+  width: 6%;
   float: left;
   margin-right: 10px;
 }
@@ -736,6 +738,7 @@ div #form-new
   width: 100%;
   display:block;
   vertical-align: text-bottom;
+  padding-left: 7%;
 }
 
 .maincontent
@@ -788,14 +791,20 @@ div #form-new
   box-sizing: border-box;
 }
 
-.mainPostContent .text
+.mainPostContent .text,.mainPostContent .text-link,.mainPostContent .text-quote
 {
   margin: 1%;
   text-align: justify;
   word-wrap: break-word;
-  width: 91%;
+  width: 90%;
   float: right;
 }
+
+.text-quote
+{   
+  font-size: 12px;  
+}
+
 
 .mainComentContent .text
 {
@@ -803,21 +812,10 @@ div #form-new
   text-align: justify;
   padding-top: 1px;
   word-wrap: break-word;
-  width: 99%;  
-}
-
-.text, .text-link
-{ 
+  width: 99%;
   font-size: 10px;  
   text-align: justify;
-  line-height: 1.5em;
-}
-
-.text-quote
-{ 
-  width: 99%;
-  font-size: 12px;
-  text-align: justify;  
+  line-height: 1.5em;  
 }
 
 .mainPostContent a:hover, .mainComentContent a:hover, .mainNotiContent a:hover
@@ -896,18 +894,20 @@ div #form-new
 
 .youtube
 {
-  width: 100%;
+  width: 99%;
   height: 320px;   
+}
+
+#video
+{
+  padding-left: 7%;
+  padding-top: 5px;
 }
 
 .imagen
 {
   width: 94%;  
   margin: 3%;
-}
-.post-image img
-{
-  width: 100%;
 }
 
 .searcher
