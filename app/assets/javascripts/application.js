@@ -130,6 +130,7 @@ $(document).ready(function() {
 			$("#post_content").trigger('charcount');
 		$("#form-new").dialog("open");
 		$("#post_content").focus();
+		return false;
 	});
 
 	$("#tumblear").click(function() {
