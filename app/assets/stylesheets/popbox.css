@@ -4,13 +4,19 @@
 	z-index: 999;
 }
 
-.popbox-user{
+.popbox-user
+{
 	display: table;
 	font-size:9px;
 	height: 51px;
-	padding-left: 0.5em;
-	padding-right: 0.5em;	
+	padding: 0.5em;
 	text-align: justify;
+	line-height: 10px;  
+}
+
+.notification a
+{
+	font-size: 9px !important;
 }
 
 .box 
@@ -122,4 +128,17 @@ div.popbox.fotoTopbar
 .popbox-footer
 {
 	border-top: solid 1px #BBBBBB;	
+}
+
+.a-motificasiones
+{
+  display: inline !important;  
+}
+
+
+.popbox-scroll .notification  
+{
+  margin-bottom: 4px;  
+  border: none;
+  background: transparent;
 }

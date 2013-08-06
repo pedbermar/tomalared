@@ -868,6 +868,18 @@ div #form-new
   background: rgba(255,255,255,0.9);
 }
 
+.notification-list, .notification
+{
+  margin-bottom: 4px;  
+  border: 1px solid gray;
+  background: rgba(255,255,255,0.9);
+}
+
+.notification a
+{
+  color: #459E00
+}
+
 #footer a
 {
   color: green;

@@ -2,30 +2,30 @@
 	<%= div_for(@notifications) do |n| %>
 		<% @user = n.from -%>
 		<%if @user.id != current_user[:id]%>
-			<%= link_to image_tag(@user.photo.url(:small), :class => 'popbox-photo'), "/post/user/#{@user.id}", :class => "linkRemote"%>
+			<%= link_to image_tag(@user.photo.url(:small), :class => 'popbox-photo'), "/post/user/#{@user.id}", :class => "linkRemote a-motificasiones"%>
 			<div class="popbox-user">
 			
 	    	<%if n.note_type == 1%>
 				
-				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
-				<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.post_id}", :class => "linkRemote"%>
+				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote a-motificasiones"%>
+				<%= t'notificaciones.te_ha' %>  <%= link_to t('notificaciones.publicacion'), "/post/list/#{n.post_id}", :class => "linkRemote a-motificasiones"%>
 				</br>
 		
 			<%end%>
 			
 			<%if n.note_type == 3%>
 				
-				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
-				<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.post_id}", :class => "linkRemote"%> <%= t'notificaciones.en' %> 
+				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote a-motificasiones"%>
+				<%= t'notificaciones.ha' %> <%= link_to t('notificaciones.publicado'), "/post/list/#{n.post_id}", :class => "linkRemote a-motificasiones"%> <%= t'notificaciones.en' %> 
 				
-					<%= link_to "##{Tag.find(n.resource_id).name} ", "/post/tag/#{Tag.find(n.resource_id).name}", :class => "linkRemote"%>
+					<%= link_to "##{Tag.find(n.resource_id).name} ", "/post/tag/#{Tag.find(n.resource_id).name}", :class => "linkRemote a-motificasiones"%>
 				
 				
 			<%end%>
 			
 			<%if n.note_type == 4%>
 				
-				A <%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%> 
+				A <%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote a-motificasiones"%> 
 				<%like = Like.find(n.resource_id)%>
 				<%if like.like == 1%>
 					le gusta tu
@@ -34,26 +34,26 @@
 				<%end%>
 				tu
 				<%if like.like_type == 1%>
-					<%= link_to "publicacion", "/post/list/#{n.post_id}", :class => "linkRemote"%>
+					<%= link_to "publicacion", "/post/list/#{n.post_id}", :class => "linkRemote a-motificasiones"%>
 				<%elsif like.like_tyoe == 2%>
-					<%= link_to "comentario", "/post/list/#{n.post_id}", :class => "linkRemote"%>		
+					<%= link_to "comentario", "/post/list/#{n.post_id}", :class => "linkRemote a-motificasiones"%>		
 				<%end%>
 			<%end%>
 			
 			<%if n.note_type == 5%>
-				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote"%>
+				<%= link_to "#{@user.profile}", "/post/user/#{@user.id}", :class => "linkRemote a-motificasiones"%>
 				<%= t'notificaciones.ha' %>	<%= t'notificaciones.comentado' %>									
 				
 				<% post = n.post %> 
 				<%if post.user_id == current_user[:id]%>
-					<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%>
+					<%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote a-motificasiones"%>
 					<%= t'notificaciones.tuya' %>	
 				<%elsif post.user_id == @user.id %>
-				    <%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%>
+				    <%= t'notificaciones.una' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote a-motificasiones"%>
 				 	<%= t'notificaciones.suya' %>
 				<%else%>
-					<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote"%> <%= t'notificaciones.de' %> 
-	                <%= link_to "#{post.user.profile}", "/post/user/#{post.user_id}", :class => "linkRemote"%>
+					<%= t'notificaciones.la' %> <%= link_to "publicacion", "/post/list/#{post.id}", :class => "linkRemote a-motificasiones"%> <%= t'notificaciones.de' %> 
+	                <%= link_to "#{post.user.profile}", "/post/user/#{post.user_id}", :class => "linkRemote a-motificasiones"%>
 				<%end%>
 				
 			<%end%>
