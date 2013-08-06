@@ -478,6 +478,11 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
  display: none;
 }
 
+#cargandoPag
+{
+  padding-top: 10px;
+}
+
 .cargandoPagPost 
 {
   width: 66px;
@@ -606,8 +611,7 @@ div #form-new
 {
   position: relative;
   width: 20%;  
-  height: 108px;
-  margin: 4%;
+  height: 108px;  
   float: left;
   top: -3px;  
 }
@@ -791,7 +795,7 @@ div #form-new
   box-sizing: border-box;
 }
 
-.mainPostContent .text,.mainPostContent .text-link,.mainPostContent .text-quote
+.mainPostContent .text,.mainPostContent .text-quote
 {
   margin: 1%;
   text-align: justify;
@@ -799,6 +803,16 @@ div #form-new
   width: 90%;
   float: right;
 }
+
+.text-link
+{
+  margin: 1%;
+  text-align: justify;
+  word-wrap: break-word;
+  width: 70%;
+  float: right;
+}
+
 
 .text-quote
 {   

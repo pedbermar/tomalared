@@ -60,7 +60,7 @@ Fra::Application.routes.draw do
   match '/interaction/share/:post_id' => 'interaction#share'
   
   match '/notifications' => 'notification#list'
-  match '/notif/index' => 'notification#index'
+  match '/notif/index/:note_type' => 'notification#index'
   match '/notif/list' => 'notification#list'
   match '/notif/read/:note_type' => 'notification#read'
 
