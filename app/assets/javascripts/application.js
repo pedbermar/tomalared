@@ -163,7 +163,7 @@ $(document).ready(function() {
 			$("#q").css({"display": "block"});			
 		}
 		
-		if ($(window).width()<=420)
+		if ($(window).width()<=700)
 		{
 			$(".titulo").css({"display": "none"});				
 		}
