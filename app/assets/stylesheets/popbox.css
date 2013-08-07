@@ -72,7 +72,7 @@
   	vertical-align:middle;	
 }
 
-div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions, div.popbox.popbox-tusgrupos, div.popbox.popbox-tendencias
+div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions, div.popbox.popbox-favoritos
 {
 	width: 33px !important;	
 	float: left;	
@@ -82,7 +82,7 @@ div.popbox.popbox-comments, div.popbox.popbox-groups, div.popbox.popbox-mentions
   	padding-top: 6px;
 }
 
-div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover, div.popbox.popbox-tusgrupos:hover, div.popbox.popbox-tendencias:hover
+div.popbox.popbox-comments:hover , div.popbox.popbox-groups:hover, div.popbox.popbox-mentions:hover, div.popbox.popbox-favoritos:hover
 {
   	background: #4b534b;
 }
@@ -109,6 +109,7 @@ div.popbox.fotoTopbar
 	display: block;
 	text-align: center;
 	font-family: entypo;
+	color: #459e00;
 }
 .open
 {
@@ -141,4 +142,14 @@ div.popbox.fotoTopbar
   margin-bottom: 4px;  
   border: none;
   background: transparent;
+}
+
+#tabs-popbox a
+{
+  font-size: 12px;
+}
+
+.box-favoritos .popbox-scroll
+{
+	height: 156px;
 }

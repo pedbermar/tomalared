@@ -10,7 +10,7 @@ function aspectoUser(){
 
 $(document).ready(function() {
 	aspectoUser();
-	$("#tabs-board").tabs();
+	$("#tabs-popbox").tabs();
 	$('.tags-cloud-groups').tagcloud({		
 		centrex : 55,
 		centrey : 55,
@@ -53,21 +53,14 @@ $(document).ready(function() {
 		'arrow_border' : '.arrow-border-comments',
 		'close' : '.close-comments'
 	});
-		
-	$('.popbox-tusgrupos').popbox({
-		'open' : '.open-tusgrupos',
-		'box' : '.box-tusgrupos',
-		'arrow' : '.arrow-tusgrupos',
-		'arrow_border' : '.arrow-border-tusgrupos',
-		'close' : '.close-tendencias'
+	$('.popbox-favoritos').popbox({
+		'open' : '.open-favoritos',
+		'box' : '.box-favoritos',
+		'arrow' : '.arrow-favoritos',
+		'arrow_border' : '.arrow-border-favoritos',
+		'close' : '.close-favoritos'
 	});
-	$('.popbox-tendencias').popbox({
-		'open' : '.open-tendencias',
-		'box' : '.box-tendencias',
-		'arrow' : '.arrow-tendencias',
-		'arrow_border' : '.arrow-border-tendencias',
-		'close' : '.close-tendencias'
-	});
+	
 	$("div.nube-tags").on("click", "a", function(event) {
 		$.address.value($(this).attr('href'));
 		return false;

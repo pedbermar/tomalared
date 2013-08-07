@@ -26,7 +26,7 @@ a
   font-weight: bold;  
 }
         /* Enlaces */
-a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-white a, #board-block a, .text-quote a ,.text-link a, #board-notifi a, .user, .tag a, .tags-follow a
+a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-white a, #board-block a, .text-quote a ,.text-link a, .user, .tag a, .tags-follow a
 {
   color: #459E00;
 }
@@ -1312,13 +1312,6 @@ div #form-new
   width: 100%;
   margin-top: 10px;
 }
-
-.topbar .ui-widget-content 
-{
-  left: -3px;  
-  position:fixed;
-}
-
 
 ::-webkit-scrollbar 
 { 
