@@ -257,7 +257,7 @@ input[type='text'], input[type='password'], #q
   border: 1px solid #BBBBBB;
   background: #FAFAF4;   
   width: 90%;
-  margin: 0 auto;    
+  margin: 0 auto;
 }
 
 .condiciones p
@@ -1438,7 +1438,9 @@ form
 
 .login
 {
-  margin-bottom: 30px;
+  position: relative;
+  top: 62px;  
+  margin-bottom: 62px;
   border: 1px solid gray;
   background-image: url("/gfx/tomalared.png");
   background-repeat: no-repeat;

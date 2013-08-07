@@ -1,4 +1,4 @@
-<div id="reg">
+<div id="reg" class="row">
 	<h1><%= t 'registrate' %></h1>
 	<%= form_for(@usernew) do |f| %>
 		<%= render :partial => "users/form", :object => f, :locals => { :user => @usernew } %>		

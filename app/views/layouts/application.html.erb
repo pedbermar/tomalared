@@ -89,7 +89,7 @@ if @navegador == 'MSIE' -%>
 			<%= render :partial => 'user_sessions/topbar' %>
 		</header>
 		<div class="container">
-			<div class="row maincontent">
+			<div <% if current_user %>class="row maincontent"><% end %>
 	
 			<% if current_user %>
 				<div id="ventanaEmergente">
@@ -97,7 +97,7 @@ if @navegador == 'MSIE' -%>
 				</div>
   			<% end %>
 
-			<section id="main" class="twelve columns <% if !current_user%>login<%end%>">
+			<section <% if current_user %>id="main" class="twelve columns"<% else %>class="login"<% end %>">
 				<% if !current_user%>
 					<% if @user_session.errors.any?%>	
 						<div id="error">
@@ -128,17 +128,17 @@ if @navegador == 'MSIE' -%>
 
   			
 		<footer class="row">
-					<div id="footer"  class="twelve columns">
-						<% if current_user %>
-						<%= t 'hola' %> <%= current_user[:name] %>. 
-						<% end %><%= t 'bienvenido' %> 
-							<br/>
-							<%= t 'version' %>
-						<br/>
-						<%= t 'basado' %>
-						<a href="http://ozimodo.rubyforge.org/">Ozimodo</a> ~  
-						<a href="http://rubyonrails.org/">RubyOnRails</a> 					
-				  	</div>
+			<div id="footer"  class="twelve columns">
+				<% if current_user %>
+				<%= t 'hola' %> <%= current_user[:name] %>. 
+				<% end %><%= t 'bienvenido' %> 
+					<br/>
+					<%= t 'version' %>
+				<br/>
+				<%= t 'basado' %>
+				<a href="http://ozimodo.rubyforge.org/">Ozimodo</a> ~  
+				<a href="http://rubyonrails.org/">RubyOnRails</a> 					
+		  	</div>
 		</footer>	
 	</body>
 </html>
