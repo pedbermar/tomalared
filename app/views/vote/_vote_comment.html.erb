@@ -5,7 +5,7 @@
 	<li class="ocultarIconosCm">
 		<%=existeVotoPropietario(2, comment_id, "Mas", likes) %>
 	</li>
-	<li id="numVotosComment_<%=comment_id %>" class="icons ocultarIconosCm">
+	<li id="numVotosComment_<%=comment_id %>" class="icons ocultarIconosCm <% if Integer(numVotos(likes))> 0 %> success badge <% elsif  Integer(numVotos(likes))== 0  %> warning badge <% elsif Integer(numVotos(likes))< 0 %> danger badge <% end %>">
 		<%=numVotos(likes) %>
 	</li>
 </ul>

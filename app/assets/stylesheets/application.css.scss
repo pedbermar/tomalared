@@ -384,6 +384,11 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
   color: #d04526 !important;  
 }
 
+.borrarComentario
+{
+  margin-top: -4px;
+}
+
 .borrarPost, .borrarComentario, .iconUnshare, .iconShare
 {
   margin-left: 3px;
@@ -422,7 +427,8 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
 }
 .icons, .icons2
 {
-  margin-top: 2px;
+  padding: 5px;
+  padding-top: 1px;
   margin-right: 5px;
 }
 .ui-icon-trash
@@ -597,7 +603,7 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
 {
   position: relative;
   left: 1px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 div #form-new
@@ -841,8 +847,7 @@ div #form-new
 {
   font-family: entypo;
   display: inline;
-  float: right;
-  height: 0px;  
+  float: right;    
 }
 
 .commentHeader
@@ -920,7 +925,7 @@ div #form-new
 
 .youtube
 {
-  width: 99%;
+  width: 100%;
   height: 320px;   
 }
 
@@ -1420,7 +1425,7 @@ form
 
 .mainComentContent .iconos .ui-button-text-only .ui-button-text 
 {
-  margin-top: 7px;
+  margin-top: 3px;
 }
 
 .iconos .ui-state-default
@@ -1520,4 +1525,9 @@ ul.timeline ul ul li a {
 
 ul.timeline span{
   float:right;
+}
+
+.ocultarIconosCm.badge
+{
+    font-size: 10px;
 }
