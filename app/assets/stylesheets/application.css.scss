@@ -542,7 +542,7 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
 
 .new_user_session
 {
-  padding-top: 7px;  
+  padding-top: 9px;  
 }
 
 .ui-dialog
@@ -1418,7 +1418,7 @@ form
 
 .iconos .ui-button-text-only .ui-button-text 
 {
-  margin-top: -1px;
+  margin-top: 1px;
   padding: 0;
   font-family: entypo;
 }
@@ -1530,4 +1530,7 @@ ul.timeline span{
 .ocultarIconosCm.badge
 {
     font-size: 10px;
+    padding: 3px;
+    padding-top: 0px;
+    height: 18px;
 }
