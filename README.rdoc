@@ -20,7 +20,7 @@ documento pero elaboraremos documentacion sobre el diseño de la misma, la
 instalacion y configuracion de los servidores y de la red. 
 	 
     TOMALARED.NET - The free social network project.
-    Copyright (C) 2013  tomalared.net
+    Copyright (C) 2013  KrisalydLabs y sus contribuyentes. 
 
     Este programa es software libre: usted puede redistribuirlo y/o modificarlo 
     bajo los términos de la Licencia Pública General GNU publicada 
