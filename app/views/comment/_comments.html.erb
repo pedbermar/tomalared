@@ -1,9 +1,7 @@
 <%= div_for comment do %>
 	<% @user_ = comment.user%>
     <article class="postContent">    	
-    	<div class="comment-muneco">
-    		<%= link_to image_tag( @user_.photo.url(:small)  , :alt => "Imagen de #{@user_.name}"), "/post/user/#{@user_.name}", :class => "linkRemote comment-muneco-photo" %>
-    	</div>
+
 	    <span class="mainComentContent">
 	    	<span class="iconos">
 		    	<% if  current_user[:id] == comment.user_id %>
@@ -24,6 +22,9 @@
 	    		<%= text_parse(comment.body).html_safe %>	    		
     		</div>
     	</span> 
+		<div class="comment-muneco">
+    		<%= link_to image_tag( @user_.photo.url(:small)  , :alt => "Imagen de #{@user_.name}"), "/post/user/#{@user_.name}", :class => "linkRemote comment-muneco-photo" %>
+    	</div>
 	</article>
 	<input type="hidden" id="cmcreate_at_<%=comment.id%>" class="cmcreate_at" value="<%=comment.created_at%>" />
 <% end %>

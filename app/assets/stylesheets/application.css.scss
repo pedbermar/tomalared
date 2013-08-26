@@ -293,10 +293,10 @@ input[type='text'], input[type='password'], #q
 }
 .comment-muneco
 {
-  width: 6%;
-  float: left;  
+  width: 3%;
+  float: right;  
   padding-top: 0px;
-  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .mainNotiContent
@@ -543,13 +543,13 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
 
 .comentar
 {
-  margin: 0px;
-  margin-top: -7px;
+  width: 2%;
+  margin: 0px;  
   float: right;
-  padding-top: 3px !important;
-  padding-left: 2px !important;
-  padding-right: 2px !important;
-  padding-bottom: 1px !important;
+  padding-top: 6px !important;
+  padding-left: 1px !important;
+  padding-right: 1px !important;
+  padding-bottom: 3px !important;
   font-family: entypo;
 }
 
@@ -815,6 +815,7 @@ div #form-new
 
 .formComentContent
 {
+  width: 98%;
   height: 28px;  
   border: 0px;
   border: 1px solid #bbb;
