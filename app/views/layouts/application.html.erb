@@ -100,7 +100,7 @@ if @navegador == 'MSIE' -%>
 			<section <% if current_user %>id="main" class="twelve columns"<% else %>class="login"<% end %>">
 				<% if !current_user%>
 					<% if @user_session.errors.any?%>	
-						<div id="error">
+						<div id="error"  class="danger alert">
 							<%= render "shared/error_messages_login", :target => @user_session %>
 						</div>																		
 					<%end%>

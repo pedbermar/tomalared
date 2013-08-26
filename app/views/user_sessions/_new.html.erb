@@ -3,12 +3,10 @@
 <ul class="logeo">
 <li class="prepend append double field">
    		<%= f.text_field :name, :placeholder =>  t('perfil.name'), :class =>"text input"%>
-		<%= f.password_field :password, :placeholder => t('perfil.clave'), :class =>"password input" %>
-
+   		<%= f.password_field :password, :placeholder => t('perfil.clave'), :class =>"password input" %>
 </li>
 <li><%= f.submit ('&#59200;').html_safe, :id =>"entrar" %></li>
-<li><%= f.check_box :remember_me %> <%= t('recuerdame')%>	|</li>
-<li><%= link_to t('olvidaste_clave'), password_resets_path %></li>
+<li><%= f.check_box :remember_me %> <%= t('recuerdame')%>|<%= link_to t('olvidaste_clave'), password_resets_path %></li>
 </ul>
 <% end %>
 	
