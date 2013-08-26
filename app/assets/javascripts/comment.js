@@ -2,8 +2,7 @@ function pintarBotonesComment(postId, commentId) {
 	var elemento = postId;
 	if(commentId != ""){
 		elemento = commentId;
-	}
-	$(postId + ".comentar").button();
+	}	
 }
 
 function inicioComment(idPost) {

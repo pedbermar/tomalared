@@ -3,14 +3,16 @@
 <%= link_to ('&#9998;').html_safe, '', :title => "#{t'publicar'}", :id=>"open-publicar"  %>
 	<div id="form-new">
 		<%= form_tag('/save', :id => "save", :multipart=> true, :remote => true) do %>
-			<div class="mediano-muneco2"> 
-				<div class="arrow-left"></div>
+			<div id="menu-tumblear">
+			<div class="mediano-muneco2">
 				<%= link_to image_tag( current_user.photo.url(:medium)  , :alt => "Tu imagen"), "/post/user/#{current_user.name}", :class => "linkRemote mediano-muneco-newex" %> 		
-			</div>			
+			</div>
+						
 			<%= text_area 'post','content' , :class => 'textarea', :placeholder => "#{t'posts.placeholder'}" %>
 			
-			<%= submit_tag "#{t'publicar'}", :id => "tumblear" %>
-			<%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
+				<%= submit_tag "&#59213;".html_safe, :id => "tumblear", :title => "#{t'publicar'}" %>
+				<%= hidden_field 'post', 'user_id', :value => (@po.new_record? ? current_user[:id] : @po.user_id) %>
+			</div>
 		<% end %>
 	</div>
 	

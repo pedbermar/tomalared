@@ -32,7 +32,7 @@ a:hover, .mainPostContent a, .mainComentContent a, .mainNotiContent a, .board-wh
 }
 
       /* Fondos blancos */
-.mainNotiContent, .formComentContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header, .textarea
+.mainNotiContent, .formComentContent, #board-mention, #archivo, #board-block, #board-block li, .board-white, .ui-widget-header
 {
   background: #F0F0F0 !important;
   border:solid 1px #BBBBBB;  
@@ -294,8 +294,7 @@ input[type='text'], input[type='password'], #q
 .comment-muneco
 {
   width: 6%;
-  float: left;
-  margin: 1%;
+  float: left;  
   padding-top: 0px;
   margin-left: 1%;
 }
@@ -526,18 +525,51 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
 
 .textarea
 {
-  margin: 6px;
-  width: 373px;  
-  margin-top: 21px;
+  width: 422px;
   float: right;
   height: 111px;
   padding: 3px;
+  border-bottom: 1px solid #bbb;
 }
 
 #tumblear
 {
-  float:right;
+  margin: -1px;
+  float:right;  
+  padding: 5px !important;
+  padding-top: 7px !important;
+  font-family: entypo;  
+}
+
+.comentar
+{
+  margin: 0px;
+  margin-top: -7px;
+  float: right;
+  padding-top: 3px !important;
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+  padding-bottom: 1px !important;
+  font-family: entypo;
+}
+
+#menu-tumblear
+{
+  border: 1px solid #bbb;
+  display: block;
+  margin-top: 20px;
+  padding-bottom: 3px;
+  background: white;
+}
+
+.menu-comentar
+{  
+  display: block;
+  background: white;
+  width: 91%;  
+  float: right;
   margin-right: 1%;
+  height: 52px;
 }
 
 .new_user_session
@@ -574,6 +606,7 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
 
 #muneco-user
 { 
+  border-bottom: solid 1px white;  
   min-height: 200px; 
   color: #fff;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
@@ -583,6 +616,7 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
 
 #muneco-group
 { 
+  border-bottom: solid 1px white;
   min-height: 72px; 
   color: #fff;
   text-shadow: -1px 0px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000;
@@ -595,7 +629,7 @@ a.borrarPost, a.borrarComentario , a.iconUnshare
   position: relative;
   top: -20px;
   display: table;  
-  width: 98%;  
+  width: 100%;  
   margin-left: 0px; 
 }
 
@@ -618,8 +652,9 @@ div #form-new
   position: relative;
   width: 20%;  
   height: 108px;  
-  float: left;
-  top: -3px;  
+  float: left;    
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .post-image
@@ -630,18 +665,8 @@ div #form-new
 
 .mediano-muneco2
 {
-  width: 140px;  
-  height: 140px;
-  margin: 1%;
+  width: 140px;
   float: left;
-  position: relative;
-  top: 4px;  
-}
-
-.mediano-muneco-newex
-{
-  position:relative;
-  top: -20px;
 }
 
 .userPostFoto
@@ -776,24 +801,25 @@ div #form-new
   box-sizing: border-box;
 }
 
-.formComentContent, .mainComentContent
+.mainComentContent
 {
-  width: 91%;
-  padding: 1%;  
-  float: left;
+  width: 91%;  
+  float: right;
   font-size: 10px;
-  border: none;
-  min-height: 39px;   
+  border: none;    
   -webkit-box-sizing: border-box; 
   -moz-box-sizing: border-box;    
   box-sizing: border-box;         
-
+  margin-right: 1%;
 }
 
 .formComentContent
 {
-  height: 52px;
-  margin-top: 8px;
+  height: 28px;  
+  border: 0px;
+  border: 1px solid #bbb;
+  padding-top: 4px;
+  padding-left: 4px;
 }  
 
 .mainPostContent 
@@ -863,14 +889,6 @@ div #form-new
   padding: 5px;      
   text-align: center;   
   margin-top: 52px;  
-}
-
-.comentar
-{
-  font-size: 10px;
-  float: right;  
-  margin-top: 1%;
-  margin-right: 3%;
 }
 
 #footer
@@ -1339,11 +1357,17 @@ div #form-new
   color: gray;
   margin-left: 2%;
 }
-
+.menu-comentar .charcount-display
+{
+  font-size: 12px;
+  margin-top: -10px;
+  position: relative;
+  top: -10px;
+}
 #save .charcount-display
 {
   color: gray;
-  margin-left: 4%;
+  margin-left: 1%;
 }
 
 .numNotif

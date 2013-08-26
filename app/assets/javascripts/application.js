@@ -72,7 +72,7 @@ jQuery.fn.submitWithAjax = function() {
 $(document).ready(function() {
 	$("#delete").submitWithAjax();
 	$("#new").submitWithAjax();
-	$("#tumblear").button();
+
 	
 	$("#cargandoPag").dialog({
 		autoOpen : false,
