@@ -30,3 +30,6 @@ gem "jcrop-rails"
 gem 'thin'
 gem 'tenacity'
 gem 'htmlentities'
+gem 'bcrypt'
+gem 'scrypt'
+gem 'sprockets' 

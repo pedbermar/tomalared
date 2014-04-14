@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
   validates_presence_of   :profile
   validates_presence_of   :email
   validates_presence_of   :password, :on => :create
-
+  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+  
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
